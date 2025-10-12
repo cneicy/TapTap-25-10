@@ -1,19 +1,23 @@
 using System.Collections.Generic;
+using ShrinkEventBus;
 using UnityEngine;
 
 namespace Game.Buff
 {
+    [EventBusSubscriber]
     public class BuffManager : MonoBehaviour
     {
         private readonly List<BuffBase> _buffs = new();
 
         public void AddBuff(BuffBase buff)
         {
-            buff.OnApply(GetComponent<Player.Player>());
+            print("添加buff");
+            var player = GetComponent<Player.Player>();
+            buff.OnApply(player);
             _buffs.Add(buff);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             var player = GetComponent<Player.Player>();
 
@@ -26,6 +30,15 @@ namespace Game.Buff
                     buff.OnRemove(player);
                     _buffs.RemoveAt(i);
                 }
+            }
+        }
+        
+        [EventSubscribe]
+        public void OnPlayerAddBuff(BuffAppliedEvent evt)
+        {
+            if (evt.Player == GetComponent<Player.Player>())
+            {
+                AddBuff(evt.Buff);
             }
         }
     }

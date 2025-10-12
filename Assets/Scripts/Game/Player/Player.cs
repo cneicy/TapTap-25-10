@@ -1,9 +1,11 @@
 using System;
 using Game.Buff;
+using ShrinkEventBus;
 using UnityEngine;
 
 namespace Game.Player
 {
+    [EventBusSubscriber]
     public class Player : MonoBehaviour
     { 
         public Rigidbody2D rb2d;
@@ -14,16 +16,10 @@ namespace Game.Player
         {
             rb2d = GetComponent<Rigidbody2D>();
             _buffManager = GetComponent<BuffManager>();
-            
-            //测试
-            _buffManager.AddBuff(new ParachuteBuff(0.77f,5f));
         }
-
-        [Obsolete("Obsolete")]
         private void FixedUpdate()
-        { 
-            //测试
-            rb2d.velocity = new Vector2(rb2d.velocity.x, playerSpeedY);
+        {
+            playerSpeedY = rb2d.linearVelocity.y;
         }
     }
 }
