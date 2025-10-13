@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,20 +13,17 @@ namespace Game.VoiceToText
         [Header("引用")]
         public VoiceStreamManager streamManager;
 
-        [Header("UI组件")]
-        public Button stopButton;
-        public TMP_Text realtimeText;
-        public TMP_Text accumulatedText;
-        public TMP_Dropdown microphoneDropdown;
+        [Header("UI组件 可选")] [CanBeNull] public Button stopButton;
+        [CanBeNull] public TMP_Text realtimeText;
+        [CanBeNull] public TMP_Text accumulatedText;
+        [CanBeNull] public TMP_Dropdown microphoneDropdown;
 
         [Header("显示设置")]
         public int maxRealtimeLength = 100;
-        public Color streamingColor = Color.green;
-        public Color idleColor = Color.gray;
 
         private void Start()
         {
-            if (streamManager == null)
+            if (!streamManager)
             {
                 Debug.LogError("未设置 VoiceStreamManager 引用！");
                 return;
@@ -38,22 +36,22 @@ namespace Game.VoiceToText
         private void InitializeUI()
         {
             // 初始化麦克风下拉列表
-            if (microphoneDropdown != null)
+            if (microphoneDropdown)
             {
                 InitializeMicrophoneDropdown();
             }
             
-            if (stopButton != null)
+            if (stopButton)
                 stopButton.onClick.AddListener(OnStopButtonClicked);
-
-            // 初始状态
+            
             UpdateButtonStates(false);
-            if (realtimeText != null) realtimeText.text = "";
-            if (accumulatedText != null) accumulatedText.text = "等待语音输入...";
+            if (realtimeText) realtimeText.text = "";
+            if (accumulatedText) accumulatedText.text = "等待语音输入...";
         }
 
         private void InitializeMicrophoneDropdown()
         {
+            if (!microphoneDropdown) return;
             microphoneDropdown.ClearOptions();
             var mics = streamManager.GetAllMicrophones();
 
@@ -69,6 +67,7 @@ namespace Game.VoiceToText
                 {
                     microphoneDropdown.options.Add(new TMP_Dropdown.OptionData(mic));
                 }
+
                 microphoneDropdown.value = 0;
                 microphoneDropdown.RefreshShownValue();
                 microphoneDropdown.onValueChanged.AddListener(OnMicrophoneChanged);
@@ -97,7 +96,7 @@ namespace Game.VoiceToText
         private void OnStreamStarted()
         {
             UpdateButtonStates(true);
-            if (accumulatedText != null)
+            if (accumulatedText)
                 accumulatedText.text = "";
         }
 
@@ -110,17 +109,15 @@ namespace Game.VoiceToText
 
         private void OnSegmentReceived(string text)
         {
-            if (accumulatedText != null)
-            {
-                accumulatedText.text = streamManager.GetAccumulatedText();
+            if (!accumulatedText) return;
+            accumulatedText.text = streamManager.GetAccumulatedText();
                 
-                Canvas.ForceUpdateCanvases();
-            }
+            Canvas.ForceUpdateCanvases();
         }
 
         private void OnFinalResult(string text)
         {
-            if (accumulatedText != null)
+            if (accumulatedText)
             {
                 accumulatedText.text = text;
             }
@@ -133,10 +130,10 @@ namespace Game.VoiceToText
 
         private void UpdateButtonStates(bool isStreaming)
         {
-            if (stopButton != null)
+            if (stopButton)
                 stopButton.interactable = isStreaming;
 
-            if (microphoneDropdown != null)
+            if (microphoneDropdown)
                 microphoneDropdown.interactable = !isStreaming;
         }
 
@@ -147,7 +144,7 @@ namespace Game.VoiceToText
             
             if (currentText.Length > maxRealtimeLength)
             {
-                currentText = "..." + currentText.Substring(currentText.Length - maxRealtimeLength);
+                currentText = "..." + currentText[^maxRealtimeLength..];
             }
                 
             realtimeText.text = currentText;
@@ -155,7 +152,7 @@ namespace Game.VoiceToText
 
         private void OnDestroy()
         {
-            if (streamManager != null)
+            if (streamManager)
             {
                 streamManager.OnStreamStarted -= OnStreamStarted;
                 streamManager.OnStreamStopped -= OnStreamStopped;
@@ -164,10 +161,10 @@ namespace Game.VoiceToText
                 streamManager.OnError -= OnError;
             }
 
-            if (stopButton != null)
+            if (stopButton)
                 stopButton.onClick.RemoveListener(OnStopButtonClicked);
 
-            if (microphoneDropdown != null)
+            if (microphoneDropdown)
                 microphoneDropdown.onValueChanged.RemoveListener(OnMicrophoneChanged);
         }
     }

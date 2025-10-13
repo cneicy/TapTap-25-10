@@ -1,10 +1,17 @@
 ﻿using System;
+using JetBrains.Annotations;
+using ShrinkEventBus;
+using TMPro;
 using UnityEngine;
+using Utils;
 using Whisper;
 using Whisper.Utils;
 
 namespace Game.VoiceToText
 {
+    public class DirtyTalkEvent : EventBase{}
+    public class EggTalkEvent : EventBase{}
+    
     /// <summary>
     /// 实时流式语音识别管理器
     /// 麦克风常开，边录边识别
@@ -14,7 +21,8 @@ namespace Game.VoiceToText
     /// 2. 在 WhisperManager 的 Inspector 中配置模型
     /// 3. 添加本组件并关联 WhisperManager
     /// </summary>
-    public class VoiceStreamManager : MonoBehaviour
+    
+    public class VoiceStreamManager : Singleton<VoiceStreamManager>
     {
         [Header("组件引用")] [Tooltip("拖拽场景中的 WhisperManager 组件")]
         public WhisperManager whisperManager;
@@ -41,6 +49,9 @@ namespace Game.VoiceToText
         [Header("显示设置")] [Tooltip("是否在控制台实时输出识别结果")]
         public bool printRealtimeResults = true;
 
+        [Header("孩子不懂事写着玩的 可选")]
+        [CanBeNull] public TMP_Text status;
+
         [Tooltip("是否显示调试信息")] public bool showDebugInfo = true;
 
         public event Action<string> OnSegmentReceived;
@@ -54,24 +65,22 @@ namespace Game.VoiceToText
         private bool _isStreaming;
         private string _accumulatedText = "";
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             if (!whisperManager)
             {
                 Debug.LogError("❌ 未设置 WhisperManager 引用！");
                 return;
             }
-
-            // 先初始化麦克风
+            
             InitializeMicrophone();
         }
 
         private void Start()
         {
-            // 更新Whisper流式配置
             UpdateWhisperStreamSettings();
 
-            // 选择默认麦克风
             if (_microphoneRecord)
             {
                 SetMicrophone(microphoneDeviceIndex);
@@ -87,7 +96,7 @@ namespace Game.VoiceToText
         {
             _microphoneRecord = gameObject.AddComponent<MicrophoneRecord>();
             _microphoneRecord.frequency = sampleRate;
-            _microphoneRecord.maxLengthSec = 60; // 改为60秒，Unity限制最多1小时，但实际循环录音
+            _microphoneRecord.maxLengthSec = 60;
             _microphoneRecord.loop = true; // 循环录音
 
             // 设置麦克风的chunk参数，确保能触发OnChunkReady事件
@@ -212,6 +221,7 @@ namespace Game.VoiceToText
                 if (!whisperManager.IsLoaded)
                 {
                     OnError?.Invoke("模型加载失败");
+                    if (status) status.text = "faild";
                     return;
                 }
 
@@ -298,7 +308,7 @@ namespace Game.VoiceToText
                 OnError?.Invoke($"启动失败: {ex.Message}");
 
                 // 清理
-                if (_microphoneRecord != null && _microphoneRecord.IsRecording)
+                if (_microphoneRecord && _microphoneRecord.IsRecording)
                 {
                     _microphoneRecord.StopRecord();
                 }
@@ -360,7 +370,7 @@ namespace Game.VoiceToText
             var text = result.Result?.Trim();
             if (string.IsNullOrEmpty(text)) return;
 
-            // 预处理文本（可选）
+            // 预处理文本
             text = ProcessText(text);
 
             if (printRealtimeResults)
@@ -403,20 +413,24 @@ namespace Game.VoiceToText
         {
             if (string.IsNullOrEmpty(text)) return text;
 
+            if (status) status.text = text;
+
             text = text.Trim();
             if (text.Contains("我草") || text.Contains("Fuck") || text.Contains("What's up") || text.Contains("化客") ||
                 text.Contains("罚客") || text.Contains("bucker") || text.Contains("buck") || text.Contains("fucker") ||
-                text.Contains("我靠") || text.Contains("妈") || text.Contains("大爷") || text.Contains("日")
+                text.Contains("我靠") || text.Contains("妈") || text.Contains("大爷") || text.Contains("日") || text.Contains("操")
                 )
             {
                 print("素质有待提高");
                 _accumulatedText = "素质有待提高";
+                EventBus.TriggerEvent(new DirtyTalkEvent());
             }
 
             if ((text.Contains("bug") || text.Contains("八个")) && (text.Contains("确定") || text.Contains("这")))
             {
                 print("you win");
                 _accumulatedText = "you win";
+                EventBus.TriggerEvent(new EggTalkEvent());
             }
 
             return text;
