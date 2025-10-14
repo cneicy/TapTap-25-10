@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShrinkEventBus;
 using UnityEngine;
 using Utils;
@@ -18,13 +19,14 @@ namespace Game.Cup
     public class CupBox : Singleton<CupBox>
     {
         public List<string> cupsPlayerHad = new();
-        
+        public List<CupBase> allCups = new();
         
         
         private void OnEnable()
         {
+            allCups = GetComponentsInChildren<CupBase>().ToList();
             // todo:当玩家继续游戏时读取玩家数据拥有的奖杯
-            cupsPlayerHad.Add("Tap Cup");
+            //cupsPlayerHad.Add("Tap Cup");
         }
 
         private void Update()
@@ -37,10 +39,14 @@ namespace Game.Cup
 
         public void RefreshCups()
         {
-            foreach (var cupBase in GetComponentsInChildren<CupBase>())
+            foreach (var cupBase in allCups)
             {
                 // 留意大小写，小写的是gameobject的name
-                if (!cupsPlayerHad.Contains(cupBase.Name))
+                if (cupsPlayerHad.Contains(cupBase.Name))
+                {
+                    cupBase.gameObject.SetActive(true);
+                }
+                else
                 {
                     cupBase.gameObject.SetActive(false);
                 }
@@ -50,7 +56,9 @@ namespace Game.Cup
         [EventSubscribe]
         public void OnPlayerGetCupEvent(PlayerGetCupEvent evt)
         {
-            cupsPlayerHad.Add(evt.Cup.Name);
+            if(!cupsPlayerHad.Contains(evt.Cup.Name))
+                cupsPlayerHad.Add(evt.Cup.Name);
+            RefreshCups();
         }
     }
 }

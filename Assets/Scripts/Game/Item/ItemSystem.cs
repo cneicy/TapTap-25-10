@@ -24,8 +24,8 @@ namespace Game.Item
 
         private void Start()
         {
-            EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
-            EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<Hands>()));
+            /*EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
+            EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<Hands>()));*/
         }
 
         [EventSubscribe]
