@@ -1,3 +1,5 @@
+using Game.Level;
+using ShrinkEventBus;
 using UnityEngine;
 
 namespace Game.Player
@@ -5,6 +7,7 @@ namespace Game.Player
     /// <summary>
     /// VERY primitive animator example.
     /// </summary>
+    [EventBusSubscriber]
     public class PlayerAnimator : MonoBehaviour
     {
         [Header("References")] [SerializeField]
@@ -30,6 +33,13 @@ namespace Game.Player
         private IPlayerController _player;
         private bool _grounded;
         private ParticleSystem.MinMaxGradient _currentGradient;
+        private bool _isTrueWorld;
+
+        [EventSubscribe]
+        public void OnLevelChangeEvent(LevelChangeEvent evt)
+        {
+            _isTrueWorld = evt.IsTrueWorld;
+        }
 
         private void Awake()
         {
@@ -64,6 +74,7 @@ namespace Game.Player
             HandleIdleSpeed();
 
             HandleCharacterTilt();
+            HandleRunAnimation();
         }
 
         private void HandleSpriteFlip()
@@ -78,8 +89,16 @@ namespace Game.Player
             _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
         }
 
+        private void HandleRunAnimation()
+        {
+            _anim.SetInteger(RunSpeed,0);
+            if(_player.FrameInput.x == 0 || _isTrueWorld) return;
+            _anim.SetInteger(RunSpeed,(int)_player.FrameInput.x);
+        }
+
         private void HandleCharacterTilt()
         {
+            if(!_isTrueWorld) return;
             var runningTilt = _grounded ? Quaternion.Euler(0, 0, _maxTilt * _player.FrameInput.x) : Quaternion.identity;
             _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);
         }
@@ -139,5 +158,6 @@ namespace Game.Player
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         private static readonly int JumpKey = Animator.StringToHash("Jump");
+        private static readonly int RunSpeed = Animator.StringToHash("RunSpeed");
     }
 }
