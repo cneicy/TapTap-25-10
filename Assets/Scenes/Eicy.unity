@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 2969068313154050967, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969068313154050967, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
+      propertyPath: m_Size.y
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969068313154050967, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7140531439819722067, guid: 2ffc5951062068a4cbdba7fc8935587a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
