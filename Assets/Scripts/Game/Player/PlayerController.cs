@@ -57,7 +57,11 @@ namespace Game.Player
             {
                 JumpDown = InputSystem.actions.FindAction("Jump").triggered,
                 JumpHeld = InputSystem.actions.FindAction("Jump").IsInProgress(),
-                Move = InputSystem.actions.FindAction("Move").ReadValue<Vector2>()
+                Move = InputSystem.actions.FindAction("Move").ReadValue<Vector2>(),
+                
+                UseItem = InputSystem.actions.FindAction("Attack").triggered,
+                LeftSwitchItem = InputSystem.actions.FindAction("LeftSwitchItem").triggered,
+                RightSwitchItem = InputSystem.actions.FindAction("RightSwitchItem").triggered,
             };
 
             if (_stats.SnapInput)
@@ -203,8 +207,9 @@ namespace Game.Player
         {
             if (_frameInput.UseItem)
             {
-                var itemName = items[ItemIndex].Name;
-                var item = Instantiate(Resources.Load<GameObject>("Prefabs/items/"+itemName));
+                /*var itemName = items[ItemIndex].Name;
+                var item = Instantiate(Resources.Load<GameObject>("Prefabs/items/"+itemName));*/
+                print("使用道具");
             }
         }
 
@@ -220,6 +225,8 @@ namespace Game.Player
                 {
                     ItemIndex--;
                 }
+
+                print("Left");
             }
 
             if (_frameInput.RightSwitchItem)
@@ -232,6 +239,7 @@ namespace Game.Player
                 {
                     ItemIndex++;
                 }
+                print("Right");
             }
         }
         #endregion

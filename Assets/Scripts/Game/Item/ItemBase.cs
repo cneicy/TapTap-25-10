@@ -67,17 +67,17 @@ namespace Game.Item
         {
             if (!CanUse) return;
             CanUse = false;
-            print($"{Name} 道具使用开始");
+            /*print($"{Name} 道具使用开始");*/
             StartCoroutine(nameof(WindupTimer));
         }
         
         public virtual IEnumerator WindupTimer()
         {
             IsWindingUp = true;
-            print("开始前摇动画");
+            /*print("开始前摇动画");*/
             OnWindupStart();
             yield return new WaitForSeconds(WindupDuration);
-            print("前摇结束");
+            /*print("前摇结束");*/
             IsWindingUp = false;
             OnWindupEnd();
             
@@ -88,9 +88,9 @@ namespace Game.Item
 
         public virtual IEnumerator DurationTimer()
         {
-            print("转使用持续时间");
+            /*print("转使用持续时间");*/
             yield return new WaitForSeconds(Duration);
-            print("使用持续时间转好了");
+            /*print("使用持续时间转好了");*/
             IsUsing = false;
             OnUseEnd();
 
@@ -101,10 +101,10 @@ namespace Game.Item
         public virtual IEnumerator RecoveryTimer()
         {
             IsRecovering = true;
-            print("开始后摇动画");
+            /*print("开始后摇动画");*/
             OnRecoveryStart();
             yield return new WaitForSeconds(RecoveryDuration);
-            print("后摇结束");
+            /*print("后摇结束");*/
             IsRecovering = false;
             OnRecoveryEnd();
             
@@ -113,9 +113,9 @@ namespace Game.Item
 
         public virtual IEnumerator CooldownTimer()
         {
-            print("转cd");
+            /*print("转cd");*/
             yield return new WaitForSeconds(Cooldown);
-            print("cd转好了");
+            /*print("cd转好了");*/
             CanUse = true;
         }
 
@@ -131,32 +131,32 @@ namespace Game.Item
         
         public virtual void OnWindupStart()
         {
-            print("前摇开始 - 播放准备动画");
+            /*print("前摇开始 - 播放准备动画");*/
         }
         
         public virtual void OnWindupEnd()
         {
-            print("前摇结束");
+            /*print("前摇结束");*/
         }
 
         public virtual void OnUseEnd()
         {
-            print("用完了");
+            /*print("用完了");*/
         }
         
         public virtual void OnRecoveryStart()
         {
-            print("后摇开始 - 播放收尾动画");
+            /*print("后摇开始 - 播放收尾动画");*/
         }
         
         public virtual void OnRecoveryEnd()
         {
-            print("后摇结束");
+            /*print("后摇结束");*/
         }
 
         public virtual void OnUseCancel()
         {
-            print("不用了");
+            /*print("不用了");*/
             StopAllCoroutines();
             CanUse = true;
             IsWindingUp = false;
@@ -166,12 +166,12 @@ namespace Game.Item
 
         public virtual void ApplyEffectTick()
         {
-            print("此tick应用效果");
+            /*print("此tick应用效果");*/
         }
 
         public virtual void ApplyEffect()
         {
-            print("应用效果了");
+            /*print("应用效果了");*/
         }
     }
 }

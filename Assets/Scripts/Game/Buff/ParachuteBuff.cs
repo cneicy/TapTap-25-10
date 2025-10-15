@@ -32,10 +32,15 @@ namespace Game.Buff
                 _isBug = false;
             }
             _playerController.ParachuteSpeed = _playerController._frameVelocity.y;
+            if (_playerController._frameVelocity.y == _playerController.ParachuteSpeed)
+            {
+                _isBug = true;
+            }
         }
 
         public override void OnUpdate(Player.Player target, float deltaTime)
         {
+            base.OnUpdate(target, deltaTime);
             if (_isBug)
             {
                 _playerController._frameVelocity.y = Mathf.MoveTowards
@@ -54,6 +59,7 @@ namespace Game.Buff
 
         public override void OnRemove(Player.Player target)
         {
+            base.OnRemove(target);
             _playerController.ParachuteSpeed = _playerController._stats.MaxFallSpeed;
         }
     }
