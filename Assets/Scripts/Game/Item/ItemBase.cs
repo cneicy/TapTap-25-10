@@ -62,7 +62,7 @@ namespace Game.Item
         public bool IsUsing { get; set; }
         public bool IsRecovering { get; set; }
         public bool CanUse { get; set; } = true;
-
+        
         public virtual void OnUseStart()
         {
             if (!CanUse) return;

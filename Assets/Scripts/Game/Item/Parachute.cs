@@ -18,7 +18,7 @@ namespace Game.Item
             Cooldown = 20f;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             OnUseStart();
         }
@@ -34,7 +34,7 @@ namespace Game.Item
             var player = FindObjectOfType<Player.Player>();
             EventBus.TriggerEvent(new BuffAppliedEvent
             {
-                Buff = new ParachuteBuff(5f, -17f),
+                Buff = new ParachuteBuff(5f, 2f,40f),
                 Player = player
             });
         }

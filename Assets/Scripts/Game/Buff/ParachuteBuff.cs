@@ -1,45 +1,60 @@
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Buff
 {
     public class ParachuteBuff : BuffBase
     {
-        private float _fallSpeedMultiplier; // 下落速度倍率（例如 0.3f 表示速度变为原来的 30%）
+        private bool _isBug;//如果速度方向向上则进入bug模式
+        private PlayerController _playerController;
+        
+        public float ParachuteMinSpeed { get; set; } //使用降落伞后可以减速到的最小速度 （无方向 应为正数）
+        public float ParachuteFallAcceleration{ get; set; }// 使用降落伞后减速的能力大小
 
-        public ParachuteBuff(float duration, float fallSpeedMultiplier)
+        public ParachuteBuff(float duration, float parachuteMinSpeed, float parachuteFallAcceleration)
         {
             BuffName = "Parachute";
             Duration = duration;
-            _fallSpeedMultiplier = fallSpeedMultiplier;
+            ParachuteMinSpeed = parachuteMinSpeed;
+            ParachuteFallAcceleration = parachuteFallAcceleration;
         }
 
         public override void OnApply(Player.Player target)
         {
-            Debug.Log($"Parachute Buff applied for {Duration}s, fall speed reduced to {_fallSpeedMultiplier * 100}%.");
+            base.OnApply(target);
+            _playerController = target.GetComponent<PlayerController>();
+            if (_playerController._frameVelocity.y > 0)
+            {
+                _isBug = true;
+            }
+            else
+            {
+                _isBug = false;
+            }
+            _playerController.ParachuteSpeed = _playerController._frameVelocity.y;
         }
 
         public override void OnUpdate(Player.Player target, float deltaTime)
         {
-            base.OnUpdate(target, deltaTime);
-
-            if (target.rb2d != null)
+            if (_isBug)
             {
-                var velocity = target.rb2d.linearVelocity;
-
-                // 仅在角色下落时生效（y 为负）
-                if (velocity.y < 0)
-                {
-                    // 让下落速度变慢，例如原来是 -10，现在变成 -10 * 0.3 = -3
-                    velocity.y -= _fallSpeedMultiplier;
-
-                    target.rb2d.linearVelocity = velocity;
-                }
+                _playerController._frameVelocity.y = Mathf.MoveTowards
+                    (_playerController._frameVelocity.y, 
+                        ParachuteMinSpeed, 
+                        ParachuteFallAcceleration * Time.fixedDeltaTime);
+            }
+            else
+            {
+                _playerController._frameVelocity.y = Mathf.MoveTowards
+                (_playerController._frameVelocity.y, 
+                    -ParachuteMinSpeed, 
+                    ParachuteFallAcceleration * Time.fixedDeltaTime);
             }
         }
 
         public override void OnRemove(Player.Player target)
         {
-            Debug.Log("Parachute Buff expired.");
+            _playerController.ParachuteSpeed = _playerController._stats.MaxFallSpeed;
         }
     }
 }

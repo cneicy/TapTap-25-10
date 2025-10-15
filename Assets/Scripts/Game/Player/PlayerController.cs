@@ -1,18 +1,22 @@
 using System;
+using System.Collections.Generic;
+using Game.Item;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Game.Player
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
-        [SerializeField] private ScriptableStats _stats;
+        [SerializeField] public ScriptableStats _stats;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
-        private Vector2 _frameVelocity;
+        public Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
+        public float ParachuteSpeed { get; set; }
 
         #region Interface
 
@@ -24,12 +28,21 @@ namespace Game.Player
 
         private float _time;
 
+        #region ItemSystem
+
+        private int ItemIndex { get; set; } 
+        public List<ItemBase> items;
+
+        #endregion
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<CapsuleCollider2D>();
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
+
+            ParachuteSpeed = _stats.MaxFallSpeed;
         }
 
         private void Update()
@@ -173,13 +186,29 @@ namespace Game.Player
             {
                 var inAirGravity = _stats.FallAcceleration;
                 if (_endedJumpEarly && _frameVelocity.y > 0) inAirGravity *= _stats.JumpEndEarlyGravityModifier;
-                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
+                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -ParachuteSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
 
         #endregion
 
         private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
+
+        #region Item
+
+        private void UseItem()
+        {
+            if (_frameInput.UseItem)
+            {
+                
+            }
+        }
+
+        private void SwitchItem()
+        {
+            
+        }
+        #endregion
 
 #if UNITY_EDITOR
         private void OnValidate()
@@ -194,6 +223,10 @@ namespace Game.Player
         public bool JumpDown;
         public bool JumpHeld;
         public Vector2 Move;
+
+        public bool UseItem;
+        public bool LeftSwitchItem;
+        public bool RightSwitchItem;
     }
 
     public interface IPlayerController
