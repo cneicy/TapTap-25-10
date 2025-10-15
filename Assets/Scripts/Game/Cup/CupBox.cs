@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Data;
 using ShrinkEventBus;
 using UnityEngine;
 using Utils;
@@ -9,7 +10,7 @@ namespace Game.Cup
 {
     public class PlayerGetCupEvent : EventBase
     {
-        public CupBase Cup {  get; set; }
+        public CupBase Cup {  get; }
         public PlayerGetCupEvent(CupBase cup)
         {
             Cup = cup;
@@ -25,18 +26,25 @@ namespace Game.Cup
         private void OnEnable()
         {
             allCups = GetComponentsInChildren<CupBase>().ToList();
-            // todo:当玩家继续游戏时读取玩家数据拥有的奖杯
-            //cupsPlayerHad.Add("Tap Cup");
-        }
-
-        private void Update()
-        {
-            if (Input.GetMouseButton(0))
+            foreach (var cupBase in allCups)
             {
-                RefreshCups();
+                cupBase.gameObject.SetActive(false);
             }
         }
 
+        private void Start()
+        {
+            print($"Just print {DataManager.Instance} for init");
+        }
+
+        [EventSubscribe]
+        public void OnPlayerDataLoadedEvent(PlayerDataLoadedEvent evt)
+        {
+            if(DataManager.Instance.GetData<List<string>>("cupsPlayerHad") is not null)
+                cupsPlayerHad = DataManager.Instance.GetData<List<string>>("cupsPlayerHad");
+            RefreshCups();
+        }
+        
         public void RefreshCups()
         {
             foreach (var cupBase in allCups)
@@ -56,8 +64,12 @@ namespace Game.Cup
         [EventSubscribe]
         public void OnPlayerGetCupEvent(PlayerGetCupEvent evt)
         {
-            if(!cupsPlayerHad.Contains(evt.Cup.Name))
+            if (!cupsPlayerHad.Contains(evt.Cup.Name))
+            {
                 cupsPlayerHad.Add(evt.Cup.Name);
+                DataManager.Instance.SetData("cupsPlayerHad", cupsPlayerHad);
+            }
+
             RefreshCups();
         }
     }

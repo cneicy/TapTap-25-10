@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Data;
 using ShrinkEventBus;
 using UnityEngine.InputSystem;
 using Utils;
@@ -27,15 +28,24 @@ namespace Game.Item
             /*EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
             EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<Hands>()));*/
         }
+        
+        [EventSubscribe]
+        public void OnPlayerDataLoadedEvent(PlayerDataLoadedEvent evt)
+        {
+            if(DataManager.Instance.GetData<List<ItemBase>>("ItemsPlayerHad") is not null)
+                ItemsPlayerHad = DataManager.Instance.GetData<List<ItemBase>>("ItemsPlayerHad");
+        }
 
         [EventSubscribe]
         public void OnPlayerGetItemEvent(PlayerGetItemEvent evt)
         {
+            if (ItemsPlayerHad.Contains(evt.Item)) return;
             if (ItemsPlayerHad.Count == 0)
             {
                 CurrentItem = evt.Item;
             }
             ItemsPlayerHad?.Add(evt.Item);
+            DataManager.Instance.SetData("ItemsPlayerHad", ItemsPlayerHad);
         }
 
         public void SwitchToPreviousItem()
