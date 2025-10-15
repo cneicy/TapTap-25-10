@@ -14,6 +14,7 @@ namespace Game.Cup
 
         private void OnEnable()
         {
+            // todo:此处逻辑应该转移到关卡场景切换处
             if (CupBox.Instance.cupsPlayerHad.Contains(_cup.Name))
                 gameObject.SetActive(false);
         }
