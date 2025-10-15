@@ -82,6 +82,9 @@ namespace Game.Player
             HandleGravity();
             
             ApplyMovement();
+            
+            UseItem();
+            SwitchItem();
         }
 
         #region Collisions
@@ -200,13 +203,36 @@ namespace Game.Player
         {
             if (_frameInput.UseItem)
             {
-                
+                var itemName = items[ItemIndex].Name;
+                var item = Instantiate(Resources.Load<GameObject>("Prefabs/items/"+itemName));
             }
         }
 
         private void SwitchItem()
         {
-            
+            if (_frameInput.LeftSwitchItem)
+            {
+                if (ItemIndex==0)
+                {
+                    ItemIndex = items.Count;
+                }
+                else
+                {
+                    ItemIndex--;
+                }
+            }
+
+            if (_frameInput.RightSwitchItem)
+            {
+                if (ItemIndex == items.Count)
+                {
+                    ItemIndex = 0;
+                }
+                else
+                {
+                    ItemIndex++;
+                }
+            }
         }
         #endregion
 
