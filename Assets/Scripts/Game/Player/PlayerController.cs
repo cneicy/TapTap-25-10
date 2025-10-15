@@ -32,6 +32,7 @@ namespace Game.Player
 
         private int ItemIndex { get; set; } 
         public List<ItemBase> items;
+        public ItemVisualController itemVisualController;
 
         #endregion
 
@@ -217,6 +218,7 @@ namespace Game.Player
         {
             if (_frameInput.LeftSwitchItem)
             {
+                itemVisualController.NextItem();
                 if (ItemIndex==0)
                 {
                     ItemIndex = items.Count;
@@ -225,12 +227,11 @@ namespace Game.Player
                 {
                     ItemIndex--;
                 }
-
-                print("Left");
             }
 
             if (_frameInput.RightSwitchItem)
             {
+                itemVisualController.PreviousItem();
                 if (ItemIndex == items.Count)
                 {
                     ItemIndex = 0;
@@ -239,7 +240,6 @@ namespace Game.Player
                 {
                     ItemIndex++;
                 }
-                print("Right");
             }
         }
         #endregion
