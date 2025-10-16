@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Color = System.Drawing.Color;
 
 namespace Game.VoiceToText
 {
@@ -13,7 +14,7 @@ namespace Game.VoiceToText
         [Header("引用")]
         public VoiceStreamManager streamManager;
 
-        [Header("UI组件 可选")] [CanBeNull] public Button stopButton;
+        [Header("UI组件 可选")] [CanBeNull] public Toggle micSwitch;
         [CanBeNull] public TMP_Text realtimeText;
         [CanBeNull] public TMP_Text accumulatedText;
         [CanBeNull] public TMP_Dropdown microphoneDropdown;
@@ -40,9 +41,8 @@ namespace Game.VoiceToText
             {
                 InitializeMicrophoneDropdown();
             }
+            micSwitch.onValueChanged.AddListener(OnStopButtonClicked);
             
-            if (stopButton)
-                stopButton.onClick.AddListener(OnStopButtonClicked);
             
             UpdateButtonStates(false);
             if (realtimeText) realtimeText.text = "";
@@ -83,9 +83,18 @@ namespace Game.VoiceToText
             streamManager.OnError += OnError;
         }
 
-        private void OnStopButtonClicked()
+        private void OnStopButtonClicked(bool b)
         {
-            streamManager.StopStream();
+            if (b)
+            {
+                streamManager.StartStream();
+                micSwitch.GetComponentInChildren<Text>().text = "停止麦克风";
+            }
+            else
+            {
+                streamManager.StopStream();
+                micSwitch.GetComponentInChildren<Text>().text = "开启麦克风";
+            }
         }
 
         private void OnMicrophoneChanged(int index)
@@ -130,9 +139,6 @@ namespace Game.VoiceToText
 
         private void UpdateButtonStates(bool isStreaming)
         {
-            if (stopButton)
-                stopButton.interactable = isStreaming;
-
             if (microphoneDropdown)
                 microphoneDropdown.interactable = !isStreaming;
         }
@@ -161,8 +167,8 @@ namespace Game.VoiceToText
                 streamManager.OnError -= OnError;
             }
 
-            if (stopButton)
-                stopButton.onClick.RemoveListener(OnStopButtonClicked);
+            if (micSwitch)
+                micSwitch.onValueChanged.RemoveListener(OnStopButtonClicked);
 
             if (microphoneDropdown)
                 microphoneDropdown.onValueChanged.RemoveListener(OnMicrophoneChanged);

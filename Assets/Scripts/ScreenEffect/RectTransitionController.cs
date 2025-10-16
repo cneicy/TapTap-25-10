@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace ScreenEffect
 {
     [RequireComponent(typeof(RawImage))]
-    public class RectTransitionController : MonoBehaviour
+    public class RectTransitionController : Singleton<RectTransitionController>
     {
         [Header("动画参数")]
         [SerializeField] private float gapCloseTime = 0.5f;

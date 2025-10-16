@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Data;
 using ShrinkEventBus;
 using UnityEngine;
@@ -21,10 +22,9 @@ namespace Game.Cup
     {
         public List<string> cupsPlayerHad = new();
         public List<CupBase> allCups = new();
-        
-        
-        private void OnEnable()
+        protected override void Awake()
         {
+            base.Awake();
             allCups = GetComponentsInChildren<CupBase>().ToList();
             foreach (var cupBase in allCups)
             {
@@ -32,16 +32,14 @@ namespace Game.Cup
             }
         }
 
-        private void Start()
-        {
-            print($"Just print {DataManager.Instance} for init");
-        }
-
         [EventSubscribe]
-        public void OnPlayerDataLoadedEvent(PlayerDataLoadedEvent evt)
+        public async Task OnLoadCupsEvent(LoadCupsEvent evt)
         {
-            if(DataManager.Instance.GetData<List<string>>("cupsPlayerHad") is not null)
-                cupsPlayerHad = DataManager.Instance.GetData<List<string>>("cupsPlayerHad");
+            if(DataManager.Instance.GetData<List<string>>("CupsPlayerHad") is not null)
+            {
+                cupsPlayerHad = DataManager.Instance.GetData<List<string>>("CupsPlayerHad");
+                print(cupsPlayerHad);
+            }
             RefreshCups();
         }
         
@@ -67,7 +65,7 @@ namespace Game.Cup
             if (!cupsPlayerHad.Contains(evt.Cup.Name))
             {
                 cupsPlayerHad.Add(evt.Cup.Name);
-                DataManager.Instance.SetData("cupsPlayerHad", cupsPlayerHad);
+                DataManager.Instance.SetData("CupsPlayerHad", cupsPlayerHad);
             }
 
             RefreshCups();

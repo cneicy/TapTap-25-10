@@ -36,7 +36,7 @@ namespace Game.Player
         private bool _isTrueWorld;
 
         [EventSubscribe]
-        public void OnLevelChangeEvent(LevelChangeEvent evt)
+        public void OnLevelChangeEvent(LevelLoadedEvent evt)
         {
             _isTrueWorld = evt.IsTrueWorld;
         }
