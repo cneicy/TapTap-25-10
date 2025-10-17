@@ -1,4 +1,5 @@
 ﻿using System;
+using Data;
 using JetBrains.Annotations;
 using ShrinkEventBus;
 using TMPro;
@@ -286,6 +287,18 @@ namespace Game.VoiceToText
                     Debug.Log("启动 WhisperStream...");
                 }
 
+                if(!DataManager.Instance.GetData<bool>("MicrophoneEnabled") && !DataManager.Instance.GetData<bool>("IsFirstStart"))
+                {
+                    if (_microphoneRecord != null && _microphoneRecord.IsRecording)
+                    {
+                        _microphoneRecord.StopRecord();
+                    }
+
+                    _isStreaming = false;
+                    print("关闭流式");
+                    return;
+                }
+                
                 _stream.StartStream();
 
                 _isStreaming = true;

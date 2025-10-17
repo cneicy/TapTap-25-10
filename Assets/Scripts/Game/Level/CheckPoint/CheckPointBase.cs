@@ -1,12 +1,14 @@
-﻿using ShrinkEventBus;
+﻿using Data;
+using ShrinkEventBus;
 using UnityEngine;
 
 namespace Game.Level.CheckPoint
 {
     public enum HitBy
     {
-        Player,Ammo
+        Player, Ammo
     }
+
     public class TouchCheckPointEvent : EventBase
     {
         public HitBy HitBy { get; }
@@ -18,21 +20,31 @@ namespace Game.Level.CheckPoint
             CheckPointBase = checkPointBase;
         }
     }
+
     public abstract class CheckPointBase : MonoBehaviour
     {
         public bool IsSpecial { get; set; }
+        
+        private float _lastTriggerTime = -999f;
+        
+        [SerializeField] private float triggerCooldown = 2f;
 
         public virtual void OnTriggerEnter2D(Collider2D other)
         {
+            if (Time.time - _lastTriggerTime < triggerCooldown)
+                return;
             if (other.CompareTag("Player"))
             {
-                EventBus.TriggerEvent(new TouchCheckPointEvent(HitBy.Player,this));
+                EventBus.TriggerEvent(new TouchCheckPointEvent(HitBy.Player, this));
+                _lastTriggerTime = Time.time;
             }
-
-            if (other.CompareTag("Ammo"))
+            else if (other.CompareTag("Ammo"))
             {
                 EventBus.TriggerEvent(new TouchCheckPointEvent(HitBy.Ammo, this));
+                _lastTriggerTime = Time.time;
             }
+
+            DataManager.Instance.ForceSave();
         }
     }
 }

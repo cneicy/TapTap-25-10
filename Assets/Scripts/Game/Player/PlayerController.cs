@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Item;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Game.Player
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
+        private bool _ready;
         public Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
         public float ParachuteSpeed { get; set; }
@@ -36,6 +38,27 @@ namespace Game.Player
 
         #endregion
 
+        private void OnEnable()
+        {
+            ResetJumpState();
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(1f);
+            _ready = true;
+        }
+        
+        private void ResetJumpState()
+        {
+            _jumpToConsume = false;
+            _bufferedJumpUsable = false;
+            _endedJumpEarly = false;
+            _coyoteUsable = false;
+            _grounded = false;
+            _frameVelocity = Vector2.zero;
+        }
+        
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -80,6 +103,7 @@ namespace Game.Player
 
         private void FixedUpdate()
         {
+            if (!_ready) return;
             CheckCollisions();
 
             HandleJump();

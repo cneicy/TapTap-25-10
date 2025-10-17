@@ -1,5 +1,4 @@
-﻿using System;
-using Data;
+﻿using Data;
 using Game.Level.CheckPoint;
 using ShrinkEventBus;
 using UnityEngine;
@@ -46,7 +45,7 @@ namespace Game.Level
         public virtual void OnEnable()
         {
             EventBus.TriggerEvent(new LevelLoadedEvent(this, Name, IsTrueWorld));
-            DataManager.Instance.SetData("CurrentLevel",_name);
+            DataManager.Instance.SetData("CurrentLevel",_name,true);
         }
     }
 }
