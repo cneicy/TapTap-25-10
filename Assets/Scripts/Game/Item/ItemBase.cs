@@ -63,6 +63,7 @@ namespace Game.Item
         public bool IsRecovering { get; set; }
         public bool CanUse { get; set; } = true;
         
+        public Sprite Sprite { get; set; } // UI图标
         public virtual void OnUseStart()
         {
             if (!CanUse) return;

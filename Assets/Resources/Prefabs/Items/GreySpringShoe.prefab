@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &588538459467579760
+--- !u!1 &1672840602063280775
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3532131427276251607}
-  - component: {fileID: 8212897324714180308}
-  - component: {fileID: 8394197472608402593}
-  - component: {fileID: 7422467299729101667}
-  - component: {fileID: 2486979511427911271}
+  - component: {fileID: 594664826796523028}
+  - component: {fileID: 5640116169348717992}
+  - component: {fileID: 8096937939435444905}
+  - component: {fileID: 3648662072561998269}
+  - component: {fileID: 1344569131381490685}
+  - component: {fileID: 450254901731476680}
   m_Layer: 5
-  m_Name: ItemUI
+  m_Name: GreySpringShoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3532131427276251607
+--- !u!224 &594664826796523028
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588538459467579760}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 1672840602063280775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37,23 +38,23 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8212897324714180308
+--- !u!222 &5640116169348717992
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588538459467579760}
+  m_GameObject: {fileID: 1672840602063280775}
   m_CullTransparentMesh: 1
---- !u!114 &8394197472608402593
+--- !u!114 &8096937939435444905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588538459467579760}
+  m_GameObject: {fileID: 1672840602063280775}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -77,34 +78,46 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7422467299729101667
+--- !u!114 &3648662072561998269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588538459467579760}
+  m_GameObject: {fileID: 1672840602063280775}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 278d0be7737161f45afdefcb0265466e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.ItemVisual
-  image: {fileID: 8394197472608402593}
-  text: {fileID: 0}
-  canvasGroup: {fileID: 2486979511427911271}
+  _image: {fileID: 8096937939435444905}
+  _canvasGroup: {fileID: 1344569131381490685}
   itemIndex: 0
   infoIndex: 0
   description: 
   rectTransform: {fileID: 0}
---- !u!225 &2486979511427911271
+--- !u!225 &1344569131381490685
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588538459467579760}
+  m_GameObject: {fileID: 1672840602063280775}
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &450254901731476680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672840602063280775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21f5ca5fd8bd894499094145da6ab40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Item.GreySpringShoe
+  isUsed: 0

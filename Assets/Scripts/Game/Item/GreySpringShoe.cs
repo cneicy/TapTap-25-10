@@ -1,3 +1,4 @@
+using System;
 using Game.Buff;
 using ShrinkEventBus;
 using UnityEngine;
@@ -16,6 +17,12 @@ namespace Game.Item
             RecoveryDuration = 0;
             Cooldown = 0;
         }
+        private void Start()
+        {
+            Sprite = Resources.Load<Sprite>("Sprites/Items/GreySpringShoe");
+            ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试
+        }
+
         public override void ApplyEffect()
         {
             var player = FindObjectOfType<Player.Player>();

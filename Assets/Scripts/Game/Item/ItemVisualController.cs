@@ -1,188 +1,229 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using Utils;
 
 namespace Game.Item
 {
-    /// <summary>
-    /// 控制滑动展示的物品UI系统（无拖拽版本）
-    /// - 可通过外部接口切换展示项
-    /// - 自动平滑移动到目标位置
-    /// - 中心物品放大、透明度更高
-    /// - 自动更新描述文本
-    /// </summary>
     public class ItemVisualController : MonoBehaviour
     {
-        [Header("UI 组件")]
-        [SerializeField] private GameObject itemPrefab;       // 单个物品的Prefab
-        [SerializeField] private RectTransform itemParent;    // 物品的容器
-        [SerializeField] private TMP_Text descriptionText;    // 描述文本
-
-        [Header("显示参数")]
-        [SerializeField] private int displayNumber = 3;       // 同时显示的数量
-        [SerializeField] private float itemSpace = 70f;       // 每个物品间距
-        [SerializeField] private float moveSmooth = 8f;       // 移动平滑速度
-        [SerializeField] private float scaleMultiplier = 0.002f;  // 缩放随距离衰减系数
-        [SerializeField] private float alphaMultiplier = 0.002f;  // 透明度随距离衰减系数
-
-        // ================= 内部状态 =================
-
         private struct ItemInfo
         {
-            public Sprite Sprite;
-            public string Description;
-            public ItemInfo(Sprite sprite, string desc)
+            public ItemBase Item;
+
+            public ItemInfo(ItemBase targetItem)
             {
-                Sprite = sprite;
-                Description = desc;
+                Item = targetItem;
             }
         }
-
-        private ItemInfo[] _itemInfos;
+        [SerializeField] private GameObject itemPrefab;
+        [SerializeField] private RectTransform itemParent;
+        [SerializeField] private TMP_Text nameText;
+        [SerializeField] private TMP_Text descriptionText;
+        [SerializeField] private ItemInfo[] _itemInfos;
+        [SerializeField] private int displayNumber;
+        [SerializeField] private float itemSpace;
+        [SerializeField] private float moveSmooth;
+        [SerializeField] private float dragSpeed;
+        [SerializeField] private float scaleMultiplier;
+        [SerializeField] private float alphaMultiplier;
+        
+        public event Action<int> SelectAction;
+        
         private ItemVisual[] _items;
+        private float displayWidth;
+        private int offsetTimes;
+        private bool isDrag;
+        private int currentItemIndex;
+        private float[] distances;
+        private float selectItemX;
+        private bool isSelectMove;
 
-        private int _currentItemIndex;    // 当前居中的Item索引
-        private float _targetX;           // 当前容器目标位置（平滑移动）
-        private float _displayWidth;      // 计算排列宽度
-
+        private bool isSelected;
+        
+        private bool isMoving = false;
+        private float targetOffsetTimes;
+        private float currentOffset;
         private void Start()
         {
-            _displayWidth = (displayNumber - 1) * itemSpace;
+            Init();
+            MoveItem(0);
         }
 
-        #region 初始化
-
-        /// <summary>
-        /// 初始化所有物品信息
-        /// </summary>
-        public void SetItemsInfo(Sprite[] sprites, string[] descriptions)
+        private void Init()
         {
-            if (sprites == null || descriptions == null)
-            {
-                Debug.LogError("存在空引用数组");
-                return;
-            }
-
-            int len = sprites.Length;
-            if (len == 0 || descriptions.Length != len)
-            {
-                Debug.LogError("数组长度不匹配");
-                return;
-            }
-
-            _itemInfos = new ItemInfo[len];
-            for (int i = 0; i < len; i++)
-                _itemInfos[i] = new ItemInfo(sprites[i], descriptions[i]);
-
-            // 清空旧的
-            foreach (Transform child in itemParent)
-                Destroy(child.gameObject);
-
-            // 创建显示用对象
+            displayWidth = (displayNumber-1)*itemSpace;
             _items = new ItemVisual[displayNumber];
             for (int i = 0; i < displayNumber; i++)
             {
-                var item = Instantiate(itemPrefab, itemParent).GetComponent<ItemVisual>();
+                ItemVisual item = Instantiate(itemPrefab, itemParent).GetComponent<ItemVisual>();
+                item.itemIndex = i;
                 _items[i] = item;
             }
-
-            // 初始刷新
-            MoveItems(0);
         }
 
-        #endregion
+        public void SetItemsInfo(List<ItemBase> items)
+        {
+            if (items == null) {
+                Debug.LogError("存在null参数数组");
+                return;
+            }
+    
+            if (items.Count == 0) {
+                Debug.LogError("存在空数组");
+                return;
+            }
+            // 初始化数组
+            _itemInfos = new ItemInfo[items.Count];
+    
+            // 使用安全遍历
+            for (int i = 0; i < items.Count; i++) // 关键修改点：用names.Length
+            {
+                // 元素级检查
+                if (items[i] == null) {
+                    Debug.LogError($"索引{i}的Sprite为null");
+                    continue;
+                }
+        
+                _itemInfos[i] = new ItemInfo(items[i]);
+            }
+        }
 
+        public void Select(int itemIndex, int infoIndex, RectTransform rectTransform)
+        {
+            if (!isSelected && itemIndex == currentItemIndex)
+            {
+                SelectAction?.Invoke(itemIndex);
+                isSelected = true;
+                Debug.Log("select"+(infoIndex+1).ToString());
+            }
+            else
+            {
+                isSelected = true;
+                selectItemX = rectTransform.localPosition.x;
+            }
+        }
+
+        private void MoveItem(int offsetTime)
+        {
+            for (int i = 0; i < displayNumber; i++)
+            {
+                float x = itemSpace * (i-offsetTime) -displayWidth/2;
+                _items[i].transform.localPosition = new Vector2(x,
+                    _items[i].transform.localPosition.y);
+            }
+
+            int middle;
+            if (offsetTime>0)
+            {
+                middle = _itemInfos.Length - offsetTime % _itemInfos.Length;
+            }
+            else
+            {
+                middle = -offsetTime % _itemInfos.Length;
+            }
+
+            int infoIndex = middle;
+
+            for (int i = Mathf.FloorToInt(displayNumber / 2f); i < displayNumber; i++)
+            {
+                if (infoIndex >= _itemInfos.Length)
+                {
+                    infoIndex = 0;
+                }
+                _items[i].SetInfo(_itemInfos[infoIndex].Item,infoIndex,this);
+                infoIndex++;
+            }
+
+            infoIndex = middle - 1;
+            for (int i = Mathf.FloorToInt(displayNumber / 2f) - 1; i >= 0; i--)
+            {
+                if (infoIndex <= -1)
+                {
+                    infoIndex = _itemInfos.Length - 1;
+                }
+                _items[i].SetInfo(_itemInfos[infoIndex].Item,infoIndex,this);
+                infoIndex--;
+            }
+        }
 
         private void Update()
         {
-            // 平滑过渡
-            itemParent.localPosition = new Vector3(
-                Mathf.Lerp(itemParent.localPosition.x, _targetX, Time.deltaTime * moveSmooth),
-                itemParent.localPosition.y,
-                0);
-
-            // 刷新视觉表现
-            UpdateItemVisuals();
+            SmoothMoveUpdate(); // 添加这一行
+            ItemsControl();
         }
 
-        #region 对外接口
-
-        /// <summary>
-        /// 切换到下一个物品
-        /// </summary>
-        public void NextItem()
+        private void ItemsControl()
         {
-            SetCurrentIndex(_currentItemIndex + 1);
-        }
-
-        /// <summary>
-        /// 切换到上一个物品
-        /// </summary>
-        public void PreviousItem()
-        {
-            SetCurrentIndex(_currentItemIndex - 1);
-        }
-
-        /// <summary>
-        /// 切换到指定索引
-        /// </summary>
-        public void SetCurrentIndex(int index)
-        {
-            if (_itemInfos == null || _itemInfos.Length == 0)
-                return;
-
-            // 环绕索引
-            if (index < 0)
-                index = _itemInfos.Length - 1;
-            else if (index >= _itemInfos.Length)
-                index = 0;
-
-            _currentItemIndex = index;
-            _targetX = -_currentItemIndex * itemSpace;
-
-            MoveItems(_currentItemIndex);
-        }
-
-        #endregion
-
-
-        #region 内部逻辑
-
-        private void MoveItems(int centerIndex)
-        {
-            int len = _itemInfos.Length;
-            if (_items == null) return;
-
-            int half = displayNumber / 2;
-
+            distances = new float[displayNumber];
             for (int i = 0; i < displayNumber; i++)
             {
-                int infoIndex = (centerIndex - half + i + len) % len;
-
-                float x = itemSpace * (i - half);
-                var item = _items[i];
-                item.rectTransform.localPosition = new Vector2(x, 0);
-                item.SetInfo(_itemInfos[infoIndex].Sprite, _itemInfos[infoIndex].Description, infoIndex, this);
+                float distance = Mathf.Abs(_items[i].rectTransform.position.x
+                                           -itemParent.transform.position.x);
+                distances[i] = distance;
+                float scale = 1 - distance*scaleMultiplier;
+                _items[i].rectTransform.localScale = new Vector3(scale, scale, 1);
+                _items[i].SetAlpha(1-distance*alphaMultiplier);
             }
-
-            descriptionText.text = _itemInfos[centerIndex].Description;
-        }
-
-        private void UpdateItemVisuals()
-        {
-            if (_items == null) return;
-
-            foreach (var item in _items)
+            
+            float minDistance = itemSpace*displayNumber;
+            int minIndex = 0;
+            for (int i = 0; i < displayNumber; i++)
             {
-                float distance = Mathf.Abs(item.rectTransform.position.x - transform.position.x);
-                float scale = 1 - distance * scaleMultiplier;
-                float alpha = 1 - distance * alphaMultiplier;
-
-                item.rectTransform.localScale = Vector3.one * Mathf.Clamp(scale, 0.6f, 1.2f);
-                item.SetAlpha(Mathf.Clamp01(alpha));
+                if (distances[i] < minDistance)
+                {
+                    minDistance = distances[i];
+                    minIndex = i;
+                }
+                descriptionText.text = _items[minIndex].description;
+                currentItemIndex = _items[minIndex].itemIndex;
             }
         }
+        
+        public void MoveToAdjacent(bool moveLeft)
+        {
+            if (isMoving) return; // 如果正在移动，忽略新的移动请求
+    
+            if (moveLeft)
+            {
+                targetOffsetTimes = offsetTimes + 1;
+            }
+            else
+            {
+                targetOffsetTimes = offsetTimes - 1;
+            }
+    
+            currentOffset = offsetTimes;
+            isMoving = true;
+            isSelected = false;
+        }
 
-        #endregion
+// 在 Update() 方法中调用此方法
+        private void SmoothMoveUpdate()
+        {
+            if (!isMoving) return;
+    
+            // 平滑插值移动
+            currentOffset = Mathf.Lerp(currentOffset, targetOffsetTimes, Time.deltaTime * moveSmooth);
+    
+            // 更新所有item的位置
+            for (int i = 0; i < displayNumber; i++)
+            {
+                float x = itemSpace * (i - currentOffset) - displayWidth / 2;
+                _items[i].transform.localPosition = new Vector2(x, _items[i].transform.localPosition.y);
+            }
+    
+            // 检查是否到达目标位置
+            if (Mathf.Abs(currentOffset - targetOffsetTimes) < 0.01f)
+            {
+                offsetTimes = Mathf.RoundToInt(targetOffsetTimes);
+                currentOffset = offsetTimes;
+                MoveItem(offsetTimes); // 最终对齐并更新信息
+                isMoving = false;
+            }
+        }
     }
 }

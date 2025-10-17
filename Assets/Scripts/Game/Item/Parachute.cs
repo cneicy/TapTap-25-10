@@ -16,11 +16,18 @@ namespace Game.Item
             Duration = 5f;
             RecoveryDuration = 0;
             Cooldown = 20f;
+            
         }
 
         private void OnEnable()
         {
             OnUseStart();
+        }
+
+        private void Start()
+        {
+            ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试
+            Sprite = Resources.Load<Sprite>("Sprites/Items/Parachute");
         }
 
         public override void OnUseStart()

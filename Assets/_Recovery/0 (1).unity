@@ -1272,12 +1272,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.ItemVisualController
   itemPrefab: {fileID: 588538459467579760, guid: 8e622cb82d438334f85d186da7270858, type: 3}
   itemParent: {fileID: 1840739763}
-  nameText: {fileID: 0}
   descriptionText: {fileID: 643031782}
   displayNumber: 3
-  itemSpace: 200
+  itemSpace: 70
   moveSmooth: 8
-  scaleMultiplier: 0.001
+  scaleMultiplier: 0.002
   alphaMultiplier: 0.002
 --- !u!1 &1653718624
 GameObject:
@@ -1549,7 +1548,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.ItemSystem
   index: 0
-  itemVisualController: {fileID: 1651527143}
 --- !u!1 &2112937635
 GameObject:
   m_ObjectHideFlags: 0

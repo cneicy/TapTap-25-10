@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Data;
+using Game.Player;
 using ShrinkEventBus;
 using UnityEngine.InputSystem;
 using Utils;
@@ -22,11 +24,21 @@ namespace Game.Item
         public List<ItemBase> ItemsPlayerHad { get; set; } = new();
         public ItemBase CurrentItem { get; set; }
         public int index;
+        public FrameInput ItemFrameInput;
+        public ItemVisualController itemVisualController;
+
+        private void OnEnable()
+        {
+            ItemsPlayerHad.Add(gameObject.AddComponent<Parachute>());
+            ItemsPlayerHad.Add(gameObject.AddComponent<GreySpringShoe>());
+            itemVisualController.SetItemsInfo(ItemsPlayerHad);
+        }
 
         private void Start()
         {
             /*EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
             EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<Hands>()));*/
+            
         }
         
         [EventSubscribe]
@@ -51,35 +63,53 @@ namespace Game.Item
         public void SwitchToPreviousItem()
         {
             if (index == 0) return;
-            CurrentItem.OnUseCancel();
-            CurrentItem = ItemsPlayerHad[--index];
-            print(CurrentItem.Name);
+            if (ItemFrameInput.LeftSwitchItem)
+            {
+                /*CurrentItem.OnUseCancel();
+                CurrentItem = ItemsPlayerHad[--index];
+                print(CurrentItem.Name);*/
+                /*itemVisualController.MoveToPrevious();*/
+                itemVisualController.MoveToAdjacent(true);
+            }
         }
 
         public void SwitchToNextItem()
         {
             if(index >= ItemsPlayerHad.Count-1) return;
-            CurrentItem.OnUseCancel();
-            CurrentItem = ItemsPlayerHad[++index];
-            print(CurrentItem.Name);
+            if (ItemFrameInput.RightSwitchItem)
+            {
+                /*CurrentItem.OnUseCancel();
+                CurrentItem = ItemsPlayerHad[++index];
+                print(CurrentItem.Name);*/
+                /*itemVisualController.MoveToNext();*/
+                itemVisualController.MoveToAdjacent(false);
+            }
+        }
+
+        public void UseItem()
+        {
+            if(CurrentItem == null) return;
+            if (ItemFrameInput.UseItem)
+            {
+                print(CurrentItem.Name);
+            }
         }
 
         private void Update()
         {
-            if (InputSystem.actions.FindAction("Attack").triggered)
+            ItemFrameInput = new FrameInput
             {
-                CurrentItem?.OnUseStart();
-            }
+                UseItem = InputSystem.actions.FindAction("Attack").triggered,
+                LeftSwitchItem = InputSystem.actions.FindAction("LeftSwitchItem").triggered,
+                RightSwitchItem = InputSystem.actions.FindAction("RightSwitchItem").triggered,
+            };
+        }
 
-            if (InputSystem.actions.FindAction("SwitchPrevious").triggered)
-            {
-                SwitchToPreviousItem();
-            }
-
-            if (InputSystem.actions.FindAction("SwitchNext").triggered)
-            {
-                SwitchToNextItem();
-            }
+        private void FixedUpdate()
+        {
+            SwitchToNextItem();
+            SwitchToPreviousItem();
+            UseItem();
         }
     }
 }

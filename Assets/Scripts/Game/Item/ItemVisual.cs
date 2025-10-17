@@ -6,32 +6,31 @@ namespace Game.Item
 {
     public class ItemVisual : MonoBehaviour
     {
-        [Tooltip("图片")] public Image _image;
-        [Tooltip("画布组")] public CanvasGroup _canvasGroup;
+        [Tooltip("图片")] public Image image;
+        [Tooltip("名称")] public TMP_Text text;
+        [Tooltip("画布组")] public CanvasGroup canvasGroup;
         public int itemIndex;
         public int infoIndex;
         public string description;
         public RectTransform rectTransform;
-        private ItemVisualController _topController;
+        private ItemVisualController _itemVisualController;
         private bool _isDrag;
-
         private void Start()
         {
             rectTransform = GetComponent<RectTransform>();
         }
 
-        public void SetInfo(Sprite sprite, string description,
-            int infoIndex, ItemVisualController topController)
+        public void SetInfo(ItemBase item,int myInfoIndex,ItemVisualController topController)
         {
-            _image.sprite = sprite;
-            this.description = description;
-            this.infoIndex = infoIndex;
-            _topController = topController;
+            image.sprite = item.Sprite;
+            description = item.Description;
+            infoIndex = myInfoIndex;
+            _itemVisualController = topController;
         }
 
         public void SetAlpha(float alpha)
         {
-            _canvasGroup.alpha = alpha;
+            canvasGroup.alpha = alpha;
         }
     }
 }
