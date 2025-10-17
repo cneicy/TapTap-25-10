@@ -64,7 +64,6 @@ namespace Game.Level.CheckPoint
             {
                 if (!_actionTriggered)
                 {
-                    print("wtf");
                     if (currentCheckPoint)
                         FindFirstObjectByType<PlayerController>().transform.position =
                             currentCheckPoint.transform.position;

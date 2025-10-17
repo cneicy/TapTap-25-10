@@ -15,8 +15,6 @@ public class Entry :  MonoBehaviour
     [SerializeField] private GameObject panel;
     private void Start()
     {
-        print($"Just print {DataManager.Instance} for init");
-        
         if (DataManager.Instance.GetData<bool>("IsNotFirstStart"))
         {
             StartGame();

@@ -50,6 +50,7 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: e101fe2d215b3e940b0ab1b48f41e260, type: 2}
   _frameVelocity: {x: 0, y: 0}
   items: []
+  itemVisualController: {fileID: 0}
 --- !u!50 &1544650614272011793
 Rigidbody2D:
   serializedVersion: 5
@@ -10027,7 +10028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 2969068313154050966}
-  _sprite: {fileID: 2969068313154050967}
+  _sprite: {fileID: 3436876096492942141}
   _maxIdleSpeed: 2
   _maxTilt: 5
   _tiltSpeed: 20
@@ -10036,9 +10037,9 @@ MonoBehaviour:
   _moveParticles: {fileID: 2969068311631949152}
   _landParticles: {fileID: 2969068312368229178}
   _footsteps:
-  - {fileID: 8300000, guid: 6e45b1cd594713a4e93d5d590682dccc, type: 3}
-  - {fileID: 8300000, guid: e90c7897150b09640a45a5c4a4e79838, type: 3}
-  - {fileID: 8300000, guid: 4a170919a8435e044a9ca8c2c259a3ed, type: 3}
+  - {fileID: 8300000, guid: 114e564ef03805a4ab4df40f9359719e, type: 3}
+  - {fileID: 8300000, guid: 39ec622907404fa4c97a207d5c637ad8, type: 3}
+  - {fileID: 8300000, guid: f096b560825d9f8458b70b4ae4a1eaa2, type: 3}
 --- !u!1 &2969068312368229159
 GameObject:
   m_ObjectHideFlags: 0
@@ -29599,8 +29600,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2969068313154050965}
-  - component: {fileID: 2969068313154050967}
   - component: {fileID: 2969068313154050966}
+  - component: {fileID: 3436876096492942141}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -29618,12 +29619,34 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
+  m_LocalScale: {x: 2.75, y: 2.75, z: 2.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2969068311962969430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2969068313154050967
+--- !u!95 &2969068313154050966
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969068313154050964}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 336b31549f134ab48bf4eec09aac594c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &3436876096492942141
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29648,7 +29671,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29669,40 +29692,18 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -7140531439819722067, guid: 2ffc5951062068a4cbdba7fc8935587a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 1.6, y: 2.65}
+  m_DrawMode: 0
+  m_Size: {x: 0.32, y: 0.53}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2969068313154050966
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2969068313154050964}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 336b31549f134ab48bf4eec09aac594c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2969068313184073011
 GameObject:
   m_ObjectHideFlags: 0

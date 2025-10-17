@@ -287,7 +287,7 @@ namespace Game.VoiceToText
                     Debug.Log("启动 WhisperStream...");
                 }
 
-                if(!DataManager.Instance.GetData<bool>("MicrophoneEnabled") && !DataManager.Instance.GetData<bool>("IsFirstStart"))
+                if(!DataManager.Instance.GetData<bool>("MicrophoneEnabled") && DataManager.Instance.GetData<bool>("IsNotFirstStart"))
                 {
                     if (_microphoneRecord != null && _microphoneRecord.IsRecording)
                     {
