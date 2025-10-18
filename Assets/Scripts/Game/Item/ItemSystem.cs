@@ -8,9 +8,10 @@ using Utils;
 
 namespace Game.Item
 {
-    public class PlayerGetItemEvent : EventBase
+    public abstract class PlayerGetItemEvent : EventBase
     {
         public readonly ItemBase Item;
+        private bool _isHover;
 
         public PlayerGetItemEvent(ItemBase item)
         {
@@ -24,21 +25,15 @@ namespace Game.Item
         public List<ItemBase> ItemsPlayerHad { get; set; } = new();
         public ItemBase CurrentItem { get; set; }
         public int index;
-        public FrameInput ItemFrameInput;
+        private FrameInput ItemFrameInput;
         public ItemVisualController itemVisualController;
-
-        private void OnEnable()
-        {
-            ItemsPlayerHad.Add(gameObject.AddComponent<Parachute>());
-            ItemsPlayerHad.Add(gameObject.AddComponent<GreySpringShoe>());
-            itemVisualController.SetItemsInfo(ItemsPlayerHad);
-        }
-
+        public CurrentItemVisual currentItemVisual;
+        
         private void Start()
         {
             /*EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
             EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<Hands>()));*/
-            
+            CurrentItem = GetComponent<Parachute>();
         }
         
         [EventSubscribe]
@@ -54,6 +49,7 @@ namespace Game.Item
             if (ItemsPlayerHad.Contains(evt.Item)) return;
             if (ItemsPlayerHad.Count == 0)
             {
+                ItemsPlayerHad?.Add(evt.Item);
                 CurrentItem = evt.Item;
             }
             ItemsPlayerHad?.Add(evt.Item);
@@ -65,11 +61,11 @@ namespace Game.Item
             if (index == 0) return;
             if (ItemFrameInput.LeftSwitchItem)
             {
-                /*CurrentItem.OnUseCancel();
+                CurrentItem.OnUseCancel();
                 CurrentItem = ItemsPlayerHad[--index];
-                print(CurrentItem.Name);*/
-                /*itemVisualController.MoveToPrevious();*/
-                itemVisualController.MoveToAdjacent(true);
+                print(CurrentItem.Name);
+                print("Q");
+                currentItemVisual.PreviousSprite();
             }
         }
 
@@ -78,11 +74,11 @@ namespace Game.Item
             if(index >= ItemsPlayerHad.Count-1) return;
             if (ItemFrameInput.RightSwitchItem)
             {
-                /*CurrentItem.OnUseCancel();
+                CurrentItem.OnUseCancel();
                 CurrentItem = ItemsPlayerHad[++index];
-                print(CurrentItem.Name);*/
-                /*itemVisualController.MoveToNext();*/
-                itemVisualController.MoveToAdjacent(false);
+                print(CurrentItem.Name);
+                print("E");
+                currentItemVisual.NextSprite();
             }
         }
 
@@ -91,7 +87,7 @@ namespace Game.Item
             if(CurrentItem == null) return;
             if (ItemFrameInput.UseItem)
             {
-                print(CurrentItem.Name);
+                CurrentItem.OnUseStart();
             }
         }
 
@@ -103,13 +99,14 @@ namespace Game.Item
                 LeftSwitchItem = InputSystem.actions.FindAction("LeftSwitchItem").triggered,
                 RightSwitchItem = InputSystem.actions.FindAction("RightSwitchItem").triggered,
             };
+            SwitchToNextItem();
+            SwitchToPreviousItem();
+            UseItem();
         }
 
         private void FixedUpdate()
         {
-            SwitchToNextItem();
-            SwitchToPreviousItem();
-            UseItem();
+            
         }
     }
 }

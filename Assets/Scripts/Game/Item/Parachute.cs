@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Game.Buff;
 using Game.Player;
 using ShrinkEventBus;
@@ -12,20 +13,15 @@ namespace Game.Item
         {
             Name = "降落伞";
             Description = "";
-            WindupDuration = 0;
+            WindupDuration = 2f;
             Duration = 5f;
             RecoveryDuration = 0;
             Cooldown = 20f;
-            
         }
-
-        private void OnEnable()
+        
+        public override void Start()
         {
-            OnUseStart();
-        }
-
-        private void Start()
-        {
+            base.Start();
             ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试
             Sprite = Resources.Load<Sprite>("Sprites/Items/Parachute");
         }
@@ -33,17 +29,17 @@ namespace Game.Item
         public override void OnUseStart()
         {
             base.OnUseStart();
-            print("OnUseStart");
+            print(Name+"开始使用");
         }
 
         public override void ApplyEffect()
         {
-            var player = FindObjectOfType<Player.Player>();
+            /*var player = FindObjectOfType<Player.Player>();
             EventBus.TriggerEvent(new BuffAppliedEvent
             {
                 Buff = new ParachuteBuff(5f, 2f,40f),
                 Player = player
-            });
+            });*/
         }
 
         public override void ApplyEffectTick()

@@ -17,6 +17,7 @@ namespace Game.Player
         public Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
         public float ParachuteSpeed { get; set; }
+        /*public float inAirGravity;*/
 
         #region Interface
 
@@ -36,6 +37,7 @@ namespace Game.Player
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
 
             ParachuteSpeed = _stats.MaxFallSpeed;
+            /*inAirGravity = _stats.FallAcceleration;*/
         }
 
         private void Update()

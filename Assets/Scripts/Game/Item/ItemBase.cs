@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Item
@@ -53,8 +55,11 @@ namespace Game.Item
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        //前摇时间
         public float WindupDuration { get; set; }
+        //持续时间
         public float Duration { get; set; }
+        //后摇时间
         public float RecoveryDuration { get; set; }
         public float Cooldown { get; set; }
 
@@ -62,26 +67,38 @@ namespace Game.Item
         public bool IsUsing { get; set; }
         public bool IsRecovering { get; set; }
         public bool CanUse { get; set; } = true;
-        
         public Sprite Sprite { get; set; } // UI图标
+        //是否已经拥有
+        public bool IsUsed { get; set; }
+        //是否是“装备类”
+        public bool IsBasement { get; set; }
+        //是否是“施加buff类”
+        public bool IsBuff { get; set; }
+        private PlayerController _playerController;
+        private float _beforeHoverSpeed;
+
+        public virtual void Start()
+        {
+            _playerController = FindFirstObjectByType<PlayerController>();
+        }
+
         public virtual void OnUseStart()
         {
             if (!CanUse) return;
             CanUse = false;
-            /*print($"{Name} 道具使用开始");*/
+            print($"{Name} 道具使用开始");
             StartCoroutine(nameof(WindupTimer));
         }
         
         public virtual IEnumerator WindupTimer()
         {
             IsWindingUp = true;
-            /*print("开始前摇动画");*/
+            print("开始前摇动画");
             OnWindupStart();
             yield return new WaitForSeconds(WindupDuration);
-            /*print("前摇结束");*/
+            print("前摇结束");
             IsWindingUp = false;
             OnWindupEnd();
-            
             IsUsing = true;
             ApplyEffect();
             StartCoroutine(nameof(DurationTimer));
@@ -89,9 +106,9 @@ namespace Game.Item
 
         public virtual IEnumerator DurationTimer()
         {
-            /*print("转使用持续时间");*/
+            print("转使用持续时间");
             yield return new WaitForSeconds(Duration);
-            /*print("使用持续时间转好了");*/
+            print("使用持续时间转好了");
             IsUsing = false;
             OnUseEnd();
 
@@ -133,11 +150,18 @@ namespace Game.Item
         public virtual void OnWindupStart()
         {
             /*print("前摇开始 - 播放准备动画");*/
+            /*_playerController.inAirGravity = 0;*/
+            _beforeHoverSpeed = _playerController._frameVelocity.y;
+            _playerController._frameVelocity.y = 0;
+            _playerController.ParachuteSpeed = 0;
         }
         
         public virtual void OnWindupEnd()
         {
             /*print("前摇结束");*/
+            /*_playerController.inAirGravity = _playerController._stats.FallAcceleration;*/
+            _playerController._frameVelocity.y = _beforeHoverSpeed;
+            _playerController.ParachuteSpeed = _playerController._stats.MaxFallSpeed;
         }
 
         public virtual void OnUseEnd()
