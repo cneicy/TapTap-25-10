@@ -4,32 +4,33 @@ using UnityEngine;
 
 namespace Game.Player
 {
-    /// <summary>
-    /// VERY primitive animator example.
-    /// </summary>
     [EventBusSubscriber]
     public class PlayerAnimator : MonoBehaviour
     {
-        [Header("References")] [SerializeField]
-        private Animator _anim;
-
+        [Header("References")] [SerializeField] private Animator _anim;
         [SerializeField] private SpriteRenderer _sprite;
 
-        [Header("Settings")] [SerializeField, Range(1f, 3f)]
-        private float _maxIdleSpeed = 2;
-
+        [Header("Settings")] 
+        [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
         [SerializeField] private float _maxTilt = 5;
         [SerializeField] private float _tiltSpeed = 20;
 
-        [Header("Particles")] [SerializeField] private ParticleSystem _jumpParticles;
+        [Header("Footstep Settings")]
+        [SerializeField, Tooltip("脚步音之间的时间间隔（秒）")]
+        private float _footstepInterval = 0.35f; // ✅ 可调节间隔
+        private float _footstepTimer = 0f;
+
+        [Header("Particles")] 
+        [SerializeField] private ParticleSystem _jumpParticles;
         [SerializeField] private ParticleSystem _launchParticles;
         [SerializeField] private ParticleSystem _moveParticles;
         [SerializeField] private ParticleSystem _landParticles;
 
-        [Header("Audio Clips")] [SerializeField]
-        private AudioClip[] _footsteps;
+        [Header("Audio Clips")] 
+        [SerializeField] private AudioClip[] _footsteps;
 
         private AudioSource _source;
+        [SerializeField] private AudioSource _sfxSource;
         private IPlayerController _player;
         private bool _grounded;
         private ParticleSystem.MinMaxGradient _currentGradient;
@@ -51,7 +52,6 @@ namespace Game.Player
         {
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
-
             _moveParticles.Play();
         }
 
@@ -59,7 +59,6 @@ namespace Game.Player
         {
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
-
             _moveParticles.Stop();
         }
 
@@ -68,18 +67,16 @@ namespace Game.Player
             if (_player == null) return;
 
             DetectGroundColor();
-
             HandleSpriteFlip();
-
             HandleIdleSpeed();
-
             HandleCharacterTilt();
             HandleRunAnimation();
         }
 
         private void HandleSpriteFlip()
         {
-            if (_player.FrameInput.x != 0) _sprite.flipX = _player.FrameInput.x < 0;
+            if (_player.FrameInput.x != 0)
+                _sprite.flipX = _player.FrameInput.x < 0;
         }
 
         private void HandleIdleSpeed()
@@ -91,14 +88,29 @@ namespace Game.Player
 
         private void HandleRunAnimation()
         {
-            _anim.SetInteger(RunSpeed,0);
-            if(_player.FrameInput.x == 0 || _isTrueWorld) return;
-            _anim.SetInteger(RunSpeed,(int)_player.FrameInput.x);
+            _anim.SetInteger(RunSpeed, 0);
+
+            if (_player.FrameInput.x == 0 || _isTrueWorld)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            _anim.SetInteger(RunSpeed, (int)_player.FrameInput.x);
+
+            _footstepTimer -= Time.deltaTime;
+            if (_footstepTimer <= 0f && _grounded)
+            {
+                var clip = _footsteps[Random.Range(0, 3)];
+                _source.clip = clip;
+                _source.Play();
+                _footstepTimer = _footstepInterval;
+            }
         }
 
         private void HandleCharacterTilt()
         {
-            if(!_isTrueWorld) return;
+            if (!_isTrueWorld) return;
             var runningTilt = _grounded ? Quaternion.Euler(0, 0, _maxTilt * _player.FrameInput.x) : Quaternion.identity;
             _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);
         }
@@ -108,26 +120,25 @@ namespace Game.Player
             _anim.SetTrigger(JumpKey);
             _anim.ResetTrigger(GroundedKey);
 
-
             if (_grounded) // Avoid coyote
             {
                 SetColor(_jumpParticles);
                 SetColor(_launchParticles);
                 _jumpParticles.Play();
+                _sfxSource.PlayOneShot(_footsteps[3]);
             }
         }
 
         private void OnGroundedChanged(bool grounded, float impact)
         {
             _grounded = grounded;
-            
+
             if (grounded)
             {
                 DetectGroundColor();
                 SetColor(_landParticles);
-
                 _anim.SetTrigger(GroundedKey);
-                _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
+                _sfxSource.PlayOneShot(_footsteps[4]);
                 _moveParticles.Play();
 
                 _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
@@ -142,8 +153,8 @@ namespace Game.Player
         private void DetectGroundColor()
         {
             var hit = Physics2D.Raycast(transform.position, Vector3.down, 2);
-
             if (!hit || hit.collider.isTrigger || !hit.transform.TryGetComponent(out SpriteRenderer r)) return;
+
             var color = r.color;
             _currentGradient = new ParticleSystem.MinMaxGradient(color * 0.9f, color * 1.2f);
             SetColor(_moveParticles);
