@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1544650614272011792}
   - component: {fileID: 1544650614272011793}
   - component: {fileID: 1544650614272011794}
+  - component: {fileID: 2751277254197176818}
+  - component: {fileID: 6072660450123465631}
   m_Layer: 6
   m_Name: Player Controller
   m_TagString: Player
@@ -115,6 +117,33 @@ CapsuleCollider2D:
   m_Offset: {x: -0.022880793, y: 0.7}
   m_Size: {x: 0.59797525, y: 1.4}
   m_Direction: 0
+--- !u!114 &2751277254197176818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544650614272011804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66c886c31618cc4ba981f5968fbdf04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Buff.BuffManager
+--- !u!114 &6072660450123465631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544650614272011804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc91d0724d1e6f47845326173540e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Player.Player
+  rb2d: {fileID: 0}
+  playerSpeedY: 0
+  isWearGreySpringShoe: 0
 --- !u!1 &2969068311587289281
 GameObject:
   m_ObjectHideFlags: 0

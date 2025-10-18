@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.RectTransitionController
   gapCloseTime: 0.5
-  holdTime: 0.3
+  holdTime: 1
   expandTime: 0.8
   maxGapSize: 0.05
   rows: 9
