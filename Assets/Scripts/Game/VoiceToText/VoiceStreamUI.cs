@@ -1,8 +1,8 @@
-﻿using JetBrains.Annotations;
+﻿using Data;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Color = System.Drawing.Color;
 
 namespace Game.VoiceToText
 {
@@ -29,7 +29,6 @@ namespace Game.VoiceToText
                 Debug.LogError("未设置 VoiceStreamManager 引用！");
                 return;
             }
-
             InitializeUI();
             RegisterEvents();
         }
@@ -95,6 +94,7 @@ namespace Game.VoiceToText
                 streamManager.StopStream();
                 micSwitch.GetComponentInChildren<Text>().text = "开启麦克风";
             }
+            DataManager.Instance.SetData("MicrophoneEnabled", b);
         }
 
         private void OnMicrophoneChanged(int index)

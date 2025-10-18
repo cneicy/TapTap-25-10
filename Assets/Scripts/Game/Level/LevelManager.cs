@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Data;
-using ScreenEffect;
 using ShrinkEventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,13 +10,18 @@ namespace Game.Level
     [EventBusSubscriber]
     public class LevelManager : Singleton<LevelManager>
     {
-        public List<string> Levels { get; } = new();
         public string CurrentLevel { get; private set; }
 
         [EventSubscribe]
         public async Task OnLoadLevelsEvent(LoadLevelsEvent evt)
         {
             CurrentLevel = DataManager.Instance.GetData<string>("CurrentLevel");
+        }
+
+        [EventSubscribe]
+        public void OnLevelLoadedEvent(LevelLoadedEvent evt)
+        {
+            CurrentLevel = evt.LevelName;
         }
 
         [EventSubscribe]

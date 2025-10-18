@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Item;
 using UnityEngine;
@@ -14,10 +15,10 @@ namespace Game.Player
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
+        private bool _ready;
         public Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
         public float ParachuteSpeed { get; set; }
-        /*public float inAirGravity;*/
 
         #region Interface
 
@@ -28,6 +29,35 @@ namespace Game.Player
         #endregion
 
         private float _time;
+
+        #region ItemSystem
+
+        private int ItemIndex { get; set; } 
+        public List<ItemBase> items;
+        public ItemVisualController itemVisualController;
+
+        #endregion
+
+        private void OnEnable()
+        {
+            ResetJumpState();
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(1f);
+            _ready = true;
+        }
+        
+        private void ResetJumpState()
+        {
+            _jumpToConsume = false;
+            _bufferedJumpUsable = false;
+            _endedJumpEarly = false;
+            _coyoteUsable = false;
+            _grounded = false;
+            _frameVelocity = Vector2.zero;
+        }
         
         private void Awake()
         {
@@ -37,7 +67,6 @@ namespace Game.Player
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
 
             ParachuteSpeed = _stats.MaxFallSpeed;
-            /*inAirGravity = _stats.FallAcceleration;*/
         }
 
         private void Update()
@@ -53,6 +82,10 @@ namespace Game.Player
                 JumpDown = InputSystem.actions.FindAction("Jump").triggered,
                 JumpHeld = InputSystem.actions.FindAction("Jump").IsInProgress(),
                 Move = InputSystem.actions.FindAction("Move").ReadValue<Vector2>(),
+                
+                UseItem = InputSystem.actions.FindAction("Attack").triggered,
+                LeftSwitchItem = InputSystem.actions.FindAction("LeftSwitchItem").triggered,
+                RightSwitchItem = InputSystem.actions.FindAction("RightSwitchItem").triggered,
             };
 
             if (_stats.SnapInput)
@@ -70,6 +103,7 @@ namespace Game.Player
 
         private void FixedUpdate()
         {
+            if (!_ready) return;
             CheckCollisions();
 
             HandleJump();
@@ -77,6 +111,9 @@ namespace Game.Player
             HandleGravity();
             
             ApplyMovement();
+            
+            UseItem();
+            SwitchItem();
         }
 
         #region Collisions
@@ -189,7 +226,47 @@ namespace Game.Player
 
         private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
 
-       
+        #region Item
+
+        private void UseItem()
+        {
+            if (_frameInput.UseItem)
+            {
+                /*var itemName = items[ItemIndex].Name;
+                var item = Instantiate(Resources.Load<GameObject>("Prefabs/items/"+itemName));*/
+                print("使用道具");
+            }
+        }
+
+        private void SwitchItem()
+        {
+            if (_frameInput.LeftSwitchItem)
+            {
+                itemVisualController.NextItem();
+                if (ItemIndex==0)
+                {
+                    ItemIndex = items.Count;
+                }
+                else
+                {
+                    ItemIndex--;
+                }
+            }
+
+            if (_frameInput.RightSwitchItem)
+            {
+                itemVisualController.PreviousItem();
+                if (ItemIndex == items.Count)
+                {
+                    ItemIndex = 0;
+                }
+                else
+                {
+                    ItemIndex++;
+                }
+            }
+        }
+        #endregion
 
 #if UNITY_EDITOR
         private void OnValidate()

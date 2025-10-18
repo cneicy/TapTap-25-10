@@ -1,8 +1,6 @@
-using System;
 using Game.Buff;
 using ShrinkEventBus;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Player
 {

@@ -1,8 +1,8 @@
-﻿using System;
-using Data;
+﻿using Data;
 using Game.Level.CheckPoint;
 using ShrinkEventBus;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Level
 {
@@ -43,10 +43,23 @@ namespace Game.Level
         [SerializeField] private CheckPointBase _currentCheckPoint;
         [SerializeField] private bool _isTrueWorld;
         
-        public virtual void OnEnable()
+        public virtual async void OnEnable()
         {
+            await System.Threading.Tasks.Task.Yield();
+
+            var manager = FindAnyObjectByType<LevelManager>();
+            if (manager is null)
+            {
+                if (SceneManager.GetActiveScene().name != "Entry")
+                {
+                    SceneManager.LoadScene("Entry");
+                    return;
+                }
+            }
+
             EventBus.TriggerEvent(new LevelLoadedEvent(this, Name, IsTrueWorld));
-            DataManager.Instance.SetData("CurrentLevel",_name);
+            DataManager.Instance.SetData("CurrentLevel", _name, true);
         }
+
     }
 }

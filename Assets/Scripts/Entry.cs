@@ -15,8 +15,6 @@ public class Entry :  MonoBehaviour
     [SerializeField] private GameObject panel;
     private void Start()
     {
-        print($"Just print {DataManager.Instance} for init");
-        
         if (DataManager.Instance.GetData<bool>("IsNotFirstStart"))
         {
             StartGame();
@@ -24,6 +22,7 @@ public class Entry :  MonoBehaviour
         else
         {
             DataManager.Instance.SetData("IsNotFirstStart", true);
+            DataManager.Instance.SetData("MicrophoneEnabled", true);
             cupBox.SetActive(false);
             levelManager.SetActive(false);
         }

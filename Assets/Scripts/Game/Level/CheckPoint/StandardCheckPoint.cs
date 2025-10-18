@@ -1,6 +1,4 @@
-﻿using System;
-using ShrinkEventBus;
-using UnityEngine;
+﻿using ShrinkEventBus;
 
 namespace Game.Level.CheckPoint
 {
