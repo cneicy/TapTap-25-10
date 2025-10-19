@@ -32,7 +32,7 @@ namespace ScreenEffect
         private static readonly int Color1ID = Shader.PropertyToID("_Color1");
         private static readonly int Color2ID = Shader.PropertyToID("_Color2");
 
-        private void Awake()
+        protected override void Awake()
         {
             _rawImage = GetComponent<RawImage>();
 

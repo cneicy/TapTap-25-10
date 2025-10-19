@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Data;
 using ShrinkEventBus;
 using UnityEngine;
@@ -32,6 +33,14 @@ namespace Game.Level
                 await SwitchLevel(CurrentLevel);
             }
             else await SwitchLevel("Level1");
+        }
+
+        public void Update()
+        {
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightShift))
+            {
+                SwitchLevel("Level_STG");
+            }
         }
 
         public async Task SwitchLevel(string levelName)

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d9155a53504434aa3fd6c7dab32acd, type: 3}
+  m_Name: IcicleFall
+  m_EditorClassIdentifier: Assembly-CSharp::Game.STG.BulletHell.IcicleFall
+  bulletPrefab: {fileID: 4534759330482764227, guid: b493577795577e140b5d973d3c15553e, type: 3}
+  icicleCount: 8
+  waveCount: 3
+  spreadWidth: 6
+  bulletSpeed: 3
+  waveInterval: 0.8
+  icicleInterval: 0.1

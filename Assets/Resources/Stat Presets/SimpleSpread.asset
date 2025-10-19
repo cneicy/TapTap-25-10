@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d144f5d75044cda9cfc7ddb580d4ae, type: 3}
+  m_Name: SimpleSpread
+  m_EditorClassIdentifier: Assembly-CSharp::Game.STG.BulletHell.SimpleSpread
+  bulletPrefab: {fileID: 4534759330482764227, guid: b493577795577e140b5d973d3c15553e, type: 3}
+  shotsCount: 5
+  bulletsPerShot: 7
+  spreadAngle: 60
+  bulletSpeed: 3.5
+  shotInterval: 0.6
+  aimAtPlayer: 1
