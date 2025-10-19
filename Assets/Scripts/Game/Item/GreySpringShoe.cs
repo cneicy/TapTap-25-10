@@ -16,6 +16,8 @@ namespace Game.Item
             Duration = 0;
             RecoveryDuration = 0;
             Cooldown = 0;
+            IsBasement = true;
+            IsBuff = false;
         }
         private void Start()
         {

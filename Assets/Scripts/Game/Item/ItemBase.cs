@@ -40,6 +40,7 @@ namespace Game.Item
    OnRecoveryStart() - 播放收尾动画
    等待 RecoveryDuration 秒
    OnRecoveryEnd() - 后摇结束
+   此时滞空结束 buff类道具施加buff
    IsRecovering = false
 
 7. CooldownTimer(冷却阶段)
@@ -57,7 +58,9 @@ namespace Game.Item
         public string Description { get; set; }
         //前摇时间
         public float WindupDuration { get; set; }
+        //
         //持续时间
+        public float BuffDuration { get; set; }
         public float Duration { get; set; }
         //后摇时间
         public float RecoveryDuration { get; set; }
@@ -74,8 +77,9 @@ namespace Game.Item
         public bool IsBasement { get; set; }
         //是否是“施加buff类”
         public bool IsBuff { get; set; }
-        private PlayerController _playerController;
-        private float _beforeHoverSpeed;
+        protected PlayerController _playerController;
+        private float _beforeHoverSpeedX;
+        private float _beforeHoverSpeedY;
 
         public virtual void Start()
         {
@@ -86,17 +90,17 @@ namespace Game.Item
         {
             if (!CanUse) return;
             CanUse = false;
-            print($"{Name} 道具使用开始");
+            /*print($"{Name} 道具使用开始");*/
             StartCoroutine(nameof(WindupTimer));
         }
         
         public virtual IEnumerator WindupTimer()
         {
             IsWindingUp = true;
-            print("开始前摇动画");
+            /*print("开始前摇动画");*/
             OnWindupStart();
             yield return new WaitForSeconds(WindupDuration);
-            print("前摇结束");
+            /*print("前摇结束");*/
             IsWindingUp = false;
             OnWindupEnd();
             IsUsing = true;
@@ -106,9 +110,9 @@ namespace Game.Item
 
         public virtual IEnumerator DurationTimer()
         {
-            print("转使用持续时间");
+            /*print("转使用持续时间");*/
             yield return new WaitForSeconds(Duration);
-            print("使用持续时间转好了");
+            /*print("使用持续时间转好了");*/
             IsUsing = false;
             OnUseEnd();
 
@@ -143,7 +147,6 @@ namespace Game.Item
             {
                 return;
             }
-
             ApplyEffectTick();
         }
         
@@ -151,17 +154,18 @@ namespace Game.Item
         {
             /*print("前摇开始 - 播放准备动画");*/
             /*_playerController.inAirGravity = 0;*/
-            _beforeHoverSpeed = _playerController._frameVelocity.y;
+            _beforeHoverSpeedX = _playerController._frameVelocity.x;
+            _beforeHoverSpeedY = _playerController._frameVelocity.y;
+            _playerController._frameVelocity.x = 0;
             _playerController._frameVelocity.y = 0;
-            _playerController.ParachuteSpeed = 0;
+            _playerController.HorizontalSpeed = 0;
+            _playerController.VerticalSpeed = 0;
         }
         
         public virtual void OnWindupEnd()
         {
             /*print("前摇结束");*/
             /*_playerController.inAirGravity = _playerController._stats.FallAcceleration;*/
-            _playerController._frameVelocity.y = _beforeHoverSpeed;
-            _playerController.ParachuteSpeed = _playerController._stats.MaxFallSpeed;
         }
 
         public virtual void OnUseEnd()
@@ -177,6 +181,11 @@ namespace Game.Item
         public virtual void OnRecoveryEnd()
         {
             /*print("后摇结束");*/
+            _playerController._frameVelocity.x = _beforeHoverSpeedX;
+            _playerController._frameVelocity.y = _beforeHoverSpeedY;
+            _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;
+            _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
+            ApplyBuffEffect();
         }
 
         public virtual void OnUseCancel()
@@ -196,7 +205,12 @@ namespace Game.Item
 
         public virtual void ApplyEffect()
         {
-            /*print("应用效果了");*/
+            
+        }
+
+        public virtual void ApplyBuffEffect()
+        {
+            
         }
     }
 }

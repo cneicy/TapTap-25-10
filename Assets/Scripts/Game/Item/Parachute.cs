@@ -13,10 +13,12 @@ namespace Game.Item
         {
             Name = "降落伞";
             Description = "";
-            WindupDuration = 2f;
-            Duration = 5f;
+            WindupDuration = 0.2f;
+            Duration = 0f;
+            BuffDuration = 2f;
             RecoveryDuration = 0;
-            Cooldown = 20f;
+            Cooldown = 0.1f;
+            IsBuff = true;
         }
         
         public override void Start()
@@ -31,17 +33,17 @@ namespace Game.Item
             base.OnUseStart();
             print(Name+"开始使用");
         }
-
-        public override void ApplyEffect()
+        
+        public override void ApplyBuffEffect()
         {
-            /*var player = FindObjectOfType<Player.Player>();
+            var player = FindObjectOfType<Player.Player>();
             EventBus.TriggerEvent(new BuffAppliedEvent
             {
-                Buff = new ParachuteBuff(5f, 2f,40f),
+                Buff = new ParachuteBuff(BuffDuration, -3f,140f),
                 Player = player
-            });*/
+            });
         }
-
+        
         public override void ApplyEffectTick()
         {
             base.ApplyEffectTick();

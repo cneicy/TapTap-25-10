@@ -18,7 +18,8 @@ namespace Game.Player
         private bool _ready;
         public Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
-        public float ParachuteSpeed { get; set; }
+        public float VerticalSpeed { get; set; }
+        public float HorizontalSpeed { get; set; }
 
         #region Interface
 
@@ -66,7 +67,8 @@ namespace Game.Player
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
 
-            ParachuteSpeed = _stats.MaxFallSpeed;
+            VerticalSpeed = _stats.MaxFallSpeed;
+            HorizontalSpeed = _stats.MaxSpeed;
         }
 
         private void Update()
@@ -193,7 +195,7 @@ namespace Game.Player
             }
             else
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * HorizontalSpeed, _stats.Acceleration * Time.fixedDeltaTime);
             }
         }
 
@@ -211,7 +213,7 @@ namespace Game.Player
             {
                 var inAirGravity = _stats.FallAcceleration;
                 if (_endedJumpEarly && _frameVelocity.y > 0) inAirGravity *= _stats.JumpEndEarlyGravityModifier;
-                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -ParachuteSpeed, inAirGravity * Time.fixedDeltaTime);
+                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -VerticalSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
 
