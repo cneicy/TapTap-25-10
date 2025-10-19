@@ -10,7 +10,19 @@ namespace Game.Item
         public List<Sprite> spriteVisuals = new List<Sprite>();
         public Image spriteRenderer;
         private int _spriteIndex;
-
+        
+        public void Init(List<ItemBase> items)
+        {
+            if (items == null)
+            {
+                var defaultSprite = Resources.Load<Sprite>("Sprites/Items/diceDontKown");
+                spriteRenderer.sprite = defaultSprite;
+            }
+            foreach (var item in items)
+            {
+                spriteVisuals.Add(item.Sprite);
+            }
+        }
         public void NextSprite()
         {
             if (_spriteIndex == spriteVisuals.Count - 1)
@@ -35,19 +47,7 @@ namespace Game.Item
         {
             spriteRenderer.sprite = spriteVisuals[_spriteIndex];
         }
-
-        public void Init(List<ItemBase> items)
-        {
-            if (items == null)
-            {
-                var defaultSprite = Resources.Load<Sprite>("Sprites/Items/diceDontKown");
-                spriteRenderer.sprite = defaultSprite;
-            }
-            foreach (var item in items)
-            {
-                spriteVisuals.Add(item.Sprite);
-            }
-        }
+        
 
         public void AddSpriteVisual(Sprite sprite)
         {

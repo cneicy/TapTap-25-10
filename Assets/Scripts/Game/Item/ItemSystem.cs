@@ -33,7 +33,8 @@ namespace Game.Item
         {
             /*EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
             EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<Hands>()));*/
-            CurrentItem = GetComponent<Parachute>();
+            index = 0;
+            CurrentItem = ItemsPlayerHad[index];
         }
         
         [EventSubscribe]
@@ -64,7 +65,6 @@ namespace Game.Item
                 CurrentItem.OnUseCancel();
                 CurrentItem = ItemsPlayerHad[--index];
                 print(CurrentItem.Name);
-                print("Q");
                 currentItemVisual.PreviousSprite();
             }
         }
@@ -77,13 +77,13 @@ namespace Game.Item
                 CurrentItem.OnUseCancel();
                 CurrentItem = ItemsPlayerHad[++index];
                 print(CurrentItem.Name);
-                print("E");
                 currentItemVisual.NextSprite();
             }
         }
 
         public void UseItem()
         {
+            print(ItemsPlayerHad.Count);
             if(CurrentItem == null) return;
             if (ItemFrameInput.UseItem)
             {
