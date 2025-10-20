@@ -19,6 +19,7 @@ namespace Game.STG.BulletHell
         {
             for (var ring = 0; ring < ringCount; ring++)
             {
+                SoundManager.Instance.Play("bossshoot2");
                 var angleStep = 360f / bulletsPerRing;
                 var speed = bulletSpeed + speedIncrement * ring;
 

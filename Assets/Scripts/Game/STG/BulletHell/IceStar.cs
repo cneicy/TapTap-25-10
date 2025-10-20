@@ -23,6 +23,7 @@ namespace Game.STG.BulletHell
 
             for (var repeat = 0; repeat < repeatCount; repeat++)
             {
+                SoundManager.Instance.Play("bossshoot1");
                 var angleStep = 360f / starPoints;
 
                 for (var point = 0; point < starPoints; point++)

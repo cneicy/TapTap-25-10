@@ -5,7 +5,7 @@ namespace Game.Level.CheckPoint
     [EventBusSubscriber]
     public class SpecialCheckPoint : CheckPointBase
     {
-        private void Awake()
+        public SpecialCheckPoint()
         {
             IsSpecial = true;
         }

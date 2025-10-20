@@ -27,6 +27,7 @@ namespace Game.STG.BulletHell
             for (var d = 0; d < diamondCount; d++)
             {
                 // 每个钻石稍微偏移位置
+                SoundManager.Instance.Play("bossshoot1");
                 var offsetX = (d % 2 == 0) ? -1f : 1f;
                 var spawnPos = origin.position + new Vector3(offsetX, 0, 0);
                 

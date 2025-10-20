@@ -25,6 +25,7 @@ namespace Game.STG.BulletHell
 
             for (var layer = 0; layer < ringLayers; layer++)
             {
+                SoundManager.Instance.Play("bossshoot3");
                 var angleStep = 360f / bulletsPerLayer;
                 var speed = initialSpeed + speedIncrement * layer;
 
@@ -48,7 +49,7 @@ namespace Game.STG.BulletHell
 
             // 最后一击 - 密集弹幕
             yield return new WaitForSeconds(0.3f);
-
+            SoundManager.Instance.Play("bossshoot2");
             for (var i = 0; i < bulletsPerLayer * 2; i++)
             {
                 var angle = (360f / (bulletsPerLayer * 2)) * i * Mathf.Deg2Rad;

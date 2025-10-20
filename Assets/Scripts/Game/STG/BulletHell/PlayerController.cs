@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.STG.BulletHell
 {
@@ -40,9 +41,8 @@ namespace Game.STG.BulletHell
             _isFocusing = Input.GetKey(focusKey);
             var currentSpeed = _isFocusing ? focusSpeed : normalSpeed;
 
-            var h = Input.GetAxisRaw("Horizontal");
-            var v = Input.GetAxisRaw("Vertical");
-            var move = new Vector3(h, v, 0).normalized;
+            var move = (Vector3)InputSystem.actions.FindAction("Move").ReadValue<Vector2>();
+            
             transform.position += move * (currentSpeed * Time.deltaTime);
             if(move ==  Vector3.zero) return;
             var pos = transform.position;
@@ -89,6 +89,7 @@ namespace Game.STG.BulletHell
 
         private void FireBullet(Vector3 position, Vector2 baseDirection, float angleOffset)
         {
+            SoundManager.Instance.Play("hitboss");
             var bullet = Instantiate(bulletPrefab, position, Quaternion.identity);
 
             if (!bullet.TryGetComponent<PlayerBullet>(out var pb)) return;

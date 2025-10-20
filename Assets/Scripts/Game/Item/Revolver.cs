@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Game.Item
@@ -19,16 +18,11 @@ namespace Game.Item
             IsBasement = false;
         }
 
-        private void Awake()
-        {
-            ItemSystem.Instance.ItemsPlayerHad.Add(this);
-        }
-
         public override void Start()
         {
             base.Start();
             fadeSpeed = 110;
-            
+            ItemSystem.Instance.ItemsPlayerHad.Add(this);
         }
         public override void OnWindupStart()
         {

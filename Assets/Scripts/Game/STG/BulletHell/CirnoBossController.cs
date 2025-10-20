@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Data;
 using Game.Level;
+using ScreenEffect;
 using UnityEngine;
 
 namespace Game.STG.BulletHell
@@ -121,7 +122,7 @@ namespace Game.STG.BulletHell
             {
                 ClearAllBullets();
             }
-            
+            SoundManager.Instance.Play("bossphase");
             Debug.Log($"⑨ 琪露诺：阶段 {newPhase} 开始！");
 
             if (phaseChangeParticle)
@@ -214,7 +215,7 @@ namespace Game.STG.BulletHell
             _isDead = true;
             StopAllCoroutines();
             _shooter.StopShooting();
-            
+            SoundManager.Instance.Play("bossdie");
             Debug.Log("⑨ 琪露诺：诶？我输了？");
             StartCoroutine(DeathSequence());
         }
@@ -229,9 +230,12 @@ namespace Game.STG.BulletHell
                 spriteRenderer.enabled = !spriteRenderer.enabled;
                 yield return new WaitForSeconds(0.1f);
             }
-
+            
+            RectTransitionController.Instance.StartTransition();
+            yield return new WaitForSeconds(0.25f);
+            LevelManager.Instance.SwitchLevel(DataManager.Instance.GetData<string>("CurrentLevel"));
+            print("finish");
             Destroy(gameObject);
-            _ = LevelManager.Instance.SwitchLevel(DataManager.Instance.GetData<string>("CurrentLevel"));
         }
 
         private void ClearAllBullets()
