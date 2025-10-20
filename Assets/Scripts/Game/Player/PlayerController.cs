@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Buff;
 using Game.Item;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,11 @@ namespace Game.Player
         private bool _cachedQueryStartInColliders;
         public float VerticalSpeed { get; set; }
         public float HorizontalSpeed { get; set; }
+        public bool HandleGravityByController { get; set; } = true;
+        public float JumpPowerRate { get; set; }
+        public float HorizontalPowerRate { get; set; }
+        public bool IsParachute { get; set; }
+        public BuffManager BuffManager { get; set; }
 
         #region Interface
 
@@ -33,7 +39,7 @@ namespace Game.Player
 
         #region ItemSystem
 
-        private int ItemIndex { get; set; } 
+        private int ItemIndex { get; set; }
         public List<ItemBase> items;
         public ItemVisualController itemVisualController;
 
@@ -42,6 +48,10 @@ namespace Game.Player
         private void OnEnable()
         {
             ResetJumpState();
+            JumpPowerRate = 1f;
+            HorizontalPowerRate = 1f;
+            IsParachute = false;
+            BuffManager = GetComponent<BuffManager>();
         }
 
         private IEnumerator Start()
@@ -49,7 +59,7 @@ namespace Game.Player
             yield return new WaitForSeconds(1f);
             _ready = true;
         }
-        
+
         private void ResetJumpState()
         {
             _jumpToConsume = false;
@@ -59,7 +69,7 @@ namespace Game.Player
             _grounded = false;
             _frameVelocity = Vector2.zero;
         }
-        
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -106,13 +116,16 @@ namespace Game.Player
 
             HandleJump();
             HandleDirection();
-            HandleGravity();
-            
+            if (HandleGravityByController)
+            {
+                HandleGravity();
+            }
+
             ApplyMovement();
         }
 
         #region Collisions
-        
+
         private float _frameLeftGrounded = float.MinValue;
         private bool _grounded;
 
@@ -149,7 +162,6 @@ namespace Game.Player
 
         #endregion
 
-
         #region Jumping
 
         private bool _jumpToConsume;
@@ -163,14 +175,42 @@ namespace Game.Player
 
         private void HandleJump()
         {
-            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
+            // 放开跳跃键的“早放”判定
+            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0)
+                _endedJumpEarly = true;
 
+            // 没有跳跃输入/缓冲，直接返回
             if (!_jumpToConsume && !HasBufferedJump) return;
 
-            if (_grounded || CanUseCoyote) ExecuteJump();
+            // 1) 降落伞逻辑应优先处理；只在“空中 + 土狼时间”时触发
+            if (IsParachute && CanUseCoyote)
+            {
+                if (BuffManager != null)
+                {
+                    // 先移除降落伞，恢复控制器倍率等
+                    BuffManager.RemoveBuff<ParachuteBuff>();
+                }
+                // 再执行跳跃（和 ExecuteJump 完全一致），确保使用最新倍率
+                _endedJumpEarly = false;
+                _timeJumpWasPressed = 0;
+                _bufferedJumpUsable = false;
+                _coyoteUsable = false;
+                _frameVelocity.y = _stats.JumpPower * JumpPowerRate;
+                Jumped?.Invoke();
+
+                _jumpToConsume = false;
+                return; 
+            }
+
+            // 2) 普通跳跃（地面或土狼时间）
+            if (_grounded || CanUseCoyote)
+            {
+                ExecuteJump();
+            }
 
             _jumpToConsume = false;
         }
+
 
         private void ExecuteJump()
         {
@@ -178,7 +218,17 @@ namespace Game.Player
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
-            _frameVelocity.y = _stats.JumpPower;
+            _frameVelocity.y = _stats.JumpPower * JumpPowerRate;
+            Jumped?.Invoke();
+        }
+
+        private void ParachuteJump()
+        {
+            _endedJumpEarly = false;
+            _timeJumpWasPressed = 0;
+            _bufferedJumpUsable = false;
+            _coyoteUsable = false;
+            _frameVelocity.y = _stats.JumpPower * JumpPowerRate;
             Jumped?.Invoke();
         }
 
@@ -195,7 +245,11 @@ namespace Game.Player
             }
             else
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * HorizontalSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                _frameVelocity.x = Mathf.MoveTowards(
+                    _frameVelocity.x,
+                    _frameInput.Move.x * HorizontalSpeed * HorizontalPowerRate,
+                    _stats.Acceleration * Time.fixedDeltaTime
+                );
             }
         }
 
@@ -221,8 +275,6 @@ namespace Game.Player
 
         private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
 
-        
-
 #if UNITY_EDITOR
         private void OnValidate()
         {
@@ -245,7 +297,6 @@ namespace Game.Player
     public interface IPlayerController
     {
         public event Action<bool, float> GroundedChanged;
-
         public event Action Jumped;
         public Vector2 FrameInput { get; }
     }

@@ -17,10 +17,15 @@ namespace Game.Item
             Duration = 0f;
             BuffDuration = 2f;
             RecoveryDuration = 0;
-            Cooldown = 0.1f;
+            Cooldown = 0f;
             IsBuff = true;
         }
-        
+
+        public void Awake()
+        {
+            ItemSystem.Instance.ItemsPlayerHad.Add(this);
+        }
+
         public override void Start()
         {
             base.Start();
@@ -39,7 +44,7 @@ namespace Game.Item
             var player = FindObjectOfType<Player.Player>();
             EventBus.TriggerEvent(new BuffAppliedEvent
             {
-                Buff = new ParachuteBuff(BuffDuration, -3f,140f),
+                Buff = new ParachuteBuff(BuffDuration, 4f,120f),
                 Player = player
             });
         }

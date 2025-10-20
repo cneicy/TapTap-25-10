@@ -5,70 +5,98 @@ namespace Game.Buff
 {
     public class ParachuteBuff : BuffBase
     {
-        private bool _isBug;//如果速度方向向上则进入bug模式
-        private PlayerController _playerController;
-        
-        public float BaseParachuteMinSpeed { get; set; } //使用降落伞后可以减速到的最小速度 （无方向 应为正数）
-        public float BaseParachuteFallAcceleration{ get; set; }// 使用降落伞后减速的能力大小
-        
+        private PlayerController _pc;
+        private Rigidbody2D _rb;
+        private float _oldGravityScale;
+
+        // 期望为正数幅度，内部用负号表示向下
+        public float ParachuteMinSpeed { get; }
+        public float ParachuteFallAcceleration { get; }
+
         protected override int MaxStacks => 3;
 
-        public ParachuteBuff(float duration, float parachuteMinSpeed, float parachuteFallAcceleration)
+        public ParachuteBuff(float duration, float minSpeed, float accel)
         {
             BuffName = "Parachute";
             Duration = duration;
-            BaseParachuteMinSpeed = parachuteMinSpeed;
-            BaseParachuteFallAcceleration = parachuteFallAcceleration;
+            ParachuteMinSpeed = Mathf.Abs(minSpeed);
+            ParachuteFallAcceleration = accel;
         }
 
-        public float ParachuteMinSpeed =>BaseParachuteMinSpeed=5.2f*(StackCount-1);
-        public float ParachuteFallAcceleration => BaseParachuteFallAcceleration;
         public override void OnApply(Player.Player target)
         {
             base.OnApply(target);
-            _playerController = target.GetComponent<PlayerController>();
-            if (_playerController._frameVelocity.y > 10000)
+
+            _pc = target.GetComponent<PlayerController>();
+            _rb = target.GetComponent<Rigidbody2D>();
+
+            if (_pc == null || _rb == null)
             {
-                _isBug = true;
-                _playerController.VerticalSpeed = BaseParachuteMinSpeed;
+                Debug.LogWarning("[ParachuteBuff] 找不到 PlayerController 或 Rigidbody2D。");
+                return;
             }
-            else
-            {
-                _isBug = false;
-                _playerController.VerticalSpeed = BaseParachuteMinSpeed;
-            }
+
+            if (StackCount == 0) AddStack();
+
+            // 关闭控制器重力逻辑 + 物理重力设 0
+            _pc.HandleGravityByController = false;
+            _oldGravityScale = _rb.gravityScale;
+            _rb.gravityScale = 0f;
+
+            // 降低跳跃与横向移动（保留这些体验）
+            _pc.JumpPowerRate = 1f;      
+            _pc.HorizontalPowerRate = 0.5f; 
+            
+            //标记是否在使用
+            _pc.IsParachute = true;
         }
 
-        public override void OnUpdate(Player.Player target, float deltaTime)
+        public override void OnUpdate(Player.Player target, float dt)
         {
-            base.OnUpdate(target, deltaTime);
-            if (_isBug)
+            base.OnUpdate(target, dt);
+            if (_rb == null || _pc == null) return;
+
+            // 叠层决定目标下落速度（负号向下）
+            float targetY = StackCount switch
             {
-                _playerController._frameVelocity.y = Mathf.MoveTowards
-                    (_playerController._frameVelocity.y, 
-                        -ParachuteMinSpeed, 
-                        ParachuteFallAcceleration * Time.fixedDeltaTime);
-            }
-            else
-            {
-                _playerController._frameVelocity.y = Mathf.MoveTowards
-                (_playerController._frameVelocity.y, 
-                    ParachuteMinSpeed, 
-                    ParachuteFallAcceleration * Time.fixedDeltaTime);
-            }
+                <= 1 => -ParachuteMinSpeed,          
+                2    => ParachuteMinSpeed * 0.5f,   
+                _    => ParachuteMinSpeed * 1.5f    
+            };
+
+            Vector2 v = _rb.linearVelocity;
+            float newY = Mathf.MoveTowards(v.y, targetY, ParachuteFallAcceleration * dt);
+
+            if (Mathf.Abs(newY - targetY) <= 0.05f) newY = targetY;
+
+            v.y = newY;
+            _rb.linearVelocity = v;
+            _pc._frameVelocity = v; // 同步缓存
         }
 
         protected override void OnStackChanged()
         {
             Debug.Log($"[Parachute] 当前层数: {StackCount}");
         }
-        
+
         public override void OnRemove(Player.Player target)
         {
             base.OnRemove(target);
-            _playerController._frameVelocity.y = 2f;
-            _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
+
+            if (_pc != null)
+            {
+                _pc.HandleGravityByController = true;
+                _pc.VerticalSpeed = _pc._stats.MaxFallSpeed;
+                _pc.JumpPowerRate = 1f;
+                _pc.HorizontalPowerRate = 1f;
+            }
+
+            if (_rb != null)
+            {
+                _rb.gravityScale = _oldGravityScale;
+            }
+            
+            _pc.IsParachute = false;
         }
     }
 }
-

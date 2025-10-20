@@ -8,7 +8,8 @@ namespace Game.Player
     public class Player : MonoBehaviour
     { 
         public Rigidbody2D rb2d;
-        public float playerSpeedY;
+        public float playerSpeedY1;
+        public float playerSpeedY2;
         private BuffManager _buffManager;
         private PlayerController _playerController;
 
@@ -22,7 +23,8 @@ namespace Game.Player
         }
         private void FixedUpdate()
         {
-            playerSpeedY = rb2d.linearVelocity.y;
+            playerSpeedY1 = rb2d.linearVelocity.y;
+            playerSpeedY2 = _playerController._frameVelocity.y;
             
             WearGreySpringShoe();
         }

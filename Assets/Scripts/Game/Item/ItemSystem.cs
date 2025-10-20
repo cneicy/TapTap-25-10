@@ -28,7 +28,14 @@ namespace Game.Item
         private FrameInput ItemFrameInput;
         public ItemVisualController itemVisualController;
         public CurrentItemVisual currentItemVisual;
-        
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+        }
+
         private void Start()
         {
             /*EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
@@ -83,10 +90,10 @@ namespace Game.Item
 
         public void UseItem()
         {
-            print(ItemsPlayerHad.Count);
             if(CurrentItem == null) return;
             if (ItemFrameInput.UseItem)
             {
+                print(ItemsPlayerHad.Count);
                 CurrentItem.OnUseStart();
             }
         }
