@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace ScreenEffect
 {
     [RequireComponent(typeof(RawImage))]
-    public class GlitchTransitionController : MonoBehaviour
+    public class GlitchTransitionController : Singleton<GlitchTransitionController>
     {
         [Header("相机引用")]
         [SerializeField] private Camera targetCamera;
@@ -39,7 +40,7 @@ namespace ScreenEffect
         private static readonly int ChromaticAmountID = Shader.PropertyToID("_ChromaticAmount");
         private static readonly int BlockSizeID = Shader.PropertyToID("_BlockSize");
 
-        private void Awake()
+        protected override void Awake()
         {
             _rawImage = GetComponent<RawImage>();
             
