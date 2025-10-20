@@ -326,8 +326,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c735b7801d435214e9c1720fc96aae23, type: 2}
+  m_sharedMaterial: {fileID: 945073181134713151, guid: c735b7801d435214e9c1720fc96aae23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.1
+  m_fontSize: 31.7
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1466,7 +1466,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0ff834334fa91854cbfd332802429a3a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c735b7801d435214e9c1720fc96aae23, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2127,6 +2127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 316747286}
     m_Modifications:
+    - target: {fileID: 1134916185237890684, guid: 730f14a98ad98c54a9cb59858f2f9e9e, type: 3}
+      propertyPath: gapCloseTime
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6698057544925137131, guid: 730f14a98ad98c54a9cb59858f2f9e9e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

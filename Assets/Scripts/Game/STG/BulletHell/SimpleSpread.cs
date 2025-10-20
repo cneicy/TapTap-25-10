@@ -21,7 +21,7 @@ namespace Game.STG.BulletHell
             for (var shot = 0; shot < shotsCount; shot++)
             {
                 float baseAngle;
-
+                SoundManager.Instance.Play("bossshoot2");
                 if (aimAtPlayer && player != null)
                 {
                     // 朝向玩家

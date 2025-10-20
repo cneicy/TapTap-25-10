@@ -21,9 +21,8 @@ namespace Game.Item
             IsBuff = true;
         }
         
-        public override void Start()
+        public void Awake()
         {
-            base.Start();
             ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试
             Sprite = Resources.Load<Sprite>("Sprites/Items/Parachute");
         }

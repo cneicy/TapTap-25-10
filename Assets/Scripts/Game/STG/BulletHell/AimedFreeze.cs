@@ -22,7 +22,7 @@ namespace Game.STG.BulletHell
                 {
                     Vector2 toPlayer = (player.position - origin.position).normalized;
                     var baseAngle = Mathf.Atan2(toPlayer.y, toPlayer.x);
-
+                    SoundManager.Instance.Play("bossshoot1");
                     for (var i = 0; i < bulletsPerShot; i++)
                     {
                         var offset = (i - (bulletsPerShot - 1) / 2f) * (spreadAngle * Mathf.Deg2Rad / bulletsPerShot);

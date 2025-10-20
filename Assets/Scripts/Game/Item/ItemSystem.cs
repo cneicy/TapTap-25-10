@@ -83,7 +83,7 @@ namespace Game.Item
 
         public void UseItem()
         {
-            print(ItemsPlayerHad.Count);
+            //print(ItemsPlayerHad.Count);
             if(CurrentItem == null) return;
             if (ItemFrameInput.UseItem)
             {

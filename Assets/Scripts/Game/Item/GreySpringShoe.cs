@@ -19,7 +19,7 @@ namespace Game.Item
             IsBasement = true;
             IsBuff = false;
         }
-        private void Start()
+        private void Awake()
         {
             Sprite = Resources.Load<Sprite>("Sprites/Items/GreySpringShoe");
             ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试

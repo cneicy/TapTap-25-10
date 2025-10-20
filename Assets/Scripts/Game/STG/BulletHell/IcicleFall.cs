@@ -23,6 +23,8 @@ namespace Game.STG.BulletHell
                 // 每波稍微偏移一下位置
                 var offset = (wave % 2 == 0) ? 0f : columnSpacing / 2f;
                 
+                SoundManager.Instance.Play("bossshoot2");
+                
                 for (var row = 0; row < rows; row++)
                 {
                     var startX = origin.position.x - (columns * columnSpacing / 2f) + offset;

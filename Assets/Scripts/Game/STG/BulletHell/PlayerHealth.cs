@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using Data;
+using Game.Level;
+using ScreenEffect;
 using UnityEngine;
 
 namespace Game.STG.BulletHell
@@ -93,7 +96,7 @@ namespace Game.STG.BulletHell
 
             currentLives--;
             Debug.Log($"[Player] 受击！剩余生命: {currentLives}");
-
+            SoundManager.Instance.Play("ouch");
             if (currentLives <= 0)
             {
                 Die();
@@ -213,6 +216,10 @@ namespace Game.STG.BulletHell
 
             if (spriteRenderer)
                 spriteRenderer.enabled = false;
+            RectTransitionController.Instance.StartTransition();
+            yield return new WaitForSeconds(0.25f);
+            _ = LevelManager.Instance.SwitchLevel(DataManager.Instance.GetData<string>("CurrentLevel"));
+            
         }
 
         private void OnGUI()

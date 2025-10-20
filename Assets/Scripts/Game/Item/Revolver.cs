@@ -18,9 +18,8 @@ namespace Game.Item
             IsBasement = false;
         }
 
-        public override void Start()
+        public void Awake()
         {
-            base.Start();
             fadeSpeed = 110;
             ItemSystem.Instance.ItemsPlayerHad.Add(this);
         }

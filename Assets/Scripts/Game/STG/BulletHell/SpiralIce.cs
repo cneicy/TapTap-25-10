@@ -22,7 +22,7 @@ namespace Game.STG.BulletHell
             while (elapsed < duration)
             {
                 var angleStep = 360f / armsCount;
-
+                SoundManager.Instance.Play("bossshoot2");
                 for (var i = 0; i < armsCount; i++)
                 {
                     var angle = (currentAngle + angleStep * i) * Mathf.Deg2Rad;
