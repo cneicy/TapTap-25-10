@@ -89,6 +89,7 @@ namespace Game.Buff
                 _pc.VerticalSpeed = _pc._stats.MaxFallSpeed;
                 _pc.JumpPowerRate = 1f;
                 _pc.HorizontalPowerRate = 1f;
+                _pc.IsParachute = false;
             }
 
             if (_rb != null)
@@ -96,7 +97,7 @@ namespace Game.Buff
                 _rb.gravityScale = _oldGravityScale;
             }
             
-            _pc.IsParachute = false;
+            
         }
     }
 }

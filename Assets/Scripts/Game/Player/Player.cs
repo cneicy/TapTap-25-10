@@ -37,7 +37,7 @@ namespace Game.Player
             }
             else
             {
-                _playerController._stats.CoyoteTime = 0.15f;
+                _playerController._stats.CoyoteTime = 15f;
             }
         }
     }

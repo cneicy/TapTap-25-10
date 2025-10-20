@@ -49,7 +49,7 @@ namespace Game.Player
         public float JumpEndEarlyGravityModifier = 3;
 
         [Tooltip("The time before coyote jump becomes unusable. Coyote jump allows jump to execute even after leaving a ledge")]
-        public float CoyoteTime = 0.15f;
+        public float CoyoteTime = 15f;
 
         [Tooltip("The amount of time we buffer a jump. This allows jump input before actually hitting the ground")]
         public float JumpBuffer = .2f;

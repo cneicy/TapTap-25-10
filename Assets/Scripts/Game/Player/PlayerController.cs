@@ -181,8 +181,7 @@ namespace Game.Player
 
             // 没有跳跃输入/缓冲，直接返回
             if (!_jumpToConsume && !HasBufferedJump) return;
-
-            // 1) 降落伞逻辑应优先处理；只在“空中 + 土狼时间”时触发
+            
             if (IsParachute && CanUseCoyote)
             {
                 if (BuffManager != null)
@@ -190,7 +189,6 @@ namespace Game.Player
                     // 先移除降落伞，恢复控制器倍率等
                     BuffManager.RemoveBuff<ParachuteBuff>();
                 }
-                // 再执行跳跃（和 ExecuteJump 完全一致），确保使用最新倍率
                 _endedJumpEarly = false;
                 _timeJumpWasPressed = 0;
                 _bufferedJumpUsable = false;
