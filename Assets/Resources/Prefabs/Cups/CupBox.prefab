@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5575304810412309418}
   - component: {fileID: 2852356854860904635}
   - component: {fileID: 4970450951885676112}
+  - component: {fileID: 8401085412412073655}
   m_Layer: 0
   m_Name: CupBox
   m_TagString: Untagged
@@ -106,6 +107,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &8401085412412073655
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444014765463004462}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &7618078880012067983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,11 +163,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1545079938722847349, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
       propertyPath: m_Name
-      value: TapCup
+      value: Level1Cup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231208565479916282, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: power.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231208565479916282, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: power.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236360659788739523, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236360659788739523, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236360659788739523, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4236360659788739523, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.47
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4236360659788739523, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
       propertyPath: m_LocalPosition.y
@@ -161,10 +228,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1545079938722847349, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2845551723890607339}
   m_SourcePrefab: {fileID: 100100000, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
 --- !u!4 &6012949756779943756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4236360659788739523, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
   m_PrefabInstance: {fileID: 7618078880012067983}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8991964858290159354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1545079938722847349, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+  m_PrefabInstance: {fileID: 7618078880012067983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &2845551723890607339
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8991964858290159354}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -30,6 +30,7 @@ namespace Game.Cup
         private float _scaleUpFactor = 1.1f;
         private float _rotationAmplitude = 10f;
         private float _rotationSpeed = 3f;
+        public Vector2 power;
 
         protected virtual void Awake()
         {
@@ -46,6 +47,12 @@ namespace Game.Cup
                 StopCoroutine(_hoverAnimCoroutine);
 
             _hoverAnimCoroutine = StartCoroutine(nameof(HoverAnimation));
+        }
+
+        public virtual void Crash()
+        {
+            GetComponent<Rigidbody2D>().simulated = true;
+            GetComponent<Rigidbody2D>().AddForce(power, ForceMode2D.Impulse);
         }
 
         public virtual void OnMouseExit()

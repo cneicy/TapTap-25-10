@@ -9,7 +9,6 @@ public class LoadLevelsEvent : EventBase{}
 
 public class Entry :  MonoBehaviour
 {
-    [SerializeField] private GameObject cupBox;
     [SerializeField] private GameObject levelManager;
     [SerializeField] private GameObject[] uiShouldBeDisabled;
     [SerializeField] private GameObject panel;
@@ -25,14 +24,12 @@ public class Entry :  MonoBehaviour
         {
             DataManager.Instance.SetData("IsNotFirstStart", true);
             DataManager.Instance.SetData("MicrophoneEnabled", true);
-            cupBox.SetActive(false);
             levelManager.SetActive(false);
         }
     }
 
     public async void StartGame()
     {
-        cupBox.SetActive(true);
         levelManager.SetActive(true);
         itemUI.SetActive(true);
         foreach (var temp in uiShouldBeDisabled)
