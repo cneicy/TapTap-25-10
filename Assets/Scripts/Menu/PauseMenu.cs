@@ -1,5 +1,5 @@
 ﻿using System;
-using Game.Player;
+using Game.Cup;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -10,18 +10,17 @@ namespace Menu
     {
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (!Input.GetKeyDown(KeyCode.Escape)) return;
+            if (SceneManager.GetSceneByName("PauseMenu").isLoaded)
             {
-                if (SceneManager.GetActiveScene().name == "PauseMenu")
-                {
-                    SceneManager.UnloadSceneAsync("PauseMenu");
-                    FindAnyObjectByType<Game.Player.PlayerController>().enabled = true;
-                }
-                else
-                {
-                    SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
-                    FindAnyObjectByType<Game.Player.PlayerController>().enabled = false;
-                }
+                SceneManager.UnloadSceneAsync("PauseMenu");
+                FindAnyObjectByType<Game.Player.PlayerController>().enabled = true;
+                FindAnyObjectByType<CupDescriptionDialog>().rectTransform.gameObject.SetActive(false);
+            }
+            else
+            {
+                SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+                FindAnyObjectByType<Game.Player.PlayerController>().enabled = false;
             }
         }
     }

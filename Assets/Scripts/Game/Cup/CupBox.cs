@@ -18,13 +18,12 @@ namespace Game.Cup
         }
     }
     [EventBusSubscriber]
-    public class CupBox : Singleton<CupBox>
+    public class CupBox : MonoBehaviour
     {
         public List<string> cupsPlayerHad = new();
         public List<CupBase> allCups = new();
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             allCups = GetComponentsInChildren<CupBase>().ToList();
             foreach (var cupBase in allCups)
             {

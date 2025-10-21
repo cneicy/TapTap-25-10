@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Level;
+using ScreenEffect;
 using UnityEngine;
 
 namespace Game.Cup
@@ -16,6 +17,8 @@ namespace Game.Cup
         {
             if (other.gameObject.name.Contains("Player"))
             {
+                RectTransitionController.Instance.StartTransition();
+                FindAnyObjectByType<CupDescriptionDialog>().rectTransform.gameObject.SetActive(false);
                 LevelManager.Instance.SwitchLevel("Level1");
             }
         }

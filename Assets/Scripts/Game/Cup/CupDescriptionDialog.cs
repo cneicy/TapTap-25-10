@@ -10,11 +10,10 @@ namespace Game.Cup
     {
         [SerializeField] private InputActionReference mousePosAction;
         [SerializeField] private Canvas canvas;
-        [SerializeField] private RectTransform rectTransform;
+        [SerializeField] public RectTransform rectTransform;
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text descriptionText;
 
-        private Camera _uiCamera;
         private RectTransform _canvasRectTransform;
         private float _offsetX;
         private float _offsetY;
@@ -27,14 +26,15 @@ namespace Game.Cup
         {
             if (!canvas)
                 canvas = GetComponentInParent<Canvas>();
-            
-            _uiCamera = canvas.worldCamera;
+
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
             _canvasRectTransform = canvas.GetComponent<RectTransform>();
             _panelSize = rectTransform.rect.size;
 
             _offsetX = _panelSize.x / 2f;
             _offsetY = -_panelSize.y / 2f;
-            
+
             _canvasSize = _canvasRectTransform.rect.size;
             _halfCanvasWidth = _canvasSize.x / 2f;
             _halfCanvasHeight = _canvasSize.y / 2f;
@@ -59,35 +59,34 @@ namespace Game.Cup
         private void LateUpdate()
         {
             var mousePosition = mousePosAction.action.ReadValue<Vector2>();
-            var adjustedPosition = ConvertMousePosition(mousePosition);
-            rectTransform.position = adjustedPosition;
+            UpdatePanelPosition(mousePosition);
         }
 
-        private Vector3 ConvertMousePosition(Vector2 mousePosition)
+        private void UpdatePanelPosition(Vector2 screenMousePos)
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _canvasRectTransform,
-                mousePosition,
-                _uiCamera,
+                screenMousePos,
+                null,
                 out var localPoint
             );
-            
+
             var targetX = localPoint.x + _offsetX;
             var targetY = localPoint.y + _offsetY;
 
             if (targetX + _panelSize.x / 2f > _halfCanvasWidth)
-                targetX = localPoint.x - _panelSize.x / 2f;
+                targetX = _halfCanvasWidth - _panelSize.x / 2f;
 
             if (targetX - _panelSize.x / 2f < -_halfCanvasWidth)
                 targetX = -_halfCanvasWidth + _panelSize.x / 2f;
 
             if (targetY + _panelSize.y / 2f > _halfCanvasHeight)
-                targetY = localPoint.y - _panelSize.y;
+                targetY = _halfCanvasHeight - _panelSize.y / 2f;
 
             if (targetY - _panelSize.y / 2f < -_halfCanvasHeight)
                 targetY = -_halfCanvasHeight + _panelSize.y / 2f;
 
-            return _canvasRectTransform.TransformPoint(new Vector3(targetX, targetY, 0));
+            rectTransform.anchoredPosition = new Vector2(targetX, targetY);
         }
     }
 }

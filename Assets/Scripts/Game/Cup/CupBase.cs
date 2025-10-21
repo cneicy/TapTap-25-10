@@ -42,6 +42,7 @@ namespace Game.Cup
         {
             EventBus.TriggerEvent(new MouseEnterCupEvent(Name, Description));
             _isHovered = true;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
             if (_hoverAnimCoroutine != null)
                 StopCoroutine(_hoverAnimCoroutine);
@@ -51,7 +52,7 @@ namespace Game.Cup
 
         public virtual void Crash()
         {
-            GetComponent<Rigidbody2D>().simulated = true;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             GetComponent<Rigidbody2D>().AddForce(power, ForceMode2D.Impulse);
         }
 
@@ -59,7 +60,7 @@ namespace Game.Cup
         {
             EventBus.TriggerEvent(new MouseExitCupEvent());
             _isHovered = false;
-
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             if (_hoverAnimCoroutine != null)
                 StopCoroutine(_hoverAnimCoroutine);
 

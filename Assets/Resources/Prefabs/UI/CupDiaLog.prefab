@@ -35,9 +35,9 @@ RectTransform:
   - {fileID: 3255548279917499833}
   m_Father: {fileID: 8637970024646292058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 409, y: -221}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: -1521.7319, y: -912.4902}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &69737494213212155
@@ -138,7 +138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120, y: -118.75491}
+  m_AnchoredPosition: {x: 120, y: -95.00003}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4255779584281090140
@@ -171,8 +171,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Description
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0ff834334fa91854cbfd332802429a3a, type: 2}
-  m_sharedMaterial: {fileID: 252745708713412345, guid: 0ff834334fa91854cbfd332802429a3a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
+  m_sharedMaterial: {fileID: 945073181134713151, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Cup.CupDescriptionDialog
   mousePosAction: {fileID: -6335511819629117719, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  canvas: {fileID: 0}
   rectTransform: {fileID: 4080281599052706741}
   nameText: {fileID: 200336630279136345}
   descriptionText: {fileID: 478328891187425511}
@@ -360,8 +361,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0ff834334fa91854cbfd332802429a3a, type: 2}
-  m_sharedMaterial: {fileID: 252745708713412345, guid: 0ff834334fa91854cbfd332802429a3a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
+  m_sharedMaterial: {fileID: 945073181134713151, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

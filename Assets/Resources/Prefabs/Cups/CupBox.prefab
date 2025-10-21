@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2852356854860904635}
   - component: {fileID: 4970450951885676112}
   - component: {fileID: 8401085412412073655}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CupBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6012949756779943756}
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: a0ec3126b00c562449ef4e99a4da11fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,7 +123,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -133,10 +133,10 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
@@ -164,6 +164,14 @@ PrefabInstance:
     - target: {fileID: 1545079938722847349, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
       propertyPath: m_Name
       value: Level1Cup
+      objectReference: {fileID: 0}
+    - target: {fileID: 1545079938722847349, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4005966960331326157, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4231208565479916282, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
       propertyPath: power.x
@@ -225,6 +233,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5406400956797915329, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406400956797915329, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_CallbackLayers.m_Bits
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406400956797915329, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_ForceSendLayers.m_Bits
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406400956797915329, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406400956797915329, guid: de4015413fdb27749b60fc12e8186d84, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -251,8 +279,8 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8991964858290159354}
-  m_BodyType: 0
-  m_Simulated: 0
+  m_BodyType: 1
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -265,7 +293,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
