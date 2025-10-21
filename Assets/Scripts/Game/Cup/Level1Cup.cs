@@ -18,7 +18,8 @@ namespace Game.Cup
             if (other.gameObject.name.Contains("Player"))
             {
                 RectTransitionController.Instance.StartTransition();
-                FindAnyObjectByType<CupDescriptionDialog>().rectTransform.gameObject.SetActive(false);
+                if (FindAnyObjectByType<CupDescriptionDialog>())
+                    FindAnyObjectByType<CupDescriptionDialog>().rectTransform.gameObject.SetActive(false);
                 LevelManager.Instance.SwitchLevel("Level1");
             }
         }

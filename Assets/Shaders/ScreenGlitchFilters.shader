@@ -11,6 +11,8 @@ Shader "Custom/ScreenGlitchFilters"
         _ScanlineIntensity ("Scanline Intensity", Range(0, 1)) = 0.3
         _ScanlineFrequency ("Scanline Frequency", Range(100, 2000)) = 800
         _ScanlineBrightness ("Scanline Brightness", Range(0, 2)) = 1
+        _ScanlineSpeed ("Scanline Speed", Range(-5, 5)) = 1
+
         
         // === UV扰动 ===
         [Header(UV Distortion)]
@@ -103,6 +105,7 @@ Shader "Custom/ScreenGlitchFilters"
                 float _ScanlineIntensity;
                 float _ScanlineFrequency;
                 float _ScanlineBrightness;
+                float _ScanlineSpeed;
             CBUFFER_END
             
             float random(float2 st)
@@ -258,17 +261,28 @@ Shader "Custom/ScreenGlitchFilters"
                     color.b += _GlowIntensity * 0.15;
                 }
 
-                // === 滤镜5: CRT扫描线 ===
+                // === 滤镜5: CRT扫描线（动态流动）===
                 if (_EnableScanline > 0.5)
                 {
-                    // 基于Y轴的扫描线波形（sin波）
-                    float scan = sin(uv.y * _ScanlineFrequency);
-                    // 将sin波调整为 [0,1] 区间
-                    scan = (scan * 0.5 + 0.5);
-                    // 调整亮度和强度
-                    float brightness = lerp(1.0 - _ScanlineIntensity, 1.0, scan) * _ScanlineBrightness;
+                    // 时间控制移动方向与速度
+                    float moveOffset = time * _ScanlineSpeed;
+
+                    // 扫描线波形（纵向sin波随时间偏移）
+                    float scan = sin((uv.y + moveOffset) * _ScanlineFrequency);
+
+                    // 调整波形为 [0,1]
+                    scan = scan * 0.5 + 0.5;
+
+                    // 加入轻微的亮度闪烁（低频sin波）
+                    float flicker = 0.98 + 0.02 * sin(time * 20.0 + uv.y * 10.0);
+
+                    // 线条亮度调制
+                    float brightness = lerp(1.0 - _ScanlineIntensity, 1.0, scan) * _ScanlineBrightness * flicker;
+
+                    // 应用到颜色
                     color.rgb *= brightness;
                 }
+
                 
                 return saturate(color);
                 
