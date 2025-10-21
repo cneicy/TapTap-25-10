@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 521115372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -9.5, z: 0}
+  m_LocalPosition: {x: -0.9, y: -5.14, z: 0}
   m_LocalScale: {x: 25.905716, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,6 +540,11 @@ Transform:
 --- !u!1 &625550135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1544650614272011804, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
+  m_PrefabInstance: {fileID: 83757696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &625550141 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1544650614272011795, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
   m_PrefabInstance: {fileID: 83757696}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &625550142
@@ -1153,16 +1158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Parachute
   parachutePrefab: {fileID: 0}
-  spawnUpOffsetY: 1.5
-  sideOffsetX: 1
-  growDuration: 0.9
-  growCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _maxParachuteUsedIndex: 0
+  spawnHeight: 1.2
+  sideOffset: 0.8
 --- !u!114 &1910658367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,8 +1186,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f545c481b80d514cb42382a97dfd372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Revolver
-  recoilImpulse: 12
+  recoilImpulse: 0
   fadeSpeed: 0
+  rayLength: 100
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 64
+  bulletPrefab: {fileID: 7247189936144488062, guid: 841c641614b597242aec11cfb94f0b2a, type: 3}
+  bulletSpeed: 50
+  muzzle: {fileID: 625550141}
+  muzzleOffset: {x: 0.6, y: -1.6}
 --- !u!1001 &1135213948948532596
 PrefabInstance:
   m_ObjectHideFlags: 0

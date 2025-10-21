@@ -12,10 +12,10 @@ public class Entry :  MonoBehaviour
     [SerializeField] private GameObject levelManager;
     [SerializeField] private GameObject[] uiShouldBeDisabled;
     [SerializeField] private GameObject panel;
-    [SerializeField] private GameObject itemUI;
+    [SerializeField] private GameObject itemPanel;
     private void Start()
     {
-        itemUI.SetActive(false);
+        itemPanel.SetActive(false);
         if (DataManager.Instance.GetData<bool>("IsNotFirstStart"))
         {
             StartGame();
@@ -31,7 +31,7 @@ public class Entry :  MonoBehaviour
     public async void StartGame()
     {
         levelManager.SetActive(true);
-        itemUI.SetActive(true);
+        itemPanel.SetActive(true);
         foreach (var temp in uiShouldBeDisabled)
         {
             temp.gameObject.SetActive(false);

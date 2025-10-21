@@ -85,11 +85,11 @@ namespace Game.Item
 
         public virtual void Start()
         {
-            _playerController = FindFirstObjectByType<PlayerController>();
         }
 
         public virtual void OnUseStart()
         {
+            _playerController = FindFirstObjectByType<PlayerController>();
             if (!CanUse) return;
             CanUse = false;
             /*print($"{Name} 道具使用开始");*/
@@ -117,7 +117,6 @@ namespace Game.Item
             /*print("使用持续时间转好了");*/
             IsUsing = false;
             OnUseEnd();
-
             // 使用结束后进入后摇
             StartCoroutine(nameof(RecoveryTimer));
         }
@@ -131,7 +130,6 @@ namespace Game.Item
             /*print("后摇结束");*/
             IsRecovering = false;
             OnRecoveryEnd();
-            
             StartCoroutine(nameof(CooldownTimer));
         }
 
@@ -167,7 +165,6 @@ namespace Game.Item
         {
             /*print("用完了");*/
             ApplyBuffEffect();
-
         }
         
         public virtual void OnRecoveryStart()
@@ -210,6 +207,7 @@ namespace Game.Item
         {
             if (use)
             {
+                print("滞空开始");
                 _beforeHoverSpeedX = _playerController._frameVelocity.x;
                 _beforeHoverSpeedY = _playerController._frameVelocity.y;
                 _playerController._frameVelocity.x = 0;
@@ -223,6 +221,7 @@ namespace Game.Item
         {
             if (use)
             {
+                print("滞空结束");
                 _playerController._frameVelocity.x = _beforeHoverSpeedX;
                 _playerController._frameVelocity.y = _beforeHoverSpeedY;
                 _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;

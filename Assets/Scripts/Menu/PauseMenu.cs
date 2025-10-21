@@ -20,7 +20,8 @@ namespace Menu
             else
             {
                 SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
-                FindAnyObjectByType<Game.Player.PlayerController>().enabled = false;
+                if(FindAnyObjectByType<Game.Player.PlayerController>())
+                    FindAnyObjectByType<Game.Player.PlayerController>().enabled = false;
             }
         }
     }
