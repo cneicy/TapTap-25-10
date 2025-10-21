@@ -1,3 +1,4 @@
+using Game.Item;
 using Game.Player;
 using UnityEngine;
 
@@ -83,6 +84,7 @@ namespace Game.Buff
         {
             base.OnRemove(target);
 
+            // 1) 还原玩家控制参数
             if (_pc != null)
             {
                 _pc.HandleGravityByController = true;
@@ -93,11 +95,13 @@ namespace Game.Buff
             }
 
             if (_rb != null)
-            {
                 _rb.gravityScale = _oldGravityScale;
+
+            // 2) 
+            if (_pc != null)
+            {
+                ParachuteUtils.DestroyAllParachutesUnder(_pc.transform);
             }
-            
-            
         }
     }
 }

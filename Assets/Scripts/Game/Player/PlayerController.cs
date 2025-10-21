@@ -26,7 +26,8 @@ namespace Game.Player
         public float HorizontalPowerRate { get; set; }
         public bool IsParachute { get; set; }
         public BuffManager BuffManager { get; set; }
-
+        //用于速度方向的标记
+        public int FacingSign { get; private set; } = 1;
         #region Interface
 
         public Vector2 FrameInput => _frameInput.Move;
@@ -238,8 +239,8 @@ namespace Game.Player
         {
             if (_frameInput.Move.x == 0)
             {
-                var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+                var decel = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, decel * Time.fixedDeltaTime);
             }
             else
             {
@@ -248,6 +249,8 @@ namespace Game.Player
                     _frameInput.Move.x * HorizontalSpeed * HorizontalPowerRate,
                     _stats.Acceleration * Time.fixedDeltaTime
                 );
+                
+                FacingSign = _frameInput.Move.x > 0 ? 1 : -1;
             }
         }
 

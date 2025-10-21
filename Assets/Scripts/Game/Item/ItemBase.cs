@@ -80,6 +80,8 @@ namespace Game.Item
         protected PlayerController _playerController;
         private float _beforeHoverSpeedX;
         private float _beforeHoverSpeedY;
+        protected bool IsHoverStart;
+        protected bool IsHoverEnd;
 
         public virtual void Start()
         {
@@ -154,23 +156,18 @@ namespace Game.Item
         {
             /*print("前摇开始 - 播放准备动画");*/
             /*_playerController.inAirGravity = 0;*/
-            _beforeHoverSpeedX = _playerController._frameVelocity.x;
-            _beforeHoverSpeedY = _playerController._frameVelocity.y;
-            _playerController._frameVelocity.x = 0;
-            _playerController._frameVelocity.y = 0;
-            _playerController.HorizontalSpeed = 0;
-            _playerController.VerticalSpeed = 0;
+            StartHover(IsHoverStart);
         }
         
         public virtual void OnWindupEnd()
         {
-            /*print("前摇结束");*/
-            /*_playerController.inAirGravity = _playerController._stats.FallAcceleration;*/
         }
 
         public virtual void OnUseEnd()
         {
             /*print("用完了");*/
+            ApplyBuffEffect();
+
         }
         
         public virtual void OnRecoveryStart()
@@ -181,11 +178,7 @@ namespace Game.Item
         public virtual void OnRecoveryEnd()
         {
             /*print("后摇结束");*/
-            _playerController._frameVelocity.x = _beforeHoverSpeedX;
-            _playerController._frameVelocity.y = _beforeHoverSpeedY;
-            _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;
-            _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
-            ApplyBuffEffect();
+            StopHover(IsHoverEnd);
         }
 
         public virtual void OnUseCancel()
@@ -211,6 +204,30 @@ namespace Game.Item
         public virtual void ApplyBuffEffect()
         {
             
+        }
+
+        protected virtual void StartHover(bool use)
+        {
+            if (use)
+            {
+                _beforeHoverSpeedX = _playerController._frameVelocity.x;
+                _beforeHoverSpeedY = _playerController._frameVelocity.y;
+                _playerController._frameVelocity.x = 0;
+                _playerController._frameVelocity.y = 0;
+                _playerController.HorizontalSpeed = 0;
+                _playerController.VerticalSpeed = 0;
+            }
+        }
+
+        protected virtual void StopHover(bool use)
+        {
+            if (use)
+            {
+                _playerController._frameVelocity.x = _beforeHoverSpeedX;
+                _playerController._frameVelocity.y = _beforeHoverSpeedY;
+                _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;
+                _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
+            }
         }
     }
 }

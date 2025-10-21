@@ -174,10 +174,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1544650614272011804, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 625550142}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -537,23 +534,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &625550135 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1544650614272011804, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
-  m_PrefabInstance: {fileID: 83757696}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &625550142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625550135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7f6507e2d5b47746bd82df6beaeadb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Item.ParachuteVisualManager
 --- !u!1 &775158981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,17 +1132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa466c8ed4d5ce45a48d627dcfc328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Parachute
-  parachutePrefab: {fileID: 0}
-  spawnUpOffsetY: 1.5
-  sideOffsetX: 1
-  growDuration: 0.9
-  growCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _maxParachuteUsedIndex: 0
 --- !u!114 &1910658367
 MonoBehaviour:
   m_ObjectHideFlags: 0
