@@ -26,8 +26,10 @@ namespace Game.Player
         public float HorizontalPowerRate { get; set; }
         public bool IsParachute { get; set; }
         public BuffManager BuffManager { get; set; }
-        //用于速度方向的标记
+
+        // 用于速度/朝向的标记（+1 右，-1 左）
         public int FacingSign { get; private set; } = 1;
+
         #region Interface
 
         public Vector2 FrameInput => _frameInput.Move;
@@ -126,7 +128,7 @@ namespace Game.Player
         }
 
         #region Collisions
-
+        
         private float _frameLeftGrounded = float.MinValue;
         private bool _grounded;
 
@@ -134,14 +136,11 @@ namespace Game.Player
         {
             Physics2D.queriesStartInColliders = false;
 
-            // Ground and Ceiling
             bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
             bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
 
-            // Hit a Ceiling
             if (ceilingHit) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
 
-            // Landed on the Ground
             if (!_grounded && groundHit)
             {
                 _grounded = true;
@@ -150,7 +149,6 @@ namespace Game.Player
                 _endedJumpEarly = false;
                 GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
             }
-            // Left the Ground
             else if (_grounded && !groundHit)
             {
                 _grounded = false;
@@ -176,52 +174,17 @@ namespace Game.Player
 
         private void HandleJump()
         {
-            // 放开跳跃键的“早放”判定
             if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0)
                 _endedJumpEarly = true;
 
-            // 没有跳跃输入/缓冲，直接返回
             if (!_jumpToConsume && !HasBufferedJump) return;
-            
-            if (IsParachute && CanUseCoyote)
-            {
-                if (BuffManager != null)
-                {
-                    // 先移除降落伞，恢复控制器倍率等
-                    BuffManager.RemoveBuff<ParachuteBuff>();
-                }
-                _endedJumpEarly = false;
-                _timeJumpWasPressed = 0;
-                _bufferedJumpUsable = false;
-                _coyoteUsable = false;
-                _frameVelocity.y = _stats.JumpPower * JumpPowerRate;
-                Jumped?.Invoke();
 
-                _jumpToConsume = false;
-                return; 
-            }
-
-            // 2) 普通跳跃（地面或土狼时间）
-            if (_grounded || CanUseCoyote)
-            {
-                ExecuteJump();
-            }
+            if (_grounded || CanUseCoyote) ExecuteJump();
 
             _jumpToConsume = false;
         }
 
-
         private void ExecuteJump()
-        {
-            _endedJumpEarly = false;
-            _timeJumpWasPressed = 0;
-            _bufferedJumpUsable = false;
-            _coyoteUsable = false;
-            _frameVelocity.y = _stats.JumpPower * JumpPowerRate;
-            Jumped?.Invoke();
-        }
-
-        private void ParachuteJump()
         {
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
@@ -241,6 +204,10 @@ namespace Game.Player
             {
                 var decel = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, decel * Time.fixedDeltaTime);
+
+                // ★ 没有输入时，用当前速度方向维持朝向（静止时保持旧值）
+                if (Mathf.Abs(_frameVelocity.x) > 0.01f)
+                    FacingSign = _frameVelocity.x > 0 ? 1 : -1;
             }
             else
             {
@@ -249,7 +216,8 @@ namespace Game.Player
                     _frameInput.Move.x * HorizontalSpeed * HorizontalPowerRate,
                     _stats.Acceleration * Time.fixedDeltaTime
                 );
-                
+
+                // 有输入时直接用输入方向
                 FacingSign = _frameInput.Move.x > 0 ? 1 : -1;
             }
         }

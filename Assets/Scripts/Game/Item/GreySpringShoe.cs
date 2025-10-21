@@ -1,6 +1,7 @@
 using System;
 using Game.Buff;
 using Game.Player;
+using JetBrains.Annotations;
 using ShrinkEventBus;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Game.Item
     {
         public bool isUsed = false;
         public PlayerController playerController;
-        private Player.Player _player;
+        [CanBeNull] private Player.Player _player;
         public GreySpringShoe()
         {
             Name = "灰色弹簧鞋";
@@ -26,7 +27,6 @@ namespace Game.Item
         {
             isUsed = false;
             ItemSystem.Instance.ItemsPlayerHad.Add(this);
-            _player = FindObjectOfType<Player.Player>();
         }
 
         public override void Start()
@@ -37,9 +37,10 @@ namespace Game.Item
 
         public override void ApplyEffect()
         {
+            _player = FindAnyObjectByType<Player.Player>();
             if (isUsed == false)
             {
-                _player.isWearGreySpringShoe = true;
+                if (_player != null) _player.isWearGreySpringShoe = true;
                 isUsed = true;
                 print(name +"已经使用");
             }

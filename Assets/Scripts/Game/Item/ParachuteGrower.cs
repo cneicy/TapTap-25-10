@@ -3,12 +3,6 @@ using UnityEngine;
 
 namespace Game.Item
 {
-    /// <summary>
-    /// 挂到【降落伞预制体】上：
-    /// - 生成后从 initialScale 平滑缩放到 targetScale
-    /// - 可通过 RestartGrow() 重新播放一次成长动画（用于切换道具又再生成等情况）
-    /// - 可通过 StopAndDestroy() 立刻停止并销毁（比如 ParachuteBuff 移除时）
-    /// </summary>
     public class ParachuteGrower : MonoBehaviour
     {
         [Header("Scale Settings")]

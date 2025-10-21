@@ -27,7 +27,7 @@ namespace Game.Item
             Duration = 0f;
             //滞空结束 -> 进入后摇（生成降落伞）
             RecoveryDuration = 2f;
-            //降落伞变到最大（你原来的用法）
+            //降落伞变到最大
             BuffDuration = 5f;
             //降落伞消失
             Cooldown = 10f;
@@ -98,7 +98,7 @@ namespace Game.Item
         
         public override void ApplyBuffEffect()
         {
-            var player = UnityEngine.Object.FindObjectOfType<Player.Player>();
+            var player = FindAnyObjectByType<Player.Player>();
             EventBus.TriggerEvent(new BuffAppliedEvent
             {
                 Buff = new ParachuteBuff(BuffDuration, -3f, 140f),
