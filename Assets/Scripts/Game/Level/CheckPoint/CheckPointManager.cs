@@ -19,7 +19,7 @@ namespace Game.Level.CheckPoint
         [EventSubscribe]
         public void OnLevelLoadedEvent(LevelLoadedEvent evt)
         {
-            if (evt.LevelName == "Level_STG") return;
+            if (evt.LevelName is "Level_STG" or "Level_Voice") return;
             currentCheckPoint = null;
             _holdTime = 0f;
             _actionTriggered = false;

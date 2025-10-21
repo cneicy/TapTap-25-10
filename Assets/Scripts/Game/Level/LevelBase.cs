@@ -58,7 +58,7 @@ namespace Game.Level
             }
 
             EventBus.TriggerEvent(new LevelLoadedEvent(this, Name, IsTrueWorld));
-            if(_name == "Level_STG") return;
+            if(_name is "Level_STG" or "Level_Voice") return;
             DataManager.Instance.SetData("CurrentLevel", _name, true);
         }
 

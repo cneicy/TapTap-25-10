@@ -35,14 +35,6 @@ namespace Game.Level
             else await SwitchLevel("Level1");
         }
 
-        public void Update()
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightShift))
-            {
-                SwitchLevel("Level_STG");
-            }
-        }
-
         public async Task SwitchLevel(string levelName)
         {
             await SceneManager.LoadSceneAsync(levelName);

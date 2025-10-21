@@ -5,6 +5,13 @@ Shader "Custom/ScreenGlitchFilters"
     {
         _MainTex ("Screen Texture", 2D) = "white" {}
         
+        // === CRT扫描线 ===
+        [Header(CRT Scanline)]
+        [Toggle] _EnableScanline ("Enable Scanline", Float) = 0
+        _ScanlineIntensity ("Scanline Intensity", Range(0, 1)) = 0.3
+        _ScanlineFrequency ("Scanline Frequency", Range(100, 2000)) = 800
+        _ScanlineBrightness ("Scanline Brightness", Range(0, 2)) = 1
+        
         // === UV扰动 ===
         [Header(UV Distortion)]
         [Toggle] _EnableDistortion ("Enable Distortion", Float) = 0
@@ -91,6 +98,11 @@ Shader "Custom/ScreenGlitchFilters"
                 float _MotionBlurIntensity;
                 float _MotionBlurAmount;
                 float _TrailCount;
+
+                float _EnableScanline;
+                float _ScanlineIntensity;
+                float _ScanlineFrequency;
+                float _ScanlineBrightness;
             CBUFFER_END
             
             float random(float2 st)
@@ -245,8 +257,21 @@ Shader "Custom/ScreenGlitchFilters"
                     color.r += _GlowIntensity * 0.15;
                     color.b += _GlowIntensity * 0.15;
                 }
+
+                // === 滤镜5: CRT扫描线 ===
+                if (_EnableScanline > 0.5)
+                {
+                    // 基于Y轴的扫描线波形（sin波）
+                    float scan = sin(uv.y * _ScanlineFrequency);
+                    // 将sin波调整为 [0,1] 区间
+                    scan = (scan * 0.5 + 0.5);
+                    // 调整亮度和强度
+                    float brightness = lerp(1.0 - _ScanlineIntensity, 1.0, scan) * _ScanlineBrightness;
+                    color.rgb *= brightness;
+                }
                 
                 return saturate(color);
+                
             }
             ENDHLSL
         }

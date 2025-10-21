@@ -10,6 +10,8 @@ namespace ScreenEffect
         private GhostEffectFilter _ghost;
         private ColorGlowFilter _glow;
         private MotionBlurFilter _motionBlur;
+        private CRTScanlineFilter _scanline;
+
 
         private void Start()
         {
@@ -21,6 +23,7 @@ namespace ScreenEffect
             _ghost = mainCamera?.GetComponent<GhostEffectFilter>();
             _glow = mainCamera?.GetComponent<ColorGlowFilter>();
             _motionBlur = mainCamera?.GetComponent<MotionBlurFilter>();
+            _scanline = mainCamera?.GetComponent<CRTScanlineFilter>();
 
             if (_manager)
             {
@@ -63,6 +66,11 @@ namespace ScreenEffect
             {
                 _motionBlur?.Toggle();
                 Debug.Log("运动残影: " + (_motionBlur?.enabled ?? false));
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                _scanline?.Toggle();
+                Debug.Log("CRT扫描线: " + (_scanline?.enabled ?? false));
             }
         }
         

@@ -1,0 +1,40 @@
+{
+  "Rects": [
+    {
+      "x": 160,
+      "y": 224,
+      "w": 160,
+      "h": 96
+    }
+  ],
+  "Def": {
+    "__cHei": 10,
+    "__cWid": 10,
+    "cachedPixelData": {
+      "opaqueTiles": "0000000000011100011001000001100000000110000000001000000000100000011110011000111001100011100000000000",
+      "averageColors": "f777f776f777f887f666f776f666f666f555f666f776f666f777f777f7770ffff776f555f443f444f777f777f777f888f666f776f666f555f544f666e888f777f888e888f55487778777f666f666f666c77748884888c777f54486668666f555f555f5554666c666c6664666f666f555f555f444f444f444f555f665f666f555f555f554f444f444f443f444f332f332f332f332f666f665f666f666f666f666f332f332f332f3320888f443f333f555f555f555f332f332f332f3320999f444f444f665f555f655"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "_01_tileset_02",
+    "padding": 0,
+    "pxHei": 320,
+    "pxWid": 320,
+    "relPath": "关卡01 tileset 02.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 0,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 32,
+    "uid": 34
+  }
+}
