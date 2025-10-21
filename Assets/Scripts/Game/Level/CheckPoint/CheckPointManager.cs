@@ -4,6 +4,7 @@ using ShrinkEventBus;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
+using PlayerController = Menu.PlayerController;
 
 namespace Game.Level.CheckPoint
 {
