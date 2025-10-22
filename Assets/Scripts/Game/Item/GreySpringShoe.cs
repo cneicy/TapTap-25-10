@@ -10,7 +10,6 @@ namespace Game.Item
     public class GreySpringShoe : ItemBase
     {
         public bool isUsed = false;
-        public PlayerController playerController;
         [CanBeNull] private Player.Player _player;
         public GreySpringShoe()
         {

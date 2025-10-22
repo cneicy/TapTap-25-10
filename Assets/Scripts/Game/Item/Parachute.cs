@@ -4,33 +4,56 @@ using Game.Buff;
 using Game.Player;
 using ShrinkEventBus;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Item
 {
     public class Parachute : ItemBase
     {
         // === 新增：可调参数与Prefab引用 ===
-        [SerializeField] private GameObject parachutePrefab;   // 降落伞预制体
-        [SerializeField] private float spawnHeight = 7f;     // 距离玩家头顶的高度
-        [SerializeField] private float sideOffset  = 0.8f;     // 左右偏移量
+        [SerializeField] private GameObject parachutePrefab; // 降落伞预制体
+        [Header("降落伞视觉上距离玩家头顶的高度")]
+        [SerializeField] private float spawnHeight;     // 降落伞视觉上距离玩家头顶的高度
+        [Header("降落伞视觉上左右偏移量")]
+        [SerializeField] private float sideOffset;     // 降落伞视觉上左右偏移量
 
         private int _parachuteUsedIndex;//使用了几次降落伞
         private int _maxParachuteUsedIndex = 3;//最多使用多少次(建议3)
         private bool _parachuteHoverEnd;
 
+        //前摇/道具使用/后摇时间
+        [Header("前摇/道具使用/后摇时间")]
+        public float parachuteWindupDuration;
+        public float parachuteDuration;
+        public float parachuteRecoveryDuration;
+        //降落伞buff持续时间
+        [Header("降落伞buff持续时间/道具冷却时间")]
+        public float parachuteBuffDuration;
+        public float parachuteCooldown;
+        //降落伞Buff相关
+        [Header("降落伞将玩家减速到的最低速度 (正数)")]
+        public float parachuteMinSpeed;//降落伞将玩家减速到的最低速度 (正数)
+        [Header("降落伞减速能力")]
+        public float parachuteFallAcceleration;//降落伞减速能力
+
+        private void InitParachute()
+        {
+            //滞空开始
+            WindupDuration = parachuteWindupDuration;
+            Duration = parachuteDuration;
+            //滞空结束 -> 进入后摇（生成降落伞）
+            RecoveryDuration = parachuteRecoveryDuration;
+            //降落伞变到最大
+            BuffDuration = parachuteBuffDuration;
+            //降落伞消失
+            Cooldown = parachuteCooldown;
+        }
+        
         public Parachute()
         {
             Name = "降落伞";
             Description = "";
-            //滞空开始
-            WindupDuration = 0.2f;
-            Duration = 0f;
-            //滞空结束 -> 进入后摇（生成降落伞）
-            RecoveryDuration = 2f;
-            //降落伞变到最大
-            BuffDuration = 5f;
-            //降落伞消失
-            Cooldown = 10f;
+            
             IsBuff = true;
             IsHoverStart = true;
             IsHoverEnd = false;
@@ -39,10 +62,10 @@ namespace Game.Item
 
         private void Awake()
         {
+            InitParachute();
             ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试
             _parachuteUsedIndex = 0;
-
-            // 如果没在Inspector赋值，兜底用Resources（按需修改路径）
+            
             if (parachutePrefab == null)
                 parachutePrefab = Resources.Load<GameObject>("Prefabs/Items/Parachute");
         }
@@ -66,7 +89,7 @@ namespace Game.Item
 
             // 计数：1 -> 2 -> 3（不再增加）
             if (_parachuteUsedIndex < _maxParachuteUsedIndex)
-                ++_parachuteUsedIndex;
+                _parachuteUsedIndex++;
             else
                 _parachuteUsedIndex = _maxParachuteUsedIndex;
         }
@@ -101,7 +124,7 @@ namespace Game.Item
             var player = FindAnyObjectByType<Player.Player>();
             EventBus.TriggerEvent(new BuffAppliedEvent
             {
-                Buff = new ParachuteBuff(BuffDuration, -3f, 140f),
+                Buff = new ParachuteBuff(BuffDuration, -parachuteMinSpeed, parachuteFallAcceleration),
                 Player = player
             });
         }
@@ -110,7 +133,7 @@ namespace Game.Item
         {
             base.ApplyEffectTick();
         }
-
+        
         // 根据降落伞使用次数
         private void SpawnParachuteAtIndex(int usedIndex)
         {
@@ -129,7 +152,7 @@ namespace Game.Item
             {
                 Instantiate(parachutePrefab, top, Quaternion.identity, player.transform);
             }
-            // 第二次：在左上额外生成一个（若你也想保留第一次生成的，可只生成左上）
+            // 第二次：在左上额外生成一个
             else if (usedIndex == 2)
             {
                 Instantiate(parachutePrefab, topLeft, Quaternion.identity, player.transform);

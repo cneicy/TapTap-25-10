@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using Game.Player;
@@ -6,7 +7,7 @@ namespace Game.Item
 {
     public class Revolver : ItemBase
     {
-        [Header("Recoil")]
+        [Header("后坐力大小/后坐力衰减速度")]
         [SerializeField] private float recoilImpulse = 30f;
         [SerializeField] private float fadeSpeed     = 110f;
 
@@ -18,7 +19,8 @@ namespace Game.Item
 
         // === 新增：视觉子弹配置 ===
         [Header("VFX Bullet")]
-        [SerializeField] private GameObject bulletPrefab;    // 纯视觉子弹预制体（无碰撞无伤害）
+        [SerializeField] private GameObject bulletPrefab; // 纯视觉子弹预制体（无碰撞无伤害）
+        [Header("子弹速度")]
         [SerializeField] private float bulletSpeed = 50f;    // 子弹飞行速度
         [SerializeField] private Transform muzzle;           // 可选：枪口位置
         [SerializeField] private Vector2 muzzleOffset = new(0.6f, -1.6f); // 若无muzzle，从玩家位置+偏移
@@ -27,24 +29,40 @@ namespace Game.Item
         private Coroutine _bulletGuardRoutine;               // 守护协程的句柄
 
         private float _baselineX;
+        [Header("前摇/道具使用/后摇时间")]
+        public float parachuteWindupDuration;
+        public float parachuteDuration;
+        public float parachuteRecoveryDuration;
+        [Header("道具冷却时间")]
+        public float parachuteCooldown;
 
+        private void RevolverInit()
+        {
+            //滞空开始
+            WindupDuration = parachuteWindupDuration;
+            Duration = parachuteDuration;
+            RecoveryDuration = parachuteRecoveryDuration;
+            //滞空结束
+            Cooldown = parachuteCooldown;
+        }
+        
         public Revolver()
         {
             Name = "左轮手枪";
             Description = "";
-            WindupDuration = 0.4f;
-            Duration = 0.4f;
-            RecoveryDuration = 0.4f;
-            Cooldown = 1f;
             IsBuff = false;
             IsBasement = false;
             IsHoverStart = true;
             IsHoverEnd = true;
         }
 
+        private void Awake()
+        {
+            RevolverInit();
+        }
+
         public override void Start()
         {
-            recoilImpulse = 37f;
             base.Start();
             ItemSystem.Instance.ItemsPlayerHad.Add(this);
         }

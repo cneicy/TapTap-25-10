@@ -1748,6 +1748,10 @@ MonoBehaviour:
   bulletSpeed: 50
   muzzle: {fileID: 0}
   muzzleOffset: {x: 0.6, y: -1.6}
+  parachuteWindupDuration: 0.3
+  parachuteDuration: 0.3
+  parachuteRecoveryDuration: 0.3
+  parachuteCooldown: 1
 --- !u!114 &923327844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1761,7 +1765,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.GreySpringShoe
   isUsed: 0
-  playerController: {fileID: 0}
 --- !u!114 &923327845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1775,8 +1778,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Parachute
   parachutePrefab: {fileID: 0}
-  spawnHeight: 7
-  sideOffset: 0.8
+  spawnHeight: 3.5
+  sideOffset: 1
+  parachuteWindupDuration: 0.2
+  parachuteDuration: 0.2
+  parachuteRecoveryDuration: 2
+  parachuteBuffDuration: 5
+  parachuteCooldown: 20
+  parachuteMinSpeed: 3
+  parachuteFallAcceleration: 140
 --- !u!1 &953507126
 GameObject:
   m_ObjectHideFlags: 0

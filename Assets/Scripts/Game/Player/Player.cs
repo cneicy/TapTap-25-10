@@ -23,9 +23,6 @@ namespace Game.Player
         }
         private void FixedUpdate()
         {
-            playerSpeedY1 = rb2d.linearVelocity.y;
-            playerSpeedY2 = _playerController._frameVelocity.y;
-            
             WearGreySpringShoe();
         }
 
