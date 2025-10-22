@@ -12,6 +12,7 @@ namespace ScreenEffect
         [SerializeField, Range(0, 1)] private float intensity = 0.3f;
         [SerializeField, Range(100, 2000)] private float frequency = 800f;
         [SerializeField, Range(0, 2)] private float brightness = 1.0f;
+        [SerializeField, Range(-5, 5)] private float speed = 1.0f;
 
         private ScreenGlitchManager _manager;
         private Material _material;
@@ -20,6 +21,7 @@ namespace ScreenEffect
         private static readonly int IntensityID = Shader.PropertyToID("_ScanlineIntensity");
         private static readonly int FrequencyID = Shader.PropertyToID("_ScanlineFrequency");
         private static readonly int BrightnessID = Shader.PropertyToID("_ScanlineBrightness");
+        private static readonly int SpeedID = Shader.PropertyToID("_ScanlineSpeed");
 
         private void Awake()
         {
@@ -61,6 +63,12 @@ namespace ScreenEffect
             UpdateShaderParameters();
         }
 
+        public void SetSpeed(float value)
+        {
+            speed = Mathf.Clamp(value, -5f, 5f);
+            UpdateShaderParameters();
+        }
+
         private void UpdateShaderParameters()
         {
             if (!_material) return;
@@ -68,6 +76,7 @@ namespace ScreenEffect
             _material.SetFloat(IntensityID, intensity);
             _material.SetFloat(FrequencyID, frequency);
             _material.SetFloat(BrightnessID, brightness);
+            _material.SetFloat(SpeedID, speed);
         }
 
         private void OnValidate()

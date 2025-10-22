@@ -21,6 +21,7 @@ namespace Game.Meta
         {
             print("Playing " + name);
             var s = sounds.Find(x => x.name == name);
+            if (source.isPlaying) source.Stop();
             if (s.clip)
                 source.PlayOneShot(s.clip);
         }
