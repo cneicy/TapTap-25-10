@@ -32,7 +32,7 @@ namespace Game.Level
             {
                 await SwitchLevel(CurrentLevel);
             }
-            else await SwitchLevel("Level1");
+            else await SwitchLevel("Level1-1");
         }
 
         public async Task SwitchLevel(string levelName)

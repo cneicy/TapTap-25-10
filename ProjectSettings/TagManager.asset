@@ -7,6 +7,7 @@ TagManager:
   - Ammo
   - Boss
   - EnemyBullet
+  - StartUI
   layers:
   - Default
   - TransparentFX

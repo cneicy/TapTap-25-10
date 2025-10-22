@@ -20,7 +20,7 @@ namespace Game.Cup
                 RectTransitionController.Instance.StartTransition();
                 if (FindAnyObjectByType<CupDescriptionDialog>())
                     FindAnyObjectByType<CupDescriptionDialog>().rectTransform.gameObject.SetActive(false);
-                LevelManager.Instance.SwitchLevel("Level1");
+                LevelManager.Instance.SwitchLevel("Level1-1");
             }
         }
     }
