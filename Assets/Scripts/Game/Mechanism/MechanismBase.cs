@@ -45,10 +45,55 @@ namespace Game.Mechanism
         private Vector2 _endPos;     // B
         private float   _pauseTimer; // 端点停顿计时
 
+        // ================== 【新增】Once 的锚点与方向记忆 ==================
+        [Header("Once 模式（A↔B）")]
+        [Tooltip("true=下一次 Once 从A到B；false=下一次 Once 从B到A")]
+        public bool onceNextIsAToB = true;        // 用这个bool区分“进程1/进程2”
+
+        // 一旦首次 StartOnce，会锁定 A/B 锚点；后续 StartOnce 在这两个点之间往返
+        private bool   _onceAnchored;
+        private Vector2 _onceA, _onceB;
+        private Vector2 _onceDir;                 // A→B 的方向（单位向量）
+        private float   _onceLen;                 // A↔B 的距离
+
+        /// <summary>（可选）重置 Once 的 A/B 锚点，下次 StartOnce 会以当前为A重新锚定。</summary>
+        public void ResetOnceAnchors() { _onceAnchored = false; }
+        // ===================================================================
+
         // ---------- 3个开始方法（按你的需求） ----------
         /// <summary>单程：从初始(A)走到目标(B)，结束。</summary>
+        // 【修改】实现 Once 的 A↔B 往返（用 onceNextIsAToB 控制）
         public void StartOnce(Direction dirEnum, float spd, float dist, float pauseEnds = 0f)
-            => StartProcess(DirFromEnum(dirEnum), spd, dist, MotionMode.Once, pauseEnds);
+        {
+            Vector2 desiredDir = DirFromEnum(dirEnum);
+            if (!rb) rb = GetComponent<Rigidbody2D>();
+
+            // 第一次 StartOnce：用当前位置作为A，锚定A/B
+            if (!_onceAnchored)
+            {
+                Vector2 a = rb.position;
+                Vector2 d = (desiredDir.sqrMagnitude < 1e-6f) ? Vector2.right : desiredDir.normalized;
+                float   L = Mathf.Abs(dist);
+                if (L < 1e-6f) { CancelProcess(); return; }
+
+                _onceA     = a;
+                _onceDir   = d;
+                _onceLen   = L;
+                _onceB     = _onceA + _onceDir * _onceLen;
+                _onceAnchored = true;
+                // 初次默认 A→B（onceNextIsAToB 的初值默认为 true）
+            }
+
+            // 选择本次的起点/方向
+            Vector2 start = onceNextIsAToB ? _onceA : _onceB;
+            Vector2 runDir= onceNextIsAToB ? _onceDir : -_onceDir;
+
+            // 把刚体放到起点，保证精确从锚点出发（避免累计误差/被外力挪走）
+            rb.position = start;
+
+            // 走一次（把 StartProcess 当作低层推进器来用）
+            StartProcess(runDir, spd, _onceLen, MotionMode.Once, pauseEnds);
+        }
 
         public void StartOnce(float pauseEnds = 0f)
             => StartOnce(direction, speed, distance, pauseEnds);
@@ -142,7 +187,6 @@ namespace Game.Mechanism
         {
             if (!autoStartOnEnable) return;
 
-            
             switch (mode)
             {
                 case MotionMode.Once:           StartOnce(pauseAtEnds); break;
@@ -178,32 +222,32 @@ namespace Game.Mechanism
                 if (Mode == MotionMode.Once)
                 {
                     if (PauseAtEnds > 0f) _pauseTimer = PauseAtEnds;
-                    CompleteProcess();                         // A→B 完成
+                    CompleteProcess();                         // A→B（或 B→A）完成
                 }
                 else if (Mode == MotionMode.PingPongOnce)
                 {
-                    if (LegIndex == 0)                        // 刚完成 A→B → 切到 B→A
+                    if (LegIndex == 0)
                     {
                         if (PauseAtEnds > 0f) _pauseTimer = PauseAtEnds;
                         LegIndex = 1;
                         LegMoved = 0f;
                     }
-                    else                                      // 完成 B→A
+                    else
                     {
                         if (PauseAtEnds > 0f) _pauseTimer = PauseAtEnds;
                         CompleteProcess();
                     }
                 }
-                else // Mode == Loop  (无限往返 A↔B)
+                else // Loop
                 {
                     if (PauseAtEnds > 0f) _pauseTimer = PauseAtEnds;
 
-                    if (LegIndex == 0)                        // 完成 A→B，下一腿 B→A
+                    if (LegIndex == 0)
                     {
                         LegIndex = 1;
                         LegMoved = 0f;
                     }
-                    else                                      // 完成 B→A，下一腿 A→B（完成一整循环）
+                    else
                     {
                         LegIndex = 0;
                         LegMoved = 0f;
@@ -226,11 +270,19 @@ namespace Game.Mechanism
         protected virtual void OnCycleLooped()       { }        // 仅 Loop
         protected virtual void OnProcessCompleted()  { }
 
+        // 【修改】Once 完成后自动切换下一次方向（A→B ↔ B→A）
         private void CompleteProcess()
         {
             if (Mode == MotionMode.Loop) return; // 理论上 Loop 不结束
             IsDone    = true;
             IsRunning = false;
+
+            if (Mode == MotionMode.Once)
+            {
+                // 完成一次单程后，切换“下一次”的方向
+                onceNextIsAToB = !onceNextIsAToB;
+            }
+
             OnProcessCompleted();
         }
 
