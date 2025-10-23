@@ -2498,6 +2498,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1635fdf2fad2fb845a35f53d581c1a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Mechanism.OneWay
+--- !u!1001 &459734837855231670
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388321002573722096, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763839463554772195, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
+      propertyPath: m_Name
+      value: SpeedTrack
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9117fad2fd68853449cf5af06ce44fb8, type: 3}
 --- !u!1001 &676624756722400927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2628,3 +2685,4 @@ SceneRoots:
   - {fileID: 2053394483}
   - {fileID: 501548424}
   - {fileID: 1521536886}
+  - {fileID: 459734837855231670}
