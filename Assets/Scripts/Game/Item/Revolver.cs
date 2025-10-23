@@ -64,7 +64,7 @@ namespace Game.Item
         public override void Start()
         {
             base.Start();
-            ItemSystem.Instance?.ItemsPlayerHad.Add(this);
+            //ItemSystem.Instance?.ItemsPlayerHad.Add(this);
         }
 
         public override void OnUseStart()

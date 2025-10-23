@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,56 +6,73 @@ namespace Game.Item
 {
     public class CurrentItemVisual : MonoBehaviour
     {
-        public List<Sprite> spriteVisuals = new List<Sprite>();
-        public Image spriteRenderer;
-        private int _spriteIndex;
-        
-        public void Init(List<ItemBase> items)
+        [Header("UI 显示用 Image（可为空）")]
+        [SerializeField] private Image uiImage;
+
+        [Header("SpriteRenderer 显示用（可为空）")]
+        [SerializeField] private SpriteRenderer worldSpriteRenderer;
+
+        private Dictionary<ItemBase, Sprite> _itemSprites = new();
+        private ItemBase _currentItem;
+
+        /// <summary>
+        /// 初始化：加载所有 Item 的贴图。
+        /// </summary>
+        public void Init(List<ItemBase> allItems)
         {
-            if (items == null)
+            _itemSprites.Clear();
+
+            foreach (var item in allItems)
             {
-                var defaultSprite = Resources.Load<Sprite>("Sprites/Items/diceDontKown");
-                spriteRenderer.sprite = defaultSprite;
+                var path = $"Texture/Items/{item.GetType().Name}";
+                var sprite = Resources.Load<Sprite>(path);
+
+                if (sprite != null)
+                {
+                    _itemSprites[item] = sprite;
+                    item.Sprite = sprite;
+                    Debug.Log($"[CurrentItemVisual] 已加载贴图: {path}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[CurrentItemVisual] ❌ 找不到贴图: {path}");
+                }
             }
-            foreach (var item in items)
-            {
-                spriteVisuals.Add(item.Sprite);
-            }
-        }
-        public void NextSprite()
-        {
-            if (_spriteIndex == spriteVisuals.Count - 1)
-                _spriteIndex = 0;
-            else
-            {
-                ++_spriteIndex;
-            }
+
+            RefreshVisual(null);
         }
 
-        public void PreviousSprite()
+        /// <summary>
+        /// 切换当前显示的 Item
+        /// </summary>
+        public void SetCurrentItem(ItemBase item)
         {
-            if (_spriteIndex == 0)
-                _spriteIndex = spriteVisuals.Count - 1;
-            else
+            _currentItem = item;
+            RefreshVisual(item);
+        }
+
+        private void RefreshVisual(ItemBase item)
+        {
+            Sprite newSprite = null;
+
+            if (item && _itemSprites.TryGetValue(item, out var s))
+                newSprite = s;
+
+            // 更新 UI Image
+            if (uiImage)
             {
-                --_spriteIndex;
+                uiImage.enabled = newSprite;
+                uiImage.sprite = newSprite;
             }
-        }
 
-        private void UpdateCurrentItemVisual()
-        {
-            spriteRenderer.sprite = spriteVisuals[_spriteIndex];
-        }
-        
+            // 更新 SpriteRenderer
+            if (worldSpriteRenderer)
+            {
+                worldSpriteRenderer.enabled = newSprite;
+                worldSpriteRenderer.sprite = newSprite;
+            }
 
-        public void AddSpriteVisual(Sprite sprite)
-        {
-            spriteVisuals.Add(sprite);
-        }
-        
-        private void Update()
-        {
-            UpdateCurrentItemVisual();
+            Debug.Log(item ? $"[CurrentItemVisual] 显示道具视觉: {item.GetType().Name}" : "[CurrentItemVisual] 没有当前道具，隐藏视觉");
         }
     }
 }

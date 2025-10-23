@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameStartEvent : EventBase{}
 public class LoadCupsEvent : EventBase{}
 public class LoadLevelsEvent : EventBase{}
+public class LoadItemsEvent : EventBase{}
 
 public class Entry :  MonoBehaviour
 {
@@ -42,7 +43,8 @@ public class Entry :  MonoBehaviour
                 await EventBus.TriggerEventAsync(new LoadCupsEvent()); 
             if(DataManager.Instance.GetData<string>("CurrentLevel") != "")
                 await EventBus.TriggerEventAsync(new LoadLevelsEvent());
-            //todo:玩家所持道具
+            if(DataManager.Instance.GetData<List<string>>("ItemsPlayerHad") is not null)
+                await EventBus.TriggerEventAsync(new LoadItemsEvent());
             
             await EventBus.TriggerEventAsync(new GameStartEvent());
             RectTransitionController.Instance.StartTransition(

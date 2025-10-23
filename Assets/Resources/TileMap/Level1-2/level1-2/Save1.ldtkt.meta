@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6820d8b58bfcd47408af73f7026a81dd
+guid: c1823f0ba000d0641a5b8cfd052e6179
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -12,7 +12,7 @@ ScriptedImporter:
   _pixelsPerUnit: 32
   _overrideTexture: {instanceID: 0}
   _sprites:
-  - name: Save_0
+  - name: Save1_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -24,10 +24,10 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: ad8cb44eb76182345a58198b58711521
+    spriteID: 7cf7c5e1de643b84cb38cf705d899f8d
     spriteOutline: []
     tessellationDetail: 0
-  - name: Save_1
+  - name: Save1_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -39,7 +39,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: c3e24c8ec24496c4686c784d90cbb98c
+    spriteID: b4067516481cc9044982118b48f2b67d
     spriteOutline: []
     tessellationDetail: 0
   _secondaryTextures: []

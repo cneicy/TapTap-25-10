@@ -63,7 +63,7 @@ namespace Game.Item
         private void Awake()
         {
             InitParachute();
-            ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试
+            //ItemSystem.Instance.ItemsPlayerHad.Add(this);//测试
             _parachuteUsedIndex = 0;
             
             if (parachutePrefab == null)
@@ -143,9 +143,9 @@ namespace Game.Item
             var p = player.transform.position;
 
             // 计算三个候选点位
-            Vector3 top     = p + Vector3.up * spawnHeight;                  // 正上方
-            Vector3 topLeft = p + Vector3.up * spawnHeight + Vector3.left * sideOffset; // 左上
-            Vector3 topRight= p + Vector3.up * spawnHeight + Vector3.right * sideOffset;// 右上
+            var top     = p + Vector3.up * spawnHeight;                  // 正上方
+            var topLeft = p + Vector3.up * spawnHeight + Vector3.left * sideOffset; // 左上
+            var topRight= p + Vector3.up * spawnHeight + Vector3.right * sideOffset;// 右上
 
             // 第一次：只生成正上方
             if (usedIndex == 1)

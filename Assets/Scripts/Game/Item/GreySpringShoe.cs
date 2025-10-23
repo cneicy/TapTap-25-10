@@ -25,7 +25,7 @@ namespace Game.Item
         private void Awake()
         {
             isUsed = false;
-            ItemSystem.Instance.ItemsPlayerHad.Add(this);
+            //ItemSystem.Instance.ItemsPlayerHad.Add(this);
         }
 
         public override void Start()

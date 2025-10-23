@@ -1,112 +1,160 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Data;
 using Game.Player;
 using ShrinkEventBus;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
 
 namespace Game.Item
 {
-    public abstract class PlayerGetItemEvent : EventBase
+    public class PlayerGetItemEvent : EventBase
     {
-        public readonly ItemBase Item;
-        private bool _isHover;
-
-        public PlayerGetItemEvent(ItemBase item)
+        public readonly string ItemTypeName;
+        public PlayerGetItemEvent(string itemTypeName)
         {
-            Item = item;
+            ItemTypeName = itemTypeName;
         }
     }
 
     [EventBusSubscriber]
     public class ItemSystem : Singleton<ItemSystem>
     {
-        public List<ItemBase> ItemsPlayerHad { get; set; } = new();
-        public ItemBase CurrentItem { get; set; }
-        public int index;
-        private FrameInput ItemFrameInput;
-        public ItemVisualController itemVisualController;
+        public List<ItemBase> AllItems { get; private set; } = new();
+        public List<string> ItemsPlayerHadTypeNames { get; private set; } = new();
+        public ItemBase CurrentItem { get; private set; }
+
+        private FrameInput _itemFrameInput;
         public CurrentItemVisual currentItemVisual;
-        
+        private int _index;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            AllItems.Clear();
+            AllItems.AddRange(GetComponents<ItemBase>());
+            foreach (var item in AllItems)
+            {
+                item.enabled = false;
+                item.IsUsed = false;
+            }
+            Debug.Log($"[ItemSystem] 初始化完毕，共加载 {AllItems.Count} 个 ItemBase 组件");
+        }
+
         private void Start()
         {
-            /*EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<TestItem>()));
-            EventBus.TriggerEvent(new PlayerGetItemEvent(gameObject.AddComponent<Hands>()));*/
-            index = 0;
-            CurrentItem = ItemsPlayerHad[index];
+            _index = 0;
+            if (ItemsPlayerHadTypeNames.Count > 0)
+                RestoreItemsFromSavedData();
+            currentItemVisual.Init(AllItems);
+            currentItemVisual.SetCurrentItem(CurrentItem);
         }
-        
+
         [EventSubscribe]
-        public void OnPlayerDataLoadedEvent(PlayerDataLoadedEvent evt)
+        public void OnLoadItemsEvent(LoadItemsEvent evt)
         {
-            if(DataManager.Instance.GetData<List<ItemBase>>("ItemsPlayerHad") is not null)
-                ItemsPlayerHad = DataManager.Instance.GetData<List<ItemBase>>("ItemsPlayerHad");
+            var savedList = DataManager.Instance.GetData<List<string>>("ItemsPlayerHad");
+            if (savedList is not { Count: > 0 }) return;
+            ItemsPlayerHadTypeNames = savedList;
+            RestoreItemsFromSavedData();
+        }
+
+        private void RestoreItemsFromSavedData()
+        {
+            foreach (var typeName in ItemsPlayerHadTypeNames)
+            {
+                var item = AllItems.Find(i => i.GetType().Name == typeName);
+                if (!item) continue;
+                item.enabled = true;
+                item.IsUsed = true;
+                Debug.Log($"[ItemSystem] 启用已拥有的道具脚本: {typeName}");
+            }
+
+            CurrentItem = AllItems.Find(i => i.enabled);
+            if (CurrentItem)
+                _index = AllItems.IndexOf(CurrentItem);
         }
 
         [EventSubscribe]
         public void OnPlayerGetItemEvent(PlayerGetItemEvent evt)
         {
-            if (ItemsPlayerHad.Contains(evt.Item)) return;
-            if (ItemsPlayerHad.Count == 0)
+            if (ItemsPlayerHadTypeNames.Contains(evt.ItemTypeName)) return;
+
+            ItemsPlayerHadTypeNames.Add(evt.ItemTypeName);
+            Debug.Log($"[ItemSystem] 玩家获得道具: {evt.ItemTypeName}");
+
+            var item = AllItems.Find(i => i.GetType().Name == evt.ItemTypeName);
+            if (item)
             {
-                ItemsPlayerHad?.Add(evt.Item);
-                CurrentItem = evt.Item;
+                item.enabled = true;
+                item.IsUsed = true;
             }
-            ItemsPlayerHad?.Add(evt.Item);
-            DataManager.Instance.SetData("ItemsPlayerHad", ItemsPlayerHad);
+
+            if (!CurrentItem && item)
+            {
+                CurrentItem = item;
+                _index = AllItems.IndexOf(item);
+                currentItemVisual.SetCurrentItem(CurrentItem);
+            }
+
+            DataManager.Instance.SetData("ItemsPlayerHad", ItemsPlayerHadTypeNames, true);
         }
 
         public void SwitchToPreviousItem()
         {
-            if (index == 0) return;
-            if (ItemFrameInput.LeftSwitchItem)
+            if (!_itemFrameInput.LeftSwitchItem) return;
+            for (var i = 1; i <= AllItems.Count; i++)
             {
-                CurrentItem.OnUseCancel();
-                CurrentItem = ItemsPlayerHad[--index];
-                print(CurrentItem.Name);
-                currentItemVisual.PreviousSprite();
+                var newIndex = (_index - i + AllItems.Count) % AllItems.Count;
+                if (!AllItems[newIndex].enabled) continue;
+                CurrentItem?.OnUseCancel();
+                CurrentItem = AllItems[newIndex];
+                _index = newIndex;
+                currentItemVisual.SetCurrentItem(CurrentItem);
+                Debug.Log($"切换到道具: {CurrentItem.Name}");
+                return;
             }
         }
 
         public void SwitchToNextItem()
         {
-            if(index >= ItemsPlayerHad.Count-1) return;
-            if (ItemFrameInput.RightSwitchItem)
+            if (!_itemFrameInput.RightSwitchItem) return;
+            for (var i = 1; i <= AllItems.Count; i++)
             {
-                CurrentItem.OnUseCancel();
-                CurrentItem = ItemsPlayerHad[++index];
-                print(CurrentItem.Name);
-                currentItemVisual.NextSprite();
+                var newIndex = (_index + i) % AllItems.Count;
+                if (!AllItems[newIndex].enabled) continue;
+                CurrentItem?.OnUseCancel();
+                CurrentItem = AllItems[newIndex];
+                _index = newIndex;
+                currentItemVisual.SetCurrentItem(CurrentItem);
+                Debug.Log($"切换到道具: {CurrentItem.Name}");
+                return;
             }
         }
 
+
         public void UseItem()
         {
-            if(CurrentItem == null) return;
-            if (ItemFrameInput.UseItem)
+            if (!CurrentItem || !CurrentItem.enabled) return;
+            if (_itemFrameInput.UseItem)
             {
-                print("使用了"+CurrentItem.Name);
+                Debug.Log($"使用了 {CurrentItem.Name}");
                 CurrentItem.OnUseStart();
             }
         }
 
         private void Update()
         {
-            ItemFrameInput = new FrameInput
+            _itemFrameInput = new FrameInput
             {
                 UseItem = InputSystem.actions.FindAction("Attack").triggered,
                 LeftSwitchItem = InputSystem.actions.FindAction("LeftSwitchItem").triggered,
                 RightSwitchItem = InputSystem.actions.FindAction("RightSwitchItem").triggered,
             };
+
             SwitchToNextItem();
             SwitchToPreviousItem();
             UseItem();
-        }
-
-        private void FixedUpdate()
-        {
-            
         }
     }
 }

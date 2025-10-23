@@ -735,6 +735,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 316747286}
     m_Modifications:
+    - target: {fileID: 777142300635319033, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: uiImage
+      value: 
+      objectReference: {fileID: 1506007199}
     - target: {fileID: 1190889109213237980, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -818,6 +822,30 @@ PrefabInstance:
     - target: {fileID: 1501944005761961791, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
       propertyPath: m_Name
       value: ItemPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -499.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -258.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1738,8 +1766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0305d2d919412c9245d17c3a588acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.ItemSystem
-  index: 0
-  itemVisualController: {fileID: 0}
   currentItemVisual: {fileID: 335668414}
 --- !u!114 &923327843
 MonoBehaviour:
@@ -2590,6 +2616,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484101488}
   m_CullTransparentMesh: 1
+--- !u!114 &1506007199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4989667100929886061, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+  m_PrefabInstance: {fileID: 335668411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1512069531
 GameObject:
   m_ObjectHideFlags: 0
