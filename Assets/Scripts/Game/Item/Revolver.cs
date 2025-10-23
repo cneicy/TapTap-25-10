@@ -70,6 +70,7 @@ namespace Game.Item
         public override void OnUseStart()
         {
             base.OnUseStart();
+            SoundManager.Instance.Play("shoot");
             muzzle = _playerController?.transform;
         }
 
