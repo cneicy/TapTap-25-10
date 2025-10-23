@@ -70,12 +70,12 @@ namespace Game.Item
         public override void OnUseStart()
         {
             base.OnUseStart();
-            SoundManager.Instance.Play("shoot");
             muzzle = _playerController?.transform;
         }
 
         public override void OnWindupEnd()
         {
+            SoundManager.Instance.Play("shoot");
             // —— 保留原有：记录基线速度与施加后坐力
             _baselineX = _playerController?._frameVelocity.x ?? 0f;
             int facing = GetInstantFacingSign();

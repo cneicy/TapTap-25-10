@@ -79,8 +79,13 @@ namespace Game.Item
         public override void OnUseStart()
         {
             base.OnUseStart();
-            SoundManager.Instance.Play("parachute");
             print(Name+"开始使用");
+        }
+
+        public override void OnWindupStart()
+        {
+            base.OnWindupStart();
+            SoundManager.Instance.Play("parachute");
         }
 
         public override void OnUseEnd()
