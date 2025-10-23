@@ -92,7 +92,7 @@ namespace Game.Item
             _playerController = FindFirstObjectByType<PlayerController>();
             if (!CanUse) return;
             CanUse = false;
-            /*print($"{Name} 道具使用开始");*/
+            print($"{Name} 道具使用开始");
             StartCoroutine(nameof(WindupTimer));
         }
         
@@ -221,7 +221,6 @@ namespace Game.Item
         {
             if (use)
             {
-                print("滞空结束");
                 _playerController._frameVelocity.x = _beforeHoverSpeedX;
                 _playerController._frameVelocity.y = _beforeHoverSpeedY;
                 _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;

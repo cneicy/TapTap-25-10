@@ -1753,20 +1753,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f545c481b80d514cb42382a97dfd372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Revolver
-  recoilImpulse: 30
+  recoilImpulse: 40
   fadeSpeed: 110
   rayLength: 100
   hitMask:
     serializedVersion: 2
     m_Bits: 0
   bulletPrefab: {fileID: 7247189936144488062, guid: 841c641614b597242aec11cfb94f0b2a, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 25
   muzzle: {fileID: 0}
   muzzleOffset: {x: 0.6, y: -1.6}
-  parachuteWindupDuration: 0.3
-  parachuteDuration: 0.3
-  parachuteRecoveryDuration: 0.3
-  parachuteCooldown: 1
+  revolverWindupDuration: 0.3
+  revolverDuration: 0.3
+  revolverRecoveryDuration: 3
+  parachuteCooldown: 0
 --- !u!114 &923327844
 MonoBehaviour:
   m_ObjectHideFlags: 0

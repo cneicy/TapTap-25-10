@@ -128,14 +128,7 @@ namespace Game.Mechanism
         /// <summary>从当前位置用同一套参数重新开始（A=当前位置）。</summary>
         public virtual void RestartProcess()
             => StartProcess(Dir, Speed, LegLength, Mode, PauseAtEnds);
-
-        // 兼容你旧的调用习惯（可选）
-        public virtual void StartMotion(Vector2 dir, float spd, float dist)
-            => StartProcess(dir, spd, dist, MotionMode.Once, 0f);
-        public virtual void StopMotion() => PauseProcess();
-        public virtual void ResumeMotion() => ResumeProcess();
-
-        // ---------- Unity ----------
+        
         protected virtual void Awake()
         {
             if (!rb) rb = GetComponent<Rigidbody2D>();
