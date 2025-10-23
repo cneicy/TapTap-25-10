@@ -1,0 +1,33 @@
+{
+  "Rects": null,
+  "Def": {
+    "__cHei": 5,
+    "__cWid": 4,
+    "cachedPixelData": {
+      "opaqueTiles": "00000000011001100000",
+      "averageColors": "fd85f9990ddd0dddfd74fd74f888f888fd74fd74f888f888fd85fa75fcdcfddcfd85fd85fbbafbbb"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "_02tileset",
+    "padding": 0,
+    "pxHei": 160,
+    "pxWid": 128,
+    "relPath": "关卡02tileset.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 0,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 32,
+    "uid": 146
+  }
+}
