@@ -116,7 +116,7 @@ namespace Game.Mechanism
         private void OnCollisionEnter2D(Collision2D c) { HandleCollider(c.collider); }
         private void OnTriggerEnter2D(Collider2D other){ HandleCollider(other); }
 
-        private void HandleCollider(Collider2D col)
+        public void HandleCollider(Collider2D col)
         {
             if (!col) return;
             if (Time.time - _lastAnyTriggerTime < anyTriggerDebounce) return;

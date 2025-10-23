@@ -7,7 +7,8 @@ namespace Game.Player
     [EventBusSubscriber]
     public class PlayerAnimator : MonoBehaviour
     {
-        [Header("References")] [SerializeField] private Animator _anim;
+        [Header("References")] 
+        [SerializeField] private Animator _anim;
         [SerializeField] private SpriteRenderer _sprite;
 
         [Header("Settings")] 
@@ -15,9 +16,14 @@ namespace Game.Player
         [SerializeField] private float _maxTilt = 5;
         [SerializeField] private float _tiltSpeed = 20;
 
+        [Header("Animation Layers")]
+        [SerializeField] private int baseLayerIndex = 0;
+        [SerializeField] private int level2LayerIndex = 1;
+        [SerializeField] private float layerTransitionTime = 0.3f;
+
         [Header("Footstep Settings")]
         [SerializeField, Tooltip("脚步音之间的时间间隔（秒）")]
-        private float _footstepInterval = 0.35f; // ✅ 可调节间隔
+        private float _footstepInterval = 0.35f;
         private float _footstepTimer = 0f;
 
         [Header("Particles")] 
@@ -35,6 +41,8 @@ namespace Game.Player
         private bool _grounded;
         private ParticleSystem.MinMaxGradient _currentGradient;
         private bool _isTrueWorld;
+        private bool _isLevel2LayerActive = false;
+        private Coroutine _layerTransitionCoroutine;
 
         [EventSubscribe]
         public void OnLevelChangeEvent(LevelLoadedEvent evt)
@@ -46,6 +54,15 @@ namespace Game.Player
         {
             _source = GetComponent<AudioSource>();
             _player = GetComponentInParent<IPlayerController>();
+            
+            InitializeLayerWeights();
+        }
+
+        private void InitializeLayerWeights()
+        {
+            _anim.SetLayerWeight(baseLayerIndex, 1f);
+            _anim.SetLayerWeight(level2LayerIndex, 0f);
+            _isLevel2LayerActive = false;
         }
 
         private void OnEnable()
@@ -60,6 +77,11 @@ namespace Game.Player
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
             _moveParticles.Stop();
+            
+            if (_layerTransitionCoroutine != null)
+            {
+                StopCoroutine(_layerTransitionCoroutine);
+            }
         }
 
         private void Update()
@@ -71,6 +93,63 @@ namespace Game.Player
             HandleIdleSpeed();
             HandleCharacterTilt();
             HandleRunAnimation();
+            HandleLayerSwitch();
+        }
+
+        private void HandleLayerSwitch()
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                ToggleAnimationLayer();
+            }
+        }
+
+        private void ToggleAnimationLayer()
+        {
+            if (_isLevel2LayerActive)
+            {
+                SwitchToLayer(baseLayerIndex, level2LayerIndex);
+            }
+            else
+            {
+                SwitchToLayer(level2LayerIndex, baseLayerIndex);
+            }
+            
+            _isLevel2LayerActive = !_isLevel2LayerActive;
+        }
+
+        private void SwitchToLayer(int targetLayer, int previousLayer)
+        {
+            if (_layerTransitionCoroutine != null)
+            {
+                StopCoroutine(_layerTransitionCoroutine);
+            }
+            
+            _layerTransitionCoroutine = StartCoroutine(TransitionLayers(targetLayer, previousLayer));
+        }
+
+        private System.Collections.IEnumerator TransitionLayers(int targetLayer, int previousLayer)
+        {
+            var timer = 0f;
+            var startWeightTarget = _anim.GetLayerWeight(targetLayer);
+            var startWeightPrevious = _anim.GetLayerWeight(previousLayer);
+
+            while (timer < layerTransitionTime)
+            {
+                timer += Time.deltaTime;
+                var progress = timer / layerTransitionTime;
+                
+                var targetWeight = Mathf.Lerp(startWeightTarget, 1f, progress);
+                var previousWeight = Mathf.Lerp(startWeightPrevious, 0f, progress);
+                
+                _anim.SetLayerWeight(targetLayer, targetWeight);
+                _anim.SetLayerWeight(previousLayer, previousWeight);
+                
+                yield return null;
+            }
+
+            _anim.SetLayerWeight(targetLayer, 1f);
+            _anim.SetLayerWeight(previousLayer, 0f);
         }
 
         private void HandleSpriteFlip()
@@ -120,7 +199,7 @@ namespace Game.Player
             _anim.SetTrigger(JumpKey);
             _anim.ResetTrigger(GroundedKey);
 
-            if (_grounded) // Avoid coyote
+            if (_grounded)
             {
                 SetColor(_jumpParticles);
                 SetColor(_launchParticles);
