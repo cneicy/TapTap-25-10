@@ -111,6 +111,7 @@ namespace Game.Item
                 CurrentItem = AllItems[newIndex];
                 _index = newIndex;
                 currentItemVisual.SetCurrentItem(CurrentItem);
+                SoundManager.Instance.Play("switchitem");
                 Debug.Log($"切换到道具: {CurrentItem.Name}");
                 return;
             }
@@ -127,6 +128,7 @@ namespace Game.Item
                 CurrentItem = AllItems[newIndex];
                 _index = newIndex;
                 currentItemVisual.SetCurrentItem(CurrentItem);
+                SoundManager.Instance.Play("switchitem");
                 Debug.Log($"切换到道具: {CurrentItem.Name}");
                 return;
             }

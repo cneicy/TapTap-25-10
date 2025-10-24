@@ -1,9 +1,19 @@
+using System.Collections;
 using Game.Level;
 using ShrinkEventBus;
 using UnityEngine;
 
 namespace Game.Player
 {
+    public class PlayerSpinEvent : EventBase
+    {
+        public readonly Transform Player;
+        public PlayerSpinEvent(Transform player)
+        {
+            Player = player;
+        }
+    }
+    
     [EventBusSubscriber]
     public class PlayerAnimator : MonoBehaviour
     {
@@ -49,6 +59,52 @@ namespace Game.Player
         {
             _isTrueWorld = evt.IsTrueWorld;
         }
+        
+        [EventSubscribe]
+        public void OnPlayerSpinEvent(PlayerSpinEvent evt)
+        {
+            if (!evt.Player) return;
+            StartCoroutine(SpinWithElastic(evt.Player));
+        }
+        
+        private IEnumerator SpinWithElastic(Transform player)
+        {
+            var duration = 1.2f;
+            var elapsed = 0f;
+            var startRotation = player.localEulerAngles;
+            var startScale = player.localScale;
+            var maxScale = startScale * 1.1f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                var t = elapsed / duration;
+
+                var overshoot = Mathf.Sin(t * Mathf.PI * 2f) * (1f - t) * 20f;
+                var angle = Mathf.Lerp(0f, 360f, EaseOutCubic(t)) + overshoot;
+
+                player.localEulerAngles = new Vector3(
+                    startRotation.x,
+                    startRotation.y + angle,
+                    startRotation.z
+                );
+
+                var scaleT = Mathf.Sin(t * Mathf.PI);
+                player.localScale = Vector3.Lerp(startScale, maxScale, scaleT);
+
+                yield return null;
+            }
+
+            player.localEulerAngles = startRotation;
+            player.localScale = startScale;
+        }
+
+
+        private float EaseOutCubic(float t)
+        {
+            t = Mathf.Clamp01(t);
+            return 1 - Mathf.Pow(1 - t, 3);
+        }
 
         private void Awake()
         {
@@ -67,6 +123,7 @@ namespace Game.Player
 
         private void OnEnable()
         {
+            EventBus.AutoRegister(this);
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
             _moveParticles.Play();
@@ -74,6 +131,7 @@ namespace Game.Player
 
         private void OnDisable()
         {
+            EventBus.UnregisterAllEventsForObject(this);
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
             _moveParticles.Stop();

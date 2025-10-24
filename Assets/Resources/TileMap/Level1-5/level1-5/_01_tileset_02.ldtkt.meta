@@ -24,7 +24,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 4bbbd4d131767a84d9ba19ca06898caf
+    spriteID: a63668b9e25434843b6e01f099f5ded5
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_1
@@ -39,7 +39,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: df96deac0fed4c044bbe0cc2e4ed21cb
+    spriteID: 99b2acf5167a37740a3b0dfb8b6265ff
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_2
@@ -54,7 +54,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 9eef83c91417aab49ad93da7b10ae8a7
+    spriteID: cb754233448d9fb49b0a955dbc6d647e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_3
@@ -69,7 +69,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 4099f4244bbd9084faad97a76da61c1e
+    spriteID: 9ec5aa5fd7f7fda44bd393a4d69add09
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_4
@@ -84,7 +84,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 30a8aa4ec2672014885b8f7f7a6ec537
+    spriteID: bca55e01b584ee5409606de0d42bf1bf
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_5
@@ -99,7 +99,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: e36d408d239745a458a2c8a3aafd7c82
+    spriteID: 484e400892db21041ace8f813160b782
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_6
@@ -114,7 +114,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 2aae762978187c143814953cac855a8c
+    spriteID: 427fe2c4a1058a74c90563ae02cd04c6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_7
@@ -129,7 +129,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: f072bb5eefcea7d4eaab824cde015ced
+    spriteID: 46dd930e65e076e4d906e75408a705d0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_8
@@ -144,7 +144,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 23fc18bd4b3d8d24b9dc96740b6668a1
+    spriteID: 1293b0e63c9e17e4d829182c9080efe6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_9
@@ -159,7 +159,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 07a073a02cf3df640a032db288c1cc1b
+    spriteID: f0dbb571fe6841d4ba45b22cf97635f7
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_10
@@ -174,7 +174,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 843995b6d8110d048bbeceb2ed09591d
+    spriteID: 6f72f68a210b44b4f8edc774562d4e34
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_11
@@ -189,7 +189,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 7a8dd7555fe3c564ba81704528f02b3b
+    spriteID: beb16229cf4d20f4ca444b96c12c2e4d
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_12
@@ -204,7 +204,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: df80778391996034a8bdd1e254351a31
+    spriteID: e7d3dfe5994f3034797813713986e1e7
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_13
@@ -219,7 +219,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 3be95df52ce68da4fb805e1d6d546b45
+    spriteID: db7bdff1133243d4088b63c5fae8d85d
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_14
@@ -234,7 +234,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 5245721ff18150844876872a535f5f16
+    spriteID: 05cd956f16bb94b46965015ddc58726f
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_15
@@ -249,7 +249,7 @@ ScriptedImporter:
       y: 480
       width: 32
       height: 32
-    spriteID: 858f79e4b8537ab428a898adb50ef35f
+    spriteID: e7131cc332d0387498e8783f5393e4e0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_16
@@ -264,7 +264,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 1ca423bd2872b0646bafa4a64efb4c20
+    spriteID: 392d7e292259d5747893f2aee3c546a8
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_17
@@ -279,7 +279,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 5d17430ff503def4ca3bbb01b3c94a00
+    spriteID: b553818b3c4ce0d49ad299ac40a6676a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_18
@@ -294,7 +294,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 7b91545f02d5089479cd8f985f497666
+    spriteID: 7fffe75f42102f14590509046b265fc2
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_19
@@ -309,7 +309,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 6ae62700362021d45a91727b980ba4cf
+    spriteID: 8aa5a1c8cb42a8d48b5987bf9b11c89d
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_20
@@ -324,7 +324,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 0c44c4fef5bd3214f8fb92ce440cfea8
+    spriteID: 858efe8c6040c4e4386284d3b27bcac7
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_21
@@ -339,7 +339,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: a65a84a84ca345e4188f51afacae6667
+    spriteID: 24389cd68ae5a404d8f30625afd668ea
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_22
@@ -354,7 +354,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 86e05f6c28a47b148977ff85a0a2a137
+    spriteID: a4d28b977054d9644afb52df4963c7c1
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_23
@@ -369,7 +369,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 83c81c09b258d1945b70444e447899df
+    spriteID: d151eeb3078ca5b4bbfb8f4711def652
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_24
@@ -384,7 +384,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 4205bbd91e0558e4f8d6d72077ab3a3d
+    spriteID: f0a7f3082d1380d44a5818b72db42845
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_25
@@ -399,7 +399,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: f248fda542079c148bad0480d8fc58a7
+    spriteID: eef4b7193c3934149a68508226470615
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_26
@@ -414,7 +414,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 6e9183308e7f8044cbeb475bf006389f
+    spriteID: 2d4942c62efe71a4ebad6496d0304fcc
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_27
@@ -429,7 +429,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 8f3a51565f6e31f40acfcd4ad942c8bf
+    spriteID: f52d3abc6510af34fa36a2c768ec2f31
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_28
@@ -444,7 +444,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: a4755e82ead9b6c4ea3beee30ec733b6
+    spriteID: 64759c75177c8f947a96109eefd46d08
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_29
@@ -459,7 +459,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 3647ea4efeea2594ea7b9dc756037e95
+    spriteID: a88d812cd9992684c9f317cf6f31314b
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_30
@@ -474,7 +474,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: 106d76bd6df73d443bde83c7ab9a629e
+    spriteID: b54124a9535cd1a408d28efb6efa5165
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_31
@@ -489,7 +489,7 @@ ScriptedImporter:
       y: 448
       width: 32
       height: 32
-    spriteID: e531be71952e76543afb3286a42cdb3e
+    spriteID: 7ee553bf002deeb4abd21814e4a880eb
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_32
@@ -504,7 +504,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: e1e91a6ff3f228e47bb301861440782a
+    spriteID: c16ec891823173f4bbc9e7eb6af6289f
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_33
@@ -519,7 +519,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 9047d94b32914a94caf4d4794d392829
+    spriteID: cb40484f23099024ea21d1cfefe73402
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_34
@@ -534,7 +534,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 526028b15c29c7e40aa9881e218c70a7
+    spriteID: d42cb11104fb71643bc4a2db76e13e53
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_35
@@ -549,7 +549,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 820cdf6192751594b8d014a55ebedfaf
+    spriteID: 649dfa74ad0c5014dba60c4f55b8c7d1
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_36
@@ -564,7 +564,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 5953798d880060348ba8cbb404790006
+    spriteID: 983fc45d4eddd7f4196402f37520a44a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_37
@@ -579,7 +579,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: a50e78ad214176848b218676e06bba0e
+    spriteID: bb307a74837b1794e8cfcba13d424520
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_38
@@ -594,7 +594,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: b90d986263700c042bc79c1ae973c6c8
+    spriteID: f4aa092283f3aa94780d41b14f713261
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_39
@@ -609,7 +609,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 648bc6a32d578544ab641e1a5dce754b
+    spriteID: 9a42f8d1e349b6b438425587d319cc74
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_40
@@ -624,7 +624,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 5ea6b7faefe8ed8499d614f5893aa32e
+    spriteID: 5dd2d3d0800ab53429f1fa02cffe88ba
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_41
@@ -639,7 +639,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: c29e5a2d0ffbdd64d8d75622bf26356e
+    spriteID: 529ca7ed2538f854093daa14d851b52c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_42
@@ -654,7 +654,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: f2db17970172e5c489a82321179d5fd3
+    spriteID: 74003f3dea8eff2449f0a85d2a6d0628
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_43
@@ -669,7 +669,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: ecb6434e03f45b04aa355d74b8be91b5
+    spriteID: 849a17f78fdf5f445b53ca4117eeffc4
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_44
@@ -684,7 +684,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 53c3232a279534b42a6dbac53fd371c6
+    spriteID: 12765d15b9949c84983e2c1a1f47a2aa
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_45
@@ -699,7 +699,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 8b945f85f2afa60419b46b4f7961a034
+    spriteID: ba362eb65eed249408b7ec9cc8223b36
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_46
@@ -714,7 +714,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 5d4fef9a15a1cbe4995200cd497d90b5
+    spriteID: c9b7814dffde1d34ca5fe262d6c1e4f2
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_47
@@ -729,7 +729,7 @@ ScriptedImporter:
       y: 416
       width: 32
       height: 32
-    spriteID: 78b493b79e20d404fa28cfb829313db7
+    spriteID: c66cf7320691e844f840ee967f6ef98a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_48
@@ -744,7 +744,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 199b52b7c0440234eb3062b0b14ea1d3
+    spriteID: 26af66e19fb3d4a44aec0c0c769e8686
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_49
@@ -759,7 +759,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 188e0a20d9ed7fe4ca2ff9641b25c2f8
+    spriteID: 58418478fa2229445b9e99859cd8c16f
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_50
@@ -774,7 +774,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 41c32e033fafacf4391db5029c5f09ba
+    spriteID: cfa93257867027f4a90089b7eb785c96
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_51
@@ -789,7 +789,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: da53d3d3c77da9841ace3b2a6f08d153
+    spriteID: 3459b87df5f243d499aade25bc3ea859
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_52
@@ -804,7 +804,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 42462d005e22bae4d9cf213835602292
+    spriteID: cd00b28a4c13bf24292bac4bd7b10018
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_53
@@ -819,7 +819,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 8a94fa91b50545d43a56fe5ed42991c9
+    spriteID: c5bc89f137d058b4ea9564982aff7020
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_54
@@ -834,7 +834,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 07e55a5e8ebc3db4a89475e0188aafa2
+    spriteID: 505f2eb349d8ea941ba3d0063624545a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_55
@@ -849,7 +849,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 3a44c151d74c07c4cb4c460f4ffed7a9
+    spriteID: 78571630b7b61b74fbf74a8b98a21a79
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_56
@@ -864,7 +864,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 185fa4d7c2952e240bfe280f96bf73f3
+    spriteID: 86a999ca6e08e8e498f1a30959f1a536
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_57
@@ -879,7 +879,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 5a96f587f514e384e86042f5c4c5ba27
+    spriteID: ba51d7803b502744b951ebdd8f79fcdd
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_58
@@ -894,7 +894,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: c1dec9a36669650459ef2fd67a8de741
+    spriteID: d84949a6ca88a5343bf035d9fdbd5468
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_59
@@ -909,7 +909,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: de7a36e2965e7cc4d81957f22429147a
+    spriteID: cc3ec44f9519906439ba3ea38b59b412
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_60
@@ -924,7 +924,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: bc6f37da09772bf478eaef3469c13880
+    spriteID: bcee9a473e48ddc4d8d2873ea468a060
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_61
@@ -939,7 +939,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 366f5f1eae731bc4883ff332064f4669
+    spriteID: f9c0befb8347e954fa8f2e308a3f63fa
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_62
@@ -954,7 +954,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: 90c5f6a78bc32844386a5d3d1be08236
+    spriteID: 9e0059b156e5f404daca056d055ecafe
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_63
@@ -969,7 +969,7 @@ ScriptedImporter:
       y: 384
       width: 32
       height: 32
-    spriteID: b41e88f546ddcd64ba5540fb7ef93ad7
+    spriteID: 2fefe7ebeff25de4b872ad2b864179ef
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_64
@@ -984,7 +984,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 044841d9285778d43bc2840ad84365d6
+    spriteID: dd984a44872fe074c862c3074710e7d6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_65
@@ -999,7 +999,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 7c8154275f0113c4fa46a5a82ac8ac3a
+    spriteID: 475ce53246f220f4b834b5fb78c86b9f
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_66
@@ -1014,7 +1014,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 3ab814b3fc49ddf47b121f973beb18a9
+    spriteID: cfc613101a8db884abb1fb568552a697
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_67
@@ -1029,7 +1029,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 3f6a3721e4c6bdb4f88a756a630b1370
+    spriteID: ba2a3066ac9fe014cb7b17d3cdf8ea97
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_68
@@ -1044,7 +1044,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: d4e519d2db4c3e343ad890c24c7bb0f3
+    spriteID: 0489dbe4c7979994fb1ef82fa6e05ce9
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_69
@@ -1059,7 +1059,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 36b9fe19f5e7fe0489f1e74f5bf64842
+    spriteID: 2e7f37b4af344c64fb4f6dd835839013
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_70
@@ -1074,7 +1074,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: a6bbc092f6e684c44bba2e6241e2471e
+    spriteID: 1bed941ea1dfcfd4ca17b07b04daa13d
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_71
@@ -1089,7 +1089,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 4b04ceea4ce5da24294137be95c09d9d
+    spriteID: 97eb3329eadda1e4d9deb31644bb081c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_72
@@ -1104,7 +1104,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 33ea431d6ac53864e9bab189f5611f5a
+    spriteID: 9d1901b896443bd44a8e9b85c33028f9
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_73
@@ -1119,7 +1119,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: c726422024a79c64e877ed5e5c97b2a1
+    spriteID: 30a07f7ede3a36a43b75e4301d690bc8
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_74
@@ -1134,7 +1134,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 9be4b7a2925edc24195ae09e75757954
+    spriteID: ed743ba9641e02f41a04ef414487e16a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_75
@@ -1149,7 +1149,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 425c73d4d5ae59b4a828bec081434633
+    spriteID: 1bc3f3e179dd9fa488d5b400934393cb
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_76
@@ -1164,7 +1164,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: df38d0e5ff29b084a9553e97dfbde336
+    spriteID: 7c2cf3c23634d4f42a310336caf2a6b5
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_77
@@ -1179,7 +1179,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: e433938e68a4223408de038bc81174c0
+    spriteID: 811088e2bf3828343a72d52d8d392260
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_78
@@ -1194,7 +1194,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: 66ee6368a7585934882fab1c336747eb
+    spriteID: 88b56591fd45bcd46b67255adb5b14f8
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_79
@@ -1209,7 +1209,7 @@ ScriptedImporter:
       y: 352
       width: 32
       height: 32
-    spriteID: da5234c1d0003ac4998ea80c54d73bff
+    spriteID: 866645636e4c40a4db0e8ae35d3c0469
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_80
@@ -1224,7 +1224,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: cd09d6ee4292f9b4aa559aff317846f7
+    spriteID: 8f2a43a644d18a64e9eaab3827a9a5b1
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_81
@@ -1239,7 +1239,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: fd1228a60323b5d44a2214f20fac5ca5
+    spriteID: 09cf7ba8bcb8a2f4f9fc0c53de037650
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_82
@@ -1254,7 +1254,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 9611dc90429ab3343a0ee0537a5f765f
+    spriteID: b46bd998a8ae72444a5793b4b3098591
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_83
@@ -1269,7 +1269,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 6c2626330a6141843979f40df9ed90ed
+    spriteID: 10de7a1e21acb934faa0d54ef500d96f
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_84
@@ -1284,7 +1284,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 541e3d72378746349bc1127f249d8779
+    spriteID: 479b4c7ab0683fe44a9fa7662ed20de4
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_85
@@ -1299,7 +1299,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 810c4e52d784d5e47a94d49d7e8978e9
+    spriteID: 8ad178ce0d1a2564187abfb852124ba6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_86
@@ -1314,7 +1314,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 24c532c112a97b84287218c6d9142b95
+    spriteID: 019160f43e4e34648bdb263058901018
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_87
@@ -1329,7 +1329,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 97eb52d8ca9785544a6e56f0b17365d0
+    spriteID: 221e080da1c717645b61a1f09f45eced
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_88
@@ -1344,7 +1344,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 21c8f8dd02ff8f34a983c39323b3b2b3
+    spriteID: 5542680ed11836049bd5d9bb29f66604
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_89
@@ -1359,7 +1359,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 4e8058d3a13aad346afd6f7587802959
+    spriteID: d857cca45d0e99c4ead480db19e8973e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_90
@@ -1374,7 +1374,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 85dc687925f707a45861a1c6f22bac9b
+    spriteID: 59974a19a1f4bab42a74bea5027bbc6a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_91
@@ -1389,7 +1389,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: c348856c25b3c904f9f53afbdd2a9ec2
+    spriteID: 4138ac22e00e6da42a88bbc4c3872165
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_92
@@ -1404,7 +1404,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: a4ef17d505c984b4bbedaa00eac31ec0
+    spriteID: 37e2fe19728939f49b258632d644c596
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_93
@@ -1419,7 +1419,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: 4ccaf6a9470e494478b29880c7974b29
+    spriteID: 27bf1a574e9dbea4b9e292bc5ea82076
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_94
@@ -1434,7 +1434,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: a48ebc098b3daed42bb814686fdeb57b
+    spriteID: cad8c33e82aa31c4ea3dfb1b52fbb055
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_95
@@ -1449,7 +1449,7 @@ ScriptedImporter:
       y: 320
       width: 32
       height: 32
-    spriteID: e110e065fa2bc4f40bd7de95ac36f0da
+    spriteID: f38fc827da4fbe14483e990ac76a2189
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_96
@@ -1464,7 +1464,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: e904f0375067b1c4c8048295cc1b1281
+    spriteID: 326beb42409b07b48b6d570bbc74faec
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_97
@@ -1479,7 +1479,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 1aa5ed96b1403d84c8e90eb81b7d02c1
+    spriteID: 3a79ec9c16bda2344838aa952cab0f0f
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_98
@@ -1494,7 +1494,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 051f42e73f3c97443bb8cc4771f53fdd
+    spriteID: 9f41a62edb23c8f42847ea95c9a706a6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_99
@@ -1509,7 +1509,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 8e2dc6edfa0cd2a4a9b9259db4e83fdf
+    spriteID: d962a47da15a47d42bfc2a167acf2197
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_100
@@ -1524,7 +1524,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: e9006e01f6da9ca45817408e91d5e414
+    spriteID: 57044c7b2ba45b24ba962ce5c795e2c9
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_101
@@ -1539,7 +1539,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 82c54687a655266489d1d3b13e59c085
+    spriteID: 540d80fb2f2eb1d4490c53258442db83
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_102
@@ -1554,7 +1554,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 3b80ef683baba4b43be786b89205b8e2
+    spriteID: bca8917919ee5b14aba90be53672fab1
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_103
@@ -1569,7 +1569,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: c09dc5c1300f7524cbb27da10cbc241c
+    spriteID: b83cd974cf35adb4f8fe682f14100520
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_104
@@ -1584,7 +1584,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 9b41d52dd3bfb074e9c32fc3bea78e50
+    spriteID: f665a2dd3ad4d2f4c87defe0c0943651
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_105
@@ -1599,7 +1599,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 182c21ffbf892d940b78af14de87c3ec
+    spriteID: 52ea9b49d955d5f40bef3b583d6341a5
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_106
@@ -1614,7 +1614,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 4abece116a6925e479cfcbb2fc18003a
+    spriteID: 7aa87e84c6ad3084fbeb2899314766ea
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_107
@@ -1629,7 +1629,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 25bd30a548d9b2c42968094753d6cf0e
+    spriteID: 3b9260f63511d6b4386798e417bae402
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_108
@@ -1644,7 +1644,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 92a4fb2b7d53e6d4aa726156d0abda1e
+    spriteID: 8a92d4c49e9d27d49b8a295e08a52dd2
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_109
@@ -1659,7 +1659,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 98bee6f049443314d99d93359fd9ce5d
+    spriteID: b02acb5f4746ba34bb286d94a7c6725e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_110
@@ -1674,7 +1674,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: 8bbbcabd315556a4caf462c7a2c3d548
+    spriteID: 1899a60e7f5bc8b48ae62f28bad2aebb
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_111
@@ -1689,7 +1689,7 @@ ScriptedImporter:
       y: 288
       width: 32
       height: 32
-    spriteID: e705ee32a2c8a424887a05d8e0024739
+    spriteID: 9373fd6bf7e30a344aadacb53adba128
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_112
@@ -1704,7 +1704,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: d0507e19dd465ac4bacd40818fdf015e
+    spriteID: b77e505a751832340a595446de53d67a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_113
@@ -1719,7 +1719,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 2753255706f71524b9d142c4d3cc0954
+    spriteID: 24f5949feda2f164092591cb6cf18a36
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_114
@@ -1734,7 +1734,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 584c2ba1be89dd34a939edf0ec93b31a
+    spriteID: 7d3e10f167f613d43bc941a82785e40f
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_115
@@ -1749,7 +1749,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: e126b0655b9a1c84aa189ed9a55b535e
+    spriteID: aea1a22f90e52014aad35170b4da43a0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_116
@@ -1764,7 +1764,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: c8e9630d509d09e44bea53e9abd74160
+    spriteID: 17e980e2d9dccb945963150b280b0f89
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_117
@@ -1779,7 +1779,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 2eed56c398b718248af8dc48e175ce3b
+    spriteID: 0b91b86981e13a64c9b6d0d581ef1fef
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_118
@@ -1794,7 +1794,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 9d2941d107452b242bb5a61dac2fe1f0
+    spriteID: eb1bb987c08ea714a800c8337e5601ed
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_119
@@ -1809,7 +1809,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 24049670a69e12a47a40eb9c811e4475
+    spriteID: 92bf1d47f9ef3514ab908ab37c599966
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_120
@@ -1824,7 +1824,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 80a53e2f7ad97844c905332c69b22df8
+    spriteID: 87f46294fc5749643a3e97dd8119c0b0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_121
@@ -1839,7 +1839,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: a0dbb4de52617f845a84e3fc57d8e7ff
+    spriteID: 7b848f438a7eec544824cf040e06e336
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_122
@@ -1854,7 +1854,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: f6f1dfce9e79fac408bf1ec950051310
+    spriteID: 3842afe7bc891d744b1bada4249b5b6d
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_123
@@ -1869,7 +1869,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 99a5edcfdc6f05d4b8ff40543c13e157
+    spriteID: fb833ee3b384a244182f1772430a3225
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_124
@@ -1884,7 +1884,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: d2433f4975493ac4b9fdcbb956697d43
+    spriteID: 90064d5c6aefc64478c5116c508e5a28
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_125
@@ -1899,7 +1899,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 92125c314d5150d44a3bdbacc3b9faea
+    spriteID: f9fab7b1523cb0347b2ef41db0237f79
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_126
@@ -1914,7 +1914,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: 7bc76baf18d6b2448b44e8bb70792973
+    spriteID: 25005d38a6a839b4e94b3a675df83384
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_127
@@ -1929,7 +1929,7 @@ ScriptedImporter:
       y: 256
       width: 32
       height: 32
-    spriteID: e3b2a59754c4a544dabe3ceeabe88c44
+    spriteID: f75124bb5ae23b047acc99cd085ee493
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_128
@@ -1944,7 +1944,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 8d1d9a222a3e23d4986976dc5e8bf77d
+    spriteID: 181d3e34d7590bc43bef90458fc48861
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_129
@@ -1959,7 +1959,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: c2646b5166e35534084d5ac5a8f97ee9
+    spriteID: 66116f99ca60b134aaf3bc242029e8a7
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_130
@@ -1974,7 +1974,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 97af0565fc7c10d47898a674b6f42dd6
+    spriteID: aaca77301fc4e0645867797e327fdda6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_131
@@ -1989,7 +1989,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: be38938799e086f47926953e14be90ca
+    spriteID: 8fc262fb6c2c49f4ab97def571e79f1a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_132
@@ -2004,7 +2004,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: c2ee83227a87e194e82a865b29f419f9
+    spriteID: ea1751b22915b3a4a8e37f92ab748fc4
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_133
@@ -2019,7 +2019,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 8185f6b94ee6cc94facf0a4fcff3469f
+    spriteID: bad8bf562579ba14bafe890c9c3ed028
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_134
@@ -2034,7 +2034,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: c1cc4bc8e93a6de4eb6a114c75d176d5
+    spriteID: 309ead2d106239c4a982959f351e2911
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_135
@@ -2049,7 +2049,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: ff47dc42a16cb3d449cbfce1526de10e
+    spriteID: 339c307c30ad4a1478ee0cc64fcc3af5
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_136
@@ -2064,7 +2064,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: ee1577a3670806d43bba0734cb15e9b3
+    spriteID: ed986bc042bb2e44995ea8b9891e532a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_137
@@ -2079,7 +2079,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 876b5806dfe36e04aa716c3223381113
+    spriteID: 5410044191a4b144dbae50e227629e73
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_138
@@ -2094,7 +2094,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 18ea8e2a2586edb449551be4ce31c4c9
+    spriteID: a089f16ae46921645a235659c556cbfb
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_139
@@ -2109,7 +2109,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 0dc04c232d62f534995cb9a853a2be68
+    spriteID: f3bf481c07afdd1429efb9cc3bba57e3
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_140
@@ -2124,7 +2124,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 2bf03f4eee082264e836e13d409f2206
+    spriteID: 6c49ebe7d1bceec488c130c36a810ae9
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_141
@@ -2139,7 +2139,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: ad77b9bc070e3574785964739d184017
+    spriteID: 63cbfe7c8f040ce48b6d206db828e48a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_142
@@ -2154,7 +2154,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: 5530feaad142a964caf1f388439f9aa7
+    spriteID: 08e9061496df14049a28809101b7614c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_143
@@ -2169,7 +2169,7 @@ ScriptedImporter:
       y: 224
       width: 32
       height: 32
-    spriteID: b755c692ff63cc54b89bb663e5e265bb
+    spriteID: 9dbfdbf8a829ea24ebde51d0940f59a0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_144
@@ -2184,7 +2184,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 77cdd19134906ca48a151393af2fe53c
+    spriteID: 3deb13091d9d0f344841b85ceb772cbb
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_145
@@ -2199,7 +2199,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: b330c787d3437e7418d3c256a33d843b
+    spriteID: c14874f174e0dfe4c9b46697c0001eff
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_146
@@ -2214,7 +2214,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 4d028ed39e421694cbb0292378a3c4d4
+    spriteID: 1677a4a89f7f80f4cae3dd84013867a9
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_147
@@ -2229,7 +2229,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 38cb79539af26de4084b5999d6cdc8d1
+    spriteID: 8b67c53b85c1b144fa6e110449e6899a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_148
@@ -2244,7 +2244,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: c399676435c88334c99093c1b5edfe7a
+    spriteID: 86ac1bf832baab34e9cedcc468f4af17
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_149
@@ -2259,7 +2259,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: a833db8ab7f1c2b409ac08aacfba4a8c
+    spriteID: 567f61c9d97eced43a2fa4866478f11e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_150
@@ -2274,7 +2274,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: dd31b6ac7d9843e448152adeecdf0608
+    spriteID: 4ab9b87c54782ad42abe357caebf60f4
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_151
@@ -2289,7 +2289,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 79b421689b140b84e8a92a45532dc01a
+    spriteID: 8d4bc7ae184c87944a480f4578005a2c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_152
@@ -2304,7 +2304,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 504b09e221d6fb04cbda2e3d33fe268a
+    spriteID: ebb05a705020b3c479ed45438a0683ab
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_153
@@ -2319,7 +2319,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 079bda1cb16cf2248b0a098dfcd96d94
+    spriteID: d919d570de6cc004b8fbf74ee58a2631
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_154
@@ -2334,7 +2334,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 6d7a498c81ef2ac4eae93a98f95b4d30
+    spriteID: c94278d517ef34d408700999ee8f856e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_155
@@ -2349,7 +2349,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 19cac044bb8b0554b9700374b62c8095
+    spriteID: 97d57aada27f6a54681db71e88d124f4
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_156
@@ -2364,7 +2364,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 47600adfe86b30546b768760d5baaf22
+    spriteID: f9330c048a079864286682f2e86fa5a3
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_157
@@ -2379,7 +2379,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 9ff5e48e0f27f444e9f0fcabf9242ec5
+    spriteID: 3c4901e8defa4474ab420daad321d953
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_158
@@ -2394,7 +2394,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: 9bd5affa828f2264482b3964aeec7a89
+    spriteID: 92e25174c31e8204d98f349b86cebea8
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_159
@@ -2409,7 +2409,7 @@ ScriptedImporter:
       y: 192
       width: 32
       height: 32
-    spriteID: ceb16961199a8254c9012558e8f22fbb
+    spriteID: 8f854251b088b3040b54b268c0c846c3
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_160
@@ -2424,7 +2424,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 45c06e6803d0abc4dbcfd5d30d016ff3
+    spriteID: 57868c22e4c6f284e9d522f7a77d87c0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_161
@@ -2439,7 +2439,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 993026af064ab4d438eebbff930869c0
+    spriteID: b12a0a8b0a7705b44a1d79d4751bc92c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_162
@@ -2454,7 +2454,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 4eef4831f44b8a64dbae103d2ee81970
+    spriteID: 43759792a25091943b05de40ee62fe22
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_163
@@ -2469,7 +2469,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: ec8ce3f7f13d3bb4b8d22a86dfd1bc90
+    spriteID: 8c7e2824405dd2142beeb8ecc2e93c29
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_164
@@ -2484,7 +2484,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: b8fcd136c103237448b0d0a044cec0af
+    spriteID: 1730e956c9d40e448890ceba89742e8c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_165
@@ -2499,7 +2499,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: dd8539f5a613f4d43b4d6c17bccfb06b
+    spriteID: 67228b0d47793a34c9859c7b5f354a36
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_166
@@ -2514,7 +2514,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: e328d54a71974874c91ed66cf481a01b
+    spriteID: 8e0500d7c4476e0448a032dc266022cd
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_167
@@ -2529,7 +2529,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 4aa2ceaea7583414592ff8c789dd37dd
+    spriteID: d7ed600eddc20364eb8f44972ef55152
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_168
@@ -2544,7 +2544,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 6ab7f076ce398434e8a67e6add551450
+    spriteID: 5e90898599aae3b4b939cb570c4f1aae
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_169
@@ -2559,7 +2559,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 1519e7d86f34ebe4d844139cfadcd8a4
+    spriteID: 539920562a58389409573d88326ef2fe
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_170
@@ -2574,7 +2574,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 91c304ea641f2254b9851f5dc6693c51
+    spriteID: b7c86987ebfc4734eb3720e308f6f0d5
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_171
@@ -2589,7 +2589,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 753cfd80cd6a7bc4bacfc137203ed31d
+    spriteID: 7c8d7b550954a64409dc72674fc0aa92
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_172
@@ -2604,7 +2604,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 7ce32868b70e4474ba25f069730b7f87
+    spriteID: 4472ff8eb6d8fca4dae94176ca7ac0ff
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_173
@@ -2619,7 +2619,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 53df27e895642c249a8bda7c935c0fe5
+    spriteID: 298b588662c7acc4192d490ae9927648
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_174
@@ -2634,7 +2634,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 418d4ef0a84ae03498630e440800bf94
+    spriteID: 70dc91e28f5fdf0408d08ec1b142c870
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_175
@@ -2649,7 +2649,7 @@ ScriptedImporter:
       y: 160
       width: 32
       height: 32
-    spriteID: 7833b8d2d20b94f4ba5666d8d2ec77f9
+    spriteID: d9699df734e2ecd4ea03061357063416
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_176
@@ -2664,7 +2664,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 84ec142ad640ecc4c939de11d8df7e99
+    spriteID: b507ba9136e1d834e92ae1191cbbc98a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_177
@@ -2679,7 +2679,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 400249f854c918d48b91fa93810e8134
+    spriteID: bf78cba9adaf4bb42be51fb8fec7eb4d
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_178
@@ -2694,7 +2694,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 490710d3029bc944fa8250d50fd8af15
+    spriteID: 7abfdd58ff49d574a882497e605ed88e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_179
@@ -2709,7 +2709,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 82a534451bf948348af34ecc1a0b5669
+    spriteID: 37ee57a2cb5912647b9dbc4f6010b7e7
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_180
@@ -2724,7 +2724,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 3fd76154f4ea80b47b63a9bc85a9d968
+    spriteID: ee2ca32039609ec41953795205f420a1
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_181
@@ -2739,7 +2739,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 6dc5983fec5b6644ea684265fc00b035
+    spriteID: 7ba304c257ff9f149bdb227a9a5a66b9
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_182
@@ -2754,7 +2754,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 961c255f602d914469003d7245af8582
+    spriteID: b7e357b4b9062e64da5deb8bc1c30c0a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_183
@@ -2769,7 +2769,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: a5c514ccc5f56bf4aa62f930bad145f4
+    spriteID: 01b39603bee71734eae25162d328ba72
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_184
@@ -2784,7 +2784,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 70f42905b01546343ac5b1d615f6a9d7
+    spriteID: a40b841acb017124785213febf816a07
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_185
@@ -2799,7 +2799,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 103c123598807894189b91d44e799645
+    spriteID: 5b845380c648715488b6206ae0b000e6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_186
@@ -2814,7 +2814,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 39b8f9702ced9b147bb54f949b7c4253
+    spriteID: 74f393ee4ee989f4fb3e136b6644e958
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_187
@@ -2829,7 +2829,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: d905fe31f29d4d44ebff16220bcea8cd
+    spriteID: c5e2c81a5c474af4fa0721cd173b8531
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_188
@@ -2844,7 +2844,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 34c451908ca0cef4db5c7e36fee4f096
+    spriteID: 2c56c573c5e080542a153b18da79961b
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_189
@@ -2859,7 +2859,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: bd3a7be5294b80f46a6188c5f90791bf
+    spriteID: 3df8065118688ee469d176bce24d7ac6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_190
@@ -2874,7 +2874,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 85a78160c219d8e4b9dd487bce216299
+    spriteID: b9909562ac62ce648a63b4e9ae596822
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_191
@@ -2889,7 +2889,7 @@ ScriptedImporter:
       y: 128
       width: 32
       height: 32
-    spriteID: 360b5fecc6f8d024186154cc15dd1677
+    spriteID: 9221efa6fd5029242b39ab99d96c360b
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_192
@@ -2904,7 +2904,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 3e6576530a64fed448e7a49fe55be925
+    spriteID: 5e743169b8bf0ea419ecccef6d4177bd
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_193
@@ -2919,7 +2919,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: ce69164d84050f944aacbf4c36a0782f
+    spriteID: 20a219a5e1f44fd4dbc0089be23aa707
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_194
@@ -2934,7 +2934,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 49e216b5dcbcf2c4eaf0ec68169ab682
+    spriteID: b5b6a6766aca7dd45a470b2242ab0979
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_195
@@ -2949,7 +2949,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 67239e98cf545ec4e8d3c8c2a378368e
+    spriteID: 8109774914da2a84b9fe5e2d4484d77a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_196
@@ -2964,7 +2964,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 7a474562dad0a234c8136490853401df
+    spriteID: 93637f676fac3354da9db7c53b8337aa
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_197
@@ -2979,7 +2979,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: dde9aec3b8e199a428952a7b7f4940fa
+    spriteID: cf1926b9a3b6cc34eb31e1b78dbd755e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_198
@@ -2994,7 +2994,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: d6fe6d4401adc4c4fb9ac6004e136367
+    spriteID: 4c05c5026b008a3458370e3919dcac7c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_199
@@ -3009,7 +3009,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 65f8b2383e13c3f4385a226fcdfbc988
+    spriteID: ca92143dceba8a24a87bd98e6084263c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_200
@@ -3024,7 +3024,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 40b90fba5665ee74d841e2170a64387d
+    spriteID: 52850a4e46bdfd44db993fa1c19dbf4a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_201
@@ -3039,7 +3039,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 15035a0ed2c2bae4abb794f00537e4f4
+    spriteID: a53213a1996d44d4db8ede21161bebdc
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_202
@@ -3054,7 +3054,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 0c4821aa713e6cd488b2e77263c86b41
+    spriteID: 9629aeb05df6d8040959484b31267638
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_203
@@ -3069,7 +3069,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: d05cd39c2fa4ee74dbb848c6aff2192b
+    spriteID: a97144827f11839479f625055ee8ae3b
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_204
@@ -3084,7 +3084,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: a0f42daa076f50f4fb3770944195bbc6
+    spriteID: 14da206e009f5944c9b1e287b2e6fbac
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_205
@@ -3099,7 +3099,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 6bb069b68ec85614bbd3c1f4c067f04f
+    spriteID: 573a8e53893d2d14c8f85ea092e50c66
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_206
@@ -3114,7 +3114,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 80bbfc478e737bc4190c47b66c57f072
+    spriteID: 5bf95e915f637b64cb47a83733ed80f7
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_207
@@ -3129,7 +3129,7 @@ ScriptedImporter:
       y: 96
       width: 32
       height: 32
-    spriteID: 958a5f229dfad9e479195de2e42df5fd
+    spriteID: 51a6d331079faea4d9fd173a250e8313
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_208
@@ -3144,7 +3144,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 2b1f7c95d8d045a4fae075c70dd2321c
+    spriteID: 847e31a44f9f1ab40a7ab3c0e766ced4
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_209
@@ -3159,7 +3159,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 93311cbb2f0474f44b2c40864299e541
+    spriteID: 867ddd9a308feda47ae492a825e791db
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_210
@@ -3174,7 +3174,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: ea231a463d03f4641acafdb45156e65e
+    spriteID: c222d579cf4c3314b9ffae5adcbf8812
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_211
@@ -3189,7 +3189,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 7ef9491c82476f54fa193a69d516eb16
+    spriteID: 3747b81a3b0c97b459e0efc2045da594
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_212
@@ -3204,7 +3204,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 7bb701537792a5146be268043883ad3a
+    spriteID: 7aecfd0cea8ba794d95755fae51e7c7c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_213
@@ -3219,7 +3219,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 4b76959d99e039e4eb9dd32a42cc4f8e
+    spriteID: f6b34c061e652c04eb41055526a93c7a
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_214
@@ -3234,7 +3234,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 87435aef6ecb9804bbe0a41f103cc37f
+    spriteID: 42bd5100f6f89804a9773424b6a113c8
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_215
@@ -3249,7 +3249,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: b7e5f9d7212bab240a50e4c110fcc456
+    spriteID: c55683c6c292afd4e935f587ff7bf0bb
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_216
@@ -3264,7 +3264,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 5031af7a389310e4e9d96f4fc56c8f69
+    spriteID: 5143ca7149fd28d42aa082087cf36df2
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_217
@@ -3279,7 +3279,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: d170da9c1bb076c4cba710d38dd90286
+    spriteID: a7871604604407648810d90af0d55036
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_218
@@ -3294,7 +3294,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: c2cde92a24a1c404988bb2ae33a266ff
+    spriteID: 5dc362321db549448a0ee9a7f07b3538
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_219
@@ -3309,7 +3309,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 6790ac83d6b99ef4b85dcdb0666bb5ca
+    spriteID: 91fb577d8e822f641b4082540e48d90c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_220
@@ -3324,7 +3324,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: c0f03c960d895a24791926b708ae0595
+    spriteID: 3e51bca19d2e2bb428a664b6b0fd4805
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_221
@@ -3339,7 +3339,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 4974bb08f21f7294988940579631b895
+    spriteID: ba4ab4969c7e53e4daba92dfbfb2418e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_222
@@ -3354,7 +3354,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 396fe05324069544c805203b1810567b
+    spriteID: fdc5d178fc8fb544087679b7b0c4c803
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_223
@@ -3369,7 +3369,7 @@ ScriptedImporter:
       y: 64
       width: 32
       height: 32
-    spriteID: 7f7f99d794ec79b40b253faa7fc9d07b
+    spriteID: 6a4f31516daaf13428cc3f41da051cb0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_224
@@ -3384,7 +3384,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: e67236eed477f6c49866786cce6d5d87
+    spriteID: 7bb33bcb38fa3ef458fed7877f083779
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_225
@@ -3399,7 +3399,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: fac794b19f1b3e243a0c7d6e46502534
+    spriteID: 8392c58275845a940bbb7d22a3d71d44
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_226
@@ -3414,7 +3414,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: d7af33f286e5b8547aa0dec4825fb8b5
+    spriteID: 318f6a6b74d26a34f9f39474ab5d74e4
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_227
@@ -3429,7 +3429,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 9592fed34defa60479c5eef7c2994fe0
+    spriteID: 9947428a5eb12ca4695f9ea677986ce0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_228
@@ -3444,7 +3444,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 381423272714cc54e9563a281a5258aa
+    spriteID: 2c627d1166933994e9d948586afa895c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_229
@@ -3459,7 +3459,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: d22e2e73cc5d6e741aae028289eb07af
+    spriteID: a901cc1ae77bf3848bdc426fd4dae292
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_230
@@ -3474,7 +3474,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 259265787442bf34eafb0b5df9e9de5b
+    spriteID: 524a4c9cf1f659f4886260a511cc4e87
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_231
@@ -3489,7 +3489,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 939b2cb732478174f8112fd0be4dc535
+    spriteID: 824598931c639114ead6618520276823
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_232
@@ -3504,7 +3504,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: ce8abc875a9a38645ad1d72c30262672
+    spriteID: 57a4422873dad0d4c9990e99ccd2447c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_233
@@ -3519,7 +3519,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: eada941e40e864f40b333d7ad0a49a6b
+    spriteID: 902c8de54ce82d84b8bee0c39f2cbd44
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_234
@@ -3534,7 +3534,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: e98cc760396133442ae354485ced671e
+    spriteID: bfaaf2a8e921f6e43a19d73cd0b28d60
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_235
@@ -3549,7 +3549,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 73effc469ca807240a59062f2c875325
+    spriteID: a865ed44611179145a5335068277eb38
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_236
@@ -3564,7 +3564,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: ba02d4c94f9fb2a4ca4331de35e3ce4f
+    spriteID: 3ecde136ccf538e4885978a8ae5d6f48
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_237
@@ -3579,7 +3579,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 0df63850e77c0ae4fa2a444330c4c956
+    spriteID: cbe56bfab4f9db34a9590f26036662aa
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_238
@@ -3594,7 +3594,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 3f23a82840434d34f97d3dba9a58ba43
+    spriteID: 02aa15be58f0c6f489081fb6d2091e36
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_239
@@ -3609,7 +3609,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: dc310e38c025af54eb65ef5d0d96eb08
+    spriteID: a04d242b151a0e1479014516aa0b84d6
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_240
@@ -3624,7 +3624,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 80e1c93e116a29541a5cea69f84732f7
+    spriteID: c37727a4e732d9042bfabbf1f9a3e481
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_241
@@ -3639,7 +3639,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 4656e95ae85e49c458eb8900f84f1a1c
+    spriteID: fba35e5762933af4ba737464f4495290
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_242
@@ -3654,7 +3654,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 3ea8abfdd571d424789a5721674c5ab3
+    spriteID: 991c6bfdf7df7244991cb23ff8e39f90
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_243
@@ -3669,7 +3669,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 6d155046009cbab4496f0042cff40ab2
+    spriteID: 191ddaab1a1b687448f3bb2c3a59c968
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_244
@@ -3684,7 +3684,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: e7aa197bbefac834190b5689b0101760
+    spriteID: 34e8497fb7057024f9aadfcf3ad0931e
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_245
@@ -3699,7 +3699,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 5983678c4d9d9a24789b786d8b12273e
+    spriteID: 77342978d784002449c873cc869acdf3
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_246
@@ -3714,7 +3714,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 40a818c0434b79c4cbca72156f075806
+    spriteID: 04893fa35601d5b4591b62145525b62b
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_247
@@ -3729,7 +3729,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: a0c4f0a374328b44f8d33ceb16965ccc
+    spriteID: 363299110a5a03c469764832a19451d7
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_248
@@ -3744,7 +3744,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 515b5edbc445a3947ac39c3e84fbb6b0
+    spriteID: 9fb570628fbed9a438f3c894ebb77bff
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_249
@@ -3759,7 +3759,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: acb9ba0d3592f864db982548d6957dab
+    spriteID: fb3c0ed403b01ad4fb6d3a76790114f0
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_250
@@ -3774,7 +3774,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 53712bdb801774c41ac343ef3a21b7d9
+    spriteID: 159f3fc86c48d5c49ad8c0433498578c
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_251
@@ -3789,7 +3789,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: a0c6b5afbbb6df54daae6ce880646ad1
+    spriteID: 39740db3d43de1b48a8fe86759ce7ab2
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_252
@@ -3804,7 +3804,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 30d073402345bcc44af46642ed8237ea
+    spriteID: dea5ad94415826c46829d10add289d5d
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_253
@@ -3819,7 +3819,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: e17ba25b7d3fde84bb69f19080bed64e
+    spriteID: a237a570bfe6c6e49bcd94df4f8d0cf9
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_254
@@ -3834,7 +3834,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 4f32e7dba235a8349b9532762f4f7964
+    spriteID: 51c2f089a4b31904596e24dbf39bd8cf
     spriteOutline: []
     tessellationDetail: 0
   - name: _01_tileset_02_255
@@ -3849,7 +3849,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: f504229df64b41c41a1a740941d95b81
+    spriteID: 502ae0e41dd32eb42af95a126135f317
     spriteOutline: []
     tessellationDetail: 0
   _secondaryTextures: []

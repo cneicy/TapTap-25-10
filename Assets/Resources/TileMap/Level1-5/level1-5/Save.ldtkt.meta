@@ -24,7 +24,7 @@ ScriptedImporter:
       y: 32
       width: 32
       height: 32
-    spriteID: 51aa03a589c7bda4e8cf932597b3d6f2
+    spriteID: aa6c3b8524c3550479bc0b31c1b8f108
     spriteOutline: []
     tessellationDetail: 0
   - name: Save_1
@@ -39,7 +39,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 6879fd0a2575dfa429dd858d9381062f
+    spriteID: 35573cb0f2a9cb544b6aaadc78ee7b49
     spriteOutline: []
     tessellationDetail: 0
   _secondaryTextures: []

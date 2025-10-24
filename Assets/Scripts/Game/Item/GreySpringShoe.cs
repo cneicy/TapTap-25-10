@@ -1,5 +1,3 @@
-using System;
-using Game.Buff;
 using Game.Player;
 using JetBrains.Annotations;
 using ShrinkEventBus;
@@ -11,6 +9,8 @@ namespace Game.Item
     {
         public bool isUsed = false;
         [CanBeNull] private Player.Player _player;
+        private static readonly int Jump = Animator.StringToHash("Jump");
+        
         public GreySpringShoe()
         {
             Name = "灰色弹簧鞋";
@@ -37,12 +37,17 @@ namespace Game.Item
         public override void ApplyEffect()
         {
             _player = FindAnyObjectByType<Player.Player>();
-            if (isUsed == false)
+            if (isUsed) return;
+            SoundManager.Instance.Play("shoeuse");
+
+            if (_player)
             {
-                if (_player != null) _player.isWearGreySpringShoe = true;
-                isUsed = true;
-                print(name +"已经使用");
+                EventBus.TriggerEvent(new PlayerSpinEvent(_player.transform));
+                _player.isWearGreySpringShoe = true;
             }
+
+            isUsed = true;
+            print(name +"已经使用");
         }
     }
 }
