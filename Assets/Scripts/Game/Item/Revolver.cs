@@ -15,7 +15,6 @@ namespace Game.Item
         [SerializeField] private LayerMask hitMask = ~0;
         public bool HasRayHit { get; private set; }
         public Vector2 lastHitPoint { get; private set; }
-        private bool _revovlerHoverEnd;
 
         // === 视觉/实体子弹 ===
         [Header("VFX/Projectile")]
@@ -51,9 +50,6 @@ namespace Game.Item
             Description = "";
             IsBuff = false;
             IsBasement = false;
-            IsHoverStart = true;
-            IsHoverEnd = false;
-            _revovlerHoverEnd = true;
         }
 
         private void Awake()
@@ -140,7 +136,6 @@ namespace Game.Item
         public override void OnUseEnd()
         {
             base.OnUseEnd();
-            StopHover(_revovlerHoverEnd);
         }
 
         // ========= 关键：切换道具时会被 ItemSystem 调用 =========
