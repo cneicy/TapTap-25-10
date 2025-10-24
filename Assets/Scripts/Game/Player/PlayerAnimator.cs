@@ -1,7 +1,9 @@
 using System.Collections;
+using Data;
 using Game.Level;
 using ShrinkEventBus;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.Player
 {
@@ -17,6 +19,10 @@ namespace Game.Player
     [EventBusSubscriber]
     public class PlayerAnimator : MonoBehaviour
     {
+        [SerializeField] private int flashCount = 4;           // 来回切换次数
+        [SerializeField] private float flashInterval = 0.08f;  // 每次切换间隔
+
+        
         [Header("References")] 
         [SerializeField] private Animator _anim;
         [SerializeField] private SpriteRenderer _sprite;
@@ -51,7 +57,7 @@ namespace Game.Player
         private bool _grounded;
         private ParticleSystem.MinMaxGradient _currentGradient;
         private bool _isTrueWorld;
-        private bool _isLevel2LayerActive = false;
+        private bool _isLevel2LayerActive;
         private Coroutine _layerTransitionCoroutine;
 
         [EventSubscribe]
@@ -116,9 +122,17 @@ namespace Game.Player
 
         private void InitializeLayerWeights()
         {
-            _anim.SetLayerWeight(baseLayerIndex, 1f);
-            _anim.SetLayerWeight(level2LayerIndex, 0f);
-            _isLevel2LayerActive = false;
+            if(!DataManager.Instance.GetData<bool>("IsLevel2LayerActive"))
+            {
+                _anim.SetLayerWeight(baseLayerIndex, 1f);
+                _anim.SetLayerWeight(level2LayerIndex, 0f);
+            }
+            else
+            {
+                _anim.SetLayerWeight(baseLayerIndex, 0f);
+                _anim.SetLayerWeight(level2LayerIndex, 1f);
+            }
+            _isLevel2LayerActive = DataManager.Instance.GetData<bool>("IsLevel2LayerActive");
         }
 
         private void OnEnable()
@@ -164,51 +178,58 @@ namespace Game.Player
 
         private void ToggleAnimationLayer()
         {
+            if (_layerTransitionCoroutine != null)
+                return;
+
             if (_isLevel2LayerActive)
-            {
                 SwitchToLayer(baseLayerIndex, level2LayerIndex);
-            }
             else
-            {
                 SwitchToLayer(level2LayerIndex, baseLayerIndex);
-            }
-            
+
             _isLevel2LayerActive = !_isLevel2LayerActive;
+            DataManager.Instance.SetData("IsLevel2LayerActive", _isLevel2LayerActive,true);
         }
 
         private void SwitchToLayer(int targetLayer, int previousLayer)
         {
             if (_layerTransitionCoroutine != null)
-            {
                 StopCoroutine(_layerTransitionCoroutine);
-            }
-            
-            _layerTransitionCoroutine = StartCoroutine(TransitionLayers(targetLayer, previousLayer));
+
+            _layerTransitionCoroutine = StartCoroutine(LayerFlashTransition(targetLayer, previousLayer));
         }
-
-        private System.Collections.IEnumerator TransitionLayers(int targetLayer, int previousLayer)
+        
+        private IEnumerator LayerFlashTransition(int targetLayer, int previousLayer)
         {
-            var timer = 0f;
-            var startWeightTarget = _anim.GetLayerWeight(targetLayer);
-            var startWeightPrevious = _anim.GetLayerWeight(previousLayer);
+            print("Layer Flash Transition");
+            if(Keyboard.current != null)
+                InputSystem.DisableDevice(Keyboard.current);
+            if(Mouse.current != null)
+                InputSystem.DisableDevice(Mouse.current);
+            if(Gamepad.current != null)
+                InputSystem.DisableDevice(Gamepad.current);
 
-            while (timer < layerTransitionTime)
+            for (var i = 0; i < flashCount; i++)
             {
-                timer += Time.deltaTime;
-                var progress = timer / layerTransitionTime;
-                
-                var targetWeight = Mathf.Lerp(startWeightTarget, 1f, progress);
-                var previousWeight = Mathf.Lerp(startWeightPrevious, 0f, progress);
-                
-                _anim.SetLayerWeight(targetLayer, targetWeight);
-                _anim.SetLayerWeight(previousLayer, previousWeight);
-                
-                yield return null;
+                var toggle = i % 2 == 0;
+                _anim.SetLayerWeight(targetLayer, toggle ? 1f : 0f);
+                _anim.SetLayerWeight(previousLayer, toggle ? 0f : 1f);
+                yield return new WaitForSeconds(flashInterval);
             }
 
             _anim.SetLayerWeight(targetLayer, 1f);
             _anim.SetLayerWeight(previousLayer, 0f);
+
+            yield return null;
+            if(Keyboard.current != null)
+                InputSystem.EnableDevice(Keyboard.current);
+            if(Mouse.current != null)
+                InputSystem.EnableDevice(Mouse.current);
+            if(Gamepad.current != null)
+                InputSystem.EnableDevice(Gamepad.current);
+
+            _layerTransitionCoroutine = null;
         }
+
 
         private void HandleSpriteFlip()
         {

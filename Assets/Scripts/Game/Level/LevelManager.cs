@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Data;
+using Game.VoiceToText;
 using ShrinkEventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,18 @@ namespace Game.Level
                 await SwitchLevel(CurrentLevel);
             }
             else await SwitchLevel("Level1-1");
+        }
+
+        [EventSubscribe]
+        public void OnEggTalkEvent(EggTalkEvent evt)
+        {
+            
+        }
+
+        [EventSubscribe]
+        public void OnDirtyTalkEvent(DirtyTalkEvent evt)
+        {
+            
         }
 
         public async Task SwitchLevel(string levelName)

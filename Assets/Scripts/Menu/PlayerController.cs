@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Game.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -73,30 +74,19 @@ namespace Menu
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            // 检查是否从下方接触到
-            foreach (var contact in collision.contacts)
-            {
-                if (Vector2.Dot(contact.normal, Vector2.up) > 0.5f) // 表示接触面朝上
-                {
-                    if (!_grounded)
-                    {
-                        _grounded = true;
-                        _coyoteUsable = true;
-                        _bufferedJumpUsable = true;
-                        _endedJumpEarly = false;
-                        GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
-                    }
-                    return;
-                }
-            }
+            if (!collision.contacts.Any(contact => Vector2.Dot(contact.normal, Vector2.up) > 0.5f)) return;
+            if (_grounded) return;
+            _grounded = true;
+            _coyoteUsable = true;
+            _bufferedJumpUsable = true;
+            _endedJumpEarly = false;
+            GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
         }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
-            // 检查是否所有接触点都离开地面
             if (_grounded)
             {
-                // 等下一个 FixedUpdate 也确认不在地面（防止物理 jitter）
                 StartCoroutine(WaitAndCheckGrounded());
             }
         }
@@ -115,15 +105,13 @@ namespace Menu
         private bool IsTouchingGround()
         {
             var results = new Collider2D[4];
-            var count = _col.Overlap(new ContactFilter2D().NoFilter(), results);
-            for (int i = 0; i < count; i++)
+            var count = _col.Overlap(ContactFilter2D.noFilter, results);
+            for (var i = 0; i < count; i++)
             {
                 var contactCol = results[i];
-                if (contactCol)
-                {
-                    var dir = (_col.bounds.center - contactCol.bounds.center).normalized;
-                    if (Vector2.Dot(dir, Vector2.down) < 0) return true;
-                }
+                if (!contactCol) continue;
+                var dir = (_col.bounds.center - contactCol.bounds.center).normalized;
+                if (Vector2.Dot(dir, Vector2.down) < 0) return true;
             }
             return false;
         }
