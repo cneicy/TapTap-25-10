@@ -80,8 +80,12 @@ namespace Game.Item
         protected PlayerController _playerController;
         private float _beforeHoverSpeedX;
         private float _beforeHoverSpeedY;
-        protected bool IsHoverStart;
-        protected bool IsHoverEnd;
+        
+        protected Coroutine HoverCoroutine;
+        protected Coroutine WindupCoroutine;
+        protected Coroutine DurationCoroutine;
+        protected Coroutine RecoveryCoroutine;
+        protected Coroutine CooldownCoroutine;
 
         public virtual void Start()
         {
@@ -93,7 +97,7 @@ namespace Game.Item
             if (!CanUse) return;
             CanUse = false;
             print($"{Name} 道具使用开始");
-            StartCoroutine(nameof(WindupTimer));
+            WindupCoroutine = StartCoroutine(nameof(WindupTimer));
         }
         
         public virtual IEnumerator WindupTimer()
@@ -107,7 +111,7 @@ namespace Game.Item
             OnWindupEnd();
             IsUsing = true;
             ApplyEffect();
-            StartCoroutine(nameof(DurationTimer));
+            DurationCoroutine = StartCoroutine(nameof(DurationTimer));
         }
 
         public virtual IEnumerator DurationTimer()
@@ -118,7 +122,7 @@ namespace Game.Item
             IsUsing = false;
             OnUseEnd();
             // 使用结束后进入后摇
-            StartCoroutine(nameof(RecoveryTimer));
+            RecoveryCoroutine = StartCoroutine(nameof(RecoveryTimer));
         }
         
         public virtual IEnumerator RecoveryTimer()
@@ -130,7 +134,7 @@ namespace Game.Item
             /*print("后摇结束");*/
             IsRecovering = false;
             OnRecoveryEnd();
-            StartCoroutine(nameof(CooldownTimer));
+            CooldownCoroutine = StartCoroutine(nameof(CooldownTimer));
         }
 
         public virtual IEnumerator CooldownTimer()
@@ -141,6 +145,13 @@ namespace Game.Item
             CanUse = true;
         }
 
+        public virtual IEnumerator HoverTimer()
+        {
+            StartHover();
+            yield return new WaitForSeconds(WindupDuration+Duration);
+            StopHover();
+        }
+        
         private void FixedUpdate()
         {
             if (!IsUsing)
@@ -154,7 +165,6 @@ namespace Game.Item
         {
             /*print("前摇开始 - 播放准备动画");*/
             /*_playerController.inAirGravity = 0;*/
-            StartHover(IsHoverStart);
         }
         
         public virtual void OnWindupEnd()
@@ -175,13 +185,16 @@ namespace Game.Item
         public virtual void OnRecoveryEnd()
         {
             /*print("后摇结束");*/
-            StopHover(IsHoverEnd);
         }
 
         public virtual void OnUseCancel()
         {
             /*print("不用了");*/
-            StopAllCoroutines();
+            StopIfRunning(ref WindupCoroutine);
+            StopIfRunning(ref DurationCoroutine);
+            StopIfRunning(ref RecoveryCoroutine);
+            StopIfRunning(ref CooldownCoroutine);
+            
             CanUse = true;
             IsWindingUp = false;
             IsUsing = false;
@@ -203,29 +216,34 @@ namespace Game.Item
             
         }
 
-        protected virtual void StartHover(bool use)
+        protected virtual void StartHover()
         {
-            if (use)
+            print("滞空开始");
+            _beforeHoverSpeedX = _playerController._frameVelocity.x;
+            _beforeHoverSpeedY = _playerController._frameVelocity.y;
+            _playerController._frameVelocity.x = 0;
+            _playerController._frameVelocity.y = 0;
+            _playerController.HorizontalSpeed = 0;
+            _playerController.VerticalSpeed = 0;
+        }
+
+        protected virtual void StopHover()
+        {
+            _playerController._frameVelocity.x = _beforeHoverSpeedX;
+            _playerController._frameVelocity.y = _beforeHoverSpeedY;
+            _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;
+            _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
+        }
+        
+        // 放在 ItemBase 内
+        private void StopIfRunning(ref Coroutine co)
+        {
+            if (co != null)
             {
-                print("滞空开始");
-                _beforeHoverSpeedX = _playerController._frameVelocity.x;
-                _beforeHoverSpeedY = _playerController._frameVelocity.y;
-                _playerController._frameVelocity.x = 0;
-                _playerController._frameVelocity.y = 0;
-                _playerController.HorizontalSpeed = 0;
-                _playerController.VerticalSpeed = 0;
+                StopCoroutine(co);
+                co = null;             // 清空句柄，防止二次 Stop
             }
         }
 
-        protected virtual void StopHover(bool use)
-        {
-            if (use)
-            {
-                _playerController._frameVelocity.x = _beforeHoverSpeedX;
-                _playerController._frameVelocity.y = _beforeHoverSpeedY;
-                _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;
-                _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
-            }
-        }
     }
 }

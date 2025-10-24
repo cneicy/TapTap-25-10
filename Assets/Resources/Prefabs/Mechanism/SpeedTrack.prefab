@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2388321002573722096}
   - component: {fileID: 5391717426183904163}
   - component: {fileID: 3855052785710865467}
-  - component: {fileID: 4142849083988175685}
   - component: {fileID: 265698337798323121}
   m_Layer: 0
   m_Name: SpeedTrack
@@ -139,33 +138,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &4142849083988175685
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8763839463554772195}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &265698337798323121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,22 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a8a90ea9c03c4994fd1cb31f76371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Mechanism.SpeedTrack
-  rb: {fileID: 0}
-  autoStartOnEnable: 0
-  direction: 3
-  speed: 2
-  distance: 3
-  mode: 0
-  pauseAtEnds: 0
-  onceNextIsAToB: 1
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  playerTagWhitelist: []
-  perPlayerDebounce: 0.05
-  boostMagnitude: 8
-  decayPerSecond: 20
-  maxExtraSpeed: 12
-  horizontalOnly: 1
-  fallbackToFacing: 1
-  defaultDirection: {x: 1, y: 0}
+  speedBoost: 0
+  speedBoostFade: 0
+  speedUpDirection: 0

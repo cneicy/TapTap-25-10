@@ -18,8 +18,7 @@ namespace Game.Item
         [SerializeField] private float sideOffset;     // 降落伞视觉上左右偏移量
 
         private int _parachuteUsedIndex;//使用了几次降落伞
-        private int _maxParachuteUsedIndex = 3;//最多使用多少次(建议3)
-        private bool _parachuteHoverEnd;
+        private int _maxParachuteUsedIndex = 3;//最多使用多少
 
         //前摇/道具使用/后摇时间
         [Header("前摇/道具使用/后摇时间")]
@@ -55,9 +54,6 @@ namespace Game.Item
             Description = "";
             
             IsBuff = true;
-            IsHoverStart = true;
-            IsHoverEnd = false;
-            _parachuteHoverEnd = true;
         }
 
         private void Awake()
@@ -91,7 +87,6 @@ namespace Game.Item
         public override void OnUseEnd()
         {
             base.OnUseEnd();
-            StopHover(_parachuteHoverEnd);
 
             // 计数：1 -> 2 -> 3（不再增加）
             if (_parachuteUsedIndex < _maxParachuteUsedIndex)
