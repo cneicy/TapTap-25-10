@@ -5,13 +5,6 @@ using UnityEngine.InputSystem;
 
 namespace Menu
 {
-    /// <summary>
-    /// Hey!
-    /// Tarodev here. I built this controller as there was a severe lack of quality & free 2D controllers out there.
-    /// I have a premium version on Patreon, which has every feature you'd expect from a polished controller. Link: https://www.patreon.com/tarodev
-    /// You can play and compete for best times here: https://tarodev.itch.io/extended-ultimate-2d-controller
-    /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/tarodev
-    /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
@@ -20,7 +13,6 @@ namespace Menu
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
         private Vector2 _frameVelocity;
-        private bool _cachedQueryStartInColliders;
 
         #region Interface
 
@@ -36,8 +28,6 @@ namespace Menu
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<CapsuleCollider2D>();
-
-            _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
 
         private void Update()
@@ -70,78 +60,75 @@ namespace Menu
 
         private void FixedUpdate()
         {
-            CheckCollisions();
-
             HandleJump();
             HandleDirection();
             HandleGravity();
-            
             ApplyMovement();
         }
 
-        #region Collisions
-        
-        private float _frameLeftGrounded = float.MinValue;
+        #region Ground Detection (改为碰撞检测)
+
         private bool _grounded;
+        private float _frameLeftGrounded = float.MinValue;
 
-        private void CheckCollisions()
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Physics2D.queriesStartInColliders = false;
-
-            // 检查是否有任何碰撞体在脚下（排除自己）
-            var groundHit = Physics2D.CapsuleCast(
-                _col.bounds.center,
-                _col.size,
-                _col.direction,
-                0,
-                Vector2.down,
-                _stats.GrounderDistance,
-                Physics2D.AllLayers
-            );
-
-            var ceilingHit = Physics2D.CapsuleCast(
-                _col.bounds.center,
-                _col.size,
-                _col.direction,
-                0,
-                Vector2.up,
-                _stats.GrounderDistance,
-                Physics2D.AllLayers
-            );
-
-            // 忽略自身的碰撞体（如果命中的是自己）
-            if (groundHit.collider && groundHit.collider == _col)
-                groundHit = default;
-            if (ceilingHit.collider && ceilingHit.collider == _col)
-                ceilingHit = default;
-
-            // 命中顶部，停止上升
-            if (ceilingHit.collider)
-                _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
-
-            // 落地逻辑
-            if (!_grounded && groundHit.collider)
+            // 检查是否从下方接触到
+            foreach (var contact in collision.contacts)
             {
-                _grounded = true;
-                _coyoteUsable = true;
-                _bufferedJumpUsable = true;
-                _endedJumpEarly = false;
-                GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
+                if (Vector2.Dot(contact.normal, Vector2.up) > 0.5f) // 表示接触面朝上
+                {
+                    if (!_grounded)
+                    {
+                        _grounded = true;
+                        _coyoteUsable = true;
+                        _bufferedJumpUsable = true;
+                        _endedJumpEarly = false;
+                        GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
+                    }
+                    return;
+                }
             }
-            // 离开地面
-            else if (_grounded && !groundHit.collider)
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            // 检查是否所有接触点都离开地面
+            if (_grounded)
+            {
+                // 等下一个 FixedUpdate 也确认不在地面（防止物理 jitter）
+                StartCoroutine(WaitAndCheckGrounded());
+            }
+        }
+
+        private System.Collections.IEnumerator WaitAndCheckGrounded()
+        {
+            yield return new WaitForFixedUpdate();
+            if (!IsTouchingGround())
             {
                 _grounded = false;
                 _frameLeftGrounded = _time;
                 GroundedChanged?.Invoke(false, 0);
             }
-
-            Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
         }
 
+        private bool IsTouchingGround()
+        {
+            var results = new Collider2D[4];
+            var count = _col.Overlap(new ContactFilter2D().NoFilter(), results);
+            for (int i = 0; i < count; i++)
+            {
+                var contactCol = results[i];
+                if (contactCol)
+                {
+                    var dir = (_col.bounds.center - contactCol.bounds.center).normalized;
+                    if (Vector2.Dot(dir, Vector2.down) < 0) return true;
+                }
+            }
+            return false;
+        }
 
         #endregion
-
 
         #region Jumping
 
@@ -156,7 +143,8 @@ namespace Menu
 
         private void HandleJump()
         {
-            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
+            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0)
+                _endedJumpEarly = true;
 
             if (!_jumpToConsume && !HasBufferedJump) return;
 
@@ -205,7 +193,9 @@ namespace Menu
             else
             {
                 var inAirGravity = _stats.FallAcceleration;
-                if (_endedJumpEarly && _frameVelocity.y > 0) inAirGravity *= _stats.JumpEndEarlyGravityModifier;
+                if (_endedJumpEarly && _frameVelocity.y > 0)
+                    inAirGravity *= _stats.JumpEndEarlyGravityModifier;
+
                 _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
@@ -217,7 +207,8 @@ namespace Menu
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (_stats == null) Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
+            if (_stats == null)
+                Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
         }
 #endif
     }
@@ -231,9 +222,8 @@ namespace Menu
 
     public interface IPlayerController
     {
-        public event Action<bool, float> GroundedChanged;
-
-        public event Action Jumped;
-        public Vector2 FrameInput { get; }
+        event Action<bool, float> GroundedChanged;
+        event Action Jumped;
+        Vector2 FrameInput { get; }
     }
 }

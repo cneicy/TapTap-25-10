@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f768ed5c0148a5a9eed2e0723e093d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Menu.Bullet
-  speed: 10
+  speed: 20
   lifetime: 2
   direction: {x: 1, y: 0}
 --- !u!58 &-4920557397588694295
