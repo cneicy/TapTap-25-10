@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using Game.Level;
+using Game.Player;
 using ShrinkEventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +13,7 @@ namespace Game.Item
     {
         private static readonly int Jump = Animator.StringToHash("Jump");
         public string theItem;
+
         private void OnEnable()
         {
             var manager = FindAnyObjectByType<LevelManager>();
@@ -22,6 +25,7 @@ namespace Game.Item
                     return;
                 }
             }
+
             foreach (var unused in ItemSystem.Instance.ItemsPlayerHadTypeNames.Where(item => item == theItem))
             {
                 gameObject.SetActive(false);
@@ -36,10 +40,14 @@ namespace Game.Item
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player")) return;
+
             SoundManager.Instance.Play("pickup");
-            other.GetComponentInChildren<Animator>().SetTrigger(Jump);
+
+            EventBus.TriggerEvent(new PlayerSpinEvent(other.transform));
             EventBus.TriggerEvent(new PlayerGetItemEvent(theItem));
+            
             gameObject.SetActive(false);
         }
+
     }
 }
