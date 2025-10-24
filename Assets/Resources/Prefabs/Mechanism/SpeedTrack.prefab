@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5391717426183904163}
   - component: {fileID: 3855052785710865467}
   - component: {fileID: 265698337798323121}
+  - component: {fileID: 4136704806857333131}
   m_Layer: 0
   m_Name: SpeedTrack
   m_TagString: Untagged
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9925401, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,6 +151,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a8a90ea9c03c4994fd1cb31f76371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Mechanism.SpeedTrack
-  speedBoost: 0
-  speedBoostFade: 0
+  rb: {fileID: 0}
+  autoStartOnEnable: 0
+  direction: 3
+  speed: 0
+  distance: 0
+  mode: 0
+  pauseAtEnds: 0
+  onceNextIsAToB: 1
+  speedBoost: 50
+  speedBoostFade: 100
+  speedBoostDuration: 3
   speedUpDirection: 0
+--- !u!50 &4136704806857333131
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763839463554772195}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

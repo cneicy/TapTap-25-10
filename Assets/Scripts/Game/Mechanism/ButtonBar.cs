@@ -1,11 +1,10 @@
-// ButtonActivator.cs
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using static Game.Mechanism.MechanismHelpers;
-using Game.Item;     // Bullet
-using Game.Player;   // PlayerController / IPlayerController
+using Game.Item;    
+using Game.Player;   
 
 namespace Game.Mechanism
 {
@@ -75,7 +74,12 @@ namespace Game.Mechanism
                     if (m.IsPaused)        { m.ResumeProcess();    touched = true; }
                     else if (!m.IsRunning) { StartByConfigured(m); touched = true; }
 
-                    if (touched) { watchNonLoop.Add(m); OnEachAffected?.Invoke(m); }
+                    if (touched)
+                    {
+                        watchNonLoop.Add(m);
+                        OnEachAffected?.Invoke(m);
+                    }
+                    
                 }
             }
 

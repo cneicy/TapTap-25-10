@@ -1,10 +1,9 @@
-// LeverSwitch.cs
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using static Game.Mechanism.MechanismHelpers;
-using Game.Item;               // 识别 Bullet 组件（可选）
-using Game.Player;             // 识别 PlayerController（可选）
+using Game.Item;               
+using Game.Player;             
 
 namespace Game.Mechanism
 {
@@ -13,9 +12,8 @@ namespace Game.Mechanism
     {
         [Header("受控目标（遍历切换）")]
         public List<MechanismBase> targets = new();
-
-        [Header("事件（可选）")]
-        public UnityEvent OnToggledOnce;
+        
+        private UnityEvent OnToggledOnce;
         public UnityEvent<MechanismBase> OnEachToggled;
 
         [Header("子弹触发设置")]
@@ -49,8 +47,19 @@ namespace Game.Mechanism
             {
                 if (!m) continue;
 
-                if (m.IsRunning && !m.IsPaused) { m.PauseProcess();  OnEachToggled?.Invoke(m); continue; }
-                if (m.IsPaused)                 { m.ResumeProcess(); OnEachToggled?.Invoke(m); continue; }
+                if (m.IsRunning && !m.IsPaused)
+                {
+                    m.PauseProcess();
+                    OnEachToggled?.Invoke(m);
+                    continue;
+                }
+
+                if (m.IsPaused)
+                {
+                    m.ResumeProcess();
+                    OnEachToggled?.Invoke(m);
+                    continue;
+                }
 
                 StartByConfigured(m);
                 OnEachToggled?.Invoke(m);
@@ -110,5 +119,6 @@ namespace Game.Mechanism
 
             return (byLayer && byTag) || byComp;
         }
+        
     }
 }

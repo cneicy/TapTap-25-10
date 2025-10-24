@@ -12,6 +12,9 @@ namespace Game.Player
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
+        //可以使用外力加速度
+        public Vector2 ExternalVelocity { get; set; } = Vector2.zero;
+        
         [SerializeField] public ScriptableStats _stats;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
@@ -224,6 +227,8 @@ namespace Game.Player
 
         #endregion
 
+        
+        
         #region Gravity
 
         private void HandleGravity()
@@ -242,7 +247,7 @@ namespace Game.Player
 
         #endregion
 
-        private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
+        private void ApplyMovement() => _rb.linearVelocity = _frameVelocity + ExternalVelocity;
 
 #if UNITY_EDITOR
         private void OnValidate()
@@ -263,6 +268,8 @@ namespace Game.Player
         public bool RightSwitchItem;
     }
 
+    
+    
     public interface IPlayerController
     {
         public event Action<bool, float> GroundedChanged;

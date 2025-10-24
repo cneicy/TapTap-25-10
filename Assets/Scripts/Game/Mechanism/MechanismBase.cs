@@ -261,8 +261,7 @@ namespace Game.Mechanism
             rb.MovePosition(rb.position + legDir * moveLen);
             LegMoved += moveLen;
         }
-
-        // ---------- Hooks（子类可重写） ----------
+        
         protected virtual void OnProcessStarted()    { }
         protected virtual void OnProcessPaused()     { }
         protected virtual void OnProcessResumed()    { }
