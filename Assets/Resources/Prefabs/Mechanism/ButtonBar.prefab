@@ -82,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.323716, g: 0.9622642, b: 0.06959764, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 445c44949a011a447a51b06aaf54bec5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,6 +105,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e3392f2aae6d14a8ad6ab48eeafcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Mechanism.ButtonBar
+  rb: {fileID: 0}
+  autoStartOnEnable: 0
+  direction: 3
+  speed: 2
+  distance: 3
+  mode: 0
+  pauseAtEnds: 0
+  onceNextIsAToB: 1
+  targets: []
+  OnLocked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTouchWhileLocked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEachAffected:
+    m_PersistentCalls:
+      m_Calls: []
+  enableBulletTrigger: 1
+  bulletLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  bulletDebounce: 0.08
+  enablePlayerTouchTrigger: 1
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerTagWhitelist: []
+  playerDebounce: 0.08
+  anyTriggerDebounce: 0.02
 --- !u!50 &-2986803029530609407
 Rigidbody2D:
   serializedVersion: 5
@@ -166,15 +199,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.1398435}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.59999996, y: 0, z: 0.59999996, w: 1.1999999}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.8623533}
   m_EdgeRadius: 0
