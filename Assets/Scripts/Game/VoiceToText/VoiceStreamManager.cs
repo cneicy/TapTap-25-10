@@ -22,7 +22,6 @@ namespace Game.VoiceToText
     /// 2. 在 WhisperManager 的 Inspector 中配置模型
     /// 3. 添加本组件并关联 WhisperManager
     /// </summary>
-    
     public class VoiceStreamManager : Singleton<VoiceStreamManager>
     {
         [Header("组件引用")] [Tooltip("拖拽场景中的 WhisperManager 组件")]
@@ -50,8 +49,7 @@ namespace Game.VoiceToText
         [Header("显示设置")] [Tooltip("是否在控制台实时输出识别结果")]
         public bool printRealtimeResults = true;
 
-        [Header("孩子不懂事写着玩的 可选")]
-        [CanBeNull] public TMP_Text status;
+        [Header("孩子不懂事写着玩的 可选")] [CanBeNull] public TMP_Text status;
 
         [Tooltip("是否显示调试信息")] public bool showDebugInfo = true;
 
@@ -65,6 +63,7 @@ namespace Game.VoiceToText
         private MicrophoneRecord _microphoneRecord;
         private bool _isStreaming;
         private string _accumulatedText = "";
+        private bool _eggTriggered;
 
         protected override void Awake()
         {
@@ -74,7 +73,7 @@ namespace Game.VoiceToText
                 Debug.LogError("❌ 未设置 WhisperManager 引用！");
                 return;
             }
-            
+
             InitializeMicrophone();
         }
 
@@ -287,7 +286,8 @@ namespace Game.VoiceToText
                     Debug.Log("启动 WhisperStream...");
                 }
 
-                if(!DataManager.Instance.GetData<bool>("MicrophoneEnabled") && DataManager.Instance.GetData<bool>("IsNotFirstStart"))
+                if (!DataManager.Instance.GetData<bool>("MicrophoneEnabled") &&
+                    DataManager.Instance.GetData<bool>("IsNotFirstStart"))
                 {
                     if (_microphoneRecord != null && _microphoneRecord.IsRecording)
                     {
@@ -298,7 +298,7 @@ namespace Game.VoiceToText
                     print("关闭流式");
                     return;
                 }
-                
+
                 _stream.StartStream();
 
                 _isStreaming = true;
@@ -431,18 +431,21 @@ namespace Game.VoiceToText
             text = text.Trim();
             if (text.Contains("我草") || text.Contains("Fuck") || text.Contains("What's up") || text.Contains("化客") ||
                 text.Contains("罚客") || text.Contains("bucker") || text.Contains("buck") || text.Contains("fucker") ||
-                text.Contains("我靠") || text.Contains("妈") || text.Contains("大爷") || text.Contains("日") || text.Contains("操")
-                )
+                text.Contains("我靠") || text.Contains("妈") || text.Contains("大爷") || text.Contains("日") ||
+                text.Contains("操")
+               )
             {
                 print("素质有待提高");
                 _accumulatedText = "素质有待提高";
                 EventBus.TriggerEvent(new DirtyTalkEvent());
             }
 
-            if ((text.Contains("bug") || text.Contains("八个")) && (text.Contains("确定") || text.Contains("这")))
+            if (!_eggTriggered && (text.Contains("bug") || text.Contains("八个") || text.Contains("八個")) &&
+                (text.Contains("確定") || text.Contains("确定") || text.Contains("这") || text.Contains("這")))
             {
                 print("you win");
                 _accumulatedText = "you win";
+                _eggTriggered = true;
                 EventBus.TriggerEvent(new EggTalkEvent());
             }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Data;
+using Game.Meta;
 using Game.VoiceToText;
 using ShrinkEventBus;
 using UnityEngine;
@@ -39,13 +40,13 @@ namespace Game.Level
         [EventSubscribe]
         public void OnEggTalkEvent(EggTalkEvent evt)
         {
-            
+            SwitchLevel("Level_Voice");
         }
 
         [EventSubscribe]
         public void OnDirtyTalkEvent(DirtyTalkEvent evt)
         {
-            
+            MetaAudioManager.Instance.Play("noshuzhi");
         }
 
         public async Task SwitchLevel(string levelName)

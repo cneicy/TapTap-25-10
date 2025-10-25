@@ -3011,6 +3011,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 164fbc669a3feab42b0d10888303de83, type: 3}
   - name: nomorepause
     clip: {fileID: 8300000, guid: 2e1919efbd1c4fb41808e6c9d63dc694, type: 3}
+  - name: enterstudio
+    clip: {fileID: 8300000, guid: 8b6229f6e7b612448a39d4a4f5601262, type: 3}
+  - name: noshuzhi
+    clip: {fileID: 8300000, guid: 7184b46fd2fe52c45a65fc50c248f897, type: 3}
+  - name: lol
+    clip: {fileID: 8300000, guid: abc7c97ba17035845b6974b6c9464944, type: 3}
+  - name: wrongbtn
+    clip: {fileID: 8300000, guid: 90f70981fdfc0d640adf3367d5318742, type: 3}
+  - name: finishchatting
+    clip: {fileID: 8300000, guid: e7b371a2c68d5f841a37f5024ffc1752, type: 3}
 --- !u!82 &1693910263
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3719,6 +3729,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: beff699d16ab5464f9a30fc185e18a50, type: 3}
   - name: switchitem
     clip: {fileID: 8300000, guid: 42511347d856aaa40a6fdfa354a5f7a9, type: 3}
+  - name: btnclick
+    clip: {fileID: 8300000, guid: da1839cedaa97a248885bcdc72e5182c, type: 3}
 --- !u!4 &1950793529
 Transform:
   m_ObjectHideFlags: 0
