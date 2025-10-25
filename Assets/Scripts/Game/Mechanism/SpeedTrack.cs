@@ -26,14 +26,10 @@ namespace Game.Mechanism
         [Header("外部控制触发时是否推进方向（方案A开关）")]
         [SerializeField] private bool cycleOnControlledTrigger = true;
 
-        [Header("（可选）自动连线 ButtonBar/TensionBar 的事件")]
-        [SerializeField] private bool autoWireControllers = true;
-
-        [Header("（可选）方向可视箭头")]
-        [SerializeField] private Transform arrowVisual;
-
-        [Header("Gizmos")]
-        [SerializeField] private float gizmoLength = 1.2f;
+       
+        private bool autoWireControllers = true;
+        private Transform arrowVisual;
+        private float gizmoLength = 1.2f;
 
         private Collider2D _col;
 
