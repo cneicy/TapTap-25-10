@@ -440,7 +440,7 @@ namespace Game.VoiceToText
                 EventBus.TriggerEvent(new DirtyTalkEvent());
             }
 
-            if (!_eggTriggered && (text.Contains("bug") || text.Contains("八个") || text.Contains("八個")) &&
+            if (!_eggTriggered && (text.Contains("bug") || text.Contains("八个") || text.Contains("八個") || text.Contains("霸格")) &&
                 (text.Contains("確定") || text.Contains("确定") || text.Contains("这") || text.Contains("這")))
             {
                 print("you win");

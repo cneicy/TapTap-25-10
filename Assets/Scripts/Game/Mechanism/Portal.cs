@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using ScreenEffect;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -52,7 +53,8 @@ namespace Game.Mechanism
             TeleportTicket.Set(targetSceneName, targetPortalId, carryVel, arrivalImmunity);
 
             //切场景传送动画
-
+            RectTransitionController.Instance.StartTransition();
+            yield return new WaitForSeconds(0.25f);
             var op = SceneManager.LoadSceneAsync(targetSceneName, LoadSceneMode.Single);
             while (!op.isDone) yield return null;
 
@@ -62,7 +64,7 @@ namespace Game.Mechanism
 
         private void PlaceInCurrentScene(Player.Player player, string portalId, Vector2? carryVel, float immunity)
         {
-            var anchor = FindObjectsOfType<PortalAnchor>().FirstOrDefault(a => a.PortalId == portalId);
+            var anchor = FindObjectsByType<PortalAnchor>(FindObjectsSortMode.None).FirstOrDefault(a => a.PortalId == portalId);
             if (!anchor) { Debug.LogError($"未找到 PortalAnchor: {portalId}"); return; }
 
             player.transform.position = anchor.transform.position;

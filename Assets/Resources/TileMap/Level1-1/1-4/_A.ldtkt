@@ -1,0 +1,40 @@
+{
+  "Rects": [
+    {
+      "x": 0,
+      "y": 16,
+      "w": 32,
+      "h": 16
+    }
+  ],
+  "Def": {
+    "__cHei": 2,
+    "__cWid": 24,
+    "cachedPixelData": {
+      "opaqueTiles": "000000000000000000000000000000000000000000000000",
+      "averageColors": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000634a534a634a534a634a534a534a534a534a534a534a534a534a534a534a534a534a534a534a534a534a534a534a534a"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "_A",
+    "padding": 0,
+    "pxHei": 32,
+    "pxWid": 384,
+    "relPath": "传送门A.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 0,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 16,
+    "uid": 207
+  }
+}
