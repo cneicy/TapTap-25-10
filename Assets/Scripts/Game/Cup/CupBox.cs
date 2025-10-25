@@ -62,7 +62,6 @@ namespace Game.Cup
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            print("hit");
             if (!collision.name.Contains("Bullet")) return;
             foreach (var cup in allCups.Where(cup => cup.gameObject.activeSelf))
             {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using Game.Level;
 using ScreenEffect;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -55,8 +56,8 @@ namespace Game.Mechanism
             //切场景传送动画
             RectTransitionController.Instance.StartTransition();
             yield return new WaitForSeconds(0.25f);
-            var op = SceneManager.LoadSceneAsync(targetSceneName, LoadSceneMode.Single);
-            while (!op.isDone) yield return null;
+            var op = LevelManager.Instance.SwitchLevel(targetSceneName);
+            while (!op.IsCompleted) yield return null;
 
             // 黑幕在新场景的解析器里淡出
             _busy = false;

@@ -119,7 +119,7 @@ namespace ScreenEffect
             _material.SetFloat(ExpandProgressID, 1f);
 
             _rawImage.enabled = false;
-
+            SoundManager.Instance.Play("levelloaded");
             onComplete?.Invoke();
 
             _material.SetFloat(GapSizeID, maxGapSize);

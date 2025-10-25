@@ -30,6 +30,10 @@ namespace Game.Mechanism
         [Header("任意触发去抖（防同帧多次）")]
         public float anyTriggerDebounce = 0.02f;
 
+        [Header("SpriteRenderer翻转设置")]
+        public bool flipX;
+        public SpriteRenderer sprite;
+
         private float _lastBulletTime;
         private float _lastPlayerTime;
         private float _lastAnyTriggerTime;
@@ -38,6 +42,16 @@ namespace Game.Mechanism
         {
             base.Awake();
             if (rb) { rb.bodyType = RigidbodyType2D.Kinematic; rb.gravityScale = 0f; }
+            sprite = GetComponent<SpriteRenderer>();
+        }
+
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            if (sprite)
+            {
+                sprite.flipX = flipX;
+            }
         }
 
         [ContextMenu("Toggle Targets")]
@@ -89,9 +103,12 @@ namespace Game.Mechanism
                 fired = true;
             }
 
+            flipX = fired;
+
             if (fired)
             {
                 _lastAnyTriggerTime = Time.time;
+                SoundManager.Instance.Play("meclever");
                 ToggleTargets();
             }
         }

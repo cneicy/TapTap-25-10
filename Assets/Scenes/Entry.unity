@@ -837,11 +837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -499.4
+      value: -853
       objectReference: {fileID: 0}
     - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -258.3
+      value: -432
       objectReference: {fileID: 0}
     - target: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -1098,7 +1098,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 14
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1549,6 +1549,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 316747286}
     m_Modifications:
+    - target: {fileID: 1301948368538385928, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301948368538385928, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -862659620070987507, guid: a26e3d49f9b870049ab8f822b93a84ed, type: 3}
+    - target: {fileID: 1301948368538385928, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1481201325620863175, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
       propertyPath: canvas
       value: 
@@ -1567,7 +1579,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3255548279917499833, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -95
+      value: -112.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080281599052706741, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 537.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080281599052706741, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 154.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080281599052706741, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8084493545736411445, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
       propertyPath: m_IsActive
@@ -3021,8 +3045,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 90f70981fdfc0d640adf3367d5318742, type: 3}
   - name: finishchatting
     clip: {fileID: 8300000, guid: e7b371a2c68d5f841a37f5024ffc1752, type: 3}
-  - name: finishchatting
-    clip: {fileID: 8300000, guid: e7b371a2c68d5f841a37f5024ffc1752, type: 3}
+  - name: fakebtn
+    clip: {fileID: 8300000, guid: 991da239586c3db439053318dc203020, type: 3}
 --- !u!82 &1693910263
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3733,6 +3757,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 42511347d856aaa40a6fdfa354a5f7a9, type: 3}
   - name: btnclick
     clip: {fileID: 8300000, guid: da1839cedaa97a248885bcdc72e5182c, type: 3}
+  - name: tp
+    clip: {fileID: 8300000, guid: 8bffe9193191a69408b0b426a92c8d28, type: 3}
+  - name: switchlevel
+    clip: {fileID: 8300000, guid: 2cbbc75e74044d84dbf4e5d16290c99a, type: 3}
+  - name: levelloaded
+    clip: {fileID: 8300000, guid: 2ddac5c38c99156488cfce47d104def4, type: 3}
+  - name: mecbtn
+    clip: {fileID: 8300000, guid: e5fabe3e92a76184794fd948e7ff01f4, type: 3}
+  - name: meclever
+    clip: {fileID: 8300000, guid: c66ddb17b80dc1a41aaca0ce43681e91, type: 3}
+  - name: finishtrans
+    clip: {fileID: 8300000, guid: c5fa8c785043ebb46967f2732473cdf2, type: 3}
+  - name: finishtrans
+    clip: {fileID: 8300000, guid: c5fa8c785043ebb46967f2732473cdf2, type: 3}
 --- !u!4 &1950793529
 Transform:
   m_ObjectHideFlags: 0

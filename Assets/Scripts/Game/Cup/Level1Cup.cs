@@ -14,21 +14,31 @@ namespace Game.Cup
         }
 
         private Coroutine _contactCoroutine;
+        private AudioSource _audioSource;
+        private bool _isAudioPlaying;
+
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.name.Contains("Player"))
-            {
-                _contactCoroutine = StartCoroutine(ContactTimer(other.gameObject));
-            }
+            if (!other.gameObject.name.Contains("Player")) return;
+            _contactCoroutine = StartCoroutine(ContactTimer(other.gameObject));
+                
+            StartAudio();
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
             if (!other.gameObject.name.Contains("Player")) return;
             if (_contactCoroutine == null) return;
+            
             StopCoroutine(_contactCoroutine);
             _contactCoroutine = null;
+            
+            StopAudio();
         }
 
         private IEnumerator ContactTimer(GameObject player)
@@ -45,6 +55,33 @@ namespace Game.Cup
                 yield return null;
             }
 
+            OnContactComplete();
+        }
+
+        private void StartAudio()
+        {
+            if (_audioSource && !_isAudioPlaying)
+            {
+                _audioSource.Play();
+                _isAudioPlaying = true;
+            }
+        }
+
+        private void StopAudio()
+        {
+            if (_audioSource && _isAudioPlaying)
+            {
+                _audioSource.Stop();
+                _isAudioPlaying = false;
+                
+                Debug.Log("停止播放接触音频");
+            }
+        }
+
+        private void OnContactComplete()
+        {
+            StopAudio();
+            
             RectTransitionController.Instance.StartTransition();
             var dialog = FindAnyObjectByType<CupDescriptionDialog>();
             if (dialog)
@@ -63,6 +100,18 @@ namespace Game.Cup
                     return true;
             }
             return false;
+        }
+        
+        [ContextMenu("测试音频播放")]
+        private void TestAudioPlay()
+        {
+            StartAudio();
+        }
+
+        [ContextMenu("测试音频停止")]
+        private void TestAudioStop()
+        {
+            StopAudio();
         }
     }
 }

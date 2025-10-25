@@ -141,6 +141,7 @@ namespace Game.Mechanism
             if (fired)
             {
                 _lastAnyTriggerTime = Time.time;
+                SoundManager.Instance.Play("mecbtn");
                 ActivateTargets();
             }
         }

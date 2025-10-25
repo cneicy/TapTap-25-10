@@ -24,6 +24,7 @@ namespace Game.Level
         [EventSubscribe]
         public void OnLevelLoadedEvent(LevelLoadedEvent evt)
         {
+            SoundManager.Instance.Play("levelloaded");
             CurrentLevel = evt.LevelName;
         }
 
@@ -34,7 +35,7 @@ namespace Game.Level
             {
                 await SwitchLevel(CurrentLevel);
             }
-            else await SwitchLevel("Level1-1");
+            else await SwitchLevel("StartMenu");
         }
 
         [EventSubscribe]
@@ -51,6 +52,7 @@ namespace Game.Level
 
         public async Task SwitchLevel(string levelName)
         {
+            SoundManager.Instance.Play("switchlevel");
             await SceneManager.LoadSceneAsync(levelName);
         }
 
