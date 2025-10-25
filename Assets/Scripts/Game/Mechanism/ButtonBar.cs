@@ -59,28 +59,28 @@ namespace Game.Mechanism
                 if (!m) continue;
 
                 var effectiveMode = (m.IsRunning || m.IsPaused) ? m.Mode : m.mode;
+                bool touched = false;
 
                 if (effectiveMode == MotionMode.Loop)
                 {
                     if (m.IsRunning && !m.IsPaused) m.PauseProcess();
                     else if (m.IsPaused)           m.ResumeProcess();
                     else                           StartByConfigured(m);
-
-                    OnEachAffected?.Invoke(m);
+                    // touched 对 Loop 不参与锁定逻辑
                 }
                 else
                 {
-                    bool touched = false;
                     if (m.IsPaused)        { m.ResumeProcess();    touched = true; }
                     else if (!m.IsRunning) { StartByConfigured(m); touched = true; }
-
-                    if (touched)
-                    {
-                        watchNonLoop.Add(m);
-                        OnEachAffected?.Invoke(m);
-                    }
-                    
+                    // 已在运行且未暂停：不改变状态，但仍然要发事件以保持与 TensionBar 一致
                 }
+
+                // —— 关键：每个 target 都触发一次（与 TensionBar 行为保持一致）
+                OnEachAffected?.Invoke(m);
+
+                // 非 Loop 情况下，只有真实变更才进入锁定观察
+                if (effectiveMode != MotionMode.Loop && touched)
+                    watchNonLoop.Add(m);
             }
 
             if (watchNonLoop.Count > 0)
@@ -90,6 +90,7 @@ namespace Game.Mechanism
                 _lockRoutine = StartCoroutine(WaitUntilNonLoopCompleted(watchNonLoop));
             }
         }
+
 
         private IEnumerator WaitUntilNonLoopCompleted(List<MechanismBase> watch)
         {
