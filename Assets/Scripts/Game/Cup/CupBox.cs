@@ -29,7 +29,7 @@ namespace Game.Cup
             {
                 cupBase.gameObject.SetActive(false);
             }
-            cupsPlayerHad.Add("Level1Cup");
+            //cupsPlayerHad.Add("Level1Cup");
             RefreshCups();
         }
 

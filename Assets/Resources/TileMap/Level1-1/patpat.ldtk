@@ -3598,6 +3598,22 @@
 							],
 							"__worldX": 1600,
 							"__worldY": 32
+						},
+						{
+							"__identifier": "Save1",
+							"__grid": [23,10],
+							"__pivot": [0.5,1],
+							"__tags": ["Save"],
+							"__tile": { "tilesetUid": 139, "x": 0, "y": 0, "w": 32, "h": 64 },
+							"__smartColor": "#BE4A2F",
+							"iid": "9f401fc0-ac70-11f0-845b-f161daebfb9a",
+							"width": 32,
+							"height": 64,
+							"defUid": 141,
+							"px": [752,352],
+							"fieldInstances": [],
+							"__worldX": 2352,
+							"__worldY": 352
 						}
 					]
 				},

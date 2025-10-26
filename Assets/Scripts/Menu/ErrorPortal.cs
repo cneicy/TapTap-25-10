@@ -2,6 +2,7 @@
 using Game.Level;
 using UnityEngine;
 using System.Collections;
+using ScreenEffect;
 
 namespace Menu
 {
@@ -133,11 +134,13 @@ namespace Menu
             }
         }
         
-        private void OnTriggerEnter2D(Collider2D other)
+        private IEnumerator OnTriggerEnter2D(Collider2D other)
         {
             if(other.CompareTag("Player"))
             {
                 SoundManager.Instance.Play("tp");
+                RectTransitionController.Instance.StartTransition();
+                yield return new WaitForSeconds(0.25f);
                 LevelManager.Instance.SwitchLevel("Level1-1");
             }
         }
