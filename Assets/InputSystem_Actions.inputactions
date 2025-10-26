@@ -55,7 +55,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -321,17 +321,6 @@
                 },
                 {
                     "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "886e731e-7071-4ae4-95c0-e61739dad6fd",
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
@@ -370,6 +359,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e103fcd-4cf9-45a8-a171-8242a4462138",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -458,6 +458,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17faae62-60c5-4c9d-980a-56eb081ef587",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ff2e2be-bb2c-470b-b0f6-0ab4e17700d5",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -574,8 +596,30 @@
                 },
                 {
                     "name": "",
+                    "id": "51a7a2fa-e52e-4930-a14e-868be4e07ca5",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftSwitchItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b54acbf4-2ae6-4b4b-a5bf-2a139ace5377",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightSwitchItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2e1038e-0668-4c67-9202-0074b7efffb2",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

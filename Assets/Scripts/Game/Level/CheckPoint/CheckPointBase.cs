@@ -88,7 +88,7 @@ namespace Game.Level.CheckPoint
 
             _saveTimestamps.RemoveAll(t => now - t > 15f);
 
-            if (_saveTimestamps.Count < 3 || !IsSpecial) return;
+            if (_saveTimestamps.Count < 5 || !IsSpecial) return;
             
             _saveTimestamps.Clear();
             StartCoroutine(KickPlayer());

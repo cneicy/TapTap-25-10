@@ -69,8 +69,15 @@ namespace Game.Item
             muzzle = _playerController?.transform;
         }
 
+        protected override void StopHover()
+        {
+            _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;
+            _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
+        }
+
         public override void OnWindupEnd()
         {
+            StartCoroutine(nameof(HoverTimer));
             SoundManager.Instance.Play("shoot");
             // —— 保留原有：记录基线速度与施加后坐力
             _baselineX = _playerController?._frameVelocity.x ?? 0f;
