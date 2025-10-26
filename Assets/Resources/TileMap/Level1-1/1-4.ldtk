@@ -3249,6 +3249,22 @@
 							"fieldInstances": [],
 							"__worldX": 5008,
 							"__worldY": 480
+						},
+						{
+							"__identifier": "Player",
+							"__grid": [3,14],
+							"__pivot": [0.5,1],
+							"__tags": ["Player"],
+							"__tile": null,
+							"__smartColor": "#FEE761",
+							"iid": "c5803be0-ac70-11f0-ba88-2f3a0e16259c",
+							"width": 32,
+							"height": 64,
+							"defUid": 198,
+							"px": [112,480],
+							"fieldInstances": [],
+							"__worldX": 4912,
+							"__worldY": 480
 						}
 					]
 				},

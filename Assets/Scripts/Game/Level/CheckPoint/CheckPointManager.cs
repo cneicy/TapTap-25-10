@@ -10,7 +10,8 @@ namespace Game.Level.CheckPoint
     [EventBusSubscriber]
     public class CheckPointManager : Singleton<CheckPointManager>
     {
-        public CheckPointBase currentCheckPoint;
+        public Vector3 lastSavedPosition;
+        private bool _hasSavedPosition;
 
         private float _holdTime;
         private const float RequiredHoldTime = 3f;
@@ -20,7 +21,7 @@ namespace Game.Level.CheckPoint
         public void OnLevelLoadedEvent(LevelLoadedEvent evt)
         {
             if (evt.LevelName is "Level_STG" or "Level_Voice") return;
-            currentCheckPoint = null;
+            _hasSavedPosition = false;
             _holdTime = 0f;
             _actionTriggered = false;
         }
@@ -28,7 +29,8 @@ namespace Game.Level.CheckPoint
         [EventSubscribe]
         public void OnTouchCheckPointEvent(TouchCheckPointEvent evt)
         {
-            currentCheckPoint = evt.CheckPointBase;
+            lastSavedPosition = FindFirstObjectByType<PlayerController>().transform.position;
+            _hasSavedPosition = true;
         }
 
         public void Update()
@@ -63,11 +65,9 @@ namespace Game.Level.CheckPoint
 
             if (backAction.WasReleasedThisFrame())
             {
-                if (!_actionTriggered)
+                if (!_actionTriggered && _hasSavedPosition)
                 {
-                    if (currentCheckPoint)
-                        FindFirstObjectByType<PlayerController>().transform.position =
-                            currentCheckPoint.transform.position;
+                    FindFirstObjectByType<PlayerController>().transform.position = lastSavedPosition;
                 }
 
                 _holdTime = 0f;

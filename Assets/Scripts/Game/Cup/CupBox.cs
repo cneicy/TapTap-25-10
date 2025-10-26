@@ -33,6 +33,16 @@ namespace Game.Cup
             RefreshCups();
         }
 
+        private void OnEnable()
+        {
+            if(DataManager.Instance.GetData<List<string>>("CupsPlayerHad") is not null)
+            {
+                cupsPlayerHad = DataManager.Instance.GetData<List<string>>("CupsPlayerHad");
+                print(cupsPlayerHad);
+            }
+            RefreshCups();
+        }
+
         [EventSubscribe]
         public async Task OnLoadCupsEvent(LoadCupsEvent evt)
         {

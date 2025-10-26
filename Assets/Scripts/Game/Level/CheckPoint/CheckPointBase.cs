@@ -60,7 +60,7 @@ namespace Game.Level.CheckPoint
                 GetComponent<AudioSource>().Play();
                 triggered = true;
             }
-            else if (other.CompareTag("Ammo"))
+            else if (other.CompareTag("Ammo") || other.name.Contains("Bullet"))
             {
                 if (!IsSpecial)
                 {
