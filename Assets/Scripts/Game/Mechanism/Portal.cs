@@ -29,6 +29,7 @@ namespace Game.Mechanism
             if (_busy) return;
             var player = other.GetComponentInParent<Player.Player>();
             if (player == null) return;
+            SoundManager.Instance.Play("tp");
             StartCoroutine(TeleportRoutine(player));
         }
 

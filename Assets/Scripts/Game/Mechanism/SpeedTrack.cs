@@ -61,6 +61,7 @@ namespace Game.Mechanism
         {
             var player = other.GetComponent<Player.Player>();
             if (player == null) return;
+            SoundManager.Instance.Play("speedtrack");
 
             // 将当前方向与参数写入玩家的速度加成上下文
             player.SetSpeedBoostContext(speedBoost, speedBoostFade, speedBoostDuration, speedUpDirection);

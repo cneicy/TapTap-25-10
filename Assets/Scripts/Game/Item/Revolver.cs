@@ -44,7 +44,7 @@ namespace Game.Item
 
         private static readonly string[] _triggerMethodNames =
         {
-            "OnBulletTriggered", "Trigger", "Activate", "OnExternalTrigger", "OnTouch"
+            "ActivateTargets"
         };
 
         private void RevolverInit()
@@ -181,20 +181,18 @@ namespace Game.Item
         {
             base.OnUseCancel();
             CleanupActiveBullet();
-            ClearRecordedMechanisms();              // 取消时也清一次，防止跨用残留
         }
 
         private void OnDisable()
         {
             CleanupActiveBullet();
-            ClearRecordedMechanisms();              // 道具禁用时也清
         }
 
         // ====== 命中处理：记录 + 连带触发 ======
         private void HandleBulletHit(Collider2D hitCol)
         {
             if (!hitCol) return;
-
+            print("有碰撞到机关 "+hitCol.name);
             // 1) 锁定机关对象
             var mechGo = hitCol.attachedRigidbody ? hitCol.attachedRigidbody.gameObject : hitCol.gameObject;
 
@@ -204,6 +202,7 @@ namespace Game.Item
             // 3) 连带触发：对“之前记录过的其它机关”也触发
             foreach (var go in _recordedQueue)
             {
+                print("遍历到机关 "+go.name);
                 if (!go || go == mechGo) continue;
                 TryTriggerMechanism(go);
             }
@@ -213,7 +212,7 @@ namespace Game.Item
         {
             if (!mechGo) return;
             if (_recordedSet.Contains(mechGo)) return;
-
+            print("确认机关列表加入 "+mechGo.name);
             if (_recordedQueue.Count >= MaxRecorded)
             {
                 var old = _recordedQueue.Dequeue();
@@ -225,15 +224,17 @@ namespace Game.Item
 
         private void ClearRecordedMechanisms()
         {
+            print("记录清除");
             _recordedQueue.Clear();
             _recordedSet.Clear();
         }
 
         private void TryTriggerMechanism(GameObject mechGo)
         {
+            print("尝试触发机关 "+mechGo.name);
             var t = mechGo ? mechGo.transform : null;
             int depth = 0;
-            while (t != null && depth < 5)
+            while (t != null && depth < 6)
             {
                 foreach (var m in _triggerMethodNames)
                     t.gameObject.SendMessage(m, SendMessageOptions.DontRequireReceiver);

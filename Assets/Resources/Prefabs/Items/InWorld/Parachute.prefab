@@ -48,13 +48,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3920856911182796543, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920856911182796543, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920856911182796543, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920856911182796543, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794961527012270244, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794961527012270244, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794961527012270244, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 87214a78bfde2be448d16cedfdcd838e, type: 3}
+    - target: {fileID: 4794961527012270244, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7721236266263101651, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
       propertyPath: theItem
       value: Parachute
       objectReference: {fileID: 0}
     - target: {fileID: 9197773693349718820, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
       propertyPath: m_Name
-      value: Revolver Variant
+      value: Parachute
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

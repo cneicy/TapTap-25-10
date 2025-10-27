@@ -85,8 +85,6 @@ namespace Game.VoiceToText
             {
                 SetMicrophone(microphoneDeviceIndex);
             }
-
-            StartStream();
         }
 
         /// <summary>

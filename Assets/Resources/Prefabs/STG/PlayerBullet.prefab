@@ -74,9 +74,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb0a42bda714528afcd575dddfc6d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.STG.BulletHell.PlayerBullet
-  speed: 12
+  normalSpeed: 12
+  focusSpeed: 15
   lifetime: 2
   damage: 10
+  trackingStrength: 0.5
+  trackingRadius: 3
+  convergenceStrength: 2
+  isFocusMode: 0
 --- !u!58 &7333282147347923775
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -160,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 3297035664552192199, guid: cd27a37e5e381fe4786a613983da43b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

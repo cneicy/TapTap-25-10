@@ -87,12 +87,12 @@ namespace Game.VoiceToText
             if (b)
             {
                 streamManager.StartStream();
-                micSwitch.GetComponentInChildren<Text>().text = "停止麦克风";
+                micSwitch.GetComponentInChildren<Text>().text = "点击停止麦克风";
             }
             else
             {
                 streamManager.StopStream();
-                micSwitch.GetComponentInChildren<Text>().text = "开启麦克风";
+                micSwitch.GetComponentInChildren<Text>().text = "点击开启麦克风";
             }
             DataManager.Instance.SetData("MicrophoneEnabled", b);
         }
