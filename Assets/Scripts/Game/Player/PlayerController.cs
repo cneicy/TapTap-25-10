@@ -51,21 +51,6 @@ namespace Game.Player
 
         #endregion
 
-        
-        private static readonly RaycastHit2D[] _hitBuf = new RaycastHit2D[4];
-
-        private bool CastNonTrigger(Vector2 dir, float distance, int layerMask, out RaycastHit2D hit)
-        {
-            var filter = new ContactFilter2D
-            {
-                useTriggers = false,         
-                useLayerMask = true,
-                layerMask = layerMask
-            };
-            int count = _col.Cast(dir, filter, _hitBuf, distance);
-            hit = count > 0 ? _hitBuf[0] : new RaycastHit2D();
-            return count > 0;
-        }
         private void OnEnable()
         {
             ResetJumpState();
@@ -153,15 +138,21 @@ namespace Game.Player
         private void CheckCollisions()
         {
             Physics2D.queriesStartInColliders = false;
+            
+            bool groundHit = Physics2D.CapsuleCast(
+                _col.bounds.center, _col.size, _col.direction, 0,
+                Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
+            
+            var ceilCast = Physics2D.CapsuleCast(
+                _col.bounds.center, _col.size, _col.direction, 0,
+                Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
 
-            RaycastHit2D groundHit, ceilingHit;
-            bool hitSolidGround  = CastNonTrigger(Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer, out groundHit);
-            bool hitSolidCeiling = CastNonTrigger(Vector2.up,   _stats.GrounderDistance, ~_stats.PlayerLayer, out ceilingHit);
+            bool ceilingHit = ceilCast.collider != null && !ceilCast.collider.isTrigger;
 
-            if (hitSolidCeiling)
+            if (ceilingHit)
                 _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
 
-            if (!_grounded && hitSolidGround)
+            if (!_grounded && groundHit)
             {
                 _grounded = true;
                 _coyoteUsable = true;
@@ -169,7 +160,7 @@ namespace Game.Player
                 _endedJumpEarly = false;
                 GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
             }
-            else if (_grounded && !hitSolidGround)
+            else if (_grounded && !groundHit)
             {
                 _grounded = false;
                 _frameLeftGrounded = _time;
@@ -178,6 +169,7 @@ namespace Game.Player
 
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
         }
+
 
         #endregion
 
