@@ -21,20 +21,20 @@ ScriptedImporter:
   _scaleEntities: 1
   _intGridValues:
   - _key: L1_wall_1
-    _asset: {instanceID: 0}
+    _asset: {fileID: 11400000, guid: 23f01b02414ef7249a123567732f1357, type: 2}
   - _key: L2_wall_1
-    _asset: {instanceID: 0}
+    _asset: {fileID: 11400000, guid: 23f01b02414ef7249a123567732f1357, type: 2}
   - _key: Li_wall_1
-    _asset: {instanceID: 0}
+    _asset: {fileID: 11400000, guid: 23f01b02414ef7249a123567732f1357, type: 2}
   _entities:
   - _key: Save1
-    _asset: {instanceID: 0}
+    _asset: {fileID: 8254659281245196655, guid: 194839c6b70afd84e9bf69781849b276, type: 3}
   - _key: Save
-    _asset: {instanceID: 0}
+    _asset: {fileID: 7598730187618733916, guid: 63dd23f865a7e2e4dbcca1da499a3813, type: 3}
   - _key: Button
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4065040985786970612, guid: 60abed7b65bdde94097adfea6a65bb0e, type: 3}
   - _key: Switch
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1311004050024339016, guid: c29e098d1ac16974083f1a8949d675dc, type: 3}
   - _key: Block
     _asset: {instanceID: 0}
   - _key: Portal2save
@@ -46,9 +46,9 @@ ScriptedImporter:
   - _key: Platform
     _asset: {instanceID: 0}
   - _key: Player
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1544650614272011804, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
   - _key: MetaPoint
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1743986579029004213, guid: 15349e632e6ac7348b35bbbf760acf90, type: 3}
   - _key: Jiangbei
     _asset: {instanceID: 0}
   - _key: Portal2_another_level

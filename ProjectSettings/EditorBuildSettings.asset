@@ -39,6 +39,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Leveli-2.unity
     guid: 764a29a9c684b2c4e829fed53b5c1ca5
   - enabled: 1
+    path: Assets/Scenes/Leveli-3.unity
+    guid: 95664669566d65a46800f056ae09747c
+  - enabled: 1
+    path: Assets/Scenes/Leveli-4.unity
+    guid: d6e33ccc40881a14db738ad4f636c3d3
+  - enabled: 1
     path: Assets/Scenes/Level_Voice.unity
     guid: f749bfd0087b5794fbc1b025c17d7c18
   - enabled: 1
