@@ -1,0 +1,33 @@
+{
+  "Rects": null,
+  "Def": {
+    "__cHei": 5,
+    "__cWid": 16,
+    "cachedPixelData": {
+      "opaqueTiles": "00000000000000000100000111100000000000011110000000000000000000000000000000000000",
+      "averageColors": "f554f543f554e655f554e655f543f543f432f432f432f432c54446664666c544f543f432f543e666f6550888f543f543f432f432f432f4324432c432c4324432f554f543f554f432f5540999f543f544f544f544f432855485551655f677f677f432f432f554f554e6550999f543f543f544f544f43284328432955509990999f432f432f554f554099909990555055509990555054305440544065500000000"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "_01_tileset",
+    "padding": 0,
+    "pxHei": 160,
+    "pxWid": 512,
+    "relPath": "关卡01里世界tileset.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 0,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 32,
+    "uid": 222
+  }
+}

@@ -1,0 +1,58 @@
+fileFormatVersion: 2
+guid: ea97d05f535bd8841beea0f58b60b2ba
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
+  _reimportOnDependencyChange: 1
+  _jsonFile: {fileID: -164016180542632921, guid: ea97d05f535bd8841beea0f58b60b2ba, type: 3}
+  _pixelsPerUnit: 32
+  _customLevelPrefab: {instanceID: 0}
+  _intGridValueColorsVisible: 0
+  _useCompositeCollider: 1
+  _geometryType: 0
+  _createBackgroundColor: 1
+  _createLevelBoundsTrigger: 0
+  _useParallax: 1
+  _scaleEntities: 1
+  _intGridValues:
+  - _key: L1_wall_1
+    _asset: {instanceID: 0}
+  - _key: L2_wall_1
+    _asset: {instanceID: 0}
+  - _key: Li_wall_1
+    _asset: {instanceID: 0}
+  _entities:
+  - _key: Save1
+    _asset: {instanceID: 0}
+  - _key: Save
+    _asset: {instanceID: 0}
+  - _key: Button
+    _asset: {instanceID: 0}
+  - _key: Switch
+    _asset: {instanceID: 0}
+  - _key: Block
+    _asset: {instanceID: 0}
+  - _key: Portal2save
+    _asset: {instanceID: 0}
+  - _key: Portal2anypoint
+    _asset: {instanceID: 0}
+  - _key: Belt
+    _asset: {instanceID: 0}
+  - _key: Platform
+    _asset: {instanceID: 0}
+  - _key: Player
+    _asset: {instanceID: 0}
+  - _key: MetaPoint
+    _asset: {instanceID: 0}
+  - _key: Jiangbei
+    _asset: {instanceID: 0}
+  - _key: Portal2_another_level
+    _asset: {instanceID: 0}
+  _enumGenerate: 0
+  _enumPath: 
+  _enumNamespace: 

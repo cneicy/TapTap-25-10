@@ -80,9 +80,9 @@ namespace Game.Item
             StartCoroutine(nameof(HoverTimer));
             SoundManager.Instance.Play("shoot");
             // —— 保留原有：记录基线速度与施加后坐力
-            _baselineX = _playerController?._frameVelocity.x ?? 0f;
-            int facing = GetInstantFacingSign();
-            float impulse = -facing * recoilImpulse;
+            _baselineX = _playerController.FacingSign;
+            var facing = GetInstantFacingSign();
+            var impulse = -facing * recoilImpulse;
             if (_playerController != null)
                 _playerController._frameVelocity.x += impulse;
 
@@ -95,10 +95,10 @@ namespace Game.Item
             if (bulletPrefab == null) return;
 
             // 计算初始位置与方向（你当前版本抬高了 0.5f，保留）
-            Vector3 origin =
+            var origin =
                 muzzle != null ? muzzle.position + Vector3.up * 0.5f :
-                (Vector3)transform.position + (Vector3)(new Vector2(muzzleOffset.x * facing, muzzleOffset.y));
-            Vector2 dir = new Vector2(facing, 0f).normalized;
+                transform.position + (Vector3)new Vector2(muzzleOffset.x * facing, muzzleOffset.y);
+            var dir = new Vector2(facing, 0f).normalized;
 
             _activeBullet = Instantiate(bulletPrefab, origin, Quaternion.identity);
             _activeBullet.transform.right = new Vector3(dir.x, dir.y, 0f); // 可视朝向
@@ -176,7 +176,7 @@ namespace Game.Item
         // ========== 后摇守护：若后摇期间发生道具切换也能清除 ==========
         private IEnumerator BulletRecoveryGuard()
         {
-            float t = 0f;
+            var t = 0f;
             while (t < RecoveryDuration)
             {
                 // 后摇内一旦切换当前道具 -> 立刻清除正在飞行的子弹
@@ -215,15 +215,15 @@ namespace Game.Item
 
         public bool TryScanForward(out Vector2 hitPoint)
         {
-            int facing = GetInstantFacingSign();
+            var facing = GetInstantFacingSign();
 
             var scanOrigin = transform.position;
             scanOrigin.y = scanOrigin.y - 1.6f;
 
             Vector2 origin = scanOrigin;
-            Vector2 dir    = new Vector2(facing, 0);
+            var dir    = new Vector2(facing, 0);
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, dir, rayLength, hitMask);
+            var hit = Physics2D.Raycast(origin, dir, rayLength, hitMask);
             Debug.DrawRay(origin, dir * rayLength, Color.red, 0.1f);
 
             if (hit.collider != null)
@@ -243,7 +243,7 @@ namespace Game.Item
         {
             if (_playerController == null) return 1;
 
-            float x = _playerController.FrameInput.x;
+            var x = _playerController.FrameInput.x;
             const float dead = 0.01f;
             if (x > dead)  return 1;
             if (x < -dead) return -1;

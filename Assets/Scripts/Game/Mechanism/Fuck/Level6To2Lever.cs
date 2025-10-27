@@ -13,11 +13,9 @@ namespace Game.Mechanism.Fuck
         {
             yield return new WaitForSeconds(0.5f);
             _isUnblock = DataManager.Instance.GetData<bool>("IsLevel2BlockUnBlock");
-            if (_isUnblock)
-            {
-                GetComponent<TensionBar>()?.HandleCollider(FindAnyObjectByType<PlayerController>().gameObject.GetComponent<Collider2D>());
-            }
-
+            if (!_isUnblock) yield break;
+            GetComponent<ButtonBar>()?.HandleCollider(FindAnyObjectByType<PlayerController>().gameObject.GetComponent<Collider2D>());
+            GetComponent<TensionBar>()?.HandleCollider(FindAnyObjectByType<PlayerController>().gameObject.GetComponent<Collider2D>());
             yield return new WaitForSeconds(0.1f);
             gameObject.SetActive(false);
         }

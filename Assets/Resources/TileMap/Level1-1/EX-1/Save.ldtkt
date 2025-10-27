@@ -1,0 +1,40 @@
+{
+  "Rects": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 32,
+      "h": 64
+    }
+  ],
+  "Def": {
+    "__cHei": 2,
+    "__cWid": 1,
+    "cachedPixelData": {
+      "opaqueTiles": "00",
+      "averageColors": "f667f568"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "Save",
+    "padding": 0,
+    "pxHei": 64,
+    "pxWid": 32,
+    "relPath": "save.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 0,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 32,
+    "uid": 140
+  }
+}

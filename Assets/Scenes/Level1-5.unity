@@ -1125,7 +1125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2940834135209162164, guid: 4298981857d50cd44a5e9941a0cfd7ad, type: 3}
       propertyPath: targetSceneName
-      value: 1-5
+      value: Level1-6
       objectReference: {fileID: 0}
     - target: {fileID: 4149493238278327323, guid: 4298981857d50cd44a5e9941a0cfd7ad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1165,6 +1165,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149493238278327323, guid: 4298981857d50cd44a5e9941a0cfd7ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717252921517426403, guid: 4298981857d50cd44a5e9941a0cfd7ad, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8775036189182235366, guid: 4298981857d50cd44a5e9941a0cfd7ad, type: 3}
