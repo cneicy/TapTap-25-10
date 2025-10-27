@@ -10,7 +10,7 @@ namespace Game.Cup
         public Level1Cup()
         {
             Name = "Level1Cup";
-            Description = "嘻嘻嘻嘻";
+            Description = "不知神何处";
         }
 
         private Coroutine _contactCoroutine;

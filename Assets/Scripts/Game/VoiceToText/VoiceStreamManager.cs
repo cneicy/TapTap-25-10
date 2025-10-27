@@ -109,7 +109,7 @@ namespace Game.VoiceToText
 
             // 禁用麦克风的echo（我们自己处理）
             _microphoneRecord.echo = false;
-
+            StartStream();
             if (showDebugInfo)
             {
                 Debug.Log($"麦克风初始化完成 - 频率:{sampleRate}Hz, Chunk:{_microphoneRecord.chunksLengthSec}s");

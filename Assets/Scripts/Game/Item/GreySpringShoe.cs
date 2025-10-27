@@ -7,10 +7,8 @@ namespace Game.Item
 {
     public class GreySpringShoe : ItemBase
     {
-        public bool isUsed = false;
         [CanBeNull] private Player.Player _player;
-        private static readonly int Jump = Animator.StringToHash("Jump");
-        
+
         public GreySpringShoe()
         {
             Name = "灰色弹簧鞋";
@@ -22,11 +20,6 @@ namespace Game.Item
             IsBasement = true;
             IsBuff = false;
         }
-        private void Awake()
-        {
-            isUsed = false;
-            //ItemSystem.Instance.ItemsPlayerHad.Add(this);
-        }
 
         public override void Start()
         {
@@ -36,17 +29,15 @@ namespace Game.Item
 
         public override void ApplyEffect()
         {
-            _player = FindAnyObjectByType<Player.Player>();
-            if (isUsed) return;
+            _player = FindFirstObjectByType<Player.Player>();
             SoundManager.Instance.Play("shoeuse");
 
             if (_player)
             {
-                EventBus.TriggerEvent(new PlayerSpinEvent(_player.transform));
                 _player.isWearGreySpringShoe = true;
+                EventBus.TriggerEvent(new PlayerSpinEvent(_player.transform));
             }
 
-            isUsed = true;
             print(name +"已经使用");
         }
     }

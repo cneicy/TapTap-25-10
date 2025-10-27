@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Game.Item
+﻿namespace Game.Item
 {
     public class Hands : ItemBase
     {

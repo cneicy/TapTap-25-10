@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Level;
 using UnityEngine;
-using UnityEngine.Events;
-using Game.Player;
+using ShrinkEventBus;
 
 namespace Game.Item
 {
+    [EventBusSubscriber]
     public class Revolver : ItemBase
     {
         [Header("后坐力大小/后坐力衰减速度")]
@@ -66,6 +67,13 @@ namespace Game.Item
         private void Awake()
         {
             RevolverInit();
+        }
+
+        [EventSubscribe]
+        public void OnLevelLoadedEvent(LevelLoadedEvent evt)
+        {
+            ClearRecordedMechanisms();
+            CleanupActiveBullet();
         }
 
         public override void Start()
@@ -192,12 +200,14 @@ namespace Game.Item
         private void HandleBulletHit(Collider2D hitCol)
         {
             if (!hitCol) return;
+            
             print("有碰撞到机关 "+hitCol.name);
             // 1) 锁定机关对象
             var mechGo = hitCol.attachedRigidbody ? hitCol.attachedRigidbody.gameObject : hitCol.gameObject;
 
             // 2) 记录（最多5个，去重，FIFO）
-            AddMechanismRecord(mechGo);
+            if(!hitCol.name.Contains("Grid"))
+                AddMechanismRecord(mechGo);
 
             // 3) 连带触发：对“之前记录过的其它机关”也触发
             foreach (var go in _recordedQueue)
@@ -225,6 +235,7 @@ namespace Game.Item
         private void ClearRecordedMechanisms()
         {
             print("记录清除");
+            SoundManager.Instance.Play("recorddelete");
             _recordedQueue.Clear();
             _recordedSet.Clear();
         }

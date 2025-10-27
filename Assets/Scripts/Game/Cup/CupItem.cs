@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Data;
 using ShrinkEventBus;
 using UnityEngine;
@@ -17,10 +15,11 @@ namespace Game.Cup
 
         private void OnEnable()
         {
-            if (DataManager.Instance.GetData<List<string>>("CupsPlayerHad").Contains(_cup.Name))
-            {
-                gameObject.SetActive(false);
-            }
+            if(DataManager.Instance.GetData<List<string>>("CupsPlayerHad") is not null)
+                if (DataManager.Instance.GetData<List<string>>("CupsPlayerHad").Contains(_cup.Name))
+                {
+                    gameObject.SetActive(false);
+                }
             if (!GetComponentInParent<CupBox>()) return;
             if (GetComponentInParent<CupBox>().cupsPlayerHad.Contains(_cup.Name))
                 gameObject.SetActive(false);

@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Mechanism;
+﻿using Game.Mechanism;
 using LDtkUnity;
 using UnityEngine;
 

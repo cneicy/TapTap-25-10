@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Level;
+﻿using Game.Level;
 using UnityEngine;
 using System.Collections;
 using ScreenEffect;

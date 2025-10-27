@@ -4,6 +4,7 @@ using Game.Level;
 using ShrinkEventBus;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Game.Player
 {
@@ -16,7 +17,6 @@ namespace Game.Player
         }
     }
     
-    [EventBusSubscriber]
     public class PlayerAnimator : MonoBehaviour
     {
         [SerializeField] private int flashCount = 4;           // 来回切换次数
@@ -146,6 +146,7 @@ namespace Game.Player
         private void OnDisable()
         {
             EventBus.UnregisterAllEventsForObject(this);
+            EventBus.UnregisterInstance(this);
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
             _moveParticles.Stop();
@@ -154,6 +155,12 @@ namespace Game.Player
             {
                 StopCoroutine(_layerTransitionCoroutine);
             }
+        }
+
+        private void OnDestroy()
+        {
+            EventBus.UnregisterAllEventsForObject(this);
+            EventBus.UnregisterInstance(this);
         }
 
         private void Update()

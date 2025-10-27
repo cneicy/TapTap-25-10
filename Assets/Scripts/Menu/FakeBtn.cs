@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Meta;
+﻿using Game.Meta;
 using UnityEngine;
 
 namespace Menu

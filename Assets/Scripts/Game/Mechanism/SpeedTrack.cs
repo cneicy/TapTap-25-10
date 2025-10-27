@@ -1,11 +1,5 @@
-
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using ShrinkEventBus;
 using Game.Buff;
-using Game.Player;
-using Game.Mechanism; 
 using EventBus = ShrinkEventBus.EventBus;
 
 namespace Game.Mechanism

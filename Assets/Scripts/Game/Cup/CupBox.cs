@@ -1,11 +1,10 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data;
 using ShrinkEventBus;
 using UnityEngine;
-using Utils;
 
 namespace Game.Cup
 {
@@ -70,13 +69,16 @@ namespace Game.Cup
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private IEnumerator OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.name.Contains("Bullet")) return;
+            if (!collision.name.Contains("Bullet")) yield break;
             foreach (var cup in allCups.Where(cup => cup.gameObject.activeSelf))
             {
                 cup.Crash();
             }
+            GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
 
         [EventSubscribe]

@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
 using Game.Buff;
-using Game.Player;
 using ShrinkEventBus;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Item
 {
@@ -104,7 +100,7 @@ namespace Game.Item
             {
                 SpawnParachuteAtIndex(_parachuteUsedIndex);
             }
-
+            SoundManager.Instance.Play("parachuteuse");
             // 仅打印提示（可保留/删除）
             switch (_parachuteUsedIndex)
             {

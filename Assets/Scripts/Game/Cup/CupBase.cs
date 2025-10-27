@@ -31,6 +31,7 @@ namespace Game.Cup
         private float _rotationAmplitude = 10f;
         private float _rotationSpeed = 3f;
         public Vector2 power;
+        private bool _crashed;
 
         protected virtual void Awake()
         {
@@ -53,14 +54,17 @@ namespace Game.Cup
         public virtual void Crash()
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            GetComponent<Rigidbody2D>().AddForce(power, ForceMode2D.Impulse);
+            //GetComponent<Rigidbody2D>().AddForce(power, ForceMode2D.Impulse);
+            _crashed = true;
         }
 
         public virtual void OnMouseExit()
         {
             EventBus.TriggerEvent(new MouseExitCupEvent());
             _isHovered = false;
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            if(_crashed)
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            else GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             if (_hoverAnimCoroutine != null)
                 StopCoroutine(_hoverAnimCoroutine);
 

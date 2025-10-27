@@ -1,5 +1,4 @@
 using ShrinkEventBus;
-using UnityEngine;
 
 namespace Game.Buff
 {
