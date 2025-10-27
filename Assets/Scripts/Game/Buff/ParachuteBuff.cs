@@ -10,10 +10,11 @@ namespace Game.Buff
         private Rigidbody2D _rb;
         private float _oldGravityScale;
 
-        // 期望为正数幅度，内部用负号表示向下
+        // 期望为正数幅度（内部统一用负号表示向下）
         public float ParachuteMinSpeed { get; }
         public float ParachuteFallAcceleration { get; }
 
+        // 允许最多3层
         protected override int MaxStacks => 3;
 
         public ParachuteBuff(float duration, float minSpeed, float accel)
@@ -21,7 +22,7 @@ namespace Game.Buff
             BuffName = "Parachute";
             Duration = duration;
             ParachuteMinSpeed = Mathf.Abs(minSpeed);
-            ParachuteFallAcceleration = accel;
+            ParachuteFallAcceleration = Mathf.Abs(accel);
         }
 
         public override void OnApply(Player.Player target)
@@ -38,17 +39,14 @@ namespace Game.Buff
             }
 
             if (StackCount == 0) AddStack();
-
-            // 关闭控制器重力逻辑 + 物理重力设 0
+            
             _pc.HandleGravityByController = false;
             _oldGravityScale = _rb.gravityScale;
             _rb.gravityScale = 0f;
-
-            // 降低跳跃与横向移动（保留这些体验）
-            _pc.JumpPowerRate = 1f;      
-            _pc.HorizontalPowerRate = 0.5f; 
             
-            //标记是否在使用
+            _pc.JumpPowerRate = 1f;
+            _pc.HorizontalPowerRate = 0.5f;
+
             _pc.IsParachute = true;
         }
 
@@ -56,23 +54,25 @@ namespace Game.Buff
         {
             base.OnUpdate(target, dt);
             if (_rb == null || _pc == null) return;
-
-            // 叠层决定目标下落速度（负号向下）
+            
             float targetY = StackCount switch
             {
-                <= 1 => -ParachuteMinSpeed,          
-                2    => ParachuteMinSpeed * 0.5f,   
-                _    => ParachuteMinSpeed * 1.5f    
+                <= 1 => -ParachuteMinSpeed,            
+                2    => ParachuteMinSpeed * 0.75f,     
+                _    => ParachuteMinSpeed * 1.5f      
             };
 
-            Vector2 v = _rb.linearVelocity;
+            // 用 MoveTowards 将竖直速度逼近目标
+            var v = _rb.linearVelocity;
             float newY = Mathf.MoveTowards(v.y, targetY, ParachuteFallAcceleration * dt);
-
             if (Mathf.Abs(newY - targetY) <= 0.05f) newY = targetY;
-
+            
             v.y = newY;
             _rb.linearVelocity = v;
-            _pc._frameVelocity = v; // 同步缓存
+            
+            var fv = _pc._frameVelocity;
+            fv.y = newY;
+            _pc._frameVelocity = fv;
         }
 
         protected override void OnStackChanged()
@@ -84,7 +84,7 @@ namespace Game.Buff
         {
             base.OnRemove(target);
 
-            // 1) 还原玩家控制参数
+            // 还原玩家控制参数
             if (_pc != null)
             {
                 _pc.HandleGravityByController = true;
@@ -97,7 +97,7 @@ namespace Game.Buff
             if (_rb != null)
                 _rb.gravityScale = _oldGravityScale;
 
-            // 2) 
+            // 清理场景中的伞实体
             if (_pc != null)
             {
                 ParachuteUtils.DestroyAllParachutesUnder(_pc.transform);
