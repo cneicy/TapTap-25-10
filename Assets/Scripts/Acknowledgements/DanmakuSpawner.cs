@@ -30,10 +30,7 @@ namespace Acknowledgements
         [TextArea(3, 10)]
         public List<string> initialMessages = new List<string>()
         {
-            "感谢游玩，谢谢支持！",
-            "制作：Massu & Team",
-            "音效：SFX Pack v1.2",
-            "特别感谢所有测试玩家"
+            
         };
 
         // —— 简单对象池 ——

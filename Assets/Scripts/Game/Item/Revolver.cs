@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using Game.Player; 
+using UnityEngine.Events;
+using Game.Player;
 
 namespace Game.Item
 {
@@ -18,23 +20,32 @@ namespace Game.Item
 
         // === 视觉/实体子弹 ===
         [Header("VFX/Projectile")]
-        [SerializeField] private GameObject bulletPrefab; // 纯视觉或实体子弹预制体
+        [SerializeField] private GameObject bulletPrefab;
         [Header("子弹速度")]
-        [SerializeField] private float bulletSpeed = 50f;    // 子弹飞行速度
-        [SerializeField] private Transform muzzle;           // 可选：枪口位置
-        [SerializeField] private Vector2 muzzleOffset = new(0.6f, -1.6f); // 若无muzzle，从玩家位置+偏移
+        [SerializeField] private float bulletSpeed = 50f;
+        [SerializeField] private Transform muzzle;           
+        [SerializeField] private Vector2 muzzleOffset = new(0.6f, -1.6f);
 
-        private GameObject _activeBullet;    // 只保留一颗（仅作引用管理，不强制销毁）
+        private GameObject _activeBullet;
         private Coroutine _bulletGuardRoutine;
 
         private float _baselineX;
 
-        [Header("前摇/道具使用/后摇时间")]
+        [Header("前摇/使用/后摇/冷却时间")]
         public float revolverWindupDuration;
         public float revolverDuration;
         public float revolverRecoveryDuration;
-        [Header("道具冷却时间")]
         public float parachuteCooldown;
+
+        // ===== 命中机关记录（最多5个，FIFO，去重；仅在进入CD时清空） =====
+        private const int MaxRecorded = 5;
+        private readonly Queue<GameObject> _recordedQueue = new();
+        private readonly HashSet<GameObject> _recordedSet = new();
+
+        private static readonly string[] _triggerMethodNames =
+        {
+            "OnBulletTriggered", "Trigger", "Activate", "OnExternalTrigger", "OnTouch"
+        };
 
         private void RevolverInit()
         {
@@ -60,7 +71,6 @@ namespace Game.Item
         public override void Start()
         {
             base.Start();
-            //ItemSystem.Instance?.ItemsPlayerHad.Add(this);
         }
 
         public override void OnUseStart()
@@ -72,45 +82,51 @@ namespace Game.Item
         protected override void StopHover()
         {
             _playerController.HorizontalSpeed = _playerController._stats.MaxSpeed;
-            _playerController.VerticalSpeed = _playerController._stats.MaxFallSpeed;
+            _playerController.VerticalSpeed   = _playerController._stats.MaxFallSpeed;
         }
 
         public override void OnWindupEnd()
         {
+            // 滞空覆盖前摇+使用阶段
             StartCoroutine(nameof(HoverTimer));
             SoundManager.Instance.Play("shoot");
-            // —— 保留原有：记录基线速度与施加后坐力
+
+            // 后坐力
             _baselineX = _playerController.FacingSign;
-            var facing = GetInstantFacingSign();
+            var facing  = GetInstantFacingSign();
             var impulse = -facing * recoilImpulse;
             if (_playerController != null)
                 _playerController._frameVelocity.x += impulse;
 
-            // —— 可选：前向扫描
             TryScanForward(out _);
 
-            // —— 保留原有：只保留一颗子弹引用，后摇内守护
+            // 清理旧子弹
             if (_bulletGuardRoutine != null) StopCoroutine(_bulletGuardRoutine);
             if (_activeBullet != null) Destroy(_activeBullet);
             if (bulletPrefab == null) return;
 
-            // 计算初始位置与方向（你当前版本抬高了 0.5f，保留）
+            // 生成子弹
             var origin =
                 muzzle != null ? muzzle.position + Vector3.up * 0.5f :
                 transform.position + (Vector3)new Vector2(muzzleOffset.x * facing, muzzleOffset.y);
             var dir = new Vector2(facing, 0f).normalized;
 
             _activeBullet = Instantiate(bulletPrefab, origin, Quaternion.identity);
-            _activeBullet.transform.right = new Vector3(dir.x, dir.y, 0f); // 可视朝向
+            _activeBullet.transform.right = new Vector3(dir.x, dir.y, 0f);
 
-            // ====== 若预制体带 Rigidbody2D，则作为“实体子弹” ======
+            // 监听命中事件：记录 + 连带触发
+            var bulletComp = _activeBullet.GetComponent<Bullet>();
+            if (bulletComp == null) bulletComp = _activeBullet.AddComponent<Bullet>();
+            bulletComp.onHit.AddListener(HandleBulletHit);
+
+            // 实体/纯视觉两种弹
             var rb  = _activeBullet.GetComponent<Rigidbody2D>();
             var col = _activeBullet.GetComponent<Collider2D>();
 
             if (rb != null)
             {
-                if (!col) col = _activeBullet.AddComponent<CircleCollider2D>(); // 实体需要碰撞体
-                col.isTrigger = false; // 实体碰撞
+                if (!col) col = _activeBullet.AddComponent<CircleCollider2D>();
+                col.isTrigger = false;
 
                 rb.bodyType = RigidbodyType2D.Dynamic;
                 rb.gravityScale = 0f;
@@ -119,10 +135,8 @@ namespace Game.Item
                 if (rb.interpolation == RigidbodyInterpolation2D.None)
                     rb.interpolation = RigidbodyInterpolation2D.Interpolate;
 
-                // 出膛速度（2D 正确属性）
                 rb.linearVelocity = dir * bulletSpeed;
 
-                // 避免一出生就撞到玩家自身：短暂忽略碰撞
                 if (_playerController != null && col != null)
                 {
                     var playerCols = _playerController.GetComponentsInChildren<Collider2D>();
@@ -132,33 +146,103 @@ namespace Game.Item
             }
             else
             {
-                // —— 无刚体：回退到“纯视觉移动”，保持你原来的行为
                 _activeBullet.AddComponent<VfxBulletMover>().Init(dir * bulletSpeed);
             }
 
-            // —— 后摇守护（兜底：若系统没调用 OnUseCancel 也能检测切换）
+            // 后摇期间的守护
             _bulletGuardRoutine = StartCoroutine(BulletRecoveryGuard());
         }
 
         public override void OnUseEnd()
         {
+            // 这里不清记录 —— 记录要保留到进入CD
             base.OnUseEnd();
         }
 
-        // ========= 关键：切换道具时会被 ItemSystem 调用 =========
+        public override void OnRecoveryStart()
+        {
+            base.OnRecoveryStart();
+        }
+
+        public override void OnRecoveryEnd()
+        {
+            // 仍然不清记录；紧接着将进入 CooldownTimer
+            base.OnRecoveryEnd();
+        }
+
+        // ★★★ 关键：进入CD时清空命中记录（覆盖基类协程）★★★
+        public override IEnumerator CooldownTimer()
+        {
+            ClearRecordedMechanisms();              // 进入CD：清记录
+            yield return base.CooldownTimer();      // 执行父类：等待 Cooldown 秒并置 CanUse=true
+        }
+
         public override void OnUseCancel()
         {
-            base.OnUseCancel();      // 停止所有协程并重置状态（见你的 ItemBase）
-            CleanupActiveBullet();   // 立刻清除正在飞行的子弹
+            base.OnUseCancel();
+            CleanupActiveBullet();
+            ClearRecordedMechanisms();              // 取消时也清一次，防止跨用残留
         }
 
         private void OnDisable()
         {
-            // 防御式：道具被禁用时也清除
             CleanupActiveBullet();
+            ClearRecordedMechanisms();              // 道具禁用时也清
         }
 
-        // ========== 统一清理 ==========
+        // ====== 命中处理：记录 + 连带触发 ======
+        private void HandleBulletHit(Collider2D hitCol)
+        {
+            if (!hitCol) return;
+
+            // 1) 锁定机关对象
+            var mechGo = hitCol.attachedRigidbody ? hitCol.attachedRigidbody.gameObject : hitCol.gameObject;
+
+            // 2) 记录（最多5个，去重，FIFO）
+            AddMechanismRecord(mechGo);
+
+            // 3) 连带触发：对“之前记录过的其它机关”也触发
+            foreach (var go in _recordedQueue)
+            {
+                if (!go || go == mechGo) continue;
+                TryTriggerMechanism(go);
+            }
+        }
+
+        private void AddMechanismRecord(GameObject mechGo)
+        {
+            if (!mechGo) return;
+            if (_recordedSet.Contains(mechGo)) return;
+
+            if (_recordedQueue.Count >= MaxRecorded)
+            {
+                var old = _recordedQueue.Dequeue();
+                _recordedSet.Remove(old);
+            }
+            _recordedQueue.Enqueue(mechGo);
+            _recordedSet.Add(mechGo);
+        }
+
+        private void ClearRecordedMechanisms()
+        {
+            _recordedQueue.Clear();
+            _recordedSet.Clear();
+        }
+
+        private void TryTriggerMechanism(GameObject mechGo)
+        {
+            var t = mechGo ? mechGo.transform : null;
+            int depth = 0;
+            while (t != null && depth < 5)
+            {
+                foreach (var m in _triggerMethodNames)
+                    t.gameObject.SendMessage(m, SendMessageOptions.DontRequireReceiver);
+                t = t.parent;
+                depth++;
+            }
+        }
+
+        // ========== 清理 ==========
         private void CleanupActiveBullet()
         {
             if (_bulletGuardRoutine != null)
@@ -173,13 +257,12 @@ namespace Game.Item
             }
         }
 
-        // ========== 后摇守护：若后摇期间发生道具切换也能清除 ==========
+        // ========== 后摇守护 ==========
         private IEnumerator BulletRecoveryGuard()
         {
             var t = 0f;
             while (t < RecoveryDuration)
             {
-                // 后摇内一旦切换当前道具 -> 立刻清除正在飞行的子弹
                 if (!IsThisItemCurrentlyEquipped())
                 {
                     CleanupActiveBullet();
@@ -188,8 +271,6 @@ namespace Game.Item
                 t += Time.deltaTime;
                 yield return null;
             }
-
-            // 保持你原逻辑：后摇结束不强制销毁，只把引用清空
             _bulletGuardRoutine = null;
             _activeBullet = null;
         }
@@ -202,7 +283,6 @@ namespace Game.Item
                 if (pc) Physics2D.IgnoreCollision(bulletCol, pc, false);
         }
 
-        // —— 使用阶段：速度回到基线（保留）
         public override void ApplyEffectTick()
         {
             if (_playerController == null) return;
@@ -261,16 +341,11 @@ namespace Game.Item
             catch { return true; }
         }
     }
-
-    /// <summary>
-    /// 纯视觉子弹：当预制体没有 Rigidbody2D 时使用
-    /// </summary>
+    
     public class VfxBulletMover : MonoBehaviour
     {
         private Vector3 _velocity;
-
         public void Init(Vector2 velocity) => _velocity = velocity;
-
         private void Update() => transform.position += _velocity * Time.deltaTime;
     }
 }
