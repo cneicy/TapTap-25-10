@@ -7076,8 +7076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0336e6253374e09b672b1bb68690be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.UVDistortionFilter
-  enabled: 0
-  intensity: 0.5
+  enabled: 1
+  intensity: 0.1
   blockSize: 20
 --- !u!114 &1673444777
 MonoBehaviour:
