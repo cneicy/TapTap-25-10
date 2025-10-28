@@ -51,14 +51,10 @@ EditorBuildSettings:
     path: Assets/Resources/Scenes/Level2-1.unity
     guid: 6cc83e895409a644aa69438b095025cc
   - enabled: 1
-<<<<<<< HEAD
     path: Assets/Scenes/Level2-11.unity
     guid: a6408502b320f7b4fa9b3049809d4424
   - enabled: 1
     path: Assets/Scenes/Level2-2.unity
-=======
-    path: Assets/Resources/Scenes/Level2-2.unity
->>>>>>> 5a3aeef8dae3a53ae665206c1e6e9e975782ce3a
     guid: 0436134da147c57429da39c140a174b7
   - enabled: 1
     path: Assets/Resources/Scenes/Level_Voice.unity
