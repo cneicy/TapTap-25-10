@@ -35,6 +35,7 @@ namespace Game.Level.CheckPoint
         [SerializeField] private float triggerCooldown = 2f;
         private float _lastTriggerTime = -999f;
         private Animator _animator;
+        private int _kickMaxTime = 5;
 
         private readonly List<float> _saveTimestamps = new();
         private AudioSource _audioSource;
@@ -45,6 +46,10 @@ namespace Game.Level.CheckPoint
             _capsuleCollider2D = FindAnyObjectByType<PlayerController>().GetComponent<CapsuleCollider2D>();
             _audioSource = GetComponent<AudioSource>();
             _animator = GetComponent<Animator>();
+            
+            if(!(DataManager.Instance.GetData<int>("kickMaxTime") < 5))
+                _kickMaxTime = DataManager.Instance.GetData<int>("kickMaxTime");
+            else DataManager.Instance.SetData("kickMaxTime", 5);
         }
 
         public virtual void OnTriggerEnter2D(Collider2D other)
@@ -56,6 +61,7 @@ namespace Game.Level.CheckPoint
 
             if (other.CompareTag("Player"))
             {
+                _kickMaxTime = DataManager.Instance.GetData<int>("kickMaxTime");
                 EventBus.TriggerEvent(new TouchCheckPointEvent(HitBy.Player, this));
                 GetComponent<AudioSource>().Play();
                 triggered = true;
@@ -88,7 +94,7 @@ namespace Game.Level.CheckPoint
 
             _saveTimestamps.RemoveAll(t => now - t > 15f);
 
-            if (_saveTimestamps.Count < 5 || !IsSpecial) return;
+            if (_saveTimestamps.Count < _kickMaxTime || !IsSpecial) return;
             
             _saveTimestamps.Clear();
             StartCoroutine(KickPlayer());
@@ -97,7 +103,7 @@ namespace Game.Level.CheckPoint
         {
             _animator.SetTrigger(Kick);
             _audioSource.Play();
-            print("KickPlayer");
+            DataManager.Instance.SetData("kickMaxTime", DataManager.Instance.GetData<int>("kickMaxTime")+2,true);
             yield return new WaitForSeconds(0.8f);
             _capsuleCollider2D.enabled = false;
             yield return new WaitForSeconds(1f);

@@ -776,9 +776,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.CRTScanlineFilter
   enabled: 1
   intensity: 0.3
-  frequency: 800
+  frequency: 300
   brightness: 1
-  speed: 1
+  speed: 0.7
 --- !u!1 &1207712473
 GameObject:
   m_ObjectHideFlags: 0

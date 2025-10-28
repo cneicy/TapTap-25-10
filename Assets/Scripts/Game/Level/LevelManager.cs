@@ -52,6 +52,10 @@ namespace Game.Level
         public async Task SwitchLevel(string levelName)
         {
             SoundManager.Instance.Play("switchlevel");
+            if (levelName is "" or null)
+            {
+                await SceneManager.LoadSceneAsync("StartMenu");
+            }
             switch (levelName)
             {
                 case "Level_Voice" or "FakeStartMenu":

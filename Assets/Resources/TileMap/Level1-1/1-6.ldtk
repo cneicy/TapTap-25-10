@@ -3895,7 +3895,7 @@
 						},
 						{
 							"__identifier": "MetaPoint",
-							"__grid": [36,19],
+							"__grid": [45,27],
 							"__pivot": [0.5,0.5],
 							"__tags": ["Meta"],
 							"__tile": null,
@@ -3904,7 +3904,7 @@
 							"width": 96,
 							"height": 96,
 							"defUid": 199,
-							"px": [1168,624],
+							"px": [1456,880],
 							"fieldInstances": [
 								{ "__identifier": "voiceid", "__type": "String", "__value": "meta 1-6.1", "__tile": null, "defUid": 200, "realEditorValues": [{
 									"id": "V_String",
@@ -3912,8 +3912,8 @@
 								}] },
 								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
 							],
-							"__worldX": 4368,
-							"__worldY": -336
+							"__worldX": 4656,
+							"__worldY": -80
 						}
 					]
 				},
