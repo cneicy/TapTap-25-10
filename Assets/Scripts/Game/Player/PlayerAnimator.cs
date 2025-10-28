@@ -150,17 +150,14 @@ namespace Game.Player
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
             _moveParticles.Stop();
-            
-            if (_layerTransitionCoroutine != null)
-            {
-                StopCoroutine(_layerTransitionCoroutine);
-            }
+            StopAllCoroutines();
         }
 
         private void OnDestroy()
         {
             EventBus.UnregisterAllEventsForObject(this);
             EventBus.UnregisterInstance(this);
+            StopAllCoroutines();
         }
 
         private void Update()
