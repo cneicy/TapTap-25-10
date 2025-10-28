@@ -32,7 +32,7 @@ ScriptedImporter:
   - _key: Save
     _asset: {fileID: 7598730187618733916, guid: 63dd23f865a7e2e4dbcca1da499a3813, type: 3}
   - _key: Button
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4065040985786970612, guid: 60abed7b65bdde94097adfea6a65bb0e, type: 3}
   - _key: Switch
     _asset: {instanceID: 0}
   - _key: Block
@@ -48,7 +48,7 @@ ScriptedImporter:
   - _key: Player
     _asset: {fileID: 1544650614272011804, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
   - _key: MetaPoint
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1743986579029004213, guid: 15349e632e6ac7348b35bbbf760acf90, type: 3}
   - _key: Jiangbei
     _asset: {instanceID: 0}
   - _key: Portal2_another_level

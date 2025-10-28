@@ -24,7 +24,6 @@ public class Entry :  MonoBehaviour
         else
         {
             DataManager.Instance.SetData("IsNotFirstStart", true);
-            DataManager.Instance.SetData("MicrophoneEnabled", true);
             levelManager.SetActive(false);
         }
     }

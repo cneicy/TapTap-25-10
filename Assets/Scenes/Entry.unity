@@ -375,7 +375,7 @@ MonoBehaviour:
   m_text: Option A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
-  m_sharedMaterial: {fileID: 945073181134713151, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
+  m_sharedMaterial: {fileID: -7956356430562087742, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1647,6 +1647,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 316747286}
     m_Modifications:
+    - target: {fileID: 200336630279136345, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_margin.z
+      value: -296.66547
+      objectReference: {fileID: 0}
+    - target: {fileID: 200336630279136345, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
+    - target: {fileID: 200336630279136345, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7956356430562087742, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
+    - target: {fileID: 200336630279136345, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 478328891187425511, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
       propertyPath: m_fontSize
       value: 25
@@ -3038,7 +3054,7 @@ MonoBehaviour:
   m_text: "\u7B2C\u4E00\u6B21\u542F\u52A8\u6E38\u620F\u9700\u8981\u8BBE\u7F6E\u9EA6\u514B\u98CE\n\u9EA6\u514B\u98CE\u9ED8\u8BA4\u542F\u7528\uFF0C\u53EF\u80FD\u4F1A\u5BF9\u6E38\u620F\u6027\u80FD\u9020\u6210\u4E00\u5B9A\u5F71\u54CD\n\u60A8\u53EF\u9009\u62E9\u7981\u7528\u9EA6\u514B\u98CE\uFF0C\u7981\u7528\u9EA6\u514B\u98CE\u4E0D\u4F1A\u5BF9\u4E3B\u6D41\u7A0B\u7684\u5B8C\u6210\u9020\u6210\u5F71\u54CD\n\u786E\u8BA4\u65E0\u8BEF\u540E\u70B9\u51FB\u4E0B\u4E00\u6B65\u7EE7\u7EED"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
-  m_sharedMaterial: {fileID: 945073181134713151, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
+  m_sharedMaterial: {fileID: -7956356430562087742, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3295,6 +3311,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: afc95ef1c3898cb41a8e22ca90755e99, type: 3}
   - name: keysay
     clip: {fileID: 8300000, guid: 40b059538e8e3f9469481f3a51b1e62a, type: 3}
+  - name: whodesigned
+    clip: {fileID: 8300000, guid: 32abb95239fdcb740ad1ff6b4f368f3b, type: 3}
   - name: fakebtn
     clip: {fileID: 8300000, guid: 991da239586c3db439053318dc203020, type: 3}
 --- !u!82 &1693910263
@@ -4420,7 +4438,7 @@ MonoBehaviour:
   m_text: "\u4E0B\u4E00\u6B65"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
-  m_sharedMaterial: {fileID: 945073181134713151, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
+  m_sharedMaterial: {fileID: -7956356430562087742, guid: 6610470ff5b9af74f8b6bcc3cc73b90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

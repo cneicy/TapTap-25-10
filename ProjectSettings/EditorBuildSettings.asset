@@ -6,49 +6,49 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Resources/Scenes/Entry.unity
-    guid: 0b61f86e545e1a046994df8eaf9cb18e
+    path: Assets/Scenes/Entry.unity
+    guid: e6f754db33611484cbae77cbfa619430
   - enabled: 1
-    path: Assets/Resources/Scenes/Acknowledgements.unity
+    path: Assets/Scenes/Acknowledgements.unity
     guid: bc7859cbfb3e4654da476a44f8da75fc
   - enabled: 1
-    path: Assets/Resources/Scenes/Level_STG.unity
+    path: Assets/Scenes/PauseMenu.unity
+    guid: 20c16e4b7edeff94ea9c5671a0b4eacb
+  - enabled: 1
+    path: Assets/Scenes/Level_STG.unity
     guid: 9f9b4942c731ea44c9fa65f31e8f502c
   - enabled: 1
-    path: Assets/Resources/Scenes/PauseMenu.unity
-    guid: 2ba00cdf8d98f8a479fa1ed6c56e375b
-  - enabled: 1
-    path: Assets/Resources/Scenes/Level1-1.unity
+    path: Assets/Scenes/Level1-1.unity
     guid: 7d0c771921796254ea9ef46c27e2fd0e
   - enabled: 1
-    path: Assets/Resources/Scenes/Level1-2.unity
+    path: Assets/Scenes/Level1-2.unity
     guid: b4dcf5e1289ee68418d6dcca670706c6
   - enabled: 1
-    path: Assets/Resources/Scenes/Level1-3.unity
+    path: Assets/Scenes/Level1-3.unity
     guid: 2de91336ac391974cab668082d978d0c
   - enabled: 1
-    path: Assets/Resources/Scenes/Level1-4.unity
+    path: Assets/Scenes/Level1-4.unity
     guid: 80c96e69244ccb8449f9265cd6a4bd27
   - enabled: 1
-    path: Assets/Resources/Scenes/Level1-5.unity
+    path: Assets/Scenes/Level1-5.unity
     guid: 20452c22befd23642ad2e9e141f099c1
   - enabled: 1
-    path: Assets/Resources/Scenes/Level1-6.unity
+    path: Assets/Scenes/Level1-6.unity
     guid: d0c08cb577fd5704b81422d98f8a6d05
   - enabled: 1
-    path: Assets/Resources/Scenes/Leveli-1.unity
+    path: Assets/Scenes/Leveli-1.unity
     guid: 5328fac2e29b5084e8d00b25044df819
   - enabled: 1
-    path: Assets/Resources/Scenes/Leveli-2.unity
+    path: Assets/Scenes/Leveli-2.unity
     guid: 764a29a9c684b2c4e829fed53b5c1ca5
   - enabled: 1
-    path: Assets/Resources/Scenes/Leveli-3.unity
+    path: Assets/Scenes/Leveli-3.unity
     guid: 95664669566d65a46800f056ae09747c
   - enabled: 1
-    path: Assets/Resources/Scenes/Leveli-4.unity
+    path: Assets/Scenes/Leveli-4.unity
     guid: d6e33ccc40881a14db738ad4f636c3d3
   - enabled: 1
-    path: Assets/Resources/Scenes/Level2-1.unity
+    path: Assets/Scenes/Level2-1.unity
     guid: 6cc83e895409a644aa69438b095025cc
   - enabled: 1
     path: Assets/Scenes/Level2-11.unity
@@ -57,14 +57,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2-2.unity
     guid: 0436134da147c57429da39c140a174b7
   - enabled: 1
-    path: Assets/Resources/Scenes/Level_Voice.unity
-    guid: f749bfd0087b5794fbc1b025c17d7c18
+    path: Assets/Scenes/Level_Voice.unity
+    guid: 4d02aecddec2c9a4ea94b8ce5b86dfba
   - enabled: 1
-    path: Assets/Resources/Scenes/StartMenu.unity
-    guid: c1323ac2dd435d640a099c9c327e0e59
+    path: Assets/Scenes/StartMenu.unity
+    guid: ecb251161d6ed4445aec84607c7b4270
   - enabled: 1
-    path: Assets/Resources/Scenes/FakeStartMenu.unity
-    guid: 2a94d64d2eedbb94ba3b451ea943b2e5
+    path: Assets/Scenes/FakeStartMenu.unity
+    guid: 7ec5c16edce0d6748888394b2442fa80
   - enabled: 1
     path: Assets/Scenes/LevelEX.unity
     guid: 65272477b5237fe4cac9d9f7efebdfce
