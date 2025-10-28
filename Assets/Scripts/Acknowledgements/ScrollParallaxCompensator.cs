@@ -17,6 +17,9 @@ namespace Acknowledgements
         public bool horizontal = true;
         public bool vertical   = false;
 
+        [Header("开关")]
+        public bool active = true; // 新增：外部可控总开关
+
         [Header("允许运行时移动（拖拽/动画/代码）")]
         public bool allowRuntimeMove = true;
 
@@ -45,6 +48,50 @@ namespace Acknowledgements
         {
             if (!follower) follower = GetComponent<RectTransform>();
             BindNow(); // 以当前姿态为基准
+        }
+
+        /// <summary>
+        /// 外部开关：on=true 开启；on=false 关闭。
+        /// rebind=true 表示开启时将“当前姿态”作为新基准，避免跳变；
+        /// keepCurrentVisualPosition=true 会保留当前视觉位置（不清空手动偏移）。
+        /// </summary>
+        public void SetActive(bool on, bool rebind = true, bool keepCurrentVisualPosition = true)
+        {
+            active = on;
+
+            if (!active)
+            {
+                // 关闭时直接停止更新；下次开启前不记录外部改动
+                hasLast = false;
+                return;
+            }
+
+            // 开启
+            if (rebind)
+            {
+                BindNow(keepCurrentVisualPosition);
+            }
+            else
+            {
+                // 不重绑：沿用旧基准，但同步 lastApplied，避免误判外部改动
+                if (follower)
+                {
+                    lastAppliedPos = follower.anchoredPosition;
+                    hasLast = true;
+                }
+            }
+        }
+
+        // 便捷API
+        public void Enable(bool rebind = true, bool keepCurrentVisualPosition = true)
+            => SetActive(true, rebind, keepCurrentVisualPosition);
+
+        public void Disable() => SetActive(false);
+
+        public void Toggle(bool? rebind = null, bool keepCurrentVisualPosition = true)
+        {
+            bool turningOn = !active;
+            SetActive(turningOn, rebind ?? turningOn, keepCurrentVisualPosition);
         }
 
         /// <summary>
@@ -85,6 +132,7 @@ namespace Acknowledgements
 
         void LateUpdate()
         {
+            if (!active) return;                  // 新增：外部开关
             if (!moving || !follower) return;
 
             // —— 1) 捕捉外部对 follower 的改动，作为手动偏移叠加 —— //

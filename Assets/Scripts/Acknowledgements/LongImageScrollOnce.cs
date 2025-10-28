@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Acknowledgements
 {
     public class LongImageScrollHorizontalOnce : MonoBehaviour
     {
+        public AckPlayer ackPlayer;
+        public AckSun ackSun;
+        
         public RectTransform viewport;
         public RectTransform longImage;
 
@@ -28,6 +33,7 @@ namespace Acknowledgements
 
         [Tooltip("用于 ScreenRight 判断的摄像机（为空则用 Camera.main）")]
         public Camera screenCamera;
+        
 
         private Coroutine co;
         private static readonly Vector3[] _imgCornersWorld = new Vector3[4];
@@ -54,9 +60,15 @@ namespace Acknowledgements
             pos.x = leftToRight ? 0f : -maxOffset; // 从左→右：从最左开始滚到最右
             longImage.anchoredPosition = pos;
 
-            if (maxOffset <= 0f) yield break;
+            // 内容未超出视口：不需要滚动，也不触发“到达终点”
+            if (maxOffset <= 0f)
+            {
+                co = null;
+                yield break;
+            }
 
             float dir = leftToRight ? -1f : 1f; // 左→右视觉 = 图向左移动
+            bool reachedEnd = false;
 
             while (true)
             {
@@ -64,18 +76,40 @@ namespace Acknowledgements
                 pos.x = Mathf.Clamp(pos.x + step, -maxOffset, 0f);
                 longImage.anchoredPosition = pos;
 
-                // —— 停止判定：对齐或越过右边界 —— 
+                // 1) 右缘与参考对齐/越过（可选条件）
                 if (stopOnRightEdgeAlign && IsRightEdgeAlignedOrPassed())
+                {
+                    reachedEnd = true;
                     break;
+                }
 
-                // 兜底（完全滚到边界也停）
+                // 2) 兜底：滚动范围自然到头
                 bool doneByRange = leftToRight ? (pos.x <= -maxOffset) : (pos.x >= 0f);
-                if (doneByRange) break;
+                if (doneByRange)
+                {
+                    reachedEnd = true;
+                    break;
+                }
 
                 yield return null;
             }
 
-            if (loop) StartScroll();
+            // —— 只在真正到达终点时触发回调 —— 
+            if (reachedEnd)
+                OnReachedEnd();
+
+            co = null;
+
+            if (loop)
+                StartScroll();
+        }
+        
+        private void OnReachedEnd()
+        {
+            ackPlayer.playerScrollParallaxCompensator.active = false;
+            ackSun.sunScrollParallaxCompensator.active = false;
+            ackSun.PlayRotateFall();
+            ackPlayer.StartMoveToAckSunX();
         }
 
         bool IsRightEdgeAlignedOrPassed()
@@ -90,12 +124,11 @@ namespace Acknowledgements
             }
         }
 
-        // —— 推荐：把两者的角点变换到 viewport 的本地坐标系里，再比较 X —— 
+        // —— 推荐：把角点变换到 viewport 的本地坐标系里，再比较 X —— 
         bool IsRightEdgeAlignedInViewportLocal()
         {
             if (!viewport || !longImage) return false;
 
-            // 取长图世界角点 → 转到 viewport 本地
             longImage.GetWorldCorners(_imgCornersWorld);
 
             float imgRightLocal = float.NegativeInfinity;
@@ -105,14 +138,11 @@ namespace Acknowledgements
                 if (local.x > imgRightLocal) imgRightLocal = local.x;
             }
 
-            // viewport 本地右边界 = rect.xMax（与 pivot/anchor 无关）
             float vpRightLocal = viewport.rect.xMax;
-
-            // 当长图右边 ≤ 视口右边（加容差）则认为对齐/到达
             return imgRightLocal <= vpRightLocal + viewportEpsilon;
         }
 
-        // —— 可选：把长图角点投影到屏幕坐标，和屏幕右边界（Screen.width）比 —— 
+        // —— 可选：把长图角点投影到屏幕坐标，与屏幕右边界比 —— 
         bool IsRightEdgeAlignedOnScreen()
         {
             if (!longImage) return false;
