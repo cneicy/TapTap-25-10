@@ -43,6 +43,7 @@ namespace Game.STG.BulletHell
         [Header("UI引用")]
         public BossHealthBar healthBar;
 
+        public GameObject cup;
         private CirnoEnemyShooter _shooter;
         private int _currentPhase = 1;
         private Color _defaultColor;
@@ -230,10 +231,11 @@ namespace Game.STG.BulletHell
                 spriteRenderer.enabled = !spriteRenderer.enabled;
                 yield return new WaitForSeconds(0.1f);
             }
-            
-            RectTransitionController.Instance.StartTransition();
+
+            Instantiate(cup).transform.position = Vector3.zero;
+            /*RectTransitionController.Instance.StartTransition();
             yield return new WaitForSeconds(0.25f);
-            LevelManager.Instance.SwitchLevel(DataManager.Instance.GetData<string>("CurrentLevel"));
+            LevelManager.Instance.SwitchLevel(DataManager.Instance.GetData<string>("CurrentLevel"));*/
             print("finish");
             Destroy(gameObject);
         }

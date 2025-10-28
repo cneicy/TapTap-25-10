@@ -2193,9 +2193,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 144523487096864662, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.94382614
+      objectReference: {fileID: 0}
+    - target: {fileID: 144523487096864662, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1559049
+      objectReference: {fileID: 0}
+    - target: {fileID: 144523487096864662, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.009834379
+      objectReference: {fileID: 0}
+    - target: {fileID: 144523487096864662, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.059004724
+      objectReference: {fileID: 0}
     - target: {fileID: 6662842941871371554, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
       propertyPath: m_Name
       value: StudioCup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8344191325972454548, guid: f5d84dbe1ae0ea54bb00c6d8e3c1682a, type: 3}
       propertyPath: m_LocalPosition.x

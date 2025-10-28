@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Data;
+using Game.Level;
+using ScreenEffect;
 using ShrinkEventBus;
 using UnityEngine;
 
@@ -8,6 +11,7 @@ namespace Game.Cup
     public class CupItem : MonoBehaviour
     {
         private CupBase _cup;
+        private bool _touched;
         private void Awake()
         {
             _cup = GetComponent<CupBase>();
@@ -25,12 +29,16 @@ namespace Game.Cup
                 gameObject.SetActive(false);
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private IEnumerator OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
+                if(_touched) yield break;
+                _touched =  true;
                 EventBus.TriggerEvent(new PlayerGetCupEvent(_cup));
-                SoundManager.Instance.Play("庆贺吧");
+                SoundManager.Instance.Play("庆贺吧1");
+                yield return new WaitForSeconds(1f);
+                SoundManager.Instance.Play("庆贺吧2");
                 var temp = DataManager.Instance.GetData<List<string>>("CupsPlayerHad");
                 if (temp is not null)
                 {
@@ -46,7 +54,13 @@ namespace Game.Cup
                     DataManager.Instance.SetData("CupsPlayerHad", temp, true);
                 }
 
-                gameObject.SetActive(false);
+                if (_cup.Name == "STGCup")
+                {
+                    RectTransitionController.Instance.StartTransition();
+                    yield return new WaitForSeconds(0.25f);
+                    LevelManager.Instance.SwitchLevel(DataManager.Instance.GetData<string>("CurrentLevel"));
+                }else
+                    gameObject.SetActive(false);
             }
         }
     }

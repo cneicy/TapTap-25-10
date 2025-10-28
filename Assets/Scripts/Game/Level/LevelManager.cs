@@ -52,6 +52,29 @@ namespace Game.Level
         public async Task SwitchLevel(string levelName)
         {
             SoundManager.Instance.Play("switchlevel");
+            switch (levelName)
+            {
+                case "Level_Voice" or "FakeStartMenu":
+                    BGMController.Instance.StopBGM(4);
+                    break;
+                case "Level_STG":
+                    BGMController.Instance.PlayBGM("STG");
+                    break;
+                default:
+                    if(levelName.StartsWith("Level1"))
+                    {
+                        if (BGMController.Instance.IsPlaying("jazz")) break;
+                        BGMController.Instance.PlayBGM("jazz");
+                    }
+
+                    if (levelName.StartsWith("Leveli") || levelName.StartsWith("Level2"))
+                    {
+                        if (BGMController.Instance.IsPlaying("New")) break;
+                        BGMController.Instance.PlayBGM("New");
+                    }
+                    break;
+            }
+
             await SceneManager.LoadSceneAsync(levelName);
         }
 

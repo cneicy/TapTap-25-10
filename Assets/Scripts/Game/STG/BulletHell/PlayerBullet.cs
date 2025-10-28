@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.STG.BulletHell
 {
@@ -56,6 +57,11 @@ namespace Game.STG.BulletHell
             {
                 ApplyTracking();
             }
+        }
+
+        private void Update()
+        {
+            transform.Rotate(Vector3.forward * (Time.fixedDeltaTime * 100), Space.Self);
         }
 
         private void ApplyTracking()

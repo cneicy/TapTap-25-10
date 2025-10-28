@@ -19,9 +19,8 @@ namespace Game.Player
     
     public class PlayerAnimator : MonoBehaviour
     {
-        [SerializeField] private int flashCount = 4;           // 来回切换次数
-        [SerializeField] private float flashInterval = 0.08f;  // 每次切换间隔
-
+        [SerializeField] private int flashCount = 4;
+        [SerializeField] private float flashInterval = 0.08f;
         
         [Header("References")] 
         [SerializeField] private Animator _anim;
@@ -35,11 +34,9 @@ namespace Game.Player
         [Header("Animation Layers")]
         [SerializeField] private int baseLayerIndex = 0;
         [SerializeField] private int level2LayerIndex = 1;
-        [SerializeField] private float layerTransitionTime = 0.3f;
 
         [Header("Footstep Settings")]
-        [SerializeField, Tooltip("脚步音之间的时间间隔（秒）")]
-        private float _footstepInterval = 0.35f;
+        [SerializeField] private float _footstepInterval = 0.35f;
         private float _footstepTimer = 0f;
 
         [Header("Particles")] 
@@ -105,7 +102,6 @@ namespace Game.Player
             player.localScale = startScale;
         }
 
-
         private float EaseOutCubic(float t)
         {
             t = Mathf.Clamp01(t);
@@ -170,6 +166,23 @@ namespace Game.Player
             HandleCharacterTilt();
             HandleRunAnimation();
             HandleLayerSwitch();
+            EnsureLayerWeights();
+        }
+
+        private void EnsureLayerWeights()
+        {
+            if (_layerTransitionCoroutine != null) return;
+            
+            if (_isLevel2LayerActive)
+            {
+                _anim.SetLayerWeight(baseLayerIndex, 0f);
+                _anim.SetLayerWeight(level2LayerIndex, 1f);
+            }
+            else
+            {
+                _anim.SetLayerWeight(baseLayerIndex, 1f);
+                _anim.SetLayerWeight(level2LayerIndex, 0f);
+            }
         }
 
         private void HandleLayerSwitch()
@@ -204,7 +217,6 @@ namespace Game.Player
         
         private IEnumerator LayerFlashTransition(int targetLayer, int previousLayer)
         {
-            print("Layer Flash Transition");
             if(Keyboard.current != null)
                 InputSystem.DisableDevice(Keyboard.current);
             if(Mouse.current != null)
@@ -233,7 +245,6 @@ namespace Game.Player
 
             _layerTransitionCoroutine = null;
         }
-
 
         private void HandleSpriteFlip()
         {

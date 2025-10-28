@@ -54,19 +54,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3920856911182796543, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3.22
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 3920856911182796543, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.72
+      value: 0.26
       objectReference: {fileID: 0}
+    - target: {fileID: 4794961527012270244, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7849406707531570800, guid: 8ecfc78db0dc90244a1236a3eef6291e, type: 3}
     - target: {fileID: 7721236266263101651, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
       propertyPath: theItem
       value: GreySpringShoe
       objectReference: {fileID: 0}
     - target: {fileID: 9197773693349718820, guid: 65048adb14fc19d44bc91168b1b0bdf8, type: 3}
       propertyPath: m_Name
-      value: GreySpringShoe Variant
+      value: GreySpringShoe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

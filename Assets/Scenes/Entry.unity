@@ -262,6 +262,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165629678}
   m_CullTransparentMesh: 1
+--- !u!1 &191702939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191702940}
+  - component: {fileID: 191702941}
+  m_Layer: 0
+  m_Name: BGMController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &191702940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191702939}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.20356, y: -3.01803, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &191702941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191702939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3c951168394a218db8ae0ff6f2b841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.BGMController
+  bgmSource: {fileID: 0}
+  defaultBGMVolume: 0.523
+  sounds:
+  - name: jazz
+    clip: {fileID: 8300000, guid: da581348bc451744a984259aa578186b, type: 3}
+  - name: STG
+    clip: {fileID: 8300000, guid: 48b4baf8d4ae75949be23521927abacc, type: 3}
+  - name: New
+    clip: {fileID: 8300000, guid: 37cc41f4d4220f34ea6c3eae7b857e9b, type: 3}
 --- !u!1 &256857228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,6 +1647,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 316747286}
     m_Modifications:
+    - target: {fileID: 478328891187425511, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 478328891187425511, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_margin.y
+      value: -11.293579
+      objectReference: {fileID: 0}
+    - target: {fileID: 478328891187425511, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_margin.z
+      value: -302.41595
+      objectReference: {fileID: 0}
+    - target: {fileID: 478328891187425511, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1301948368538385928, guid: 5b73014007a5e954fa3b49f43280f009, type: 3}
       propertyPath: m_Type
       value: 0
@@ -1855,7 +1924,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   bulletPrefab: {fileID: 7247189936144488062, guid: 841c641614b597242aec11cfb94f0b2a, type: 3}
-  bulletSpeed: 25
+  bulletSpeed: 40
   muzzle: {fileID: 0}
   muzzleOffset: {x: 0.6, y: -1.6}
   revolverWindupDuration: 0.1
@@ -1889,7 +1958,7 @@ MonoBehaviour:
   parachutePrefab: {fileID: 0}
   spawnHeight: 3.5
   sideOffset: 1
-  parachuteWindupDuration: 0.2
+  parachuteWindupDuration: 0.1
   parachuteDuration: 0.2
   parachuteRecoveryDuration: 2
   parachuteBuffDuration: 5
@@ -4089,16 +4158,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c5fa8c785043ebb46967f2732473cdf2, type: 3}
   - name: blockmove
     clip: {fileID: 8300000, guid: e83618f86d292dc4fa174abe7085c959, type: 3}
-  - name: "\u5E86\u8D3A\u5427"
-    clip: {fileID: 8300000, guid: f8c151686113d6c4e9f42e2798ab3569, type: 3}
+  - name: "\u5E86\u8D3A\u54271"
+    clip: {fileID: 8300000, guid: 37a5e57bc09608e4ca4c36840967253d, type: 3}
   - name: speedtrack
     clip: {fileID: 8300000, guid: c6fb37afcba963048990e9913b46bccc, type: 3}
   - name: parachuteuse
     clip: {fileID: 8300000, guid: 715685782e413464688e8cf0b22b51ef, type: 3}
   - name: recorddelete
     clip: {fileID: 8300000, guid: 2878efa3fb2205640aab811049fff7f7, type: 3}
-  - name: finishtrans
-    clip: {fileID: 8300000, guid: c5fa8c785043ebb46967f2732473cdf2, type: 3}
+  - name: "\u5E86\u8D3A\u54272"
+    clip: {fileID: 8300000, guid: b7d0bf9a9c5048744a33c0dcea130c5a, type: 3}
 --- !u!4 &1950793529
 Transform:
   m_ObjectHideFlags: 0
@@ -4518,3 +4587,4 @@ SceneRoots:
   - {fileID: 923327841}
   - {fileID: 1950793529}
   - {fileID: 564289608}
+  - {fileID: 191702940}

@@ -21,11 +21,11 @@ ScriptedImporter:
   _scaleEntities: 1
   _intGridValues:
   - _key: L1_wall_1
-    _asset: {instanceID: 0}
+    _asset: {fileID: 11400000, guid: 23f01b02414ef7249a123567732f1357, type: 2}
   - _key: L2_wall_1
-    _asset: {instanceID: 0}
+    _asset: {fileID: 11400000, guid: 23f01b02414ef7249a123567732f1357, type: 2}
   - _key: Li_wall_1
-    _asset: {instanceID: 0}
+    _asset: {fileID: 11400000, guid: 23f01b02414ef7249a123567732f1357, type: 2}
   _entities:
   - _key: Save1
     _asset: {instanceID: 0}
@@ -46,7 +46,7 @@ ScriptedImporter:
   - _key: Platform
     _asset: {instanceID: 0}
   - _key: Player
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1544650614272011804, guid: 66264ef189b8f924ebed097f0be21d89, type: 3}
   - _key: MetaPoint
     _asset: {instanceID: 0}
   - _key: Jiangbei

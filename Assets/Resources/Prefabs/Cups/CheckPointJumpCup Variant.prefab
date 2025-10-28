@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1067125442779228402
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6662842941871371554, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_Name
+      value: CheckPointJumpCup Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344191325972454548, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123760577504505242, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d67d62768df1d7f48b33f88b245f75e8, type: 3}
+    m_RemovedComponents:
+    - {fileID: -3662565845167936580, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6662842941871371554, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1752622323831452528}
+  m_SourcePrefab: {fileID: 100100000, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+--- !u!1 &5960545670738025936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6662842941871371554, guid: d90f0cc0fa5b51f4d9739bc9e50f36d4, type: 3}
+  m_PrefabInstance: {fileID: 1067125442779228402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1752622323831452528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960545670738025936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e7a8699cfd949b88ecd30d38f579de4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Cup.CheckPointJumpCup
+  power: {x: 0, y: 0}
