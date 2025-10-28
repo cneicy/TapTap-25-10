@@ -14,10 +14,7 @@ namespace Game.Item
 
         private Dictionary<ItemBase, Sprite> _itemSprites = new();
         private ItemBase _currentItem;
-
-        /// <summary>
-        /// 初始化：加载所有 Item 的贴图。
-        /// </summary>
+        
         public void Init(List<ItemBase> allItems)
         {
             _itemSprites.Clear();
@@ -41,10 +38,7 @@ namespace Game.Item
 
             RefreshVisual(null);
         }
-
-        /// <summary>
-        /// 切换当前显示的 Item
-        /// </summary>
+        
         public void SetCurrentItem(ItemBase item)
         {
             _currentItem = item;
@@ -57,15 +51,13 @@ namespace Game.Item
 
             if (item && _itemSprites.TryGetValue(item, out var s))
                 newSprite = s;
-
-            // 更新 UI Image
+            
             if (uiImage)
             {
                 uiImage.enabled = newSprite;
                 uiImage.sprite = newSprite;
             }
-
-            // 更新 SpriteRenderer
+            
             if (worldSpriteRenderer)
             {
                 worldSpriteRenderer.enabled = newSprite;
