@@ -4656,6 +4656,28 @@
 							"fieldInstances": [],
 							"__worldX": 1584,
 							"__worldY": 576
+						},
+						{
+							"__identifier": "MetaPoint",
+							"__grid": [45,17],
+							"__pivot": [0.5,0.5],
+							"__tags": ["Meta"],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "38b46ff0-ac70-11f0-9b38-c51c62f52153",
+							"width": 32,
+							"height": 32,
+							"defUid": 199,
+							"px": [1456,560],
+							"fieldInstances": [
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta over", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta over"]
+								}] },
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
+							],
+							"__worldX": 1456,
+							"__worldY": 560
 						}
 					]
 				},

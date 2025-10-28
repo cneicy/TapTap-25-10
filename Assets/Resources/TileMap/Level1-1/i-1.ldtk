@@ -4646,13 +4646,13 @@
 							"defUid": 199,
 							"px": [240,304],
 							"fieldInstances": [
-								{ "__identifier": "voiceid", "__type": "String", "__value": "i0", "__tile": null, "defUid": 200, "realEditorValues": [{
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta i-1机关", "__tile": null, "defUid": 200, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["i0"]
+									"params": ["meta i-1机关"]
 								}] },
-								{ "__identifier": "disposable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 201, "realEditorValues": [{
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [{
 									"id": "V_Bool",
-									"params": [ false ]
+									"params": [ true ]
 								}] }
 							],
 							"__worldX": 240,
@@ -4919,6 +4919,50 @@
 							"fieldInstances": [],
 							"__worldX": 880,
 							"__worldY": 576
+						},
+						{
+							"__identifier": "MetaPoint",
+							"__grid": [32,12],
+							"__pivot": [0.5,0.5],
+							"__tags": ["Meta"],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "26b2a220-ac70-11f0-9405-19e499334c6f",
+							"width": 32,
+							"height": 96,
+							"defUid": 199,
+							"px": [1040,400],
+							"fieldInstances": [
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta i-1入场", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta i-1入场"]
+								}] },
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
+							],
+							"__worldX": 1040,
+							"__worldY": 400
+						},
+						{
+							"__identifier": "MetaPoint",
+							"__grid": [3,7],
+							"__pivot": [0.5,0.5],
+							"__tags": ["Meta"],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "47034f40-ac70-11f0-b2fe-85d2173053d3",
+							"width": 32,
+							"height": 32,
+							"defUid": 199,
+							"px": [112,240],
+							"fieldInstances": [
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta nobug", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta nobug"]
+								}] },
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
+							],
+							"__worldX": 112,
+							"__worldY": 240
 						}
 					]
 				},

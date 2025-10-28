@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: speed
-      value: 1.7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: distance
@@ -536,7 +536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: speed
-      value: 1.7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: distance
@@ -3091,7 +3091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: speed
-      value: 1.7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: distance

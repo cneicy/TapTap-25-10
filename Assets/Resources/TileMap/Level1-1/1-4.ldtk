@@ -3265,6 +3265,28 @@
 							"fieldInstances": [],
 							"__worldX": 4912,
 							"__worldY": 480
+						},
+						{
+							"__identifier": "MetaPoint",
+							"__grid": [9,14],
+							"__pivot": [0.5,0.5],
+							"__tags": ["Meta"],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "529cf670-ac70-11f0-a3c3-3bafef421899",
+							"width": 32,
+							"height": 32,
+							"defUid": 199,
+							"px": [304,464],
+							"fieldInstances": [
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta 1-4奖杯", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta 1-4奖杯"]
+								}] },
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
+							],
+							"__worldX": 5104,
+							"__worldY": 464
 						}
 					]
 				},

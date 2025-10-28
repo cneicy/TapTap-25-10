@@ -60,6 +60,9 @@ namespace Game.Level
                 case "Level_STG":
                     BGMController.Instance.PlayBGM("STG");
                     break;
+                case "Acknowledgements":
+                    BGMController.Instance.PlayBGM("Acknowledgments");
+                    break;
                 default:
                     if(levelName.StartsWith("Level1"))
                     {
@@ -76,14 +79,6 @@ namespace Game.Level
             }
 
             await SceneManager.LoadSceneAsync(levelName);
-        }
-
-        private void Update()
-        {
-            if (Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.Backspace))
-            {
-                SwitchLevel("StartMenu");
-            }
         }
     }
 }

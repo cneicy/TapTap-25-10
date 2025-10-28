@@ -35,10 +35,6 @@ namespace Game.Cup
             {
                 if(_touched) yield break;
                 _touched =  true;
-                EventBus.TriggerEvent(new PlayerGetCupEvent(_cup));
-                SoundManager.Instance.Play("庆贺吧1");
-                yield return new WaitForSeconds(1f);
-                SoundManager.Instance.Play("庆贺吧2");
                 var temp = DataManager.Instance.GetData<List<string>>("CupsPlayerHad");
                 if (temp is not null)
                 {
@@ -53,6 +49,10 @@ namespace Game.Cup
                     temp = new List<string> { _cup.Name };
                     DataManager.Instance.SetData("CupsPlayerHad", temp, true);
                 }
+                EventBus.TriggerEvent(new PlayerGetCupEvent(_cup));
+                SoundManager.Instance.Play("庆贺吧1");
+                yield return new WaitForSeconds(1f);
+                SoundManager.Instance.Play("庆贺吧2");
 
                 if (_cup.Name == "STGCup")
                 {

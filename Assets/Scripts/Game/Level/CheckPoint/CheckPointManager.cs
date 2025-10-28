@@ -1,4 +1,5 @@
-﻿using Game.Player;
+﻿using Data;
+using Game.Player;
 using ScreenEffect;
 using ShrinkEventBus;
 using UnityEngine;
@@ -38,7 +39,6 @@ namespace Game.Level.CheckPoint
             var backAction = InputSystem.actions.FindAction("BackPreviousCheckPoint");
             if (backAction == null)
             {
-                print("nu;;");
                 return;
             }
 
@@ -63,16 +63,18 @@ namespace Game.Level.CheckPoint
                 }
             }
 
-            if (backAction.WasReleasedThisFrame())
+            if (!backAction.WasReleasedThisFrame()) return;
+            if (!_actionTriggered && _hasSavedPosition)
             {
-                if (!_actionTriggered && _hasSavedPosition)
-                {
-                    FindFirstObjectByType<PlayerController>().transform.position = lastSavedPosition;
-                }
-
-                _holdTime = 0f;
-                _actionTriggered = false;
+                FindFirstObjectByType<PlayerController>().transform.position = lastSavedPosition;
             }
+            if(!DataManager.Instance.GetData<bool>("IsNotFirstReset"))
+            {
+                SoundManager.Instance.Play("meta 1-3.1");
+                DataManager.Instance.SetData("IsNotFirstReset", true, true);
+            }
+            _holdTime = 0f;
+            _actionTriggered = false;
         }
     }
 }

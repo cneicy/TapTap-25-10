@@ -3014,7 +3014,7 @@
 						},
 						{
 							"__identifier": "MetaPoint",
-							"__grid": [32,22],
+							"__grid": [30,22],
 							"__pivot": [0.5,0.5],
 							"__tags": ["Meta"],
 							"__tile": null,
@@ -3023,15 +3023,15 @@
 							"width": 32,
 							"height": 32,
 							"defUid": 199,
-							"px": [1040,720],
+							"px": [976,720],
 							"fieldInstances": [
-								{ "__identifier": "voiceid", "__type": "String", "__value": "151", "__tile": null, "defUid": 200, "realEditorValues": [{
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta 1-5土狼靴子", "__tile": null, "defUid": 200, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["151"]
+									"params": ["meta 1-5土狼靴子"]
 								}] },
 								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
 							],
-							"__worldX": 5840,
+							"__worldX": 5776,
 							"__worldY": -240
 						},
 						{
@@ -3126,6 +3126,28 @@
 							"fieldInstances": [],
 							"__worldX": 6256,
 							"__worldY": -96
+						},
+						{
+							"__identifier": "MetaPoint",
+							"__grid": [23,28],
+							"__pivot": [0.5,0.5],
+							"__tags": ["Meta"],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "919bd300-ac70-11f0-bc5c-7769f8391658",
+							"width": 352,
+							"height": 32,
+							"defUid": 199,
+							"px": [752,912],
+							"fieldInstances": [
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta 1-5.2", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta 1-5.2"]
+								}] },
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
+							],
+							"__worldX": 5552,
+							"__worldY": -48
 						}
 					]
 				},

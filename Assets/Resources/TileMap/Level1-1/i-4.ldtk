@@ -4901,7 +4901,10 @@
 							"defUid": 199,
 							"px": [1072,752],
 							"fieldInstances": [
-								{ "__identifier": "voiceid", "__type": "String", "__value": null, "__tile": null, "defUid": 200, "realEditorValues": [] },
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta i-3.2", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta i-3.2"]
+								}] },
 								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
 							],
 							"__worldX": 976,
@@ -5482,7 +5485,10 @@
 							"defUid": 199,
 							"px": [816,912],
 							"fieldInstances": [
-								{ "__identifier": "voiceid", "__type": "String", "__value": null, "__tile": null, "defUid": 200, "realEditorValues": [] },
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta i-3.4", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta i-3.4"]
+								}] },
 								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
 							],
 							"__worldX": 720,
@@ -5544,6 +5550,50 @@
 							"fieldInstances": [],
 							"__worldX": 1552,
 							"__worldY": 640
+						},
+						{
+							"__identifier": "MetaPoint",
+							"__grid": [48,29],
+							"__pivot": [0.5,0.5],
+							"__tags": ["Meta"],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "f4f1dbb0-ac70-11f0-9137-bb2c8a373014",
+							"width": 32,
+							"height": 32,
+							"defUid": 199,
+							"px": [1552,944],
+							"fieldInstances": [
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta i-3捡起降落伞", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta i-3捡起降落伞"]
+								}] },
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
+							],
+							"__worldX": 1456,
+							"__worldY": 912
+						},
+						{
+							"__identifier": "MetaPoint",
+							"__grid": [28,7],
+							"__pivot": [0.5,0.5],
+							"__tags": ["Meta"],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "dcdc20c0-ac70-11f0-9137-09eb84e42c6c",
+							"width": 96,
+							"height": 32,
+							"defUid": 199,
+							"px": [912,240],
+							"fieldInstances": [
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta i-3.3", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta i-3.3"]
+								}] },
+								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
+							],
+							"__worldX": 816,
+							"__worldY": 208
 						}
 					]
 				},

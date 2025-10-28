@@ -3025,7 +3025,10 @@
 							"defUid": 199,
 							"px": [112,528],
 							"fieldInstances": [
-								{ "__identifier": "voiceid", "__type": "String", "__value": null, "__tile": null, "defUid": 200, "realEditorValues": [] },
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta 1-1.1", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta 1-1.1"]
+								}] },
 								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
 							],
 							"__worldX": 112,
@@ -3044,7 +3047,10 @@
 							"defUid": 199,
 							"px": [1104,816],
 							"fieldInstances": [
-								{ "__identifier": "voiceid", "__type": "String", "__value": null, "__tile": null, "defUid": 200, "realEditorValues": [] },
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta 1-1.3", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta 1-1.3"]
+								}] },
 								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
 							],
 							"__worldX": 1104,
@@ -3063,7 +3069,10 @@
 							"defUid": 199,
 							"px": [1040,688],
 							"fieldInstances": [
-								{ "__identifier": "voiceid", "__type": "String", "__value": null, "__tile": null, "defUid": 200, "realEditorValues": [] },
+								{ "__identifier": "voiceid", "__type": "String", "__value": "meta 1-1.2", "__tile": null, "defUid": 200, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["meta 1-1.2"]
+								}] },
 								{ "__identifier": "disposable", "__type": "Bool", "__value": true, "__tile": null, "defUid": 201, "realEditorValues": [] }
 							],
 							"__worldX": 1040,
