@@ -6938,6 +6938,7 @@ GameObject:
   - component: {fileID: 1673444778}
   - component: {fileID: 1673444777}
   - component: {fileID: 1673444776}
+  - component: {fileID: 1673444784}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7106,8 +7107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81dafe999d8454ba5c4a735b1937eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.GhostEffectFilter
-  enabled: 0
-  intensity: 0.5
+  enabled: 1
+  intensity: 0.03
   ghostCount: 4
   ghostSpread: 0.03
 --- !u!114 &1673444779
@@ -7136,8 +7137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac3d5d88f81405484c291dccf8d429c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.ChromaticAberrationFilter
-  enabled: 0
-  intensity: 0.5
+  enabled: 1
+  intensity: 0.03
   amount: 0.03
 --- !u!114 &1673444781
 MonoBehaviour:
@@ -7182,6 +7183,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733f1900c2f445f787e2917082c31c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utils.ScreenAspect
+--- !u!114 &1673444784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673444771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734ebd65b9c44a083a25e9f3ebd67f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.CRTScanlineFilter
+  enabled: 1
+  intensity: 0.3
+  frequency: 800
+  brightness: 1
+  speed: 1
 --- !u!1001 &1676955920
 PrefabInstance:
   m_ObjectHideFlags: 0

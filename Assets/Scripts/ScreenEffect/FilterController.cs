@@ -32,7 +32,7 @@ namespace ScreenEffect
         }
 
         private void Update()
-        {
+        {/*
             if (Input.GetKeyDown(KeyCode.F))
             {
                 _manager?.ToggleFilters();
@@ -71,7 +71,7 @@ namespace ScreenEffect
             {
                 _scanline?.Toggle();
                 Debug.Log("CRT扫描线: " + (_scanline?.enabled ?? false));
-            }
+            }*/
         }
         
         public void OnToggleFilters()

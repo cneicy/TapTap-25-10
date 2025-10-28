@@ -2735,6 +2735,7 @@ GameObject:
   - component: {fileID: 1080967947}
   - component: {fileID: 1080967946}
   - component: {fileID: 1080967945}
+  - component: {fileID: 1080967957}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2749,7 +2750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080967944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0336e6253374e09b672b1bb68690be2, type: 3}
   m_Name: 
@@ -2764,7 +2765,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080967944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d93bcc46053543a09e783b3cfdb27016, type: 3}
   m_Name: 
@@ -2780,7 +2781,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080967944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c81dafe999d8454ba5c4a735b1937eb3, type: 3}
   m_Name: 
@@ -2796,7 +2797,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080967944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272306ce444040e0964c97166bc499d5, type: 3}
   m_Name: 
@@ -2810,7 +2811,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080967944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eac3d5d88f81405484c291dccf8d429c, type: 3}
   m_Name: 
@@ -2979,6 +2980,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1080967957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080967944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734ebd65b9c44a083a25e9f3ebd67f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.CRTScanlineFilter
+  enabled: 1
+  intensity: 0.3
+  frequency: 800
+  brightness: 1
+  speed: 1
 --- !u!1 &1207712473
 GameObject:
   m_ObjectHideFlags: 0

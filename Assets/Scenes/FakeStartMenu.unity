@@ -329,6 +329,9 @@ GameObject:
   - component: {fileID: 67139241}
   - component: {fileID: 67139244}
   - component: {fileID: 67139245}
+  - component: {fileID: 67139247}
+  - component: {fileID: 67139246}
+  - component: {fileID: 67139248}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -466,6 +469,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733f1900c2f445f787e2917082c31c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utils.ScreenAspect
+--- !u!114 &67139246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67139240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734ebd65b9c44a083a25e9f3ebd67f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.CRTScanlineFilter
+  enabled: 1
+  intensity: 0.3
+  frequency: 800
+  brightness: 1
+  speed: 1
+--- !u!114 &67139247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67139240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feed22c22f254580b0fa3d498b3c4282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.ScreenGlitchManager
+  targetCamera: {fileID: 67139242}
+  filterMaterial: {fileID: 2100000, guid: 83cc0f5cbe0e5fe4b832af7231f6c615, type: 2}
+  overlayCanvas: {fileID: 0}
+  filterDisplay: {fileID: 0}
+  autoResolution: 1
+  renderTextureWidth: 1920
+  renderTextureHeight: 1080
+--- !u!114 &67139248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67139240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81dafe999d8454ba5c4a735b1937eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.GhostEffectFilter
+  enabled: 1
+  intensity: 0.13
+  ghostCount: 5
+  ghostSpread: 0.024
 --- !u!1001 &124975662
 PrefabInstance:
   m_ObjectHideFlags: 0
