@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Player.Player
   rb2d: {fileID: 0}
-  playerSpeedY: 0
+  playerSpeedY1: 0
+  playerSpeedY2: 0
   isWearGreySpringShoe: 0
 --- !u!1 &2969068311587289281
 GameObject:
@@ -10057,11 +10058,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301683bb58323334caddb8e5c66c9c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashCount: 4
+  flashInterval: 0.08
   _anim: {fileID: 2969068313154050966}
   _sprite: {fileID: 3436876096492942141}
   _maxIdleSpeed: 2
   _maxTilt: 5
   _tiltSpeed: 20
+  baseLayerIndex: 0
+  level2LayerIndex: 1
+  layerTransitionTime: 0.3
   _footstepInterval: 0.35
   _jumpParticles: {fileID: 2969068312619346371}
   _launchParticles: {fileID: 2969068312669941334}
