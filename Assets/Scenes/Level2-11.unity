@@ -154,12 +154,12 @@ MonoBehaviour:
   frequency: 800
   brightness: 1
   speed: 1
-  chrointensity: 0.5
+  chrointensity: 0.04
   amount: 0.03
-  ghointensity: 0.5
+  ghointensity: 0.04
   ghostCount: 4
   ghostSpread: 0.03
-  intensity: 0.5
+  intensity: 0.04
   blockSize: 20
 --- !u!61 &137692222
 BoxCollider2D:
@@ -645,13 +645,13 @@ MonoBehaviour:
   frequency: 800
   brightness: 1
   speed: 1
-  chrointensity: 0.5
-  amount: 0.03
-  ghointensity: 0.5
-  ghostCount: 4
+  chrointensity: 0.13
+  amount: 0.054
+  ghointensity: 0.13
+  ghostCount: 5
   ghostSpread: 0.03
-  intensity: 0.5
-  blockSize: 20
+  intensity: 0.13
+  blockSize: 30
 --- !u!61 &428164766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -802,17 +802,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a8b6b918d347848c6243e903163701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.FilterBlock
-  crtintensity: 0.3
-  frequency: 800
-  brightness: 1
-  speed: 1
-  chrointensity: 0.5
-  amount: 0.03
-  ghointensity: 0.5
-  ghostCount: 4
-  ghostSpread: 0.03
-  intensity: 0.5
-  blockSize: 20
+  crtintensity: 0.5
+  frequency: 1131
+  brightness: 1.18
+  speed: 1.47
+  chrointensity: 0.42
+  amount: 0.108
+  ghointensity: 0.42
+  ghostCount: 5
+  ghostSpread: 0.1
+  intensity: 0.42
+  blockSize: 38
 --- !u!61 &612861178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -967,13 +967,13 @@ MonoBehaviour:
   frequency: 800
   brightness: 1
   speed: 1
-  chrointensity: 0.5
+  chrointensity: 0.18
   amount: 0.03
-  ghointensity: 0.5
+  ghointensity: 0.18
   ghostCount: 4
   ghostSpread: 0.03
-  intensity: 0.5
-  blockSize: 20
+  intensity: 0.18
+  blockSize: 30
 --- !u!61 &647656189
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1124,17 +1124,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a8b6b918d347848c6243e903163701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.FilterBlock
-  crtintensity: 0.3
-  frequency: 800
-  brightness: 1
-  speed: 1
-  chrointensity: 0.5
-  amount: 0.03
-  ghointensity: 0.5
-  ghostCount: 4
-  ghostSpread: 0.03
-  intensity: 0.5
-  blockSize: 20
+  crtintensity: 0.43
+  frequency: 1131
+  brightness: 1.11
+  speed: 1.4
+  chrointensity: 0.35
+  amount: 0.038
+  ghointensity: 0.35
+  ghostCount: 5
+  ghostSpread: 0.052
+  intensity: 0.35
+  blockSize: 38
 --- !u!61 &841068582
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1289,13 +1289,13 @@ MonoBehaviour:
   frequency: 800
   brightness: 1
   speed: 1
-  chrointensity: 0.5
+  chrointensity: 0.2
   amount: 0.03
-  ghointensity: 0.5
-  ghostCount: 4
+  ghointensity: 0.2
+  ghostCount: 6
   ghostSpread: 0.03
-  intensity: 0.5
-  blockSize: 20
+  intensity: 0.2
+  blockSize: 31
 --- !u!61 &1042452869
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1497,12 +1497,12 @@ MonoBehaviour:
   frequency: 800
   brightness: 1
   speed: 1
-  chrointensity: 0.5
+  chrointensity: 0.09
   amount: 0.03
-  ghointensity: 0.5
+  ghointensity: 0.09
   ghostCount: 4
   ghostSpread: 0.03
-  intensity: 0.5
+  intensity: 0.09
   blockSize: 20
 --- !u!61 &1310306271
 BoxCollider2D:
@@ -1654,17 +1654,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a8b6b918d347848c6243e903163701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.FilterBlock
-  crtintensity: 0.3
-  frequency: 800
-  brightness: 1
-  speed: 1
-  chrointensity: 0.5
+  crtintensity: 0.43
+  frequency: 1131
+  brightness: 1.11
+  speed: 1.1
+  chrointensity: 0.27
   amount: 0.03
-  ghointensity: 0.5
-  ghostCount: 4
+  ghointensity: 0.27
+  ghostCount: 6
   ghostSpread: 0.03
-  intensity: 0.5
-  blockSize: 20
+  intensity: 0.27
+  blockSize: 34
 --- !u!61 &1665389790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1943,7 +1943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.UVDistortionFilter
   enabled: 1
-  intensity: 0.5
+  intensity: 0.01
   blockSize: 20
 --- !u!114 &1673444777
 MonoBehaviour:
@@ -1974,7 +1974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.GhostEffectFilter
   enabled: 1
-  intensity: 0.13
+  intensity: 0.01
   ghostCount: 4
   ghostSpread: 0.03
 --- !u!114 &1673444779
@@ -2004,7 +2004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffect.ChromaticAberrationFilter
   enabled: 1
-  intensity: 0.1
+  intensity: 0.01
   amount: 0.03
 --- !u!114 &1673444781
 MonoBehaviour:
@@ -2101,12 +2101,12 @@ MonoBehaviour:
   frequency: 800
   brightness: 1
   speed: 1
-  chrointensity: 0.5
+  chrointensity: 0.1
   amount: 0.03
-  ghointensity: 0.5
+  ghointensity: 0.1
   ghostCount: 4
   ghostSpread: 0.03
-  intensity: 0.5
+  intensity: 0.1
   blockSize: 20
 --- !u!61 &1688044614
 BoxCollider2D:
