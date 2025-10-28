@@ -108,7 +108,6 @@ namespace Acknowledgements
         {
             ackPlayer.playerScrollParallaxCompensator.active = false;
             ackSun.sunScrollParallaxCompensator.active = false;
-            ackSun.PlayRotateFall();
             ackPlayer.StartMoveToAckSunX();
         }
 

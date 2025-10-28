@@ -8,12 +8,12 @@ namespace Acknowledgements
     public class AckSun : MonoBehaviour
     {
         public ScrollParallaxCompensator sunScrollParallaxCompensator;
-        public AckPlayer ackPlayer;
 
-        [Header("Rotate & Fall（默认参数，手动调用时使用）")]
-        public float fallDistance = 250f;   // 向下移动距离（UI本地单位）
-        public float fallDuration = 1.0f;   // 动画时长（秒）
-        public float rotateDegrees = -360f; // Z轴旋转角度（逆时针为正）
+        [Header("默认动画参数")]
+        public float fallDuration = 1.0f;      // 动画时长（秒）
+        public float rotateDegrees = -360f;    // Z轴旋转角度
+        [Tooltip("下落的最终目标高度（UI 本地 anchored Y）")]
+        public float targetLocalY = -350f;     // 目标 Y（本地/anchoredPosition.y）
 
         [Tooltip("使用不受 Time.timeScale 影响的时间")]
         public bool useUnscaledTime = true;
@@ -37,34 +37,35 @@ namespace Acknowledgements
         private void Awake()
         {
             _rt = GetComponent<RectTransform>();
-            if (!sunScrollParallaxCompensator) sunScrollParallaxCompensator = GetComponent<ScrollParallaxCompensator>();
+            if (!sunScrollParallaxCompensator)
+                sunScrollParallaxCompensator = GetComponent<ScrollParallaxCompensator>();
         }
 
         /// <summary>
-        /// 使用“默认参数”手动播放旋转下落。
+        /// 使用默认字段：在 fallDuration 内把锚点 Y 移到 targetLocalY，并旋转 rotateDegrees。
         /// </summary>
-        public void PlayRotateFall()
+        public void PlayFallToTargetY()
         {
-            PlayRotateFall(fallDistance, fallDuration, rotateDegrees);
+            PlayFallToY(targetLocalY, fallDuration, rotateDegrees);
         }
 
         /// <summary>
-        /// 使用“本次调用的参数”手动播放旋转下落。
+        /// 指定“目标 Y / 时长 / 旋转角度”的一次性动画。
         /// </summary>
-        public void PlayRotateFall(float distance, float duration, float degrees)
+        public void PlayFallToY(float targetY, float duration, float degrees)
         {
             if (_co != null) StopCoroutine(_co);
-            _co = StartCoroutine(RotateFallRoutine(distance, duration, degrees));
+            _co = StartCoroutine(FallToYRoutine(targetY, duration, degrees));
         }
 
-        private IEnumerator RotateFallRoutine(float distance, float duration, float degrees)
+        private IEnumerator FallToYRoutine(float targetY, float duration, float degrees)
         {
             IsFalling = true;
 
-            // 动画期间临时关闭视差补偿，避免位置被改写；结束后再恢复并重绑为新基准
             bool reenableParallax = false;
             if (disableParallaxWhileFalling && sunScrollParallaxCompensator)
             {
+                // 防止动画过程中被视差脚本改写位置
                 try { sunScrollParallaxCompensator.SetActive(false); }
                 catch { sunScrollParallaxCompensator.active = false; }
                 reenableParallax = true;
@@ -74,31 +75,41 @@ namespace Acknowledgements
 
             Vector2 startPos = _rt.anchoredPosition;
             float startAngle = _rt.localEulerAngles.z;
-
-            float t = 0f;
             float dur = Mathf.Max(0.0001f, duration);
 
-            while (t < 1f)
+            // 0 时长直接到位
+            if (duration <= 0f)
             {
-                float dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
-                t = Mathf.Min(1f, t + dt / dur);
-                
-                float t01 = Mathf.Clamp01(t);
-                
-                float posK = (positionCurve != null) ? Mathf.Clamp01(positionCurve.Evaluate(t01)) : t01;
-                float rotK = (rotationCurve != null) ? rotationCurve.Evaluate(t01) : t01;
+                _rt.anchoredPosition = new Vector2(startPos.x, targetY);
+                _rt.localRotation = Quaternion.Euler(0f, 0f, startAngle + degrees);
+            }
+            else
+            {
+                float t = 0f;
+                while (t < 1f)
+                {
+                    float dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+                    t = Mathf.Min(1f, t + dt / dur);
+                    float t01 = Mathf.Clamp01(t);
 
-                // 向下位移（锚点坐标系）
-                _rt.anchoredPosition = new Vector2(
-                    startPos.x,
-                    startPos.y - distance * posK
-                );
+                    // 曲线映射
+                    float posK = (positionCurve != null) ? Mathf.Clamp01(positionCurve.Evaluate(t01)) : t01;
+                    float rotK = (rotationCurve  != null) ? rotationCurve.Evaluate(t01) : t01;
 
-                // Z 轴旋转
-                float angle = startAngle + degrees * rotK;
-                _rt.localRotation = Quaternion.Euler(0f, 0f, angle);
+                    // 位置：从 startY 插值到 targetY（只改 Y，保持 X）
+                    float y = Mathf.LerpUnclamped(startPos.y, targetY, posK);
+                    _rt.anchoredPosition = new Vector2(startPos.x, y);
 
-                yield return null;
+                    // 旋转
+                    float angle = startAngle + degrees * rotK;
+                    _rt.localRotation = Quaternion.Euler(0f, 0f, angle);
+
+                    yield return null;
+                }
+
+                // 结束时强制对齐到精确目标，避免浮点误差
+                _rt.anchoredPosition = new Vector2(startPos.x, targetY);
+                _rt.localRotation = Quaternion.Euler(0f, 0f, startAngle + degrees);
             }
 
             onFallFinished?.Invoke();
@@ -114,7 +125,7 @@ namespace Acknowledgements
             IsFalling = false;
         }
 
-        // 可选：复位（若你需要）
+        // 可选：复位
         public void ResetTransform()
         {
             if (!_rt) _rt = GetComponent<RectTransform>();
