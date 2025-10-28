@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.BGMController
   bgmSource: {fileID: 0}
-  defaultBGMVolume: 0.523
+  defaultBGMVolume: 0.262
   sounds:
   - name: jazz
     clip: {fileID: 8300000, guid: da581348bc451744a984259aa578186b, type: 3}

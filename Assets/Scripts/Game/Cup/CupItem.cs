@@ -22,7 +22,8 @@ namespace Game.Cup
             if(DataManager.Instance.GetData<List<string>>("CupsPlayerHad") is not null)
                 if (DataManager.Instance.GetData<List<string>>("CupsPlayerHad").Contains(_cup.Name))
                 {
-                    gameObject.SetActive(false);
+                    if(_cup.Name!="STGCup")
+                        gameObject.SetActive(false);
                 }
             if (!GetComponentInParent<CupBox>()) return;
             if (GetComponentInParent<CupBox>().cupsPlayerHad.Contains(_cup.Name))
