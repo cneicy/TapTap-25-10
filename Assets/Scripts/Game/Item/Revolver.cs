@@ -73,6 +73,8 @@ namespace Game.Item
         private void Awake()
         {
             RevolverInit();
+            if(sprite == null)
+                sprite = Resources.Load<Sprite>("Texture/Items/Revolver");
         }
 
         [EventSubscribe]

@@ -20,7 +20,7 @@ namespace Game.Item
     [EventBusSubscriber]
     public class ItemSystem : Singleton<ItemSystem>
     {
-        public List<ItemBase> AllItems { get; private set; } = new();
+        public List<ItemBase> AllItems = new();
         public List<string> ItemsPlayerHadTypeNames { get; private set; } = new();
         public ItemBase CurrentItem { get; private set; }
 

@@ -1,3 +1,4 @@
+using System;
 using Game.Player;
 using JetBrains.Annotations;
 using ShrinkEventBus;
@@ -20,11 +21,10 @@ namespace Game.Item
             IsBasement = true;
             IsBuff = false;
         }
-
+        
         public override void Start()
         {
             base.Start();
-            sprite = Resources.Load<Sprite>("Sprites/Items/GreySpringShoe");
         }
 
         public override void ApplyEffect()

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Data;
+using Game.Item;
 using Game.Meta;
 using Game.VoiceToText;
 using ShrinkEventBus;
@@ -25,6 +26,7 @@ namespace Game.Level
         {
             SoundManager.Instance.Play("levelloaded");
             CurrentLevel = evt.LevelName;
+            ItemSystem.Instance.currentItemVisual.RefreshVisual(ItemSystem.Instance.CurrentItem);
         }
 
         [EventSubscribe]
