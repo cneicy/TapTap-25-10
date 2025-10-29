@@ -1948,7 +1948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f545c481b80d514cb42382a97dfd372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Revolver
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: cd27a37e5e381fe4786a613983da43b9, type: 3}
   recoilImpulse: 28
   fadeSpeed: 40
   rayLength: 100
@@ -1978,7 +1978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21f5ca5fd8bd894499094145da6ab40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.GreySpringShoe
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 8ecfc78db0dc90244a1236a3eef6291e, type: 3}
 --- !u!114 &923327845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa466c8ed4d5ce45a48d627dcfc328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Parachute
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 87214a78bfde2be448d16cedfdcd838e, type: 3}
   parachutePrefab: {fileID: 0}
   spawnHeight: 3.5
   sideOffset: 1
