@@ -40,10 +40,12 @@ namespace Game.Level.CheckPoint
         private readonly List<float> _saveTimestamps = new();
         private AudioSource _audioSource;
         private CapsuleCollider2D _capsuleCollider2D;
+        private BoxCollider2D _boxCollider2D;
 
         public void Start()
         {
             _capsuleCollider2D = FindAnyObjectByType<PlayerController>().GetComponent<CapsuleCollider2D>();
+            _boxCollider2D = FindAnyObjectByType<PlayerController>().GetComponentInChildren<BoxCollider2D>();
             _audioSource = GetComponent<AudioSource>();
             _animator = GetComponent<Animator>();
             
@@ -106,6 +108,7 @@ namespace Game.Level.CheckPoint
             DataManager.Instance.SetData("kickMaxTime", DataManager.Instance.GetData<int>("kickMaxTime")+2,true);
             yield return new WaitForSeconds(0.8f);
             _capsuleCollider2D.enabled = false;
+            _boxCollider2D.enabled = false;
             yield return new WaitForSeconds(1f);
             Camera.main.transform.parent = FindAnyObjectByType<PlayerController>().gameObject.transform;
             Camera.main.transform.localPosition = new Vector3(0, 0, -10);
