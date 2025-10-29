@@ -91,6 +91,7 @@ namespace Game.Item
 
         private void Awake()
         {
+              
             
         }
     }

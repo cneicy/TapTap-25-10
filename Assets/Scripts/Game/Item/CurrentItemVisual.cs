@@ -25,16 +25,19 @@ namespace Game.Item
 
         private void Update()
         {
-            if (!_currentItem.IsInCooldown)
+            if (_currentItem != null)
             {
-                cd.enabled = false;
-            }
-            else
-            {
-                cd.enabled = true;
-                var size = cd.rectTransform.sizeDelta;
-                size.y = 150 * (_currentItem.CooldownRemaining / _currentItem.Cooldown);
-                cd.rectTransform.sizeDelta = size;
+                if (!_currentItem.IsInCooldown)
+                {
+                    cd.enabled = false;
+                }
+                else
+                {
+                    cd.enabled = true;
+                    var size = cd.rectTransform.sizeDelta;
+                    size.y = 150 * (_currentItem.CooldownRemaining / _currentItem.Cooldown);
+                    cd.rectTransform.sizeDelta = size;
+                }
             }
         }
     }

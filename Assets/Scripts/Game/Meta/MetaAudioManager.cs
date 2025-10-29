@@ -22,11 +22,6 @@ namespace Game.Meta
         
         public List<Sound> sounds = new();
 
-        private void OnEnable()
-        {
-            CompilationPipeline.RequestScriptCompilation();
-        }
-
         public void Play(string name)
         {
             print("Playing " + name);
