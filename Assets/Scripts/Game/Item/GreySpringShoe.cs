@@ -1,8 +1,6 @@
-using System;
 using Game.Player;
 using JetBrains.Annotations;
 using ShrinkEventBus;
-using UnityEngine;
 
 namespace Game.Item
 {

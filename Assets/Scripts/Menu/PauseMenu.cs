@@ -10,13 +10,7 @@ namespace Menu
     public class PauseMenu : Singleton<PauseMenu>
     {
         private int _firstTimePauseCount;
-        public GameObject menu;
-
-        public void Exit()
-        {
-            Application.Quit();
-        }
-
+        
         private void Update()
         {
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
@@ -32,7 +26,6 @@ namespace Menu
                 }
 
                 SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
-                menu.SetActive(true);
                 var player = FindAnyObjectByType<Game.Player.PlayerController>();
                 if (player) player.enabled = false;
 
@@ -46,7 +39,6 @@ namespace Menu
             if (SceneManager.GetSceneByName("PauseMenu").isLoaded)
             {
                 SceneManager.UnloadSceneAsync("PauseMenu");
-                menu.SetActive(false);
                 var player = FindAnyObjectByType<Game.Player.PlayerController>();
                 if (player) player.enabled = true;
 
@@ -59,7 +51,6 @@ namespace Menu
                 SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
                 var player = FindAnyObjectByType<Game.Player.PlayerController>();
                 if (player) player.enabled = false;
-                menu.SetActive(true);
             }
         }
     }

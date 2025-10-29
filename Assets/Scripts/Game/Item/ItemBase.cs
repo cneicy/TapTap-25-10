@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using Game.Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Item
 {

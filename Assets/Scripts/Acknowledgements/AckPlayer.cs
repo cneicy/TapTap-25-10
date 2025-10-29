@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI; // 若不需要可去掉
+// 若不需要可去掉
 using UnityEngine.Events;
 
 namespace Acknowledgements

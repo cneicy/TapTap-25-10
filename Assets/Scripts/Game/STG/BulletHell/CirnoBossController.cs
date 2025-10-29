@@ -1,7 +1,4 @@
 ﻿using System.Collections;
-using Data;
-using Game.Level;
-using ScreenEffect;
 using UnityEngine;
 
 namespace Game.STG.BulletHell
