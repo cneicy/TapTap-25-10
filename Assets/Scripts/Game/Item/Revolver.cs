@@ -47,6 +47,12 @@ namespace Game.Item
         {
             "ActivateTargets"
         };
+        
+        [Header("命中后粒子效果")]
+        [SerializeField] private ParticleSystem hitExplosionPrefab;   
+        [SerializeField] private bool parentVfxToMechanism = false;   
+        [SerializeField] private float vfxYOffset = 0f;               
+
 
         private void RevolverInit()
         {
@@ -177,12 +183,11 @@ namespace Game.Item
             // 仍然不清记录；紧接着将进入 CooldownTimer
             base.OnRecoveryEnd();
         }
-
-        // ★★★ 关键：进入CD时清空命中记录（覆盖基类协程）★★★
+        
         public override IEnumerator CooldownTimer()
         {
-            ClearRecordedMechanisms();              // 进入CD：清记录
-            yield return base.CooldownTimer();      // 执行父类：等待 Cooldown 秒并置 CanUse=true
+            ClearRecordedMechanisms();              
+            yield return base.CooldownTimer();      
         }
 
         public override void OnUseCancel()
@@ -195,28 +200,29 @@ namespace Game.Item
         {
             CleanupActiveBullet();
         }
-
-        // ====== 命中处理：记录 + 连带触发 ======
+        
         private void HandleBulletHit(Collider2D hitCol)
         {
             if (!hitCol) return;
             
-            print("有碰撞到机关 "+hitCol.name);
-            // 1) 锁定机关对象
+            print("有碰撞到机关 " + hitCol.name);
+            
             var mechGo = hitCol.attachedRigidbody ? hitCol.attachedRigidbody.gameObject : hitCol.gameObject;
-
-            // 2) 记录（最多5个，去重，FIFO）
-            if(!hitCol.name.Contains("Grid"))
+            
+            
+            if (!hitCol.name.Contains("Grid"))
                 AddMechanismRecord(mechGo);
-
-            // 3) 连带触发：对“之前记录过的其它机关”也触发
+            
             foreach (var go in _recordedQueue)
             {
-                print("遍历到机关 "+go.name);
+                print("遍历到机关 " + go.name);
                 if (!go || go == mechGo) continue;
+
                 TryTriggerMechanism(go);
+                
             }
         }
+
 
         private void AddMechanismRecord(GameObject mechGo)
         {
@@ -330,7 +336,7 @@ namespace Game.Item
             hitPoint = default;
             return false;
         }
-
+        
         private int GetInstantFacingSign()
         {
             if (_playerController == null) return 1;
@@ -360,4 +366,6 @@ namespace Game.Item
         public void Init(Vector2 velocity) => _velocity = velocity;
         private void Update() => transform.position += _velocity * Time.deltaTime;
     }
+    
+    
 }

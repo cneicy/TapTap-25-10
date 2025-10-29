@@ -1949,6 +1949,9 @@ MonoBehaviour:
   revolverDuration: 0.3
   revolverRecoveryDuration: 3
   parachuteCooldown: 0
+  hitExplosionPrefab: {fileID: 5758910846989435520, guid: da334fc2936e6244d94d816bb5f0c73a, type: 3}
+  parentVfxToMechanism: 0
+  vfxYOffset: 0
 --- !u!114 &923327844
 MonoBehaviour:
   m_ObjectHideFlags: 0

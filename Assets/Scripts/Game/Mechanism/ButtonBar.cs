@@ -142,6 +142,7 @@ namespace Game.Mechanism
             {
                 _lastAnyTriggerTime = Time.time;
                 SoundManager.Instance.Play("mecbtn");
+                StartCoroutine(nameof(PowerColor));
                 ActivateTargets();
             }
         }
@@ -167,6 +168,12 @@ namespace Game.Mechanism
                        || col.GetComponentInParent<IPlayerController>() != null;
 
             return (byLayer && byTag) || byComp;
+        }
+        private IEnumerator PowerColor()
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(1f);
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 }
