@@ -21,8 +21,8 @@ namespace Game.Item
         
         public void RefreshVisual(ItemBase item)
         {
-            Sprite newSprite = null;
-            newSprite = item.sprite;
+            if (!item) return;
+            var newSprite = item.sprite;
             _currentItem = item;
             uiImage.enabled = newSprite;
             uiImage.sprite = newSprite;
@@ -45,6 +45,7 @@ namespace Game.Item
                 }
             }
             player = FindFirstObjectByType<Player.Player>();
+            if(player is null) return;
             if (player.isWearGreySpringShoe)
             {
                 shoesImage.enabled = true;
