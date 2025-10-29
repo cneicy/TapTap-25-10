@@ -398,6 +398,22 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.003161192
       objectReference: {fileID: 0}
+    - target: {fileID: 5620090924835026596, guid: 2543c9a271b462741946a2283c193e4b, type: 3}
+      propertyPath: m_Size.x
+      value: 12.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620090924835026596, guid: 2543c9a271b462741946a2283c193e4b, type: 3}
+      propertyPath: m_Size.y
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620090924835026596, guid: 2543c9a271b462741946a2283c193e4b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ecfc78db0dc90244a1236a3eef6291e, type: 3}
+    - target: {fileID: 5620090924835026596, guid: 2543c9a271b462741946a2283c193e4b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8129204589531626788, guid: 2543c9a271b462741946a2283c193e4b, type: 3}
       propertyPath: m_Name
       value: GreySpringShoe
