@@ -1,3 +1,4 @@
+using System;
 using Game.Buff;
 using Game.Mechanism;
 using ShrinkEventBus;
@@ -23,7 +24,12 @@ namespace Game.Player
         }
         
         public bool isWearGreySpringShoe = false;
-        
+
+        private void Awake()
+        {
+            isWearGreySpringShoe = false;
+        }
+
         private void Start()
         {
             rb2d = GetComponent<Rigidbody2D>();

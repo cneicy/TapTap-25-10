@@ -46,7 +46,6 @@ namespace Game.Item
             _index = 0;
             if (ItemsPlayerHadTypeNames.Count > 0)
                 RestoreItemsFromSavedData();
-            
             currentItemVisual?.RefreshVisual(CurrentItem);
         }
 
