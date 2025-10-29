@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -88,7 +89,6 @@ namespace Game.Mechanism
         public void HandleCollider(Collider2D col)
         {
             if (!col) return;
-            // 防止同帧被子弹+玩家双重触发
             if (Time.time - _lastAnyTriggerTime < anyTriggerDebounce) return;
 
             bool fired = false;
@@ -109,6 +109,7 @@ namespace Game.Mechanism
             {
                 _lastAnyTriggerTime = Time.time;
                 SoundManager.Instance.Play("meclever");
+                StartCoroutine(nameof(PowerColor));
                 ToggleTargets();
             }
         }
@@ -136,6 +137,11 @@ namespace Game.Mechanism
 
             return (byLayer && byTag) || byComp;
         }
-        
+        private IEnumerator PowerColor()
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(1f);
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 }

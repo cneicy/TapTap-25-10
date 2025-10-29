@@ -79,7 +79,7 @@ namespace Game.Item
         private void DispatchHit(Collider2D col)
         {
             _hasTriggered = true;
-
+            
             // 先触发自定义回调（你可以在这里挂 DestroySelf）
             onAnyHit?.Invoke();
             onHit?.Invoke(col);
