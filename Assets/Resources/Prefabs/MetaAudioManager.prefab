@@ -1,0 +1,251 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4815922901948343085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 55124502014673567}
+  - component: {fileID: 2880100970749273739}
+  - component: {fileID: 5810374134381948236}
+  m_Layer: 0
+  m_Name: MetaAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &55124502014673567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815922901948343085}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2880100970749273739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815922901948343085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c8971b361742f89e8f128c42b92473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Meta.MetaAudioManager
+  source: {fileID: 5810374134381948236}
+  theTextor: {fileID: 0}
+  sounds:
+  - name: FallToSTG
+    clip: {fileID: 8300000, guid: da6c361efe9903540a9a41b349a78d0e, type: 3}
+  - name: Wind
+    clip: {fileID: 8300000, guid: b6208cda83ff7864eb3fbbdc9d484ed5, type: 3}
+  - name: Start
+    clip: {fileID: 8300000, guid: 19a9a8f1ffa10c143802fea21c9146f3, type: 3}
+  - name: Jumpup
+    clip: {fileID: 8300000, guid: c7705868f02f710468d7ed525983c535, type: 3}
+  - name: Startjump
+    clip: {fileID: 8300000, guid: 63d3fd73022ee8a4cbae64d26efb3e6f, type: 3}
+  - name: nopause
+    clip: {fileID: 8300000, guid: 164fbc669a3feab42b0d10888303de83, type: 3}
+  - name: nomorepause
+    clip: {fileID: 8300000, guid: 2e1919efbd1c4fb41808e6c9d63dc694, type: 3}
+  - name: enterstudio
+    clip: {fileID: 8300000, guid: 8b6229f6e7b612448a39d4a4f5601262, type: 3}
+  - name: noshuzhi
+    clip: {fileID: 8300000, guid: 7184b46fd2fe52c45a65fc50c248f897, type: 3}
+  - name: lol
+    clip: {fileID: 8300000, guid: abc7c97ba17035845b6974b6c9464944, type: 3}
+  - name: wrongbtn
+    clip: {fileID: 8300000, guid: 90f70981fdfc0d640adf3367d5318742, type: 3}
+  - name: finishchatting
+    clip: {fileID: 8300000, guid: e7b371a2c68d5f841a37f5024ffc1752, type: 3}
+  - name: switchskin
+    clip: {fileID: 8300000, guid: afc95ef1c3898cb41a8e22ca90755e99, type: 3}
+  - name: keysay
+    clip: {fileID: 8300000, guid: 40b059538e8e3f9469481f3a51b1e62a, type: 3}
+  - name: whodesigned
+    clip: {fileID: 8300000, guid: 32abb95239fdcb740ad1ff6b4f368f3b, type: 3}
+  - name: fakebtn
+    clip: {fileID: 8300000, guid: 991da239586c3db439053318dc203020, type: 3}
+  - name: meta 1-1.1
+    clip: {fileID: 8300000, guid: 75fde37a71f1e7043bc579422052d84c, type: 3}
+  - name: meta 1-1.2
+    clip: {fileID: 8300000, guid: 86afe6f11f610794c9d2e5561b9c225c, type: 3}
+  - name: meta 1-1.3
+    clip: {fileID: 8300000, guid: 5d32ba3fda10fc749b0de068cee7a0d9, type: 3}
+  - name: meta 1-2.1
+    clip: {fileID: 8300000, guid: 0295fa8ec00056645b702bd67b5c4d35, type: 3}
+  - name: meta 1-2.2
+    clip: {fileID: 8300000, guid: 4364d5e41fb137748932239b663ad226, type: 3}
+  - name: meta 1-2.3
+    clip: {fileID: 8300000, guid: 96e1385136a880244b62fb35804c854f, type: 3}
+  - name: meta 1-2.4
+    clip: {fileID: 8300000, guid: 3fa8a2e4a4f929249888f04ea11b90a5, type: 3}
+  - name: meta 1-3.1
+    clip: {fileID: 8300000, guid: 899cb02350b022b4ba4a37717ab91a54, type: 3}
+  - name: meta 1-3.1.1
+    clip: {fileID: 8300000, guid: f69773e46139cf24fb9b87e75d17db39, type: 3}
+  - name: meta 1-3.2
+    clip: {fileID: 8300000, guid: 5dce6b942767a4e4083fe419fd3bfbd0, type: 3}
+  - name: meta 1-3.3
+    clip: {fileID: 8300000, guid: b98646626fc6b88418e8ccf2fead461b, type: 3}
+  - name: meta 1-3.4
+    clip: {fileID: 8300000, guid: f1d155abb3278c747b8134d16a752df1, type: 3}
+  - name: meta 1-3.5
+    clip: {fileID: 8300000, guid: 0c503923755b645489b00991bdaf1b79, type: 3}
+  - name: meta 1-3.5.1
+    clip: {fileID: 8300000, guid: c78bdd3948262fd41b16ef5f48c39141, type: 3}
+  - name: "meta 1-4\u5956\u676F"
+    clip: {fileID: 8300000, guid: 76e8b8b78bd7d7a418107b1f3662531c, type: 3}
+  - name: meta 1-5.2
+    clip: {fileID: 8300000, guid: 6adfd7d749317ae40a1fc5eb27592155, type: 3}
+  - name: "meta 1-5\u571F\u72FC\u9774\u5B50"
+    clip: {fileID: 8300000, guid: 5e189302661c6134580763d087c4b5de, type: 3}
+  - name: meta 1-6.1
+    clip: {fileID: 8300000, guid: 1f9ac73aa48e7be43b535e6f165dc805, type: 3}
+  - name: "meta i-1\u5165\u573A"
+    clip: {fileID: 8300000, guid: 78ccc96c131757549ba4b02d59ab7ff3, type: 3}
+  - name: "meta i-1\u673A\u5173"
+    clip: {fileID: 8300000, guid: a9f2c01d8d56057469c8aefef96dc35e, type: 3}
+  - name: "meta i-2\u5165\u573A"
+    clip: {fileID: 8300000, guid: 2a5db5bb1d4986045a43d0164c82afbb, type: 3}
+  - name: meta i-3.2
+    clip: {fileID: 8300000, guid: ac62bf85f0fcd5b41adc02bfedbb38a5, type: 3}
+  - name: "meta i-3\u6361\u8D77\u964D\u843D\u4F1E"
+    clip: {fileID: 8300000, guid: 81b3560a0b12a9047ae19ad2842b315e, type: 3}
+  - name: meta i-3.3
+    clip: {fileID: 8300000, guid: 9a5e7fdca91b2834eb6bc2872c767c7e, type: 3}
+  - name: meta i-3.4
+    clip: {fileID: 8300000, guid: 63e183b9469e44942b9ebcb9c9c06cbb, type: 3}
+  - name: meta nobug
+    clip: {fileID: 8300000, guid: 5318cd427ef68ae498dfafcdb1ecb9a9, type: 3}
+  - name: meta over
+    clip: {fileID: 8300000, guid: e6ae0a1d84e35804b992f90bef0894df, type: 3}
+  - name: reset
+    clip: {fileID: 8300000, guid: 25ab26233c506f04397e04f8685c5e1d, type: 3}
+  - name: meta nobody
+    clip: {fileID: 8300000, guid: e5eba9ae9096c3b40b293ac2a0510de2, type: 3}
+  - name: meta ut
+    clip: {fileID: 8300000, guid: fa87c1ae70630114583c8c17d2cf6d4e, type: 3}
+  - name: meta i-3.4-advanced
+    clip: {fileID: 8300000, guid: 5b99cec8532477049a0b181ecdca60bd, type: 3}
+  - name: meta i-3.4-hint
+    clip: {fileID: 8300000, guid: a93c256a03ea01446bb6bc9992ac468c, type: 3}
+  - name: meta i-3.2-advanced
+    clip: {fileID: 8300000, guid: 0d2f120cf773d954a8bbc7d56fb38d0f, type: 3}
+  - name: meta i-3.2-hint
+    clip: {fileID: 8300000, guid: 5f1095ece162f8a4abfc96dcd2966161, type: 3}
+  - name: meta 1-113
+    clip: {fileID: 8300000, guid: a0c076651dc693243bc7f9c6766fa537, type: 3}
+  - name: "meta i-1\u673A\u5173"
+    clip: {fileID: 8300000, guid: a9f2c01d8d56057469c8aefef96dc35e, type: 3}
+--- !u!82 &5810374134381948236
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815922901948343085}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
