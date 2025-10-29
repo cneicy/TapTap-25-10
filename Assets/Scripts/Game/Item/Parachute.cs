@@ -65,7 +65,7 @@ namespace Game.Item
         public override void Start()
         {
             base.Start();
-            Sprite = Resources.Load<Sprite>("Sprites/Items/Parachute");
+            sprite = Resources.Load<Sprite>("Sprites/Items/Parachute");
         }
 
         public override void OnUseStart()

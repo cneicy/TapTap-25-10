@@ -22,7 +22,7 @@ namespace Game.Item
 
         public void SetInfo(ItemBase item,int myInfoIndex,ItemVisualController topController)
         {
-            image.sprite = item.Sprite;
+            image.sprite = item.sprite;
             description = item.Description;
             infoIndex = myInfoIndex;
             _itemVisualController = topController;

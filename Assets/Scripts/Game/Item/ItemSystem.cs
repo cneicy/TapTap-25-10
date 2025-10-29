@@ -46,8 +46,7 @@ namespace Game.Item
             _index = 0;
             if (ItemsPlayerHadTypeNames.Count > 0)
                 RestoreItemsFromSavedData();
-            currentItemVisual.Init(AllItems);
-            currentItemVisual.SetCurrentItem(CurrentItem);
+            currentItemVisual.RefreshVisual(CurrentItem);
         }
 
         [EventSubscribe]
@@ -94,7 +93,7 @@ namespace Game.Item
             {
                 CurrentItem = item;
                 _index = AllItems.IndexOf(item);
-                currentItemVisual.SetCurrentItem(CurrentItem);
+                currentItemVisual.RefreshVisual(CurrentItem);
             }
 
             DataManager.Instance.SetData("ItemsPlayerHad", ItemsPlayerHadTypeNames, true);
@@ -110,7 +109,7 @@ namespace Game.Item
                 CurrentItem?.OnUseCancel();
                 CurrentItem = AllItems[newIndex];
                 _index = newIndex;
-                currentItemVisual.SetCurrentItem(CurrentItem);
+                currentItemVisual.RefreshVisual(CurrentItem);
                 SoundManager.Instance.Play("switchitem");
                 Debug.Log($"切换到道具: {CurrentItem.Name}");
                 return;
@@ -127,7 +126,7 @@ namespace Game.Item
                 CurrentItem?.OnUseCancel();
                 CurrentItem = AllItems[newIndex];
                 _index = newIndex;
-                currentItemVisual.SetCurrentItem(CurrentItem);
+                currentItemVisual.RefreshVisual(CurrentItem);
                 SoundManager.Instance.Play("switchitem");
                 Debug.Log($"切换到道具: {CurrentItem.Name}");
                 return;

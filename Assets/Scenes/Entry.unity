@@ -793,6 +793,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 316747286}
     m_Modifications:
     - target: {fileID: 777142300635319033, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      propertyPath: cd
+      value: 
+      objectReference: {fileID: 1115435294}
+    - target: {fileID: 777142300635319033, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
       propertyPath: uiImage
       value: 
       objectReference: {fileID: 1506007199}
@@ -906,7 +910,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1115435292}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
 --- !u!224 &335668412 stripped
@@ -930,6 +937,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deab9e1484d994c4789b2fb13681fc56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.CurrentItemVisual
+--- !u!224 &335668415 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4035688715835227130, guid: 52d525267a8666f4080c1d35a793f776, type: 3}
+  m_PrefabInstance: {fileID: 335668411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &338292987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,6 +1948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f545c481b80d514cb42382a97dfd372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Revolver
+  sprite: {fileID: 0}
   recoilImpulse: 28
   fadeSpeed: 40
   rayLength: 100
@@ -1949,7 +1962,7 @@ MonoBehaviour:
   revolverWindupDuration: 0.1
   revolverDuration: 0.4
   revolverRecoveryDuration: 3
-  parachuteCooldown: 0
+  parachuteCooldown: 5
   hitExplosionPrefab: {fileID: 5758910846989435520, guid: da334fc2936e6244d94d816bb5f0c73a, type: 3}
   parentVfxToMechanism: 0
   vfxYOffset: 0
@@ -1965,6 +1978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21f5ca5fd8bd894499094145da6ab40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.GreySpringShoe
+  sprite: {fileID: 0}
 --- !u!114 &923327845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,6 +1991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa466c8ed4d5ce45a48d627dcfc328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Parachute
+  sprite: {fileID: 0}
   parachutePrefab: {fileID: 0}
   spawnHeight: 3.5
   sideOffset: 1
@@ -2488,6 +2503,94 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979094162}
+  m_CullTransparentMesh: 1
+--- !u!1 &1115435291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115435292}
+  - component: {fileID: 1115435295}
+  - component: {fileID: 1115435294}
+  - component: {fileID: 1115435293}
+  m_Layer: 5
+  m_Name: CDMask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1115435292
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115435291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 335668415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!225 &1115435293
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115435291}
+  m_Enabled: 1
+  m_Alpha: 0.85
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1115435294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115435291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.32704395, g: 0.32704395, b: 0.32704395, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1115435295
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115435291}
   m_CullTransparentMesh: 1
 --- !u!1 &1223596992
 GameObject:

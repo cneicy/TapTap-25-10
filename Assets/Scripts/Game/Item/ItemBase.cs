@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Game.Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Item
 {
@@ -53,6 +54,30 @@ namespace Game.Item
      */
     public abstract class ItemBase : MonoBehaviour
     {
+        // 是否用真实时间计时（
+        public bool UseUnscaledCooldownTick { get; set; } = false;
+
+        // 内部时间戳
+        private bool  _isInCooldown;
+        private bool  _cdUnscaled;
+        private float _cdStart;   // 开始时刻
+        private float _cdEnd;     // 结束时刻（开始+时长）
+
+        public bool IsInCooldown => _isInCooldown;
+
+        // 任何时刻都能读的“已过/剩余/归一化”值（供 UI 使用）
+        public float CooldownElapsed
+            => !_isInCooldown ? 0f
+                : Mathf.Clamp((_cdUnscaled ? Time.realtimeSinceStartup : Time.time) - _cdStart, 0f, Cooldown);
+
+        public float CooldownRemaining
+            => !_isInCooldown ? 0f
+                : Mathf.Max(0f, _cdEnd - (_cdUnscaled ? Time.realtimeSinceStartup : Time.time));
+
+        public float CooldownNormalized
+            => (Cooldown <= 0f || !_isInCooldown) ? 0f
+                : Mathf.Clamp01(CooldownRemaining / Cooldown);
+        
         public string Name { get; set; }
         public string Description { get; set; }
         //前摇时间
@@ -69,7 +94,8 @@ namespace Game.Item
         public bool IsUsing { get; set; }
         public bool IsRecovering { get; set; }
         public bool CanUse { get; set; } = true;
-        public Sprite Sprite { get; set; } // UI图标
+
+        public Sprite sprite; // UI图标
         //是否已经拥有
         public bool IsUsed { get; set; }
         //是否是“装备类”
@@ -138,9 +164,25 @@ namespace Game.Item
 
         public virtual IEnumerator CooldownTimer()
         {
-            /*print("转cd");*/
-            yield return new WaitForSeconds(Cooldown);
-            /*print("cd转好了");*/
+            // 冷却时长小于等于0：直接结束
+            if (Cooldown <= 0f)
+            {
+                CanUse = true;
+                yield break;
+            }
+
+            _isInCooldown = true;
+            _cdUnscaled   = UseUnscaledCooldownTick;
+
+            float now = _cdUnscaled ? Time.realtimeSinceStartup : Time.time;
+            _cdStart = now;
+            _cdEnd   = now + Cooldown;
+
+            // 这里让协程“睡到结束”，UI 则用上面的属性随时读
+            if (_cdUnscaled) yield return new WaitForSecondsRealtime(Cooldown);
+            else             yield return new WaitForSeconds(Cooldown);
+
+            _isInCooldown = false;
             CanUse = true;
         }
 
@@ -179,6 +221,7 @@ namespace Game.Item
         public virtual void OnRecoveryStart()
         {
             /*print("后摇开始 - 播放收尾动画");*/
+            
         }
         
         public virtual void OnRecoveryEnd()
