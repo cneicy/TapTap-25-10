@@ -53,7 +53,7 @@ namespace Acknowledgements
         IEnumerator ScrollRoutine()
         {
             // 约定：longImage 在 viewport 下，且 longImage 的锚点/枢轴为 (0, 0.5)（左中）
-            float maxOffset = Mathf.Max(0f, longImage.rect.width - viewport.rect.width);
+            var maxOffset = Mathf.Max(0f, longImage.rect.width - viewport.rect.width);
 
             var pos = longImage.anchoredPosition;
             pos.y = 0f;
@@ -67,12 +67,12 @@ namespace Acknowledgements
                 yield break;
             }
 
-            float dir = leftToRight ? -1f : 1f; // 左→右视觉 = 图向左移动
-            bool reachedEnd = false;
+            var dir = leftToRight ? -1f : 1f; // 左→右视觉 = 图向左移动
+            var reachedEnd = false;
 
             while (true)
             {
-                float step = speedUnitsPerSec * Time.unscaledDeltaTime * dir;
+                var step = speedUnitsPerSec * Time.unscaledDeltaTime * dir;
                 pos.x = Mathf.Clamp(pos.x + step, -maxOffset, 0f);
                 longImage.anchoredPosition = pos;
 
@@ -84,7 +84,7 @@ namespace Acknowledgements
                 }
 
                 // 2) 兜底：滚动范围自然到头
-                bool doneByRange = leftToRight ? (pos.x <= -maxOffset) : (pos.x >= 0f);
+                var doneByRange = leftToRight ? (pos.x <= -maxOffset) : (pos.x >= 0f);
                 if (doneByRange)
                 {
                     reachedEnd = true;
@@ -130,14 +130,14 @@ namespace Acknowledgements
 
             longImage.GetWorldCorners(_imgCornersWorld);
 
-            float imgRightLocal = float.NegativeInfinity;
-            for (int i = 0; i < 4; i++)
+            var imgRightLocal = float.NegativeInfinity;
+            for (var i = 0; i < 4; i++)
             {
-                Vector3 local = viewport.InverseTransformPoint(_imgCornersWorld[i]);
+                var local = viewport.InverseTransformPoint(_imgCornersWorld[i]);
                 if (local.x > imgRightLocal) imgRightLocal = local.x;
             }
 
-            float vpRightLocal = viewport.rect.xMax;
+            var vpRightLocal = viewport.rect.xMax;
             return imgRightLocal <= vpRightLocal + viewportEpsilon;
         }
 
@@ -145,13 +145,13 @@ namespace Acknowledgements
         bool IsRightEdgeAlignedOnScreen()
         {
             if (!longImage) return false;
-            Camera cam = screenCamera ? screenCamera : Camera.main;
+            var cam = screenCamera ? screenCamera : Camera.main;
             if (!cam) return false;
 
             longImage.GetWorldCorners(_imgCornersWorld);
 
-            float imgRightPx = float.NegativeInfinity;
-            for (int i = 0; i < 4; i++)
+            var imgRightPx = float.NegativeInfinity;
+            for (var i = 0; i < 4; i++)
             {
                 Vector3 scr = RectTransformUtility.WorldToScreenPoint(cam, _imgCornersWorld[i]);
                 if (scr.x > imgRightPx) imgRightPx = scr.x;

@@ -234,6 +234,11 @@ namespace Data
 
         #region 公开接口
 
+        public bool HasData(string key)
+        {
+            return _currentData.ContainsKey(key);
+        }
+        
         /// <summary>
         /// 获取指定键的数据
         /// <para>如果数据不存在，则使用默认值并保存</para>

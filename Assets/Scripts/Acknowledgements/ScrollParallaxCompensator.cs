@@ -90,7 +90,7 @@ namespace Acknowledgements
 
         public void Toggle(bool? rebind = null, bool keepCurrentVisualPosition = true)
         {
-            bool turningOn = !active;
+            var turningOn = !active;
             SetActive(turningOn, rebind ?? turningOn, keepCurrentVisualPosition);
         }
 
@@ -138,7 +138,7 @@ namespace Acknowledgements
             // —— 1) 捕捉外部对 follower 的改动，作为手动偏移叠加 —— //
             if (allowRuntimeMove && hasLast)
             {
-                Vector2 externalDelta = follower.anchoredPosition - lastAppliedPos; // 在 followerParent 本地单位
+                var externalDelta = follower.anchoredPosition - lastAppliedPos; // 在 followerParent 本地单位
                 if (externalDelta.sqrMagnitude > rebindThresholdLocal * rebindThresholdLocal)
                 {
                     manualOffset += externalDelta;
@@ -146,30 +146,30 @@ namespace Acknowledgements
             }
 
             // —— 2) 将 moving 的 anchored 位移转换到 followerParent 空间 —— //
-            Vector2 movingDeltaAnchored = moving.anchoredPosition - movingStartAnchored; // 在 movingParent 空间
+            var movingDeltaAnchored = moving.anchoredPosition - movingStartAnchored; // 在 movingParent 空间
 
-            Vector3 worldDelta = Vector3.zero;
+            var worldDelta = Vector3.zero;
             if (horizontal)
             {
-                Vector3 dxWorld = (movingParent ? movingParent.TransformVector(new Vector3(movingDeltaAnchored.x, 0f, 0f))
+                var dxWorld = (movingParent ? movingParent.TransformVector(new Vector3(movingDeltaAnchored.x, 0f, 0f))
                                                 : new Vector3(movingDeltaAnchored.x, 0f, 0f));
                 worldDelta += dxWorld;
             }
             if (vertical)
             {
-                Vector3 dyWorld = (movingParent ? movingParent.TransformVector(new Vector3(0f, movingDeltaAnchored.y, 0f))
+                var dyWorld = (movingParent ? movingParent.TransformVector(new Vector3(0f, movingDeltaAnchored.y, 0f))
                                                 : new Vector3(0f, movingDeltaAnchored.y, 0f));
                 worldDelta += dyWorld;
             }
 
-            Vector3 followerParentLocal3 =
+            var followerParentLocal3 =
                 followerParent ? followerParent.InverseTransformVector(worldDelta) : worldDelta;
 
-            Vector2 followerParentLocalDelta = new Vector2(followerParentLocal3.x, followerParentLocal3.y);
+            var followerParentLocalDelta = new Vector2(followerParentLocal3.x, followerParentLocal3.y);
 
             // —— 3) 计算最终位置：基准 - 转换后的位移 * factor + 手动偏移 —— //
-            Vector2 basePos = followerStartAnchored - followerParentLocalDelta * factor;
-            Vector2 final   = basePos + manualOffset;
+            var basePos = followerStartAnchored - followerParentLocalDelta * factor;
+            var final   = basePos + manualOffset;
 
             follower.anchoredPosition = final;
             lastAppliedPos = final;

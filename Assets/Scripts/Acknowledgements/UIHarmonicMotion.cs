@@ -90,20 +90,20 @@ namespace Acknowledgements
         {
             if (!_running) return;
 
-            float dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            var dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
             _t += dt;
 
             // 衰减因子
-            float decay = damping > 0f ? Mathf.Exp(-damping * _t) : 1f;
+            var decay = damping > 0f ? Mathf.Exp(-damping * _t) : 1f;
 
             // 计算相对中心的位移（局部 UI 坐标）
             Vector2 rel;
             if (motionMode == MotionMode.Lissajous)
             {
-                float wx = 2f * Mathf.PI * frequency.x;
-                float wy = 2f * Mathf.PI * frequency.y;
-                float px = phaseDeg.x * Mathf.Deg2Rad;
-                float py = phaseDeg.y * Mathf.Deg2Rad;
+                var wx = 2f * Mathf.PI * frequency.x;
+                var wy = 2f * Mathf.PI * frequency.y;
+                var px = phaseDeg.x * Mathf.Deg2Rad;
+                var py = phaseDeg.y * Mathf.Deg2Rad;
 
                 rel = new Vector2(
                     amplitude.x * Mathf.Sin(wx * _t + px),
@@ -112,7 +112,7 @@ namespace Acknowledgements
             }
             else // Circular
             {
-                float theta = startAngleDeg * Mathf.Deg2Rad + (angularSpeedDeg * Mathf.Deg2Rad) * _t;
+                var theta = startAngleDeg * Mathf.Deg2Rad + (angularSpeedDeg * Mathf.Deg2Rad) * _t;
                 // 椭圆参数方程（等轴即圆）
                 rel = new Vector2(
                     ellipseAxes.x * Mathf.Cos(theta),

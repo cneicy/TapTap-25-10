@@ -1176,6 +1176,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1416199696}
     m_Modifications:
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
+      propertyPath: mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: distance
       value: 2
       objectReference: {fileID: 0}
@@ -6875,6 +6879,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1416199696}
     m_Modifications:
+    - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
+      propertyPath: mode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -6229256257460334915, guid: 5b8014ba925bbb043aeb880742fab08c, type: 3}
       propertyPath: distance
       value: 2

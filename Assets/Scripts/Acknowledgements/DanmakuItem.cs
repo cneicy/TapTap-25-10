@@ -78,7 +78,7 @@ namespace Acknowledgements
             msg = msg.TrimEnd();
             textLabel.text = msg;
 
-            bool wrap = wordWrap && maxWidth > 0f;
+            var wrap = wordWrap && maxWidth > 0f;
             textLabel.enableWordWrapping = wrap;
             textLabel.overflowMode       = TextOverflowModes.Overflow;
             textLabel.alignment          = TextAlignmentOptions.Center;
@@ -87,8 +87,8 @@ namespace Acknowledgements
             float contentW, contentH;
             if (wrap)
             {
-                float innerW = Mathf.Max(1f, maxWidth - padding.x);
-                Vector2 pref = textLabel.GetPreferredValues(msg, innerW, 0f);
+                var innerW = Mathf.Max(1f, maxWidth - padding.x);
+                var pref = textLabel.GetPreferredValues(msg, innerW, 0f);
                 contentW = Mathf.Min(pref.x, innerW);
                 contentH = Mathf.Max(pref.y, textLabel.fontSize);
             }
@@ -101,8 +101,8 @@ namespace Acknowledgements
 
             _textRt.sizeDelta = new Vector2(contentW, contentH);
 
-            float bgW = contentW + padding.x;
-            float bgH = Mathf.Max(contentH + padding.y, minHeight);
+            var bgW = contentW + padding.x;
+            var bgH = Mathf.Max(contentH + padding.y, minHeight);
             _bgRt.sizeDelta = new Vector2(bgW, bgH);
 
             _rt.sizeDelta = _bgRt.sizeDelta;
@@ -138,8 +138,8 @@ namespace Acknowledgements
         {
             if (!_moving) return;
 
-            float dt = Time.unscaledDeltaTime;
-            float stepLocalX = (_speedUnit == SpeedUnit.LocalUnitsPerSec)
+            var dt = Time.unscaledDeltaTime;
+            var stepLocalX = (_speedUnit == SpeedUnit.LocalUnitsPerSec)
                 ? _speedValue * dt
                 : PixelsToLocalUnitsX(_speedValue) * dt; // 像素→本地单位
 
@@ -158,7 +158,7 @@ namespace Acknowledgements
         private float PixelsToLocalUnitsX(float pixelsPerSec)
         {
             if (_parentViewport == null) return pixelsPerSec; // 退化
-            Camera cam = _screenCam;
+            var cam = _screenCam;
             if (!cam)
             {
                 if (_canvas && _canvas.renderMode != RenderMode.ScreenSpaceOverlay)
@@ -167,13 +167,13 @@ namespace Acknowledgements
             }
 
             // 采样：viewport 本地两点 (0,0) 和 (1,0) 的屏幕距离
-            Vector3 p0World = _parentViewport.TransformPoint(Vector3.zero);
-            Vector3 p1World = _parentViewport.TransformPoint(Vector3.right);
+            var p0World = _parentViewport.TransformPoint(Vector3.zero);
+            var p1World = _parentViewport.TransformPoint(Vector3.right);
 
             Vector3 p0Screen = RectTransformUtility.WorldToScreenPoint(cam, p0World);
             Vector3 p1Screen = RectTransformUtility.WorldToScreenPoint(cam, p1World);
 
-            float pxPerLocal = Mathf.Abs(p1Screen.x - p0Screen.x);
+            var pxPerLocal = Mathf.Abs(p1Screen.x - p0Screen.x);
             if (pxPerLocal < 0.0001f) return pixelsPerSec; // 防除0
 
             return pixelsPerSec / pxPerLocal; // 像素/秒 ÷ 每本地单位对应像素 = 本地单位/秒

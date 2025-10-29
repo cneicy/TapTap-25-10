@@ -16,6 +16,12 @@ public class Entry :  MonoBehaviour
     [SerializeField] private GameObject itemPanel;
     private void Start()
     {
+        if (!DataManager.Instance.HasData("HasTriggeredParachuteFloat"))
+        {
+            DataManager.Instance.SetData("HasTriggeredParachuteFloat", false, true);
+            DataManager.Instance.SetData("ParachuteFloatExplained", false, true);
+            DataManager.Instance.SetData("ParachuteFloatCount", 0, true);
+        }
         itemPanel.SetActive(false);
         if (DataManager.Instance.GetData<bool>("IsNotFirstStart"))
         {

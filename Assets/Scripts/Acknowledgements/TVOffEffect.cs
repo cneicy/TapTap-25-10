@@ -57,13 +57,13 @@ namespace Acknowledgements
         IEnumerator AnimateTo(float target, float duration)
         {
             _isPlaying = true;
-            float start = progress;
-            float t = 0f;
+            var start = progress;
+            var t = 0f;
             while (t < 1f)
             {
                 t += Time.unscaledDeltaTime / Mathf.Max(0.0001f, duration);
                 // 平滑缓出：关机时体验更“电子”
-                float s = Mathf.SmoothStep(0f, 1f, Mathf.SmoothStep(0f, 1f, t));
+                var s = Mathf.SmoothStep(0f, 1f, Mathf.SmoothStep(0f, 1f, t));
                 progress = Mathf.Lerp(start, target, s);
                 yield return null;
             }

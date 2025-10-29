@@ -1,3 +1,4 @@
+using Data;
 using Game.Buff;
 using ShrinkEventBus;
 using UnityEngine;
@@ -89,6 +90,10 @@ namespace Game.Item
                 _parachuteUsedIndex++;
             else
                 _parachuteUsedIndex = _maxParachuteUsedIndex;
+
+            if (_parachuteUsedIndex < 2) return;
+            var currentCount = DataManager.Instance.GetData<int>("ParachuteFloatCount");
+            DataManager.Instance.SetData("ParachuteFloatCount", currentCount + 1, true);
         }
 
         public override void OnRecoveryStart()

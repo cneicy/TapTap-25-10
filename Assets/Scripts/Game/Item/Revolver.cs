@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using Game.Level;
+using Game.Meta;
 using UnityEngine;
 using ShrinkEventBus;
 
@@ -43,9 +45,9 @@ namespace Game.Item
         private readonly Queue<GameObject> _recordedQueue = new();
         private readonly HashSet<GameObject> _recordedSet = new();
 
-        private static readonly string[] _triggerMethodNames =
+        private static readonly string[] TriggerMethodNames =
         {
-            "ActivateTargets"
+            "ActivateTargets", "ToggleTargets"
         };
         
         [Header("命中后粒子效果")]
@@ -214,14 +216,36 @@ namespace Game.Item
             
             if (!hitCol.name.Contains("Grid"))
                 AddMechanismRecord(mechGo);
-            
+            var triggeredCount = 0;
             foreach (var go in _recordedQueue)
             {
                 print("遍历到机关 " + go.name);
                 if (!go || go == mechGo) continue;
 
                 TryTriggerMechanism(go);
-                
+                if (go.name.Contains("Switch") || go.name.Contains("Button"))
+                    triggeredCount++;
+            }
+
+            if (triggeredCount < 1) return;
+            var hasTriggered = DataManager.Instance.GetData("HasTriggeredRevolverChain", false);
+            var hasExplained = DataManager.Instance.GetData("RevolverChainExplained", false);
+        
+            if (!hasTriggered)
+            {
+                MetaAudioManager.Instance.Play("meta i-3.4-hint");
+                SoundManager.Instance.Play("meta i-3.4-hint");
+                DataManager.Instance.SetData("HasTriggeredRevolverChain", true, true);
+            }
+            else if (!hasExplained)
+            {
+                var chainCount = DataManager.Instance.GetData("RevolverChainCount", 0) + 1;
+                DataManager.Instance.SetData("RevolverChainCount", chainCount, true);
+
+                if (chainCount < 3) return;
+                MetaAudioManager.Instance.Play("meta i-3.4-advanced");
+                SoundManager.Instance.Play("meta i-3.4-advanced");
+                DataManager.Instance.SetData("RevolverChainExplained", true, true);
             }
         }
 
@@ -252,10 +276,10 @@ namespace Game.Item
         {
             print("尝试触发机关 "+mechGo.name);
             var t = mechGo ? mechGo.transform : null;
-            int depth = 0;
+            var depth = 0;
             while (t != null && depth < 6)
             {
-                foreach (var m in _triggerMethodNames)
+                foreach (var m in TriggerMethodNames)
                     t.gameObject.SendMessage(m, SendMessageOptions.DontRequireReceiver);
                 t = t.parent;
                 depth++;

@@ -65,15 +65,15 @@ namespace Game.Mechanism
         // 【修改】实现 Once 的 A↔B 往返（用 onceNextIsAToB 控制）
         public void StartOnce(Direction dirEnum, float spd, float dist, float pauseEnds = 0f)
         {
-            Vector2 desiredDir = DirFromEnum(dirEnum);
+            var desiredDir = DirFromEnum(dirEnum);
             if (!rb) rb = GetComponent<Rigidbody2D>();
 
             // 第一次 StartOnce：用当前位置作为A，锚定A/B
             if (!_onceAnchored)
             {
-                Vector2 a = rb.position;
-                Vector2 d = (desiredDir.sqrMagnitude < 1e-6f) ? Vector2.right : desiredDir.normalized;
-                float   L = Mathf.Abs(dist);
+                var a = rb.position;
+                var d = (desiredDir.sqrMagnitude < 1e-6f) ? Vector2.right : desiredDir.normalized;
+                var   L = Mathf.Abs(dist);
                 if (L < 1e-6f) { CancelProcess(); return; }
 
                 _onceA     = a;
@@ -85,8 +85,8 @@ namespace Game.Mechanism
             }
 
             // 选择本次的起点/方向
-            Vector2 start = onceNextIsAToB ? _onceA : _onceB;
-            Vector2 runDir= onceNextIsAToB ? _onceDir : -_onceDir;
+            var start = onceNextIsAToB ? _onceA : _onceB;
+            var runDir= onceNextIsAToB ? _onceDir : -_onceDir;
 
             // 把刚体放到起点，保证精确从锚点出发（避免累计误差/被外力挪走）
             rb.position = start;
@@ -207,11 +207,11 @@ namespace Game.Mechanism
             }
 
             // 当前腿数据
-            Vector2 legDir  = (LegIndex == 0) ? Dir : -Dir;
-            Vector2 legTo   = (LegIndex == 0) ? _endPos : _startPos;
+            var legDir  = (LegIndex == 0) ? Dir : -Dir;
+            var legTo   = (LegIndex == 0) ? _endPos : _startPos;
 
-            float stepLen = Speed * Time.fixedDeltaTime;
-            float moveLen = Mathf.Min(stepLen, LegRemain);
+            var stepLen = Speed * Time.fixedDeltaTime;
+            var moveLen = Mathf.Min(stepLen, LegRemain);
 
             if (moveLen <= 1e-6f)
             {

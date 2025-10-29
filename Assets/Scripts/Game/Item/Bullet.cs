@@ -64,7 +64,7 @@ namespace Game.Item
             // Tag 白名单（如果配置了）
             if (tagWhitelist != null && tagWhitelist.Length > 0)
             {
-                bool tagOK = false;
+                var tagOK = false;
                 foreach (var t in tagWhitelist)
                 {
                     if (!string.IsNullOrEmpty(t) && col.CompareTag(t)) { tagOK = true; break; }

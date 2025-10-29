@@ -64,20 +64,20 @@ namespace Game.Item
             if (startDelay > 0f)
                 yield return Wait(startDelay);
 
-            float t = 0f;
-            Vector3 from = initialScale;
-            Vector3 to   = targetScale;
+            var t = 0f;
+            var from = initialScale;
+            var to   = targetScale;
 
             // 避免除零
-            float dur = Mathf.Max(0.0001f, growDuration);
+            var dur = Mathf.Max(0.0001f, growDuration);
 
             while (t < dur)
             {
                 t += Delta();
-                float k = Mathf.Clamp01(t / dur);
+                var k = Mathf.Clamp01(t / dur);
 
                 // 缓动
-                float eased = easeCurve != null ? easeCurve.Evaluate(k) : (k * k * (3f - 2f * k));
+                var eased = easeCurve != null ? easeCurve.Evaluate(k) : (k * k * (3f - 2f * k));
 
                 transform.localScale = Vector3.LerpUnclamped(from, to, eased);
                 yield return null;

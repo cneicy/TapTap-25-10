@@ -44,7 +44,7 @@ namespace Game.Buff
 
         private void FixedUpdate()
         {
-            for (int i = _buffs.Count - 1; i >= 0; i--)
+            for (var i = _buffs.Count - 1; i >= 0; i--)
             {
                 var buff = _buffs[i];
                 buff.OnUpdate(_player, Time.fixedDeltaTime);
@@ -68,7 +68,7 @@ namespace Game.Buff
         
         public bool RemoveBuff(string buffName)
         {
-            int idx = _buffs.FindIndex(b => b.BuffName == buffName);
+            var idx = _buffs.FindIndex(b => b.BuffName == buffName);
             if (idx < 0) return false;
 
             var buff = _buffs[idx];
@@ -80,7 +80,7 @@ namespace Game.Buff
         
         public bool RemoveBuff<T>() where T : BuffBase
         {
-            int idx = _buffs.FindIndex(b => b is T);
+            var idx = _buffs.FindIndex(b => b is T);
             if (idx < 0) return false;
 
             var buff = _buffs[idx];
@@ -92,8 +92,8 @@ namespace Game.Buff
         
         public int RemoveAll<T>() where T : BuffBase
         {
-            int removed = 0;
-            for (int i = _buffs.Count - 1; i >= 0; i--)
+            var removed = 0;
+            for (var i = _buffs.Count - 1; i >= 0; i--)
             {
                 if (_buffs[i] is T)
                 {
@@ -139,7 +139,7 @@ namespace Game.Buff
         /// </summary>
         public void ClearAllBuffs()
         {
-            for (int i = _buffs.Count - 1; i >= 0; i--)
+            for (var i = _buffs.Count - 1; i >= 0; i--)
             {
                 var buff = _buffs[i];
                 buff.OnRemove(_player);

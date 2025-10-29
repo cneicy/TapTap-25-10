@@ -21,7 +21,7 @@ namespace Game.Mechanism
         {
             // 等“你的新玩家预制体生成”完成
             Player.Player player = null;
-            for (int i = 0; i < 300; i++) // ~5s @60fps
+            for (var i = 0; i < 300; i++) // ~5s @60fps
             {
                 player = Object.FindObjectOfType<Player.Player>();
                 if (player) break;

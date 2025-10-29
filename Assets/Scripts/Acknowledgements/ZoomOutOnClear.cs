@@ -55,11 +55,11 @@ namespace Acknowledgements
                 else yield return new WaitForSeconds(startDelay);
             }
 
-            float t = 0f;
+            var t = 0f;
             while (t < 1f)
             {
                 t += (ignoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime) / Mathf.Max(0.0001f, duration);
-                float k = curve.Evaluate(Mathf.Clamp01(t));
+                var k = curve.Evaluate(Mathf.Clamp01(t));
                 cam.orthographicSize = Mathf.LerpUnclamped(_startSize, _targetSize, k);
                 yield return null;
             }
@@ -71,8 +71,8 @@ namespace Acknowledgements
             var renderers = root.GetComponentsInChildren<Renderer>(true);
             var cols2D    = root.GetComponentsInChildren<Collider2D>(true);
 
-            bool has = false;
-            Bounds b = new Bounds(root.position, Vector3.zero);
+            var has = false;
+            var b = new Bounds(root.position, Vector3.zero);
 
             foreach (var r in renderers)
             {

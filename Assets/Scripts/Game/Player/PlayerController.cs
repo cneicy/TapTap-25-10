@@ -146,7 +146,7 @@ namespace Game.Player
                 _col.bounds.center, _col.size, _col.direction, 0,
                 Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
 
-            bool ceilingHit = ceilCast.collider != null && !ceilCast.collider.isTrigger;
+            var ceilingHit = ceilCast.collider != null && !ceilCast.collider.isTrigger;
 
             if (ceilingHit)
                 _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);

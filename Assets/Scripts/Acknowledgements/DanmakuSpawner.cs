@@ -73,11 +73,11 @@ namespace Acknowledgements
 
                 if (_queue.Count > 0)
                 {
-                    string msg = _queue.Dequeue();
+                    var msg = _queue.Dequeue();
                     SpawnOne(msg);
                 }
 
-                float wait = intervalSeconds;
+                var wait = intervalSeconds;
                 if (randomInterval.x >= 0f && randomInterval.y > randomInterval.x)
                     wait = Random.Range(randomInterval.x, randomInterval.y);
 
@@ -91,9 +91,9 @@ namespace Acknowledgements
             item.SetupText(msg); // 如需限制最大宽度，可传 viewport.rect.width * 0.9f
 
             // —— 垂直随机：以视口中心为0，任何 pivot/anchor 都安全 —— 
-            float vh = viewport.rect.height;
-            float halfSpan = Mathf.Max(0f, (vh - item.Height) * 0.5f - verticalPadding);
-            float randY = (halfSpan > 0f) ? Random.Range(-halfSpan, halfSpan) : 0f;
+            var vh = viewport.rect.height;
+            var halfSpan = Mathf.Max(0f, (vh - item.Height) * 0.5f - verticalPadding);
+            var randY = (halfSpan > 0f) ? Random.Range(-halfSpan, halfSpan) : 0f;
 
             // 从右边界外贴边生成（x = 视口宽度）
             var startPos = new Vector2(viewport.rect.width, randY);
@@ -103,7 +103,7 @@ namespace Acknowledgements
 
         DanmakuItem Get()
         {
-            DanmakuItem item = _pool.Count > 0 ? _pool.Pop() : Instantiate(itemPrefab);
+            var item = _pool.Count > 0 ? _pool.Pop() : Instantiate(itemPrefab);
             item.gameObject.SetActive(true);
             return item;
         }

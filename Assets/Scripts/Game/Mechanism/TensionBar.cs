@@ -91,7 +91,7 @@ namespace Game.Mechanism
             if (!col) return;
             if (Time.time - _lastAnyTriggerTime < anyTriggerDebounce) return;
 
-            bool fired = false;
+            var fired = false;
             if (enableBulletTrigger && IsBullet(col) && Time.time - _lastBulletTime >= bulletDebounce)
             {
                 _lastBulletTime = Time.time;
@@ -116,15 +116,15 @@ namespace Game.Mechanism
 
         private bool IsBullet(Collider2D col)
         {
-            bool byLayer = ((1 << col.gameObject.layer) & bulletLayerMask) != 0;
-            bool byComp  = col.GetComponent<Bullet>() != null;
+            var byLayer = ((1 << col.gameObject.layer) & bulletLayerMask) != 0;
+            var byComp  = col.GetComponent<Bullet>() != null;
             return byLayer || byComp;
         }
 
         private bool IsPlayer(Collider2D col)
         {
-            bool byLayer = ((1 << col.gameObject.layer) & playerLayerMask) != 0;
-            bool byTag   = true;
+            var byLayer = ((1 << col.gameObject.layer) & playerLayerMask) != 0;
+            var byTag   = true;
             if (playerTagWhitelist != null && playerTagWhitelist.Length > 0)
             {
                 byTag = false;
@@ -132,8 +132,8 @@ namespace Game.Mechanism
                     if (!string.IsNullOrEmpty(t) && col.CompareTag(t)) { byTag = true; break; }
             }
             // 组件识别（两者其一命中即可）
-            bool byComp = col.GetComponentInParent<PlayerController>() != null
-                       || col.GetComponentInParent<IPlayerController>() != null;
+            var byComp = col.GetComponentInParent<PlayerController>() != null
+                         || col.GetComponentInParent<IPlayerController>() != null;
 
             return (byLayer && byTag) || byComp;
         }

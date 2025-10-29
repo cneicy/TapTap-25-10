@@ -62,7 +62,7 @@ namespace Acknowledgements
         {
             IsFalling = true;
 
-            bool reenableParallax = false;
+            var reenableParallax = false;
             if (disableParallaxWhileFalling && sunScrollParallaxCompensator)
             {
                 // 防止动画过程中被视差脚本改写位置
@@ -73,9 +73,9 @@ namespace Acknowledgements
 
             onFallStarted?.Invoke();
 
-            Vector2 startPos = _rt.anchoredPosition;
-            float startAngle = _rt.localEulerAngles.z;
-            float dur = Mathf.Max(0.0001f, duration);
+            var startPos = _rt.anchoredPosition;
+            var startAngle = _rt.localEulerAngles.z;
+            var dur = Mathf.Max(0.0001f, duration);
 
             // 0 时长直接到位
             if (duration <= 0f)
@@ -85,23 +85,23 @@ namespace Acknowledgements
             }
             else
             {
-                float t = 0f;
+                var t = 0f;
                 while (t < 1f)
                 {
-                    float dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+                    var dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
                     t = Mathf.Min(1f, t + dt / dur);
-                    float t01 = Mathf.Clamp01(t);
+                    var t01 = Mathf.Clamp01(t);
 
                     // 曲线映射
-                    float posK = (positionCurve != null) ? Mathf.Clamp01(positionCurve.Evaluate(t01)) : t01;
-                    float rotK = (rotationCurve  != null) ? rotationCurve.Evaluate(t01) : t01;
+                    var posK = (positionCurve != null) ? Mathf.Clamp01(positionCurve.Evaluate(t01)) : t01;
+                    var rotK = (rotationCurve  != null) ? rotationCurve.Evaluate(t01) : t01;
 
                     // 位置：从 startY 插值到 targetY（只改 Y，保持 X）
-                    float y = Mathf.LerpUnclamped(startPos.y, targetY, posK);
+                    var y = Mathf.LerpUnclamped(startPos.y, targetY, posK);
                     _rt.anchoredPosition = new Vector2(startPos.x, y);
 
                     // 旋转
-                    float angle = startAngle + degrees * rotK;
+                    var angle = startAngle + degrees * rotK;
                     _rt.localRotation = Quaternion.Euler(0f, 0f, angle);
 
                     yield return null;

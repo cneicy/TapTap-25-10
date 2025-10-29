@@ -22,6 +22,10 @@ namespace Game.Level.CheckPoint
         [SerializeField] private AudioClip tapClip;
         [SerializeField] private AudioSource audioSource;
 
+        private CRTScanlineFilter _crtFilter;
+        private float _targetBrightness = 1f;
+        private float _brightnessChangeSpeed = 2f;
+
         [EventSubscribe]
         public void OnLevelLoadedEvent(LevelLoadedEvent evt)
         {
@@ -29,6 +33,8 @@ namespace Game.Level.CheckPoint
             _hasSavedPosition = false;
             _holdTime = 0f;
             _actionTriggered = false;
+            
+            _crtFilter = FindFirstObjectByType<CRTScanlineFilter>();
         }
 
         [EventSubscribe]
@@ -62,6 +68,8 @@ namespace Game.Level.CheckPoint
                 {
                     _holdTime += Time.deltaTime;
 
+                    _targetBrightness = Mathf.Lerp(1f, 0.5f, _holdTime / RequiredHoldTime);
+                    
                     if (_holdTime >= RequiredHoldTime)
                     {
                         _actionTriggered = true;
@@ -81,6 +89,8 @@ namespace Game.Level.CheckPoint
 
             if (backAction.WasReleasedThisFrame())
             {
+                _targetBrightness = 1f;
+                
                 if (audioSource != null)
                 {
                     audioSource.Stop();
@@ -98,6 +108,15 @@ namespace Game.Level.CheckPoint
                 _holdTime = 0f;
                 _actionTriggered = false;
             }
+            UpdateCRTBrightness();
+        }
+
+        private void UpdateCRTBrightness()
+        {
+            if (!_crtFilter) return;
+            var currentBrightness = _crtFilter.GetBrightness();
+            var newBrightness = Mathf.Lerp(currentBrightness, _targetBrightness, Time.deltaTime * _brightnessChangeSpeed);
+            _crtFilter.SetBrightness(newBrightness);
         }
     }
 }

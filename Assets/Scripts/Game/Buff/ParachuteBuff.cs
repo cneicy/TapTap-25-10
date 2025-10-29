@@ -1,4 +1,6 @@
+using Data;
 using Game.Item;
+using Game.Meta;
 using Game.Player;
 using UnityEngine;
 
@@ -39,11 +41,38 @@ namespace Game.Buff
             }
 
             if (StackCount == 0) AddStack();
+    
+            if (StackCount >= 2)
+            {
+                var hasTriggered = DataManager.Instance.GetData("HasTriggeredParachuteFloat", false);
+                var hasExplained = DataManager.Instance.GetData("ParachuteFloatExplained", false);
+        
+                if (!hasTriggered)
+                {
+                    // 第一次达到漂浮条件，播放隐晦提示
+                    MetaAudioManager.Instance.Play("meta i-3.2-hint");
+                    SoundManager.Instance.Play("meta i-3.2-hint");
+                    DataManager.Instance.SetData("HasTriggeredParachuteFloat", true, true);
+                }
+                else if (!hasExplained)
+                {
+                    // 后续达到漂浮条件，检查是否达到进阶条件
+                    var floatCount = DataManager.Instance.GetData("ParachuteFloatCount", 0) + 1;
+                    DataManager.Instance.SetData("ParachuteFloatCount", floatCount, true);
             
+                    if (floatCount >= 3)
+                    {
+                        MetaAudioManager.Instance.Play("meta i-3.2-advanced");
+                        SoundManager.Instance.Play("meta i-3.2-advanced");
+                        DataManager.Instance.SetData("ParachuteFloatExplained", true, true);
+                    }
+                }
+            }
+    
             _pc.HandleGravityByController = false;
             _oldGravityScale = _rb.gravityScale;
             _rb.gravityScale = 0f;
-            
+    
             _pc.JumpPowerRate = 1f;
             _pc.HorizontalPowerRate = 0.5f;
 
@@ -55,7 +84,7 @@ namespace Game.Buff
             base.OnUpdate(target, dt);
             if (_rb == null || _pc == null) return;
             
-            float targetY = StackCount switch
+            var targetY = StackCount switch
             {
                 <= 1 => -ParachuteMinSpeed,            
                 2    => ParachuteMinSpeed * 0.75f,     
@@ -64,7 +93,7 @@ namespace Game.Buff
 
             // 用 MoveTowards 将竖直速度逼近目标
             var v = _rb.linearVelocity;
-            float newY = Mathf.MoveTowards(v.y, targetY, ParachuteFallAcceleration * dt);
+            var newY = Mathf.MoveTowards(v.y, targetY, ParachuteFallAcceleration * dt);
             if (Mathf.Abs(newY - targetY) <= 0.05f) newY = targetY;
             
             v.y = newY;

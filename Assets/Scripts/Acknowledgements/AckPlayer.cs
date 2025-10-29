@@ -82,7 +82,7 @@ namespace Acknowledgements
             }
 
             // 初始目标 X（在本 UI 的父 RectTransform 坐标系下）
-            if (!TryGetSunLocalX(self, sunRect ?? sunTr as RectTransform, sunTr, out float targetX))
+            if (!TryGetSunLocalX(self, sunRect ?? sunTr as RectTransform, sunTr, out var targetX))
             {
                 Debug.LogWarning("[AckPlayer] 计算 AckSun 的本地 X 失败。");
                 yield break;
@@ -96,7 +96,7 @@ namespace Acknowledgements
                 yield break;
             }
 
-            bool reached = false;
+            var reached = false;
 
             // 往目标 X 移动
             while (true)
@@ -106,7 +106,7 @@ namespace Acknowledgements
                     break;
 
                 var pos = self.anchoredPosition;
-                float dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+                var dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
                 pos.x = Mathf.MoveTowards(pos.x, targetX, moveSpeed * dt);
                 self.anchoredPosition = pos;
@@ -165,7 +165,7 @@ namespace Acknowledgements
                 cam = canvas.worldCamera;
 
             // 用世界坐标 -> 屏幕坐标 -> 父 Rect 本地坐标
-            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(cam, sunTr.position);
+            var screenPoint = RectTransformUtility.WorldToScreenPoint(cam, sunTr.position);
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, screenPoint, cam, out var localPoint))
             {
                 targetX = localPoint.x;

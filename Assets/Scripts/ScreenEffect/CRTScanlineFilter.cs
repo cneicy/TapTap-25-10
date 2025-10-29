@@ -68,6 +68,11 @@ namespace ScreenEffect
             speed = Mathf.Clamp(value, -5f, 5f);
             UpdateShaderParameters();
         }
+        
+        public float GetBrightness()
+        {
+            return brightness;
+        }
 
         private void UpdateShaderParameters()
         {

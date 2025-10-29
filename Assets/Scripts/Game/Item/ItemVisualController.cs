@@ -54,9 +54,9 @@ namespace Game.Item
         {
             displayWidth = (displayNumber-1)*itemSpace;
             _items = new ItemVisual[displayNumber];
-            for (int i = 0; i < displayNumber; i++)
+            for (var i = 0; i < displayNumber; i++)
             {
-                ItemVisual item = Instantiate(itemPrefab, itemParent).GetComponent<ItemVisual>();
+                var item = Instantiate(itemPrefab, itemParent).GetComponent<ItemVisual>();
                 item.itemIndex = i;
                 _items[i] = item;
             }
@@ -77,7 +77,7 @@ namespace Game.Item
             _itemInfos = new ItemInfo[items.Count];
     
             // 使用安全遍历
-            for (int i = 0; i < items.Count; i++) // 关键修改点：用names.Length
+            for (var i = 0; i < items.Count; i++) // 关键修改点：用names.Length
             {
                 // 元素级检查
                 if (items[i] == null) {
@@ -106,9 +106,9 @@ namespace Game.Item
 
         private void MoveItem(int offsetTime)
         {
-            for (int i = 0; i < displayNumber; i++)
+            for (var i = 0; i < displayNumber; i++)
             {
-                float x = itemSpace * (i-offsetTime) -displayWidth/2;
+                var x = itemSpace * (i-offsetTime) -displayWidth/2;
                 _items[i].transform.localPosition = new Vector2(x,
                     _items[i].transform.localPosition.y);
             }
@@ -123,9 +123,9 @@ namespace Game.Item
                 middle = -offsetTime % _itemInfos.Length;
             }
 
-            int infoIndex = middle;
+            var infoIndex = middle;
 
-            for (int i = Mathf.FloorToInt(displayNumber / 2f); i < displayNumber; i++)
+            for (var i = Mathf.FloorToInt(displayNumber / 2f); i < displayNumber; i++)
             {
                 if (infoIndex >= _itemInfos.Length)
                 {
@@ -136,7 +136,7 @@ namespace Game.Item
             }
 
             infoIndex = middle - 1;
-            for (int i = Mathf.FloorToInt(displayNumber / 2f) - 1; i >= 0; i--)
+            for (var i = Mathf.FloorToInt(displayNumber / 2f) - 1; i >= 0; i--)
             {
                 if (infoIndex <= -1)
                 {
@@ -156,19 +156,19 @@ namespace Game.Item
         private void ItemsControl()
         {
             distances = new float[displayNumber];
-            for (int i = 0; i < displayNumber; i++)
+            for (var i = 0; i < displayNumber; i++)
             {
-                float distance = Mathf.Abs(_items[i].rectTransform.position.x
-                                           -itemParent.transform.position.x);
+                var distance = Mathf.Abs(_items[i].rectTransform.position.x
+                                         -itemParent.transform.position.x);
                 distances[i] = distance;
-                float scale = 1 - distance*scaleMultiplier;
+                var scale = 1 - distance*scaleMultiplier;
                 _items[i].rectTransform.localScale = new Vector3(scale, scale, 1);
                 _items[i].SetAlpha(1-distance*alphaMultiplier);
             }
             
-            float minDistance = itemSpace*displayNumber;
-            int minIndex = 0;
-            for (int i = 0; i < displayNumber; i++)
+            var minDistance = itemSpace*displayNumber;
+            var minIndex = 0;
+            for (var i = 0; i < displayNumber; i++)
             {
                 if (distances[i] < minDistance)
                 {
@@ -207,9 +207,9 @@ namespace Game.Item
             currentOffset = Mathf.Lerp(currentOffset, targetOffsetTimes, Time.deltaTime * moveSmooth);
     
             // 更新所有item的位置
-            for (int i = 0; i < displayNumber; i++)
+            for (var i = 0; i < displayNumber; i++)
             {
-                float x = itemSpace * (i - currentOffset) - displayWidth / 2;
+                var x = itemSpace * (i - currentOffset) - displayWidth / 2;
                 _items[i].transform.localPosition = new Vector2(x, _items[i].transform.localPosition.y);
             }
     

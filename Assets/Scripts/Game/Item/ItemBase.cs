@@ -174,7 +174,7 @@ namespace Game.Item
             _isInCooldown = true;
             _cdUnscaled   = UseUnscaledCooldownTick;
 
-            float now = _cdUnscaled ? Time.realtimeSinceStartup : Time.time;
+            var now = _cdUnscaled ? Time.realtimeSinceStartup : Time.time;
             _cdStart = now;
             _cdEnd   = now + Cooldown;
 

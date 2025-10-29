@@ -20,24 +20,37 @@ namespace Game.Meta
             if (!other.CompareTag("Player") && !other.name.Contains("Bullet")) return;
             level?.HandleCollider(other);
             button?.HandleCollider(other);
-            if (GetComponent<LDtkFields>().GetString("voiceid") == "meta 1-3.5")
+            
+            var voiceId = GetComponent<LDtkFields>().GetString("voiceid");
+            
+            switch (voiceId)
             {
-                if (!DataManager.Instance.GetData<bool>("IsNotFirstTriggerTrap"))
-                {
-                    DataManager.Instance.SetData("IsNotFirstTriggerTrap", true,true);
-                    MetaAudioManager.Instance.Play(GetComponent<LDtkFields>().GetString("voiceid"));
-                    SoundManager.Instance.Play(GetComponent<LDtkFields>().GetString("voiceid"));
-                }
-                else
-                {
+                case "meta i-3.4":
+                    MetaAudioManager.Instance.Play("meta i-3.4");
+                    SoundManager.Instance.Play("meta i-3.4");
+                    DataManager.Instance.SetData("RevolverChainExplained", true, true);
+                    DataManager.Instance.SetData("HasTriggeredRevolverChain", true, true);
+                    break;
+                case "meta i-3.2":
+                    MetaAudioManager.Instance.Play("meta i-3.2");
+                    SoundManager.Instance.Play("meta i-3.2");
+                    DataManager.Instance.SetData("ParachuteFloatExplained", true, true);
+                    DataManager.Instance.SetData("HasTriggeredParachuteFloat", true, true);
+                    break;
+                // todo:顺序很重要，兄弟
+                case "meta 1-3.5" when DataManager.Instance.GetData<bool>("IsNotFirstTriggerTrap"):
                     MetaAudioManager.Instance.Play("meta 1-3.5.1");
                     SoundManager.Instance.Play("meta 1-3.5.1");
-                }
-            }
-            else
-            {
-                MetaAudioManager.Instance.Play(GetComponent<LDtkFields>().GetString("voiceid"));
-                SoundManager.Instance.Play(GetComponent<LDtkFields>().GetString("voiceid"));
+                    break;
+                case "meta 1-3.5" when !DataManager.Instance.GetData<bool>("IsNotFirstTriggerTrap"):
+                    DataManager.Instance.SetData("IsNotFirstTriggerTrap", true,true);
+                    MetaAudioManager.Instance.Play(voiceId);
+                    SoundManager.Instance.Play(voiceId);
+                    break;
+                default:
+                    MetaAudioManager.Instance.Play(voiceId);
+                    SoundManager.Instance.Play(voiceId);
+                    break;
             }
                 
             if(GetComponent<LDtkFields>().GetBool("disposable")) Destroy(gameObject);

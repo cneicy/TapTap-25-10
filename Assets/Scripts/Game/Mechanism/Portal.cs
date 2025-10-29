@@ -38,7 +38,7 @@ namespace Game.Mechanism
             _busy = true;
 
             var rb = player.GetComponent<Rigidbody2D>();
-            Vector2? carryVel = (preserveVelocity && rb) ? rb.linearVelocity : (Vector2?)null;
+            var carryVel = (preserveVelocity && rb) ? rb.linearVelocity : (Vector2?)null;
 
             // 同场景：直接移动
             if (string.IsNullOrWhiteSpace(targetSceneName) ||
