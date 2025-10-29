@@ -18,6 +18,10 @@ namespace Game.Level.CheckPoint
         private const float RequiredHoldTime = 3f;
         private bool _actionTriggered;
 
+        [SerializeField] private AudioClip holdClip;
+        [SerializeField] private AudioClip tapClip;
+        [SerializeField] private AudioSource audioSource;
+
         [EventSubscribe]
         public void OnLevelLoadedEvent(LevelLoadedEvent evt)
         {
@@ -46,6 +50,10 @@ namespace Game.Level.CheckPoint
             {
                 _holdTime = 0f;
                 _actionTriggered = false;
+                if (tapClip && audioSource)
+                {
+                    audioSource.PlayOneShot(tapClip);
+                }
             }
 
             if (backAction.IsPressed())
@@ -60,21 +68,36 @@ namespace Game.Level.CheckPoint
                         LevelManager.Instance.SwitchLevel(LevelManager.Instance.CurrentLevel);
                         RectTransitionController.Instance.StartTransition();
                     }
+                    else if (_holdTime > 0.1f && holdClip != null && audioSource != null)
+                    {
+                        if (!audioSource.isPlaying || audioSource.clip != holdClip)
+                        {
+                            audioSource.clip = holdClip;
+                            audioSource.Play();
+                        }
+                    }
                 }
             }
 
-            if (!backAction.WasReleasedThisFrame()) return;
-            if (!_actionTriggered && _hasSavedPosition)
+            if (backAction.WasReleasedThisFrame())
             {
-                FindFirstObjectByType<PlayerController>().transform.position = lastSavedPosition;
+                if (audioSource != null)
+                {
+                    audioSource.Stop();
+                }
+                
+                if (!_actionTriggered && _hasSavedPosition)
+                {
+                    FindFirstObjectByType<PlayerController>().transform.position = lastSavedPosition;
+                }
+                if(!DataManager.Instance.GetData<bool>("IsNotFirstReset"))
+                {
+                    SoundManager.Instance.Play("meta 1-3.1");
+                    DataManager.Instance.SetData("IsNotFirstReset", true, true);
+                }
+                _holdTime = 0f;
+                _actionTriggered = false;
             }
-            if(!DataManager.Instance.GetData<bool>("IsNotFirstReset"))
-            {
-                SoundManager.Instance.Play("meta 1-3.1");
-                DataManager.Instance.SetData("IsNotFirstReset", true, true);
-            }
-            _holdTime = 0f;
-            _actionTriggered = false;
         }
     }
 }

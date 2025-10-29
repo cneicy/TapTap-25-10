@@ -9,6 +9,8 @@ namespace Game.Meta
             if (other.CompareTag("Player"))
             {
                 MetaAudioManager.Instance.Play("keysay");
+                
+                gameObject.SetActive(false);
             }
         }
     }
