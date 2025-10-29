@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1544650614272011794}
   - component: {fileID: 2751277254197176818}
   - component: {fileID: 6072660450123465631}
+  - component: {fileID: 841145952885837965}
   m_Layer: 6
   m_Name: Player Controller
   m_TagString: Player
@@ -145,6 +146,52 @@ MonoBehaviour:
   playerSpeedY1: 0
   playerSpeedY2: 0
   isWearGreySpringShoe: 0
+--- !u!61 &841145952885837965
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544650614272011804}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.023916453, y: 0.4345736}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.59342116, y: 0.792909}
+  m_EdgeRadius: 0
 --- !u!1 &2969068311587289281
 GameObject:
   m_ObjectHideFlags: 0
@@ -10067,7 +10114,6 @@ MonoBehaviour:
   _tiltSpeed: 20
   baseLayerIndex: 0
   level2LayerIndex: 1
-  layerTransitionTime: 0.3
   _footstepInterval: 0.35
   _jumpParticles: {fileID: 2969068312619346371}
   _launchParticles: {fileID: 2969068312669941334}

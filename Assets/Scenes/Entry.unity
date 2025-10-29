@@ -1936,8 +1936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f545c481b80d514cb42382a97dfd372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Item.Revolver
-  recoilImpulse: 40
-  fadeSpeed: 110
+  recoilImpulse: 28
+  fadeSpeed: 40
   rayLength: 100
   hitMask:
     serializedVersion: 2
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   muzzle: {fileID: 0}
   muzzleOffset: {x: 0.6, y: -1.6}
   revolverWindupDuration: 0.1
-  revolverDuration: 0.3
+  revolverDuration: 0.4
   revolverRecoveryDuration: 3
   parachuteCooldown: 0
   hitExplosionPrefab: {fileID: 5758910846989435520, guid: da334fc2936e6244d94d816bb5f0c73a, type: 3}
@@ -4487,6 +4487,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e6ae0a1d84e35804b992f90bef0894df, type: 3}
   - name: reset
     clip: {fileID: 8300000, guid: 25ab26233c506f04397e04f8685c5e1d, type: 3}
+  - name: meta nobody
+    clip: {fileID: 8300000, guid: e5eba9ae9096c3b40b293ac2a0510de2, type: 3}
+  - name: meta ut
+    clip: {fileID: 8300000, guid: fa87c1ae70630114583c8c17d2cf6d4e, type: 3}
   - name: "meta i-1\u673A\u5173"
     clip: {fileID: 8300000, guid: a9f2c01d8d56057469c8aefef96dc35e, type: 3}
 --- !u!4 &1950793529
