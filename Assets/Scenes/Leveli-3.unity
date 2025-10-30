@@ -4243,7 +4243,7 @@ MonoBehaviour:
   intensity: 0.3
   frequency: 300
   brightness: 1
-  speed: 0.7
+  speed: 0.1
 --- !u!1001 &1127667022
 PrefabInstance:
   m_ObjectHideFlags: 0
