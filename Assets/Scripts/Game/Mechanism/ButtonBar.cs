@@ -53,7 +53,7 @@ namespace Game.Mechanism
             if (_locked) { OnTouchWhileLocked?.Invoke(); return; }
 
             var watchNonLoop = new List<MechanismBase>();
-
+            StartCoroutine(nameof(PowerColor));
             foreach (var m in targets)
             {
                 if (!m) continue;
@@ -142,7 +142,6 @@ namespace Game.Mechanism
             {
                 _lastAnyTriggerTime = Time.time;
                 SoundManager.Instance.Play("mecbtn");
-                StartCoroutine(nameof(PowerColor));
                 ActivateTargets();
             }
         }

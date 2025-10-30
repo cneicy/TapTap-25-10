@@ -58,6 +58,7 @@ namespace Game.Mechanism
         [ContextMenu("Toggle Targets")]
         public void ToggleTargets()
         {
+            StartCoroutine(nameof(PowerColor));
             foreach (var m in targets)
             {
                 if (!m) continue;
@@ -109,7 +110,6 @@ namespace Game.Mechanism
             {
                 _lastAnyTriggerTime = Time.time;
                 SoundManager.Instance.Play("meclever");
-                StartCoroutine(nameof(PowerColor));
                 ToggleTargets();
             }
         }
