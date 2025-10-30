@@ -14,6 +14,7 @@ namespace Menu
         private void Update()
         {
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
+            if(SceneManager.GetSceneByName("Level_STG").isLoaded) return;
 
             var isNotFirstTime = DataManager.Instance.GetData<bool>("IsNotFirstTimePause");
 
