@@ -236,6 +236,8 @@ namespace Game.Item
             StopIfRunning(ref RecoveryCoroutine);
             StopIfRunning(ref CooldownCoroutine);
             
+            _isInCooldown = false;
+            
             CanUse = true;
             IsWindingUp = false;
             IsUsing = false;
